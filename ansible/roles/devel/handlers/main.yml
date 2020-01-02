@@ -1,0 +1,5 @@
+---
+- name: restart secadm
+  service:
+    name: secadm
+    state: restarted
