@@ -1,6 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { useDrag } from 'react-dnd'
+import components from '..'
 import types from 'types'
 
 // import styles from './styles'
@@ -16,13 +17,18 @@ const style = {
 }
 
 
-const Component = ({ name, component, handler }) => {
+const Component = ({ name, handler }) => {
+  const component = components[name]
   const [{ isDragging }, drag] = useDrag({
-    item: { name, component, type: types.COMPONENT },
+    item: {
+      ...component,
+      name,
+      type: types.COMPONENT,
+    },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        handler(item.component)
+        handler(item)
       }
     },
     collect: monitor => ({

@@ -3,10 +3,6 @@ import React from 'react'
 import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
 import {
-  AppBar,
-  Paper,
-} from '@material-ui/core'
-import {
   Component,
   DnD,
 } from 'components'
@@ -20,32 +16,19 @@ class Landing extends React.Component {
     tree: {
       component: 'div',
       key: Math.random(),
-      props: {
-        style: { backgroundColor: 'red' },
-      },
-      text: 'Neki text',
-      children: [
-        {
-          component: Paper,
-          key: Math.random(),
-          props: {},
-          children: [],
-          text: 'This is SpaNta!!!',
-        },
-      ],
+      children: [],
     },
   }
 
-  handleAdd = (component) => {
+  handleAdd = (item) => {
     const tree = { ...this.state.tree }
     const key = Math.random()
-    tree.children.push({
+    const newitem = {
+      ...item,
       key,
-      component,
-      props: {},
       children: [],
-      text: 'Paper',
-    })
+    }
+    tree.children.push(newitem)
     this.setState({ tree, selected: key })
   }
 
@@ -54,16 +37,8 @@ class Landing extends React.Component {
       <DndProvider backend={Backend}>
         <div style={styles.root}>
           <div style={styles.components}>
-            <Component
-              name="AppBar"
-              component={AppBar}
-              handler={this.handleAdd}
-            />
-            <Component
-              name="Paper"
-              component={Paper}
-              handler={this.handleAdd}
-            />
+            <Component name="AppBar" handler={this.handleAdd} />
+            <Component name="Paper" handler={this.handleAdd} />
           </div>
           <DnD tree={this.state.tree} />
           <div style={styles.tree}>
