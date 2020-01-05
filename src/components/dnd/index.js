@@ -1,10 +1,6 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-// import { findDOMNode } from 'react-dom'
 import { useDrop } from 'react-dnd'
-// import {
-  // Paper,
-// } from '@material-ui/core'
 import types from 'types'
 
 // import styles from './styles'
@@ -24,11 +20,23 @@ const style = {
 }
 
 
-const object2Components = tree =>  {
+const object2Components = (tree, hover, selected, onHover, onClick) =>  {
   return (
-    <tree.component {...tree.props} key={tree.key}>
+    <tree.component
+      {...tree.props}
+      key={tree.key}
+      onMouseEnter={() => onHover(tree.key)}
+      onMouseLeave={() => onHover(null)}
+      onClick={(event) => {
+        event.stopPropagation()
+        console.log('clicked on', tree.key)
+        if (onClick) {
+          onClick(tree)
+        }
+      }}
+    >
       {tree.text}
-      {tree.children.map(el => object2Components(el))}
+      {tree.children.map(el => object2Components(el, hover, selected, onHover))}
     </tree.component>
   )
 }
@@ -50,7 +58,13 @@ const DnD = (props) => {
   } else if (canDrop) {
     backgroundColor = 'darkkhaki'
   }
-  const content = object2Components(props.tree)
+  const content = object2Components(
+    props.tree,
+    props.hover,
+    props.selected,
+    props.onHover,
+    props.onSelect,
+)
   return (
     <div ref={drop} style={{ ...style, backgroundColor }}>
       {isActive ? 'Release to drop' : 'Drag a box here'}

@@ -17,7 +17,7 @@ const style = {
 }
 
 
-const Component = ({ name, handler }) => {
+const Component = ({ name, add, hover, select }) => {
   const component = components[name]
   const [{ isDragging }, drag] = useDrag({
     item: {
@@ -28,7 +28,7 @@ const Component = ({ name, handler }) => {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        handler(item)
+        add(item)
       }
     },
     collect: monitor => ({

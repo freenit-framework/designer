@@ -10,14 +10,28 @@ import {
 import styles from './styles'
 
 
+const root = {
+  component: 'div',
+  key: Math.random(),
+  children: [],
+}
+
+
 class Landing extends React.Component {
   state = {
-    selected: null,
+    selected: {},
     tree: {
-      component: 'div',
-      key: Math.random(),
-      children: [],
+      ...root,
+      props: {
+        onMouseEnter: () => this.handleHover(root.key),
+        onMouseLeave: () => this.handleHover(null),
+        onClick: (event) => {
+          event.stopPropagation()
+          this.handleSelect(root)
+        }
+      }
     },
+    hover: null,
   }
 
   handleAdd = (item) => {
@@ -29,7 +43,15 @@ class Landing extends React.Component {
       children: [],
     }
     tree.children.push(newitem)
-    this.setState({ tree, selected: key })
+    this.setState({ tree, selected: item })
+  }
+
+  handleHover = (hover) => {
+    this.setState({ hover })
+  }
+
+  handleSelect = (selected) => {
+    this.setState({ selected })
   }
 
   render() {
@@ -37,10 +59,26 @@ class Landing extends React.Component {
       <DndProvider backend={Backend}>
         <div style={styles.root}>
           <div style={styles.components}>
-            <Component name="AppBar" handler={this.handleAdd} />
-            <Component name="Paper" handler={this.handleAdd} />
+            <Component
+              name="AppBar"
+              add={this.handleAdd}
+              hover={this.handleHover}
+              select={this.select}
+            />
+            <Component
+              name="Paper"
+              add={this.handleAdd}
+              hover={this.handleHover}
+              select={this.select}
+            />
           </div>
-          <DnD tree={this.state.tree} />
+          <DnD
+            hover={this.state.hover}
+            selected={this.state.selected}
+            tree={this.state.tree}
+            onHover={this.handleHover}
+            onSelect={this.handleSelect}
+          />
           <div style={styles.tree}>
             tree
           </div>
