@@ -1,24 +1,14 @@
-const center = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-}
-
-
 export default {
-  root: {
-    ...center,
-    height: '100vh',
-    width: '100vw',
-  },
-
-  content: {
-    minHeight: 300,
-    minWidth: 300,
-  },
-
-  form: {
-    ...center,
-    flexDirection: 'column',
+  component: {
+    height: '12rem',
+    width: '12rem',
+    marginRight: '1.5rem',
+    marginBottom: '1.5rem',
+    color: 'white',
+    padding: '1rem',
+    textAlign: 'center',
+    fontSize: '1rem',
+    lineHeight: 'normal',
+    float: 'left',
   },
 }

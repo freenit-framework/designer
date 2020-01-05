@@ -43,7 +43,7 @@ class Landing extends React.Component {
       children: [],
     }
     tree.children.push(newitem)
-    this.setState({ tree, selected: item })
+    this.setState({ tree, selected: newitem })
   }
 
   handleHover = (hover) => {
