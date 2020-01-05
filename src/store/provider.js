@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 // Pages
 import {
   Auth,
+  EmptyTemplate,
   Me,
   Role,
   Store,
@@ -11,9 +12,6 @@ import {
 import Landing from 'pages/landing'
 import Resolution from 'pages/resolution'
 import { withRouter } from 'react-router-dom'
-
-// Templates
-import Notification from 'templates/empty'
 
 
 export const data = {}
@@ -27,8 +25,8 @@ const StoreProvider = (props) => {
     me: new Me.store(
       useState(Me.initial.detail),
     ),
-    notification: new Notification.store(
-      useState(Notification.initial.detail),
+    notification: new EmptyTemplate.store(
+      useState(EmptyTemplate.initial.detail),
     ),
     resolution: new Resolution.store(useState(Resolution.initial.detail)),
     role: new Role.store(

@@ -9,7 +9,6 @@ import {
   Role,
   User,
 } from 'freenit'
-import Dashboard from 'pages/dashboard'
 import Landing from 'pages/landing'
 
 
@@ -17,7 +16,6 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/" component={Landing.detail} />
-      <Route exact path="/dashboard" component={Dashboard.detail} />
       <Route exact path="/event/:year" component={Event.detail} />
       <Route exact path="/events" component={Event.list} />
       <Route exact path="/login" component={Auth.login} />
@@ -32,7 +30,7 @@ const Routing = () => {
       <Route exact path="/users" component={User.list} />
       <Route exact path="/users/:page" component={User.list} />
       <Route exact path="/:year" component={Landing.detail} />
-      <Route path="*" component={NoPage} />
+      <Route path="*" component={NoPage.detail} />
     </Switch>
   )
 }
