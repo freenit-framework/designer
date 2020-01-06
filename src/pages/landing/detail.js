@@ -55,8 +55,30 @@ class Landing extends React.Component {
     this.setState({ selected })
   }
 
+  removeComponent = (tree, key) => {
+    const newtree = { ...tree }
+    newtree.children = newtree.children.filter(
+      component => component.key !== key,
+    )
+    newtree.children = newtree.children.map(
+      component => this.removeComponent(component, key),
+    )
+    return newtree
+  }
+
   handleKeyboard = (event) => {
-    console.log(this.state.selected)
+    if (!this.state.selected) {
+      return
+    }
+    if (!this.state.selected.key) {
+      return
+    }
+    const { key } = this.state.selected
+    if (key === root.key) {
+      return
+    }
+    const tree = this.removeComponent(this.state.tree, key)
+    this.setState({ tree })
   }
 
   render() {
