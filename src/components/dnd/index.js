@@ -2,12 +2,13 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { useDrop } from 'react-dnd'
 import types from 'types'
+import { withStore } from 'freenit'
 
 import styles from './styles'
 
 
-const object2Components = (tree, hover, selected, onHover, onClick) =>  {
-  const style = selected.key === tree.key
+const object2Components = (tree, store) =>  {
+  const style = store.selected.key === tree.key
     ? ({
       ...tree.props.style,
       border: '1px dashed red',
@@ -17,21 +18,15 @@ const object2Components = (tree, hover, selected, onHover, onClick) =>  {
       {...tree.props}
       key={tree.key}
       style={style}
-      onMouseEnter={() => onHover(tree.key)}
-      onMouseLeave={() => onHover(null)}
+      onMouseEnter={() => store.onHover(tree.key)}
+      onMouseLeave={() => store.onHover(null)}
       onClick={(event) => {
         event.stopPropagation()
-        onClick(tree)
+        store.onClick(tree)
       }}
     >
       {tree.text}
-      {tree.children.map(el => object2Components(
-        el,
-        hover,
-        selected,
-        onHover,
-        onClick,
-      ))}
+      {tree.children.map(el => object2Components(el, store))}
     </tree.component>
   )
 }
@@ -54,12 +49,9 @@ const DnD = (props) => {
     backgroundColor = 'darkkhaki'
   }
   const content = object2Components(
-    props.tree,
-    props.hover,
-    props.selected,
-    props.onHover,
-    props.onSelect,
-)
+    props.store.design.tree,
+    props.store.design,
+  )
   return (
     <div ref={drop} style={{ ...styles.component, backgroundColor }}>
       {isActive ? 'Release to drop' : 'Drag a box here'}
@@ -69,4 +61,4 @@ const DnD = (props) => {
 }
 
 
-export default DnD
+export default withStore(DnD)

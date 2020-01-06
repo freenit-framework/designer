@@ -10,14 +10,14 @@ import {
   User,
 } from 'freenit'
 import Landing from 'pages/landing'
+import Design from 'pages/design'
 
 
 const Routing = () => {
   return (
     <Switch>
       <Route exact path="/" component={Landing.detail} />
-      <Route exact path="/event/:year" component={Event.detail} />
-      <Route exact path="/events" component={Event.list} />
+      <Route exact path="/design" component={Design.detail} />
       <Route exact path="/login" component={Auth.login} />
       <Route exact path="/me" component={Me.detail} />
       <Route exact path="/register" component={Auth.register} />
@@ -29,7 +29,6 @@ const Routing = () => {
       <Route exact path="/user/:id" component={User.detail} />
       <Route exact path="/users" component={User.list} />
       <Route exact path="/users/:page" component={User.list} />
-      <Route exact path="/:year" component={Landing.detail} />
       <Route path="*" component={NoPage.detail} />
     </Switch>
   )

@@ -11,6 +11,7 @@ export default {
     component: AppBar,
     props: {
       position: 'static',
+      style: {},
     },
     text: 'Title',
   },

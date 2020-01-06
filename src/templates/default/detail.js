@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
-import { withStore } from 'freenit'
+import {
+  EmptyTemplate,
+  withStore,
+} from 'freenit'
 
 // Components
 import {
@@ -23,7 +26,6 @@ import ReorderIcon from '@material-ui/icons/Reorder'
 import UserIcon from '@material-ui/icons/PeopleOutline'
 import RoleIcon from '@material-ui/icons/People'
 
-import EmptyTemplate from 'templates/empty/detail'
 import styles from './styles'
 
 
@@ -120,7 +122,7 @@ class Template extends React.Component {
             {AuthButton}
           </Toolbar>
         </AppBar>
-        <EmptyTemplate secure={this.props.secure} style={this.props.style}>
+        <EmptyTemplate.detail secure={this.props.secure} style={this.props.style}>
           {this.props.children}
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
@@ -143,7 +145,7 @@ class Template extends React.Component {
               {AuthMenu}
             </div>
           </Drawer>
-        </EmptyTemplate>
+        </EmptyTemplate.detail>
       </div>
     )
   }

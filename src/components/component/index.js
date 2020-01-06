@@ -1,13 +1,14 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { useDrag } from 'react-dnd'
+import { withStore } from 'freenit'
 import components from '..'
 import types from 'types'
 
 import styles from './styles'
 
 
-const Component = ({ name, add, hover, select }) => {
+const Component = ({ name, store }) => {
   const component = components[name]
   const [{ isDragging }, drag] = useDrag({
     item: {
@@ -18,7 +19,7 @@ const Component = ({ name, add, hover, select }) => {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        add(item)
+        store.design.add(item)
       }
     },
     collect: monitor => ({
@@ -34,4 +35,4 @@ const Component = ({ name, add, hover, select }) => {
 }
 
 
-export default Component
+export default withStore(Component)

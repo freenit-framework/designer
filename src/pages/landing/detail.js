@@ -1,129 +1,40 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
-import { DndProvider } from 'react-dnd'
-import Backend from 'react-dnd-html5-backend'
-import KeyHandler, { KEYPRESS } from 'react-key-handler'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withTheme } from '@material-ui/core/styles'
 import {
-  Component,
-  DnD,
-} from 'components'
-
-import styles from './styles'
-
-
-const root = {
-  component: 'div',
-  key: Math.random(),
-  children: [],
-}
+  Paper,
+} from '@material-ui/core'
+import getStyles from './styles'
+import Template from 'templates/default/detail'
 
 
-class Landing extends React.Component {
-  state = {
-    selected: {},
-    tree: {
-      ...root,
-      props: {
-        onMouseEnter: () => this.handleHover(root.key),
-        onMouseLeave: () => this.handleHover(null),
-        onClick: (event) => {
-          event.stopPropagation()
-          this.handleSelect(root)
-        }
-      }
-    },
-    hover: null,
-  }
-
-  handleAdd = (item) => {
-    const tree = { ...this.state.tree }
-    const key = Math.random()
-    const newitem = {
-      ...item,
-      key,
-      children: [],
-    }
-    tree.children.push(newitem)
-    this.setState({ tree, selected: newitem })
-  }
-
-  handleHover = (hover) => {
-    this.setState({ hover })
-  }
-
-  handleSelect = (selected) => {
-    this.setState({ selected })
-  }
-
-  removeComponent = (tree, key) => {
-    const newtree = { ...tree }
-    newtree.children = newtree.children.filter(
-      component => component.key !== key,
-    )
-    newtree.children = newtree.children.map(
-      component => this.removeComponent(component, key),
-    )
-    return newtree
-  }
-
-  handleKeyboard = (event) => {
-    if (!this.state.selected) {
-      return
-    }
-    if (!this.state.selected.key) {
-      return
-    }
-    const { key } = this.state.selected
-    if (key === root.key) {
-      return
-    }
-    const tree = this.removeComponent(this.state.tree, key)
-    this.setState({ tree })
-  }
-
+class Landing extends Component {
   render() {
+    const height = this.props.height || 'calc(100vh - 64px - 40px)'
+    const styles = getStyles(this.props.theme, height);
     return (
-      <DndProvider backend={Backend}>
-        <KeyHandler
-          keyEventName={KEYPRESS}
-          keyValue="Delete"
-          onKeyHandle={this.handleKeyboard}
-        />
+      <Template style={{}}>
         <div style={styles.root}>
-          <div style={styles.components}>
-            <Component
-              name="AppBar"
-              add={this.handleAdd}
-              hover={this.handleHover}
-              select={this.select}
-            />
-            <Component
-              name="Paper"
-              add={this.handleAdd}
-              hover={this.handleHover}
-              select={this.select}
-            />
+          <h1>
+            Freenit Framework
+          </h1>
+          <div style={styles.small}>
+            Startkit for fast React development
           </div>
-          <DnD
-            hover={this.state.hover}
-            selected={this.state.selected}
-            tree={this.state.tree}
-            onHover={this.handleHover}
-            onSelect={this.handleSelect}
-          />
-          <div style={styles.tree} onKeyDown={this.handleKeyboard}>
-            tree
-          </div>
+          <Paper style={styles.freenit}>
+            Freenit
+          </Paper>
         </div>
-      </DndProvider>
+      </Template>
     )
   }
 }
 
 
 Landing.propTypes = {
-  // theme: PropTypes.shape({}).isRequired,
+  height: PropTypes.number,
+  theme: PropTypes.shape({}).isRequired,
 }
 
 
-export default Landing
+export default withTheme(Landing)

@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 import TestApp from 'TestApp'
+import authService from 'pages/auth/mock'
 
 
 it('landing', async () => {
@@ -13,4 +14,5 @@ it('landing', async () => {
   })
   let title = wrapper.find('a[data-id="app"]')
   expect(title.text()).toEqual('Freenit')
+  expect(authService.refresh).toHaveBeenCalled()
 })

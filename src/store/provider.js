@@ -9,6 +9,7 @@ import {
   Store,
   User,
 } from 'freenit'
+import Design from 'pages/design'
 import Landing from 'pages/landing'
 import Resolution from 'pages/resolution'
 import { withRouter } from 'react-router-dom'
@@ -20,6 +21,11 @@ export const data = {}
 const StoreProvider = (props) => {
   const store = {
     auth: new Auth.store(useState(Auth.initial.detail)),
+    design: new Design.store(
+      useState(Design.initial.tree),
+      useState(Design.initial.selected),
+      useState(Design.initial.hover),
+    ),
     history: props.history,
     landing: new Landing.store(useState(Landing.initial.detail)),
     me: new Me.store(
