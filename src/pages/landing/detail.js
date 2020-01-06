@@ -2,6 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
+import KeyHandler, { KEYPRESS } from 'react-key-handler'
 import {
   Component,
   DnD,
@@ -54,9 +55,18 @@ class Landing extends React.Component {
     this.setState({ selected })
   }
 
+  handleKeyboard = (event) => {
+    console.log(this.state.selected)
+  }
+
   render() {
     return (
       <DndProvider backend={Backend}>
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="Delete"
+          onKeyHandle={this.handleKeyboard}
+        />
         <div style={styles.root}>
           <div style={styles.components}>
             <Component
@@ -79,7 +89,7 @@ class Landing extends React.Component {
             onHover={this.handleHover}
             onSelect={this.handleSelect}
           />
-          <div style={styles.tree}>
+          <div style={styles.tree} onKeyDown={this.handleKeyboard}>
             tree
           </div>
         </div>
