@@ -7,6 +7,7 @@ import KeyHandler, { KEYPRESS } from 'react-key-handler'
 import {
   Component,
   DnD,
+  Editor,
 } from 'components'
 
 import styles from './styles'
@@ -31,9 +32,7 @@ class Design extends React.Component {
             <Component name="Paper" />
           </div>
           <DnD />
-          <div style={styles.tree} onKeyDown={this.handleKeyboard}>
-            tree
-          </div>
+          <Editor />
         </div>
       </DndProvider>
     )

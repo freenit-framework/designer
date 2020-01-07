@@ -5,6 +5,9 @@ import {
 
 export { default as Component } from './component'
 export { default as DnD } from './dnd'
+export { default as Editor } from './editor'
+export { default as Menu } from './menu'
+export { default as Props } from './props'
 
 export default {
   AppBar: {

@@ -9,20 +9,17 @@ export default class DesignStore {
   }
 
   add = async (item, parentKey = this.tree.key) => {
-    try {
-      const result = { ...this.tree }
-      const key = Math.random()
-      const newitem = {
-        ...item,
-        key,
-        children: [],
-      }
-      result.children.push(newitem)
-      this.setTree(result)
-      return { ...result, ok: true }
-    } catch (error) {
-      return { ...error, ok: false }
+    const result = { ...this.tree }
+    const key = Math.random()
+    const newitem = {
+      ...item,
+      key,
+      children: [],
     }
+    result.children.push(newitem)
+    this.setTree(result)
+    this.setSelected(newitem)
+    return { ...result, ok: true }
   }
 
   onHover = (selected) => {
@@ -35,9 +32,6 @@ export default class DesignStore {
 
   removeComponent = (key, tree = this.tree) => {
     const newtree = { ...tree }
-    if (!newtree.children) {
-      newtree.children = []
-    }
     newtree.children = newtree.children.filter(
       component => component.key !== key,
     )
@@ -59,6 +53,7 @@ export default class DesignStore {
       return
     }
     const tree = this.removeComponent(key)
+    this.setSelected({})
     this.setTree(tree)
   }
 }
