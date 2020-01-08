@@ -9,6 +9,7 @@ export default class DesignStore {
   }
 
   add = (item, parentKey = this.tree.key) => {
+    console.log(item, parentKey)
     const result = { ...this.tree }
     if (result.key === parentKey) {
       const key = Math.random()
@@ -20,7 +21,7 @@ export default class DesignStore {
       result.children.push(newitem)
       this.setSelected(newitem)
     } else {
-      result.children = result.children.map(el => this.add(item, el.key))
+      // result.children = result.children.map(el => this.add(item, el.key))
     }
     this.setTree(result)
   }

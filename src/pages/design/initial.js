@@ -6,7 +6,9 @@ export default {
     key: Math.random(),
     children: [],
     props: {
-      style: {},
+      style: {
+        minHeight: '100vh',
+      },
     },
   },
 }
