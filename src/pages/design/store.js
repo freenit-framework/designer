@@ -9,7 +9,6 @@ export default class DesignStore {
   }
 
   add = (item, parentKey = this.tree.key) => {
-    console.log(item, parentKey)
     const result = { ...this.tree }
     if (result.key === parentKey) {
       const key = Math.random()

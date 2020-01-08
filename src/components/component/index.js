@@ -16,6 +16,12 @@ const Component = ({ name, store }) => {
       name,
       type: types.COMPONENT,
     },
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult()
+      if (item && dropResult) {
+        store.design.add(item, dropResult.identity)
+      }
+    },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),

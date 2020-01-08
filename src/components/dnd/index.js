@@ -11,9 +11,7 @@ import types from 'types'
 const DnD = (props) => {
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: types.COMPONENT,
-    drop: (item) => {
-      props.store.design.add(item, props.identity)
-    },
+    drop: () => ({ identity: props.identity }),
     collect: monitor => ({
       isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop(),
