@@ -1,5 +1,5 @@
 export default {
-  hover: null,
+  over: {},
   selected: {},
   tree: {
     component: 'div',

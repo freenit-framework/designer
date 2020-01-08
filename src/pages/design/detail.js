@@ -7,9 +7,11 @@ import KeyHandler, { KEYPRESS } from 'react-key-handler'
 import {
   Component,
   DnD,
+  Display,
   Editor,
 } from 'components'
 
+import initial from './initial'
 import styles from './styles'
 
 
@@ -31,7 +33,9 @@ class Design extends React.Component {
             <Component name="AppBar" />
             <Component name="Paper" />
           </div>
-          <DnD />
+          <DnD identity={initial.tree.key}>
+            <Display />
+          </DnD>
           <Editor />
         </div>
       </DndProvider>

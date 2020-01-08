@@ -4,26 +4,25 @@ export default class DesignStore {
     this.setTree = tree[1]
     this.selected = selected[0]
     this.setSelected = selected[1]
-    this.hover = hover[0]
-    this.setHover = hover[1]
+    this.over = hover[0]
+    this.setOver = hover[1]
   }
 
-  add = async (item, parentKey = this.tree.key) => {
+  add = (item, parentKey = this.tree.key) => {
     const result = { ...this.tree }
-    const key = Math.random()
-    const newitem = {
-      ...item,
-      key,
-      children: [],
+    if (result.key === parentKey) {
+      const key = Math.random()
+      const newitem = {
+        ...item,
+        key,
+        children: [],
+      }
+      result.children.push(newitem)
+      this.setSelected(newitem)
+    } else {
+      result.children = result.children.map(el => this.add(item, el.key))
     }
-    result.children.push(newitem)
     this.setTree(result)
-    this.setSelected(newitem)
-    return { ...result, ok: true }
-  }
-
-  onHover = (selected) => {
-    this.setHover(selected)
   }
 
   onClick = (component) => {
