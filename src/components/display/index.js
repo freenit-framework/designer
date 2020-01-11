@@ -11,9 +11,6 @@ class Display extends React.Component {
         ...tree.props.style,
         border: '1px dashed red',
       }) : { ...tree.props.style }
-    if (store.over.identity === tree.key) {
-      style.backgroundColor = 'black'
-    }
     return (
       <DnD key={tree.key} identity={tree.key}>
         <tree.component

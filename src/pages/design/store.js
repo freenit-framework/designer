@@ -4,8 +4,6 @@ export default class DesignStore {
     this.setTree = tree[1]
     this.selected = selected[0]
     this.setSelected = selected[1]
-    this.over = hover[0]
-    this.setOver = hover[1]
   }
 
   add = (item, parentKey = this.tree.key) => {
@@ -54,5 +52,13 @@ export default class DesignStore {
     const tree = this.removeComponent(key)
     this.setSelected({})
     this.setTree(tree)
+  }
+
+  setOverComponent = (identity, component = this.tree) => {
+    if (component.key === identity) {
+      this.setSelected(component)
+    } else {
+      component.children.forEach(child => this.setOverComponent(identity, child))
+    }
   }
 }

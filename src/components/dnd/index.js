@@ -28,8 +28,6 @@ const DnD = (props) => {
     <div ref={drop} style={{ backgroundColor }}>
       <DnDOver
         identity={props.identity}
-        active={active}
-        canDrop={canDrop}
         isOver={isOver}
       />
       {props.children}
