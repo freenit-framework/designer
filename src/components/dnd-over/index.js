@@ -3,13 +3,8 @@ import { withStore } from 'freenit'
 
 
 class DnDOver extends React.Component {
-  state = {
-  }
-
   constructor(props) {
     super(props)
-    this.set = false
-    this.unset = true
     this.setActive(props)
   }
 
@@ -19,18 +14,8 @@ class DnDOver extends React.Component {
 
   setActive = (props) => {
     const { identity, isOver, store } = props
-    if (isOver) {
-      if (!this.set && identity !== store.design.selected.identity) {
-        this.set = true
-        this.unset = false
-        store.design.setOverComponent(identity)
-      }
-    } else {
-      if (!this.unset && identity === store.design.selected.identity) {
-        this.set = false
-        this.unset = true
-        store.design.setSelected({})
-      }
+    if (isOver && identity !== store.design.selected.identity) {
+      store.design.setOverComponent(identity)
     }
   }
 

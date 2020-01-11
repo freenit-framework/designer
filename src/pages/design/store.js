@@ -6,9 +6,9 @@ export default class DesignStore {
     this.setSelected = selected[1]
   }
 
-  add = (item, parentKey = this.tree.key) => {
-    const result = { ...this.tree }
-    if (result.key === parentKey) {
+  add = (item, tree = this.tree) => {
+    const result = { ...tree }
+    if (result.key === this.selected.key) {
       const key = Math.random()
       const newitem = {
         ...item,
@@ -18,9 +18,9 @@ export default class DesignStore {
       result.children.push(newitem)
       this.setSelected(newitem)
     } else {
-      // result.children = result.children.map(el => this.add(item, el.key))
+      result.children = result.children.map(el => this.add(item, el))
     }
-    this.setTree(result)
+    return result
   }
 
   onClick = (component) => {

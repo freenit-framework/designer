@@ -9,7 +9,7 @@ import types from 'types'
 
 
 const DnD = (props) => {
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: types.COMPONENT,
     drop: () => ({ identity: props.identity }),
     collect: monitor => ({
@@ -17,15 +17,8 @@ const DnD = (props) => {
       canDrop: monitor.canDrop(),
     }),
   })
-  const active = canDrop && isOver
-  let backgroundColor
-  if (active) {
-    backgroundColor = 'darkgreen'
-  } else if (canDrop) {
-    backgroundColor = 'darkkhaki'
-  }
   return (
-    <div ref={drop} style={{ backgroundColor }}>
+    <div ref={drop}>
       <DnDOver
         identity={props.identity}
         isOver={isOver}

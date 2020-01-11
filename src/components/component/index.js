@@ -19,7 +19,7 @@ const Component = ({ name, store }) => {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        store.design.add(item, dropResult.identity)
+        store.design.add(item)
       }
     },
     collect: monitor => ({
