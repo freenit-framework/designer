@@ -6,25 +6,53 @@ import styles from './styles'
 
 
 class Props extends React.Component {
-  render() {
-    const data = this.props.store.design.selected.props || {}
-    const propDisplay = Object.getOwnPropertyNames(data).map(prop => {
-      let dataToDisplay
-      if (typeof data[prop] === 'object') {
-        dataToDisplay = `${prop}: {}`
-      } else {
-        dataToDisplay = `${prop}: ${data[prop]}`
-      }
+  isSimpleType = (data) => {
+    return typeof data === 'string' || typeof data === 'boolean' || typeof data === 'number'
+  }
+
+  props2Components = (data, name, level = 0) => {
+    const style = { marginLeft: level * 5 }
+    if (this.isSimpleType(data)) {
       return (
-        <div key={prop}>
-          {dataToDisplay}
+        <div style={style} key={name}>
+          {`${name}: ${data}`}
         </div>
       )
-    })
+    }
+    if (Array.isArray(data)) {
+      const children = data.map(
+        prop => this.props2Components(data[prop], prop, level + 1),
+      )
+      return (
+        <div style={style} key={name}>
+          {`${name}: [`}
+          {children}
+          ]
+        </div>
+      )
+    }
+    if (typeof data === 'object') {
+      const children = Object.getOwnPropertyNames(data).map(
+        prop => this.props2Components(data[prop], prop, level + 1),
+      )
+      return (
+        <div style={style} key={name}>
+          {`${name}: {`}
+          {children}
+          }
+        </div>
+      )
+    }
+  }
+
+  render() {
+    const data = this.props.store.design.selected.props || {}
     return (
       <div style={styles.root}>
         Props
-        {propDisplay}
+        <div>
+          {this.props2Components(data, 'props')}
+        </div>
       </div>
     )
   }
