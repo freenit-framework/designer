@@ -1,27 +1,26 @@
 import React from 'react'
 import { withStore } from 'freenit'
 import DnD from 'components/dnd'
+import { toProps } from 'components'
 import styles from './styles'
 
 
 class Display extends React.Component {
   object2Components = (tree, store) => {
-    const style = store.selected.key === tree.key
-      ? ({
-        ...tree.props.style,
-        border: '1px dashed red',
-      }) : { ...tree.props.style }
+    const style = store.selected.identity === tree.identity
+      ? { border: '1px dashed red' }
+      : null
+    const ownProps = toProps(tree.props)
     return (
-      <DnD key={tree.key} identity={tree.key}>
+      <DnD identity={tree.identity} key={tree.identity} style={style}>
         <tree.component
-          {...tree.props}
-          style={style}
+          {...ownProps}
           onClick={(event) => {
             event.stopPropagation()
             store.onClick(tree)
           }}
         >
-          {tree.key}
+          {tree.identity}
           {tree.text}
           {tree.children.map(el => this.object2Components(el, store))}
         </tree.component>

@@ -1,14 +1,20 @@
+import { compile } from 'components'
+
+
 export default {
   over: {},
   selected: {},
-  tree: {
+  tree: compile({
     component: 'div',
-    key: Math.random(),
     children: [],
     props: {
       style: {
         minHeight: '100vh',
       },
+      something: [
+        'one',
+        'two',
+      ],
     },
-  },
+  }),
 }

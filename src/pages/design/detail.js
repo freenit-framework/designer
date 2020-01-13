@@ -5,6 +5,7 @@ import { withStore } from 'freenit'
 import Backend from 'react-dnd-html5-backend'
 import KeyHandler, { KEYPRESS } from 'react-key-handler'
 import {
+  default as components,
   Component,
   Display,
   Editor,
@@ -28,8 +29,9 @@ class Design extends React.Component {
         />
         <div style={styles.root}>
           <div style={styles.components}>
-            <Component name="AppBar" />
-            <Component name="Paper" />
+            {components.map(
+              data => <Component data={data} key={data.identity} />
+            )}
           </div>
           <Display />
           <Editor />
