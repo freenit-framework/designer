@@ -9,7 +9,7 @@ export default {
     children: [],
     props: {
       style: {
-        minHeight: '100vh',
+        minHeight: 'calc(100vh - 2px)',
       },
       something: [
         'one',

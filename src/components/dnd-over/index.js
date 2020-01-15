@@ -15,7 +15,9 @@ class DnDOver extends React.Component {
   setActive = (props) => {
     const { identity, isOver, store } = props
     if (isOver && identity !== store.design.selected.identity) {
-      store.design.setOverComponent(identity)
+      store.design.setSelected({ identity })
+      console.log(isOver, identity, store.design.selected)
+      // store.design.setOverComponent(identity)
     }
   }
 

@@ -8,11 +8,11 @@ export default class DesignStore {
 
   add = (item, tree = this.tree) => {
     const result = { ...tree }
-    if (result.key === this.selected.key) {
-      const key = Math.random()
+    if (result.identity === this.selected.identity) {
+      const identity = Math.random()
       const newitem = {
         ...item,
-        key,
+        identity,
         children: [],
       }
       result.children.push(newitem)
@@ -55,8 +55,10 @@ export default class DesignStore {
   }
 
   setOverComponent = (identity, component = this.tree) => {
-    if (component.key === identity) {
-      this.setSelected(component)
+    if (component.identity === identity) {
+      if (identity !== this.selected.identity) {
+        this.setSelected(component)
+      }
     } else {
       component.children.forEach(child => this.setOverComponent(identity, child))
     }

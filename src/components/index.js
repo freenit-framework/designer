@@ -9,6 +9,7 @@ export { default as DnDOver } from './dnd-over'
 export { default as Display } from './display'
 export { default as Editor } from './editor'
 export { default as Menu } from './menu'
+export { default as PropItem } from './prop-item'
 export { default as Props } from './props'
 
 const components = [
@@ -36,9 +37,9 @@ const components = [
 ]
 
 
-const isSimple = data =>  typeof data === 'number' ||
-                          typeof data === 'boolean' ||
-                          typeof data === 'string'
+export const isSimple = data => typeof data === 'number' ||
+                                typeof data === 'boolean' ||
+                                typeof data === 'string'
 
 
 const convert = (key, value) => {
