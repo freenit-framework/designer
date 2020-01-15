@@ -6,7 +6,6 @@ export default {
   selected: {},
   tree: compile({
     component: 'div',
-    children: [],
     props: {
       style: {
         minHeight: 'calc(100vh - 2px)',
@@ -16,5 +15,14 @@ export default {
         'two',
       ],
     },
+    children: [
+      {
+        component: 'div',
+        children: [],
+        props: {
+          style: {},
+        },
+      },
+    ],
   }),
 }

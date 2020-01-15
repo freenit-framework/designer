@@ -6,9 +6,9 @@ export default class DesignStore {
     this.setSelected = selected[1]
   }
 
-  add = (item, tree = this.tree) => {
+  add = (item, parentIdentity, tree = this.tree) => {
     const result = { ...tree }
-    if (result.identity === this.selected.identity) {
+    if (result.identity === parentIdentity) {
       const identity = Math.random()
       const newitem = {
         ...item,
@@ -18,7 +18,7 @@ export default class DesignStore {
       result.children.push(newitem)
       this.setSelected(newitem)
     } else {
-      result.children = result.children.map(el => this.add(item, el))
+      result.children = result.children.map(el => this.add(item, parentIdentity, el))
     }
     return result
   }
@@ -52,15 +52,5 @@ export default class DesignStore {
     const tree = this.removeComponent(key)
     this.setSelected({})
     this.setTree(tree)
-  }
-
-  setOverComponent = (identity, component = this.tree) => {
-    if (component.identity === identity) {
-      if (identity !== this.selected.identity) {
-        this.setSelected(component)
-      }
-    } else {
-      component.children.forEach(child => this.setOverComponent(identity, child))
-    }
   }
 }

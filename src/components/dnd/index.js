@@ -2,25 +2,35 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { useDrop } from 'react-dnd'
 import { withStore } from 'freenit'
-import {
-  DnDOver,
-} from 'components'
 import types from 'types'
 
 
 const DnD = (props) => {
   const { identity } = props
-  const [{ isOver }, drop] = useDrop({
+  const { design } = props.store
+  const [{ canDrop, isOver, isOverCurrent }, drop] = useDrop({
     accept: types.COMPONENT,
-    drop: () => ({ identity }),
+    drop: (item, monitor) => {
+      if (monitor.isOver({ shallow:true })) {
+        design.add(item, identity)
+      }
+    },
     collect: monitor => ({
-      isOver: monitor.isOver({ shallow: true }),
+      isOver: monitor.isOver(),
+      isOverCurrent: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop(),
     }),
   })
+  let style
+  if (canDrop && isOver && isOverCurrent) {
+    style = { border: '1px dashed green' }
+  } else if (props.store.design.selected.identity === identity){
+    style = { border: '1px dashed red' }
+  } else {
+    style = null
+  }
   return (
-    <div ref={drop} style={props.style}>
-      <DnDOver identity={identity} isOver={isOver} />
+    <div ref={drop} style={style}>
       {props.children}
     </div>
   )

@@ -5,7 +5,6 @@ import {
 
 export { default as Component } from './component'
 export { default as DnD } from './dnd'
-export { default as DnDOver } from './dnd-over'
 export { default as Display } from './display'
 export { default as Editor } from './editor'
 export { default as Menu } from './menu'
