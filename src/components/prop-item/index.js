@@ -23,7 +23,7 @@ class PropItem extends React.Component {
 
   render() {
     const { data } = this.props
-    // const { editing } = this.props.store.design
+    const { editing } = this.props.store.design
     if (data.children) { // object
       return (
         <div style={styles.item}>
@@ -58,17 +58,29 @@ class PropItem extends React.Component {
         )
       }
       // simple value
-      // const editingThis = editing.identity === data.identity
-      const editingThis = false
+      const editingThis = editing.identity === data.identity
       if (data.name) {
-        return (
-          <div style={styles.item}>
-            <span>{data.name}: &nbsp;</span>
-            <span onClick={this.handleValue(data.identity, data.value)}>
-              {data.value}
-            </span>
-          </div>
-        )
+        if (editingThis) {
+          return (
+            <div style={styles.item}>
+              <span>{data.name}: &nbsp;</span>
+              <TextField
+                style={styles.item}
+                value={this.state.value}
+                onChange={this.handleValueChange}
+              />
+            </div>
+          )
+        } else {
+          return (
+            <div style={styles.item}>
+              <span>{data.name}: &nbsp;</span>
+              <span onClick={this.handleValue(data.identity, data.value)}>
+                {data.value}
+              </span>
+            </div>
+          )
+        }
       }
       if (editingThis) {
         return (
