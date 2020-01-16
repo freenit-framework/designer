@@ -2,9 +2,10 @@ import { compile } from 'components'
 
 
 export default {
-  over: {},
+  editing: {},
   selected: {},
   tree: compile({
+    children: [],
     component: 'div',
     props: {
       style: {
@@ -15,14 +16,5 @@ export default {
         'two',
       ],
     },
-    children: [
-      {
-        component: 'div',
-        children: [],
-        props: {
-          style: {},
-        },
-      },
-    ],
   }),
 }

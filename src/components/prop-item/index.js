@@ -1,13 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStore } from 'freenit'
+import {
+  TextField,
+} from '@material-ui/core'
 
 import styles from './styles'
 
 
 class PropItem extends React.Component {
+  state = {
+    value: null,
+  }
+
+  handleValue = (identity, value) => () => {
+    this.setState({ value })
+    this.props.store.design.setEditing({
+      identity,
+      type: 'value',
+    })
+  }
+
   render() {
     const { data } = this.props
+    // const { editing } = this.props.store.design
     if (data.children) { // object
       return (
         <div style={styles.item}>
@@ -42,15 +58,36 @@ class PropItem extends React.Component {
         )
       }
       // simple value
+      // const editingThis = editing.identity === data.identity
+      const editingThis = false
       if (data.name) {
         return (
           <div style={styles.item}>
             <span>{data.name}: &nbsp;</span>
-            <span>{data.value}</span>
+            <span onClick={this.handleValue(data.identity, data.value)}>
+              {data.value}
+            </span>
           </div>
         )
       }
-      return <div style={styles.item}>{data.value}</div>
+      if (editingThis) {
+        return (
+          <TextField
+            style={styles.item}
+            value={this.state.value}
+            onChange={this.handleValueChange}
+          />
+        )
+      } else {
+        return (
+          <div
+            style={styles.item}
+            onClick={this.handleValue(data.identity, data.value)}
+          >
+            {data.value}
+          </div>
+        )
+      }
     }
     return null
   }

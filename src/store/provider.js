@@ -24,7 +24,7 @@ const StoreProvider = (props) => {
     design: new Design.store(
       useState(Design.initial.tree),
       useState(Design.initial.selected),
-      useState(Design.initial.over),
+      useState(Design.initial.editing),
     ),
     history: props.history,
     landing: new Landing.store(useState(Landing.initial.detail)),

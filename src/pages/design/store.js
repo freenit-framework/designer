@@ -1,9 +1,11 @@
 export default class DesignStore {
-  constructor(tree, selected, hover) {
+  constructor(tree, selected, editing) {
     this.tree = tree[0]
     this.setTree = tree[1]
     this.selected = selected[0]
     this.setSelected = selected[1]
+    this.editing = editing[0]
+    this.setEditing = editing[1]
   }
 
   add = (item, parentIdentity, tree = this.tree) => {
