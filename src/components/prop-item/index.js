@@ -21,6 +21,15 @@ class PropItem extends React.Component {
     })
   }
 
+  handleValueChange = (event) => {
+    this.setState({ value: event.target.value })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.store.design.setPropValue(this.state.value)
+  }
+
   render() {
     const { data } = this.props
     const { editing } = this.props.store.design
@@ -64,11 +73,14 @@ class PropItem extends React.Component {
           return (
             <div style={styles.item}>
               <span>{data.name}: &nbsp;</span>
-              <TextField
-                style={styles.item}
-                value={this.state.value}
-                onChange={this.handleValueChange}
-              />
+              <form onSubmit={this.handleSubmit}>
+                <TextField
+                  autoFocus
+                  style={styles.item}
+                  value={this.state.value}
+                  onChange={this.handleValueChange}
+                />
+              </form>
             </div>
           )
         } else {
@@ -84,11 +96,14 @@ class PropItem extends React.Component {
       }
       if (editingThis) {
         return (
-          <TextField
-            style={styles.item}
-            value={this.state.value}
-            onChange={this.handleValueChange}
-          />
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              autoFocus
+              style={styles.item}
+              value={this.state.value}
+              onChange={this.handleValueChange}
+            />
+          </form>
         )
       } else {
         return (
