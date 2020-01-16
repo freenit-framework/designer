@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStore } from 'freenit'
 
 import styles from './styles'
 
@@ -12,9 +13,13 @@ class PropItem extends React.Component {
         <div style={styles.item}>
           <span>{data.name}: &#123;</span>
           <div>
-            {data.children.map(
-              item => <PropItem data={item} key={item.identity} />
-            )}
+            {data.children.map(item => (
+              <PropItem
+                data={item}
+                store={this.props.store}
+                key={item.identity}
+              />
+            ))}
           </div>
           <span>&#125;</span>
         </div>
@@ -25,9 +30,13 @@ class PropItem extends React.Component {
         return (
           <div key={data.identity} style={styles.item}>
             <span>{data.name}: &#91;</span>
-            {data.value.map(
-              item => <PropItem key={item.identity} data={item} />
-            )}
+            {data.value.map(item => (
+              <PropItem
+                store={this.props.store}
+                key={item.identity}
+                data={item}
+              />
+            ))}
             <span>&#93;</span>
           </div>
         )
@@ -53,4 +62,4 @@ PropItem.propTypes = {
 }
 
 
-export default PropItem
+export default withStore(PropItem)
