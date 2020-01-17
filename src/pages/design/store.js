@@ -1,11 +1,13 @@
 export default class DesignStore {
-  constructor(tree, selected, editing) {
+  constructor(tree, selected, editing, over) {
     this.tree = tree[0]
     this.setTree = tree[1]
     this.selected = selected[0]
     this.setSelected = selected[1]
     this.editing = editing[0]
     this.setEditing = editing[1]
+    this.over = over[0]
+    this.setOver = over[1]
   }
 
   add = (item, parentIdentity, tree = this.tree) => {
@@ -153,6 +155,60 @@ export default class DesignStore {
   setPropValue = (value) => {
     const component = this.findComponent(this.selected.identity)
     component.props = this.changePropValue(component.props, value)
+    this.setEditing({})
+  }
+
+  addNewProp = (prop) => {
+    const result = { ...prop }
+    if (result.identity === this.over.identity) {
+      const child = {
+        identity: Math.random(),
+        value: 'value',
+      }
+      if (result.children) {
+        result.children.push({
+          ...child,
+          name: Math.random().toString(36).substring(7),
+        })
+      }
+      if (Array.isArray(result.value)) {
+        result.value.push(child)
+      }
+      return result
+    }
+    if (result.children) {
+      result.children = result.children.map(item => this.addNewProp(item))
+    }
+    if (Array.isArray(result.value)) {
+      result.value = result.value.map(item => this.addNewProp(item))
+    }
+    return result
+  }
+
+  removeExistingProp = (prop) => {
+    const result = { ...prop }
+    if (result.children) {
+      result.children = result.children.filter(
+        item => item.identity !== this.over.identity,
+      ).map(item => this.removeExistingProp(item))
+    }
+    if (result.value && Array.isArray(result.value)) {
+      result.value = result.value.filter(
+        item => item.identity !== this.over.identity,
+      ).map(item => this.removeExistingProp(item))
+    }
+    return result
+  }
+
+  addProp = () => {
+    const component = this.findComponent(this.selected.identity)
+    component.props = this.addNewProp(component.props)
+    this.setEditing({})
+  }
+
+  removeProp = () => {
+    const component = this.findComponent(this.selected.identity)
+    component.props = this.removeExistingProp(component.props)
     this.setEditing({})
   }
 }

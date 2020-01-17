@@ -4,6 +4,8 @@ import { withStore } from 'freenit'
 import {
   TextField,
 } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 import styles from './styles'
 
@@ -50,11 +52,27 @@ class PropItem extends React.Component {
     this.props.store.design.setPropValue(this.state.value)
   }
 
+  setOver = (data) => () => {
+    const { design } = this.props.store
+    design.setOver(data)
+  }
+
+  addItem = (data) => () => {
+    this.props.store.design.addProp()
+  }
+
+  removeItem = (data) => () => {
+    this.props.store.design.removeProp()
+  }
+
   render() {
     const { data } = this.props
-    const { editing, tree } = this.props.store.design
+    const { editing, over, tree } = this.props.store.design
     const editingThis = editing.identity === data.identity &&
                         editing.identity !== tree.props.identity
+    const iconStyle = over.identity === data.identity
+      ? { opacity: 0.4 }
+      : { opacity: 0 }
     if (data.children) { // object
       const nameComponent = editingThis && editing.type === 'name'
         ? (
@@ -67,8 +85,21 @@ class PropItem extends React.Component {
             />
           </form>
         ) : (
-          <span onClick={this.handleName(data)}>
-            {data.name}: &nbsp;
+          <span
+            style={styles.prop.name}
+            onMouseEnter={this.setOver(data)}
+            onMouseLeave={this.setOver({})}
+          >
+            <span onClick={this.handleName(data)}>
+              {data.name}: &#123;
+            </span>
+            <div style={styles.item}>
+              <AddIcon style={iconStyle} onClick={this.addItem(data)} />
+              {data.identity !== tree.props.identity
+                ? <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                : null
+              }
+            </div>
           </span>
         )
       return (
@@ -100,8 +131,18 @@ class PropItem extends React.Component {
               />
             </form>
           ) : (
-            <span onClick={this.handleName(data)}>
-              {data.name}: &#91;
+            <span
+              style={styles.prop.name}
+              onMouseEnter={this.setOver(data)}
+              onMouseLeave={this.setOver({})}
+            >
+              <span onClick={this.handleName(data)}>
+                {data.name}: &#91;
+              </span>
+              <div style={styles.item}>
+                <AddIcon style={iconStyle} onClick={this.addItem(data)} />
+                <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+              </div>
             </span>
           )
         return (
@@ -131,7 +172,11 @@ class PropItem extends React.Component {
               />
             </form>
           ) : (
-            <span onClick={this.handleName(data)}>
+            <span
+              onClick={this.handleName(data)}
+              onMouseEnter={this.setOver(data)}
+              onMouseLeave={this.setOver({})}
+            >
               {data.name}: &nbsp;
             </span>
           )
@@ -146,8 +191,21 @@ class PropItem extends React.Component {
               />
             </form>
           ) : (
-            <span onClick={this.handleValue(data)}>
-              {data.value}
+            <span
+              style={{
+                ...styles.prop.name,
+                ...styles.item,
+                display: 'inline-flex',
+              }}
+              onMouseEnter={this.setOver(data)}
+              onMouseLeave={this.setOver({})}
+            >
+              <span onClick={this.handleValue(data)}>
+                {data.value}
+              </span>
+              <div style={styles.item}>
+                <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+              </div>
             </span>
           )
         return (
@@ -171,10 +229,19 @@ class PropItem extends React.Component {
       } else {
         return (
           <div
-            style={styles.item}
-            onClick={this.handleValue(data)}
+            style={{
+              ...styles.prop.name,
+              ...styles.item,
+            }}
+            onMouseEnter={this.setOver(data)}
+            onMouseLeave={this.setOver({})}
           >
-            {data.value}
+            <span onClick={this.handleValue(data)}>
+              {data.value}
+            </span>
+            <div style={styles.item}>
+              <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+            </div>
           </div>
         )
       }

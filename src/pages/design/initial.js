@@ -3,6 +3,7 @@ import { compile } from 'components'
 
 export default {
   editing: {},
+  over: {},
   selected: {},
   tree: compile({
     children: [],
