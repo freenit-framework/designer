@@ -10,10 +10,12 @@ import styles from './styles'
 
 class PropItem extends React.Component {
   state = {
+    name: null,
     value: null,
   }
 
-  handleValue = (identity, value) => () => {
+  handleValue = (data) => () => {
+    const { identity, value } = data
     this.setState({ value })
     this.props.store.design.setEditing({
       identity,
@@ -21,22 +23,57 @@ class PropItem extends React.Component {
     })
   }
 
+  handleName = (data) => () => {
+    const { identity, name } = data
+    this.setState({ name })
+    this.props.store.design.setEditing({
+      identity,
+      type: 'name',
+    })
+  }
+
+  handleNameChange = (event) => {
+    this.setState({ name: event.target.value })
+  }
+
   handleValueChange = (event) => {
     this.setState({ value: event.target.value })
   }
 
-  handleSubmit = (event) => {
+  handleSubmitName = (event) => {
+    event.preventDefault()
+    this.props.store.design.setPropName(this.state.name)
+  }
+
+  handleSubmitValue = (event) => {
     event.preventDefault()
     this.props.store.design.setPropValue(this.state.value)
   }
 
   render() {
     const { data } = this.props
-    const { editing } = this.props.store.design
+    const { editing, tree } = this.props.store.design
+    const editingThis = editing.identity === data.identity &&
+                        editing.identity !== tree.props.identity
     if (data.children) { // object
+      const nameComponent = editingThis && editing.type === 'name'
+        ? (
+          <form onSubmit={this.handleSubmitName}>
+            <TextField
+              autoFocus
+              style={styles.item}
+              value={this.state.name}
+              onChange={this.handleNameChange}
+            />
+          </form>
+        ) : (
+          <span onClick={this.handleName(data)}>
+            {data.name}: &nbsp;
+          </span>
+        )
       return (
         <div style={styles.item}>
-          <span>{data.name}: &#123;</span>
+          {nameComponent}
           <div>
             {data.children.map(item => (
               <PropItem
@@ -52,9 +89,24 @@ class PropItem extends React.Component {
     }
     if (data.value) { // simple value or array
       if (Array.isArray(data.value)) { // array
+        const nameComponent = editingThis && editing.type === 'name'
+          ? (
+            <form onSubmit={this.handleSubmitName}>
+              <TextField
+                autoFocus
+                style={styles.item}
+                value={this.state.name}
+                onChange={this.handleNameChange}
+              />
+            </form>
+          ) : (
+            <span onClick={this.handleName(data)}>
+              {data.name}: &#91;
+            </span>
+          )
         return (
           <div key={data.identity} style={styles.item}>
-            <span>{data.name}: &#91;</span>
+            {nameComponent}
             {data.value.map(item => (
               <PropItem
                 store={this.props.store}
@@ -67,36 +119,47 @@ class PropItem extends React.Component {
         )
       }
       // simple value
-      const editingThis = editing.identity === data.identity
       if (data.name) {
-        if (editingThis) {
-          return (
-            <div style={styles.item}>
-              <span>{data.name}: &nbsp;</span>
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  autoFocus
-                  style={styles.item}
-                  value={this.state.value}
-                  onChange={this.handleValueChange}
-                />
-              </form>
-            </div>
+        const nameComponent = editingThis && editing.type === 'name'
+          ? (
+            <form onSubmit={this.handleSubmitName}>
+              <TextField
+                autoFocus
+                style={styles.item}
+                value={this.state.name}
+                onChange={this.handleNameChange}
+              />
+            </form>
+          ) : (
+            <span onClick={this.handleName(data)}>
+              {data.name}: &nbsp;
+            </span>
           )
-        } else {
-          return (
-            <div style={styles.item}>
-              <span>{data.name}: &nbsp;</span>
-              <span onClick={this.handleValue(data.identity, data.value)}>
-                {data.value}
-              </span>
-            </div>
+        const valueComponent = editingThis && editing.type === 'value'
+          ? (
+            <form onSubmit={this.handleSubmitValue}>
+              <TextField
+                autoFocus
+                style={styles.item}
+                value={this.state.value}
+                onChange={this.handleValueChange}
+              />
+            </form>
+          ) : (
+            <span onClick={this.handleValue(data)}>
+              {data.value}
+            </span>
           )
-        }
+        return (
+          <div style={styles.item}>
+            {nameComponent}
+            {valueComponent}
+          </div>
+        )
       }
       if (editingThis) {
         return (
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmitValue}>
             <TextField
               autoFocus
               style={styles.item}
@@ -109,7 +172,7 @@ class PropItem extends React.Component {
         return (
           <div
             style={styles.item}
-            onClick={this.handleValue(data.identity, data.value)}
+            onClick={this.handleValue(data)}
           >
             {data.value}
           </div>

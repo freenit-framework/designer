@@ -23,6 +23,9 @@ export default class DesignStore {
     } else {
       result.children = result.children.map(el => this.add(item, parentIdentity, el))
     }
+    if (result.identity === this.tree.identity) {
+      this.setTree(result)
+    }
     return result
   }
 
@@ -97,6 +100,28 @@ export default class DesignStore {
     return result
   }
 
+  changePropName = (prop, name) => {
+    const result = { ...prop }
+    if (result.identity === this.editing.identity) {
+      const data = {
+        ...result,
+        name,
+      }
+      return data
+    }
+    if (result.children) { // object
+      result.children = prop.children.map(
+        item => this.changePropName(item, name),
+      )
+    }
+    if (result.value) { // array
+      if (Array.isArray(result.value)) {
+        result.value = result.value.map(item => this.changePropName(item, name))
+      }
+    }
+    return result
+  }
+
   changePropValue = (prop, v) => {
     const result = { ...prop }
     if (result.identity === this.editing.identity) { // simple value
@@ -106,17 +131,23 @@ export default class DesignStore {
         value: isNaN(value) ? v : value,
       }
     }
-    if (prop.children) { // object
-      prop.children = prop.children.map(
+    if (result.children) { // object
+      result.children = result.children.map(
         item => this.changePropValue(item, v),
       )
     }
-    if (prop.value) { // array
-      if (Array.isArray(prop.value)) {
-        prop.value = prop.value.map(item => this.changePropValue(item, v))
+    if (result.value) { // array
+      if (Array.isArray(result.value)) {
+        result.value = result.value.map(item => this.changePropValue(item, v))
       }
     }
     return result
+  }
+
+  setPropName = (name) => {
+    const component = this.findComponent(this.selected.identity)
+    component.props = this.changePropName(component.props, name)
+    this.setEditing({})
   }
 
   setPropValue = (value) => {
