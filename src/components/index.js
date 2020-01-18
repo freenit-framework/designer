@@ -1,7 +1,4 @@
-import {
-  AppBar,
-  Paper,
-} from '@material-ui/core'
+import * as mui from '@material-ui/core'
 
 export { default as Component } from './component'
 export { default as DnD } from './dnd'
@@ -14,7 +11,7 @@ export { default as Props } from './props'
 const components = [
   {
     children: [],
-    component: AppBar,
+    component: mui.AppBar,
     name: 'AppBar',
     props: {
       position: 'static',
@@ -25,7 +22,7 @@ const components = [
 
   {
     children: [],
-    component: Paper,
+    component: mui.Paper,
     name: 'Paper',
     props: {
       style: {
@@ -95,6 +92,18 @@ export const compile = (component) => {
   result.children = result.children.map(component => compile(component))
   return result
 }
+
+
+export const MUIComponents = {}
+export const StringComponents = {}
+Object.getOwnPropertyNames(mui).forEach(
+  name => {
+    if (mui[name].render) {
+      StringComponents[name] = mui[name]
+      MUIComponents[mui[name]] = name
+    }
+  }
+)
 
 
 export default components.map(component => compile(component))

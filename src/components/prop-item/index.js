@@ -42,6 +42,10 @@ class PropItem extends React.Component {
     this.setState({ value: event.target.value })
   }
 
+  handleFocus = (event) => {
+    event.target.select()
+  }
+
   handleSubmitName = (event) => {
     event.preventDefault()
     this.props.store.design.setPropName(this.state.name)
@@ -82,6 +86,7 @@ class PropItem extends React.Component {
               style={styles.item}
               value={this.state.name}
               onChange={this.handleNameChange}
+              onFocus={this.handleFocus}
             />
           </form>
         ) : (
@@ -128,6 +133,7 @@ class PropItem extends React.Component {
                 style={styles.item}
                 value={this.state.name}
                 onChange={this.handleNameChange}
+                onFocus={this.handleFocus}
               />
             </form>
           ) : (
@@ -169,6 +175,7 @@ class PropItem extends React.Component {
                 style={styles.item}
                 value={this.state.name}
                 onChange={this.handleNameChange}
+                onFocus={this.handleFocus}
               />
             </form>
           ) : (
@@ -188,15 +195,12 @@ class PropItem extends React.Component {
                 style={styles.item}
                 value={this.state.value}
                 onChange={this.handleValueChange}
+                onFocus={this.handleFocus}
               />
             </form>
           ) : (
             <span
-              style={{
-                ...styles.prop.name,
-                ...styles.item,
-                display: 'inline-flex',
-              }}
+              style={{ ...styles.prop.name, display: 'inline-flex' }}
               onMouseEnter={this.setOver(data)}
               onMouseLeave={this.setOver({})}
             >
@@ -223,6 +227,7 @@ class PropItem extends React.Component {
               style={styles.item}
               value={this.state.value}
               onChange={this.handleValueChange}
+              onFocus={this.handleFocus}
             />
           </form>
         )

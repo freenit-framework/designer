@@ -23,31 +23,33 @@ const DnD = ({ data, store }) => {
     }),
   })
   const ownProps = toProps(data.props)
-  let style = {}
   if (ownProps.style) {
     if (typeof ownProps.style === 'object' && !Array.isArray(ownProps.style)) {
-      style = { ...ownProps.style }
+      ownProps.style = { ...ownProps.style }
+    } else {
+      ownProps.style = {}
     }
+  } else {
+    ownProps.style = {}
   }
   if (canDrop && isOver) {
-    style.border = '1px dashed green'
+    ownProps.style.border = '1px dashed green'
   } else if (store.design.selected.identity === identity) {
-    style.border = '1px dashed red'
+    ownProps.style.border = '1px dashed red'
   }
-  delete ownProps.style
   return (
     <Component
       {...ownProps}
       ref={drop}
-      style={{ ...ownProps.style, ...style }}
       onClick={(event) => {
         event.stopPropagation()
         store.design.onClick(data)
       }}
     >
-      {data.identity}
       {data.text}
-      {data.children.map(item => <DnD data={item} store={store} />)}
+      {data.children.map(
+        item => <DnD data={item} store={store} key={item.identity} />
+      )}
     </Component>
   )
 }

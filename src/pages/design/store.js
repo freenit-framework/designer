@@ -138,7 +138,6 @@ export default class DesignStore {
       } else {
         result.value = v
       }
-      console.log(result)
       return result
     }
     if (result.children) { // object
