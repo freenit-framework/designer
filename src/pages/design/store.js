@@ -18,7 +18,6 @@ export default class DesignStore {
       ...item,
       identity,
       existing: true,
-      children: [],
     }
     parent.children.push(newitem)
     if (item.existing) {
@@ -35,7 +34,6 @@ export default class DesignStore {
       ...item,
       identity,
       existing: true,
-      children: [],
     }
     const index = parent.children.findIndex(
       item => item.identity === before.identity

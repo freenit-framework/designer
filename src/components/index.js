@@ -86,7 +86,6 @@ export default [
   {
     component: mui.AppBar,
     name: 'AppBar',
-    text: 'AppBar',
     props: {
       position: 'static',
     },
@@ -94,13 +93,15 @@ export default [
       component: mui.Toolbar,
       name: 'Toolbar',
       props: {},
-      children: [compile({
+      children: [{
         component: mui.Typography,
         name: 'Typography',
-        props: {},
-        text: 'Typography',
+        props: {
+          variant: 'h6',
+        },
+        text: 'Title',
         children: [],
-      })],
+      }],
     }],
   },
 
