@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from '@material-ui/core/styles'
 import {
-  Paper,
+  Button,
 } from '@material-ui/core'
+import { withStore } from 'freenit'
 import getStyles from './styles'
 import Template from 'templates/default/detail'
 
 
 class Landing extends Component {
+  handleDesign = () => {
+    this.props.store.history.push('/design')
+  }
+
   render() {
     const height = this.props.height || 'calc(100vh - 64px - 40px)'
     const styles = getStyles(this.props.theme, height);
@@ -16,14 +21,14 @@ class Landing extends Component {
       <Template style={{}}>
         <div style={styles.root}>
           <h1>
-            Freenit Framework
+            Freenit Designer
           </h1>
           <div style={styles.small}>
-            Startkit for fast React development
+            Design pages blazingly fast!
           </div>
-          <Paper style={styles.freenit}>
-            Freenit
-          </Paper>
+          <Button style={styles.freenit} onClick={this.handleDesign}>
+            Designs
+          </Button>
         </div>
       </Template>
     )
@@ -37,4 +42,4 @@ Landing.propTypes = {
 }
 
 
-export default withTheme(Landing)
+export default withTheme(withStore(Landing))

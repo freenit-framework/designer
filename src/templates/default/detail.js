@@ -116,7 +116,7 @@ class Template extends React.Component {
                 <ReorderIcon />
               </IconButton>
               <Link to="/" data-id="app">
-                Freenit
+                Freenit Designer
               </Link>
             </Typography>
             {AuthButton}
