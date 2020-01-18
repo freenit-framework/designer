@@ -12,10 +12,6 @@ export default {
       style: {
         minHeight: 'calc(100vh - 2px)',
       },
-      something: [
-        'one',
-        'two',
-      ],
     },
   }),
 }

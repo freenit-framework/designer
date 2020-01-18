@@ -20,6 +20,11 @@ class Design extends React.Component {
   }
 
   render() {
+    const { selected, tree } = this.props.store.design
+    console.log(
+      'selected:', selected,
+      'tree props:', tree.props,
+  )
     return (
       <DndProvider backend={Backend}>
         <KeyHandler
