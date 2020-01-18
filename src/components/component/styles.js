@@ -3,9 +3,8 @@ export default {
     border: '1px dashed gray',
     backgroundColor: 'white',
     padding: '0.5rem 1rem',
-    marginRight: '1.5rem',
-    marginBottom: '1.5rem',
+    marginRight: 10,
+    marginBottom: 10,
     cursor: 'move',
-    float: 'left',
   },
 }

@@ -127,11 +127,19 @@ export default class DesignStore {
   changePropValue = (prop, v) => {
     const result = { ...prop }
     if (result.identity === this.editing.identity) { // simple value
-      const value = Number(v)
-      return {
-        ...result,
-        value: isNaN(value) ? v : value,
+      let value = Number(v)
+      if (v === '{}') {
+        delete result.value
+        result.children = []
+      } else if (v === '[]') {
+        result.value = []
+      } else if (!isNaN(value)) {
+        result.value = value
+      } else {
+        result.value = v
       }
+      console.log(result)
+      return result
     }
     if (result.children) { // object
       result.children = result.children.map(
