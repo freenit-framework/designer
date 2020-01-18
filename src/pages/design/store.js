@@ -36,13 +36,13 @@ export default class DesignStore {
     this.setEditing({})
   }
 
-  removeComponent = (key, tree = this.tree) => {
+  removeComponent = (identity, tree = this.tree) => {
     const newtree = { ...tree }
     newtree.children = newtree.children.filter(
-      component => component.key !== key,
+      component => component.identity !== identity,
     )
     newtree.children = newtree.children.map(
-      component => this.removeComponent(key, component),
+      component => this.removeComponent(identity, component),
     )
     return newtree
   }
@@ -51,14 +51,14 @@ export default class DesignStore {
     if (!this.selected) {
       return
     }
-    if (!this.selected.key) {
+    if (!this.selected.identity) {
       return
     }
-    const { key } = this.selected
-    if (key === this.tree.key) {
+    const { identity } = this.selected
+    if (identity === this.tree.identity) {
       return
     }
-    const tree = this.removeComponent(key)
+    const tree = this.removeComponent(identity)
     this.setSelected({})
     this.setTree(tree)
   }

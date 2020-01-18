@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { DndProvider } from 'react-dnd'
 import { withStore } from 'freenit'
 import Backend from 'react-dnd-html5-backend'
-import KeyHandler, { KEYPRESS } from 'react-key-handler'
 import {
   default as components,
   Component,
@@ -16,18 +15,15 @@ import styles from './styles'
 
 class Design extends React.Component {
   handleKeyboard = (event) => {
-    this.props.store.design.remove()
+    if (event.key === 'Delete') {
+      this.props.store.design.remove()
+    }
   }
 
   render() {
     return (
-      <DndProvider backend={Backend}>
-        <KeyHandler
-          keyEventName={KEYPRESS}
-          keyValue="Delete"
-          onKeyHandle={this.handleKeyboard}
-        />
-        <div style={styles.root}>
+      <div style={styles.root} onKeyDown={this.handleKeyboard} tabIndex="0">
+        <DndProvider backend={Backend}>
           <div style={styles.components}>
             {components.map(
               data => <Component data={data} key={data.identity} />
@@ -35,8 +31,8 @@ class Design extends React.Component {
           </div>
           <Display />
           <Editor />
-        </div>
-      </DndProvider>
+        </DndProvider>
+      </div>
     )
   }
 }
