@@ -218,4 +218,10 @@ export default class DesignStore {
     component.props = this.removeExistingProp(component.props)
     this.setEditing({})
   }
+
+  setText = (text) => {
+    const component = this.findComponent(this.selected.identity)
+    component.text = text
+    this.setEditing({})
+  }
 }
