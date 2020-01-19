@@ -11,7 +11,7 @@ export default {
     component: 'div',
     props: {
       style: {
-        minHeight: 'calc(100vh - 2px)',
+        minHeight: 'calc(100vh - 4px)',
       },
     },
   }),

@@ -21,13 +21,15 @@ export default class DesignStore {
       children: [],
     }
     parent.children.push(newitem)
+    if (item.existing) {
+      this.remove(item)
+    }
     this.setSelected(newitem)
     this.setEditing({})
   }
 
   rearrange = (item, parent, before) => {
-    if (!parent) { return }
-    if (before.identity === this.tree.identity) { return }
+    if (!parent || before.identity === this.tree.identity) { return }
     const identity = Math.random()
     const newitem = {
       ...item,
@@ -40,9 +42,11 @@ export default class DesignStore {
     )
     if (index >= 0) {
       parent.children.splice(index, 0, newitem)
+      if (item.existing) {
+        this.remove(item)
+      }
+      this.setSelected(newitem)
     }
-    // parent.children.push(newitem)
-    this.setSelected(newitem)
     this.setEditing({})
   }
 

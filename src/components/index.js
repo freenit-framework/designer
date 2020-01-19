@@ -10,14 +10,13 @@ export { default as Props } from './props'
 
 const components = [
   {
-    children: [],
     component: mui.AppBar,
     name: 'AppBar',
     props: {
       position: 'static',
-      style: {},
     },
-    text: 'Title',
+    children: [],
+    text: 'Menu',
   },
 
   {

@@ -15,13 +15,11 @@ const DnD = ({ data, parent, store }) => {
     accept: types.COMPONENT,
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
+        console.log(item)
         if (design.rearranging) {
           design.rearrange(item, parent, data)
         } else {
           design.add(item, data)
-        }
-        if (item.existing) {
-          design.remove(item)
         }
       }
     },
@@ -50,9 +48,9 @@ const DnD = ({ data, parent, store }) => {
     ownProps.style = {}
   }
   if (canDrop && isOver) {
-    ownProps.style.border = '1px dashed green'
+    ownProps.style.border = '2px dashed green'
   } else if (store.design.selected.identity === identity) {
-    ownProps.style.border = '1px dashed red'
+    ownProps.style.border = '2px dashed red'
   }
   ownProps.style.opacity = isDragging ? 0 : 1
   drag(drop(ref))
