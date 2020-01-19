@@ -14,15 +14,30 @@ import styles from './styles'
 
 
 class Design extends React.Component {
-  handleKeyboard = (event) => {
-    if (event.key === 'Delete') {
-      this.props.store.design.remove()
+  handleKeyDown = (event) => {
+    const { design } = this.props.store
+    if (event.key === 'Shift') {
+      design.setRearranging(true)
+    } else if (event.key === 'Delete') {
+      design.remove()
+    }
+  }
+
+  handleKeyUp = (event) => {
+    const { design } = this.props.store
+    if (event.key === 'Shift') {
+      design.setRearranging(false)
     }
   }
 
   render() {
     return (
-      <div style={styles.root} onKeyDown={this.handleKeyboard} tabIndex="0">
+      <div
+        style={styles.root}
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
+        tabIndex="0"
+      >
         <DndProvider backend={Backend}>
           <div style={styles.components}>
             {components.map(

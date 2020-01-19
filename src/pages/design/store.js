@@ -1,5 +1,5 @@
 export default class DesignStore {
-  constructor(tree, selected, editing, over) {
+  constructor(tree, selected, editing, over, rearranging) {
     this.tree = tree[0]
     this.setTree = tree[1]
     this.selected = selected[0]
@@ -8,27 +8,42 @@ export default class DesignStore {
     this.setEditing = editing[1]
     this.over = over[0]
     this.setOver = over[1]
+    this.rearranging = rearranging[0]
+    this.setRearranging = rearranging[1]
   }
 
-  add = (item, parentIdentity, tree = this.tree) => {
-    const result = { ...tree }
-    if (result.identity === parentIdentity) {
-      const identity = Math.random()
-      const newitem = {
-        ...item,
-        identity,
-        children: [],
-      }
-      result.children.push(newitem)
-      this.setSelected(newitem)
-      this.setEditing({})
-    } else {
-      result.children = result.children.map(el => this.add(item, parentIdentity, el))
+  add = (item, parent) => {
+    const identity = Math.random()
+    const newitem = {
+      ...item,
+      identity,
+      existing: true,
+      children: [],
     }
-    if (result.identity === this.tree.identity) {
-      this.setTree(result)
+    parent.children.push(newitem)
+    this.setSelected(newitem)
+    this.setEditing({})
+  }
+
+  rearrange = (item, parent, before) => {
+    if (!parent) { return }
+    if (before.identity === this.tree.identity) { return }
+    const identity = Math.random()
+    const newitem = {
+      ...item,
+      identity,
+      existing: true,
+      children: [],
     }
-    return result
+    const index = parent.children.findIndex(
+      item => item.identity === before.identity
+    )
+    if (index >= 0) {
+      parent.children.splice(index, 0, newitem)
+    }
+    // parent.children.push(newitem)
+    this.setSelected(newitem)
+    this.setEditing({})
   }
 
   onClick = (component) => {
@@ -47,14 +62,14 @@ export default class DesignStore {
     return newtree
   }
 
-  remove = () => {
-    if (!this.selected) {
+  remove = (component = this.selected) => {
+    if (!component) {
       return
     }
-    if (!this.selected.identity) {
+    if (!component.identity) {
       return
     }
-    const { identity } = this.selected
+    const { identity } = component
     if (identity === this.tree.identity) {
       return
     }

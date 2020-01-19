@@ -25,6 +25,7 @@ const StoreProvider = (props) => {
       useState(Design.initial.selected),
       useState(Design.initial.editing),
       useState(Design.initial.over),
+      useState(Design.initial.rearranging),
     ),
     history: props.history,
     me: new Me.store(

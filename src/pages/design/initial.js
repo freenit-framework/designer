@@ -4,6 +4,7 @@ import { compile } from 'components'
 export default {
   editing: {},
   over: {},
+  rearranging: false,
   selected: {},
   tree: compile({
     children: [],

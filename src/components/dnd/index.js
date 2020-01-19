@@ -1,25 +1,42 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-import { useDrop } from 'react-dnd'
+import { useDrag, useDrop } from 'react-dnd'
 import { withStore } from 'freenit'
 import { toProps } from 'components'
 import types from 'types'
 
 
-const DnD = ({ data, store }) => {
+const DnD = ({ data, parent, store }) => {
   const { identity } = data
   const Component = data.component
   const { design } = store
+  const ref = useRef(null)
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: types.COMPONENT,
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
-        design.add(item, identity)
+        if (design.rearranging) {
+          design.rearrange(item, parent, data)
+        } else {
+          design.add(item, data)
+        }
+        if (item.existing) {
+          design.remove(item)
+        }
       }
     },
     collect: monitor => ({
       isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop(),
+    }),
+  })
+  const [{ isDragging }, drag] = useDrag({
+    item: {
+      ...data,
+      type: types.COMPONENT,
+    },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
     }),
   })
   const ownProps = toProps(data.props)
@@ -37,33 +54,44 @@ const DnD = ({ data, store }) => {
   } else if (store.design.selected.identity === identity) {
     ownProps.style.border = '1px dashed red'
   }
+  ownProps.style.opacity = isDragging ? 0 : 1
+  drag(drop(ref))
   return (
     <Component
       {...ownProps}
-      ref={drop}
+      ref={ref}
       onClick={(event) => {
         event.stopPropagation()
         store.design.onClick(data)
       }}
     >
       {data.text}
-      {data.children.map(
-        item => <DnD data={item} store={store} key={item.identity} />
-      )}
+      {data.children.map(item => (
+        <DnD
+          data={item}
+          store={store}
+          key={item.identity}
+          parent={data}
+        />
+      ))}
     </Component>
   )
 }
 
 
+const data = PropTypes.shape({
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({}),
+  ]).isRequired,
+  identity: PropTypes.number.isRequired,
+  props: PropTypes.shape({}).isRequired,
+})
+
+
 DnD.propTypes = {
-  data: PropTypes.shape({
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.shape({}),
-    ]).isRequired,
-    identity: PropTypes.number.isRequired,
-    props: PropTypes.shape({}).isRequired,
-  }).isRequired,
+  data: data.isRequired,
+  parent: data,
   store: PropTypes.shape({}).isRequired,
 }
 
