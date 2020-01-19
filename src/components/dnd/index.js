@@ -15,7 +15,6 @@ const DnD = ({ data, parent, store }) => {
     accept: types.COMPONENT,
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
-        console.log(item)
         if (design.rearranging) {
           design.rearrange(item, parent, data)
         } else {

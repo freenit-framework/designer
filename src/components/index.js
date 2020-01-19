@@ -8,28 +8,16 @@ export { default as Menu } from './menu'
 export { default as PropItem } from './prop-item'
 export { default as Props } from './props'
 
-const components = [
-  {
-    component: mui.AppBar,
-    name: 'AppBar',
-    props: {
-      position: 'static',
-    },
-    children: [],
-    text: 'Menu',
-  },
 
-  {
-    children: [],
-    component: mui.Paper,
-    name: 'Paper',
-    props: {
-      style: {
-        minHeight: 30,
-      },
-    },
-  },
-]
+export const compile = (component) => {
+  const result = {
+    ...component,
+    identity: Math.random(),
+  }
+  result.props = convert('props', result.props)
+  result.children = result.children.map(item => compile(item))
+  return result
+}
 
 
 export const isSimple = data => typeof data === 'number' ||
@@ -82,17 +70,6 @@ export const toProps = (data) => {
 }
 
 
-export const compile = (component) => {
-  const result = {
-    ...component,
-    identity: Math.random(),
-  }
-  result.props = convert('props', result.props)
-  result.children = result.children.map(component => compile(component))
-  return result
-}
-
-
 export const MUIComponents = {}
 export const StringComponents = {}
 Object.getOwnPropertyNames(mui).forEach(
@@ -105,4 +82,51 @@ Object.getOwnPropertyNames(mui).forEach(
 )
 
 
-export default components.map(component => compile(component))
+export default [
+  {
+    component: mui.AppBar,
+    name: 'AppBar',
+    text: 'AppBar',
+    props: {
+      position: 'static',
+    },
+    children: [{
+      component: mui.Toolbar,
+      name: 'Toolbar',
+      props: {},
+      children: [compile({
+        component: mui.Typography,
+        name: 'Typography',
+        props: {},
+        text: 'Typography',
+        children: [],
+      })],
+    }],
+  },
+
+  {
+    component: mui.Paper,
+    name: 'Paper',
+    props: {
+      style: {
+        minHeight: 30,
+      },
+    },
+    children: [],
+  },
+
+  {
+    component: mui.Toolbar,
+    name: 'Toolbar',
+    props: {},
+    children: [],
+  },
+
+  {
+    component: mui.Typography,
+    name: 'Typography',
+    text: 'Typography',
+    props: {},
+    children: [],
+  },
+].map(item => compile(item))
