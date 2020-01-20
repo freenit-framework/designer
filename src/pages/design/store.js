@@ -12,13 +12,18 @@ export default class DesignStore {
     this.setRearranging = rearranging[1]
   }
 
-  add = (item, parent) => {
-    const identity = Math.random()
+  copyItem = (item) => {
     const newitem = {
       ...item,
-      identity,
+      identity: Math.random(),
       existing: true,
     }
+    newitem.children = newitem.children.map(item => this.copyItem(item))
+    return newitem
+  }
+
+  add = (item, parent) => {
+    const newitem = this.copyItem(item)
     parent.children.push(newitem)
     if (item.existing) {
       this.remove(item)

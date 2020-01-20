@@ -27,6 +27,7 @@ class Display extends React.Component {
           textColor="primary"
           onChange={this.handleChange}
           variant="fullWidth"
+          style={styles.tabs}
         >
           <Tab label="Design" />
           <Tab label="Save" />
