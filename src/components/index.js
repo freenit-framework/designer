@@ -7,6 +7,7 @@ export { default as Editor } from './editor'
 export { default as Menu } from './menu'
 export { default as PropItem } from './prop-item'
 export { default as Props } from './props'
+export { default as TreeItem } from './tree-item'
 
 
 export const compile = (component) => {
@@ -70,19 +71,17 @@ export const toProps = (data) => {
 }
 
 
-export const MUIComponents = {}
 export const StringComponents = {}
 Object.getOwnPropertyNames(mui).forEach(
   name => {
     if (mui[name].render) {
       StringComponents[name] = mui[name]
-      MUIComponents[mui[name]] = name
     }
   }
 )
 
 
-export default [
+const components = [
   {
     component: mui.AppBar,
     name: 'AppBar',
@@ -130,4 +129,7 @@ export default [
     props: {},
     children: [],
   },
-].map(item => compile(item))
+]
+
+
+export default components.map(item => compile(item))
