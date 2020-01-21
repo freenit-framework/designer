@@ -32,7 +32,7 @@ class TreeItem extends React.Component {
   render() {
     const { data, store } = this.props
     const children = data.children.map(item => (
-      <TreeItem data={item} store={this.props.store} />
+      <TreeItem data={item} store={this.props.store} key={item.identity} />
     ))
     const icon = this.state.open
       ? <UpIcon onClick={this.toggleOpen} style={styles.icon} />
