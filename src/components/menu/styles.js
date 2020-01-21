@@ -5,6 +5,6 @@ export default {
   root: {
     margin,
     overflowY: 'auto',
-    height: `calc(50% - ${2 * margin}px)`,
+    height: `calc(50vh - ${2 * margin}px)`,
   },
 }

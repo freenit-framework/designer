@@ -1,6 +1,6 @@
 export default {
   root: {
-    height: '50%',
+    height: '50vh',
   },
 
   text: {

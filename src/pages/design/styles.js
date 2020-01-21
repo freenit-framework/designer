@@ -2,16 +2,12 @@ export default {
   root: {
     minHeight: '100vh',
     display: 'grid',
-    gridTemplateColumns: '200px auto 400px',
+    gridTemplateColumns: '250px auto 400px',
   },
 
   components: {
     backgroundColor: '#eee',
-  },
-
-  content: {
-  },
-
-  tree: {
+    maxHeight: '100vh',
+    overflowY: 'auto',
   },
 }

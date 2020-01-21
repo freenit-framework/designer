@@ -47,6 +47,7 @@ class Save extends React.Component {
   render() {
     const data = decompile(this.props.store.design.tree)
     const display = JSON.stringify(this.exportJson(data), null, 2)
+    console.log(mui)
     return (
       <div style={styles.root}>
         <mui.Button
