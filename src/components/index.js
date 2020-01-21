@@ -84,16 +84,6 @@ export const decompile = (data) => {
 }
 
 
-export const StringComponents = {}
-Object.getOwnPropertyNames(mui).forEach(
-  name => {
-    if (mui[name].render) {
-      StringComponents[name] = mui[name]
-    }
-  }
-)
-
-
 const components = [
   {
     component: mui.AppBar,

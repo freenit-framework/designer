@@ -1,9 +1,7 @@
 import React from 'react'
 import { withStore } from 'freenit'
-import {
-  Button,
-} from '@material-ui/core'
-import { compile, decompile, StringComponents } from 'components'
+import * as mui from '@material-ui/core'
+import { compile, decompile } from 'components'
 
 import styles from './styles'
 
@@ -24,7 +22,7 @@ class Save extends React.Component {
   loadData = (data) => {
     const result = { ...data }
     result.name = result.component
-    result.component = StringComponents[result.name] || result.name
+    result.component = mui[result.name] || result.name
     result.children = result.children.map(item => this.loadData(item))
     this.props.store.design.setTree(compile(result))
     return result
@@ -51,13 +49,13 @@ class Save extends React.Component {
     const display = JSON.stringify(this.exportJson(data), null, 2)
     return (
       <div style={styles.root}>
-        <Button
+        <mui.Button
           variant="outlined"
           color="primary"
           onClick={this.handleUpload}
         >
           Load file
-        </Button>
+        </mui.Button>
         <input
           ref={this.fileInput}
           type="file"

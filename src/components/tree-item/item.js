@@ -19,11 +19,6 @@ class Item extends React.Component {
     open: false,
   }
 
-  toggleOpen = (event) => {
-    event.stopPropagation()
-    this.setState({ open: !this.state.open })
-  }
-
   select = (event) => {
     event.stopPropagation()
     const { store, data } = this.props
