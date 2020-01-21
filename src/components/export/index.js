@@ -14,6 +14,8 @@ class Page extends React.Component {
   render() {
     return (
 `
+
+
 const ending = `    )
   }
 }

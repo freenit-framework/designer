@@ -1,74 +1,76 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
+import { useDrag, useDrop } from 'react-dnd'
 import { withStore } from 'freenit'
-import {
-  Collapse,
-  List,
-  ListItem,
-  ListItemText,
-} from '@material-ui/core'
-import DownIcon from '@material-ui/icons/KeyboardArrowDown'
-import UpIcon from '@material-ui/icons/KeyboardArrowUp'
+import types from 'types'
 
-import styles from './styles'
+import Item from './item'
 
 
-class TreeItem extends React.Component {
-  state = {
-    open: false,
+const TreeItem = ({ data, parent, store }) => {
+  const ref = useRef(null)
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: types.COMPONENT,
+    drop: (item, monitor) => {
+      if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
+        if (store.design.rearranging) {
+          store.design.rearrange(item, parent, data)
+        } else {
+          store.design.add(item, data)
+        }
+      }
+    },
+    collect: monitor => ({
+      isOver: monitor.isOver({ shallow: true }),
+      canDrop: monitor.canDrop(),
+    }),
+  })
+  const [{ isDragging }, drag] = useDrag({
+    item: {
+      ...data,
+      type: types.COMPONENT,
+    },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+  const style = {}
+  if (canDrop && isOver) {
+    style.border = '1px dashed green'
+  } else if (store.design.selected.identity === data.identity) {
+    style.border = '1px dashed red'
   }
-
-  toggleOpen = (event) => {
-    event.stopPropagation()
-    this.setState({ open: !this.state.open })
-  }
-
-  select = (event) => {
-    event.stopPropagation()
-    const { store, data } = this.props
-    store.design.setSelected(data)
-  }
-
-  render() {
-    const { data, store } = this.props
-    const children = data.children.map(item => (
-      <TreeItem data={item} store={this.props.store} key={item.identity} />
-    ))
-    const icon = this.state.open
-      ? <UpIcon onClick={this.toggleOpen} style={styles.icon} />
-      : <DownIcon onClick={this.toggleOpen} style={styles.icon} />
-    const style = {
-      ...styles.root,
-      border: data.identity === store.design.selected.identity
-        ? '1px dashed gray'
-        : styles.root.border
-    }
-    return (
-      <ListItem button style={style} onClick={this.select}>
-        <div style={styles.text}>
-          <ListItemText
-            primary={data.name}
-            secondary={data.identity}
-          />
-          {icon}
-        </div>
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {children}
-          </List>
-        </Collapse>
-      </ListItem>
-    )
-  }
+  style.opacity = isDragging ? 0.5 : 1
+  drag(drop(ref))
+  return (
+    <div
+      ref={ref}
+      onClick={(event) => {
+        event.stopPropagation()
+        store.design.onClick(data)
+      }}
+      style={style}
+    >
+      <Item data={data} />
+    </div>
+  )
 }
 
 
+const data = PropTypes.shape({
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({}),
+  ]).isRequired,
+  identity: PropTypes.number.isRequired,
+  props: PropTypes.shape({}).isRequired,
+})
+
+
 TreeItem.propTypes = {
-  data: PropTypes.shape({
-  }).isRequired,
-  store: PropTypes.shape({
-    design: PropTypes.shape({}).isRequired,
-  }).isRequired,
+  data: data.isRequired,
+  parent: data,
+  store: PropTypes.shape({}).isRequired,
 }
 
 
