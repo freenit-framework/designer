@@ -11,6 +11,7 @@ const DnD = ({ data, parent, store }) => {
   const Component = data.component
   const { design } = store
   const ref = useRef(null)
+  const [ over, setOver ] = React.useState(false)
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: types.COMPONENT,
     drop: (item, monitor) => {
@@ -50,6 +51,8 @@ const DnD = ({ data, parent, store }) => {
     ownProps.style.border = '2px dashed green'
   } else if (store.design.selected.identity === identity) {
     ownProps.style.border = '2px dashed red'
+  } else if (over) {
+    ownProps.style.border = '1px dashed gray'
   }
   ownProps.style.opacity = isDragging ? 0 : 1
   drag(drop(ref))
@@ -61,6 +64,8 @@ const DnD = ({ data, parent, store }) => {
         event.stopPropagation()
         store.design.onClick(data)
       }}
+      onMouseEnter={() => setOver(true)}
+      onMouseLeave={() => setOver(false)}
     >
       {data.text}
       {data.children.map(item => (
