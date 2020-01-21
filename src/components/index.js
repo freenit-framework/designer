@@ -1,12 +1,14 @@
 import * as mui from '@material-ui/core'
 
 export { default as Component } from './component'
-export { default as DnD } from './dnd'
 export { default as Display } from './display'
+export { default as DnD } from './dnd'
 export { default as Editor } from './editor'
+export { default as Export } from './export'
 export { default as Menu } from './menu'
 export { default as PropItem } from './prop-item'
 export { default as Props } from './props'
+export { default as Save } from './save'
 export { default as TreeItem } from './tree-item'
 
 
@@ -68,6 +70,17 @@ export const toProps = (data) => {
     }
     return data.value // simple value
   }
+}
+
+
+export const decompile = (data) => {
+  const result = {
+    ...data,
+  }
+  delete result.identity
+  result.props = toProps(result.props)
+  result.children = result.children.map(item => decompile(item))
+  return result
 }
 
 

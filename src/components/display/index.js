@@ -1,6 +1,10 @@
 import React from 'react'
 import { withStore } from 'freenit'
-import DnD from 'components/dnd'
+import {
+  DnD ,
+  Export,
+  Save
+} from 'components'
 import {
   Tab,
   Tabs,
@@ -19,6 +23,15 @@ class Display extends React.Component {
 
   render() {
     const { tree } = this.props.store.design
+    const { value } = this.state
+    let display
+    if (value === 0) {
+      display = <DnD data={tree} />
+    } else if (value === 1) {
+      display = <Save />
+    } else if (value === 2) {
+      display = <Export />
+    }
     return (
       <div style={styles.root}>
         <Tabs
@@ -30,10 +43,10 @@ class Display extends React.Component {
           style={styles.tabs}
         >
           <Tab label="Design" />
-          <Tab label="Save" />
+          <Tab label="Save / Load" />
           <Tab label="Export" />
         </Tabs>
-        <DnD data={tree} />
+        {display}
       </div>
     )
   }
