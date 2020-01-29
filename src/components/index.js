@@ -121,476 +121,476 @@ const components = [
     name: 'Avatar',
     component: mui.Avatar,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Backdrop',
     component: mui.Backdrop,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Badge',
     component: mui.Badge,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'BottomNavigation',
     component: mui.BottomNavigation,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'BottomNavigationAction',
     component: mui.BottomNavigationAction,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Box',
     component: mui.Box,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Breadcrumbs',
     component: mui.Breadcrumbs,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Button',
     component: mui.Button,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ButtonBase',
     component: mui.ButtonBase,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ButtonGroup',
     component: mui.ButtonGroup,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Card',
     component: mui.Card,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'CardActionArea',
     component: mui.CardActionArea,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'CardActions',
     component: mui.CardActions,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'CardContent',
     component: mui.CardContent,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'CardHeader',
     component: mui.CardHeader,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'CardMedia',
     component: mui.CardMedia,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Checkbox',
     component: mui.Checkbox,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Chip',
     component: mui.Chip,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'CircularProgress',
     component: mui.CircularProgress,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ClickAwayListener',
     component: mui.ClickAwayListener,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Collapse',
     component: mui.Collapse,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Container',
     component: mui.Container,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Dialog',
     component: mui.Dialog,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'DialogActions',
     component: mui.DialogActions,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'DialogContent',
     component: mui.DialogContent,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'DialogContentText',
     component: mui.DialogContentText,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'DialogTitle',
     component: mui.DialogTitle,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Divider',
     component: mui.Divider,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Drawer',
     component: mui.Drawer,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ExpansionPanel',
     component: mui.ExpansionPanel,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ExpansionPanelActions',
     component: mui.ExpansionPanelActions,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ExpansionPanelDetails',
     component: mui.ExpansionPanelDetails,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ExpansionPanelSummary',
     component: mui.ExpansionPanelSummary,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Fab',
     component: mui.Fab,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Fade',
     component: mui.Fade,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'FilledInput',
     component: mui.FilledInput,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'FormControl',
     component: mui.FormControl,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'FormControlLabel',
     component: mui.FormControlLabel,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'FormGroup',
     component: mui.FormGroup,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'FormHelperText',
     component: mui.FormHelperText,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'FormLabel',
     component: mui.FormLabel,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Grid',
     component: mui.Grid,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'GridList',
     component: mui.GridList,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'GridListTile',
     component: mui.GridListTile,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'GridListTileBar',
     component: mui.GridListTileBar,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Grow',
     component: mui.Grow,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Icon',
     component: mui.Icon,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'IconButton',
     component: mui.IconButton,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Input',
     component: mui.Input,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'InputAdornment',
     component: mui.InputAdornment,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'InputBase',
     component: mui.InputBase,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'InputLabel',
     component: mui.InputLabel,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'LinearProgress',
     component: mui.LinearProgress,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Link',
     component: mui.Link,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'List',
     component: mui.List,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ListItem',
     component: mui.ListItem,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ListItemAvatar',
     component: mui.ListItemAvatar,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ListItemIcon',
     component: mui.ListItemIcon,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ListItemSecondaryAction',
     component: mui.ListItemSecondaryAction,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ListItemText',
     component: mui.ListItemText,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'ListSubheader',
     component: mui.ListSubheader,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Menu',
     component: mui.Menu,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'MenuItem',
     component: mui.MenuItem,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'MenuList',
     component: mui.MenuList,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'MobileStepper',
     component: mui.MobileStepper,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Modal',
     component: mui.Modal,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'NativeSelect',
     component: mui.NativeSelect,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'OutlinedInput',
     component: mui.OutlinedInput,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
@@ -608,231 +608,231 @@ const components = [
     name: 'Popover',
     component: mui.Popover,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Popper',
     component: mui.Popper,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Portal',
     component: mui.Portal,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Radio',
     component: mui.Radio,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'RadioGroup',
     component: mui.RadioGroup,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Select',
     component: mui.Select,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Slide',
     component: mui.Slide,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Slider',
     component: mui.Slider,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Snackbar',
     component: mui.Snackbar,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'SnackbarContent',
     component: mui.SnackbarContent,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Step',
     component: mui.Step,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'StepButton',
     component: mui.StepButton,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'StepConnector',
     component: mui.StepConnector,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'StepContent',
     component: mui.StepContent,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'StepIcon',
     component: mui.StepIcon,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'StepLabel',
     component: mui.StepLabel,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Stepper',
     component: mui.Stepper,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'SvgIcon',
     component: mui.SvgIcon,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'SwipeableDrawer',
     component: mui.SwipeableDrawer,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Switch',
     component: mui.Switch,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Tab',
     component: mui.Tab,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Table',
     component: mui.Table,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableBody',
     component: mui.TableBody,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableCell',
     component: mui.TableCell,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableContainer',
     component: mui.TableContainer,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableFooter',
     component: mui.TableFooter,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableHead',
     component: mui.TableHead,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TablePagination',
     component: mui.TablePagination,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableRow',
     component: mui.TableRow,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TableSortLabel',
     component: mui.TableSortLabel,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'Tabs',
     component: mui.Tabs,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TextField',
     component: mui.TextField,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
     name: 'TextareaAutosize',
     component: mui.TextareaAutosize,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
@@ -846,7 +846,7 @@ const components = [
     name: 'Tooltip',
     component: mui.Tooltip,
     children: [],
-    props: [],
+    props: {},
   },
 
   {
@@ -861,7 +861,826 @@ const components = [
     name: 'Zoom',
     component: mui.Zoom,
     children: [],
-    props: [],
+    props: {},
+  },
+
+  {
+    name: "a",
+    component: "a",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "abbr",
+    component: "abbr",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "acronym",
+    component: "acronym",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "address",
+    component: "address",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "applet",
+    component: "applet",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "area",
+    component: "area",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "article",
+    component: "article",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "aside",
+    component: "aside",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "audio",
+    component: "audio",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "b",
+    component: "b",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "base",
+    component: "base",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "basefont",
+    component: "basefont",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "bdi",
+    component: "bdi",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "bdo",
+    component: "bdo",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "big",
+    component: "big",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "blockquote",
+    component: "blockquote",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "body",
+    component: "body",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "br",
+    component: "br",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "button",
+    component: "button",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "canvas",
+    component: "canvas",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "caption",
+    component: "caption",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "center",
+    component: "center",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "cite",
+    component: "cite",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "code",
+    component: "code",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "col",
+    component: "col",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "colgroup",
+    component: "colgroup",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "data",
+    component: "data",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "datalist",
+    component: "datalist",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "dd",
+    component: "dd",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "del",
+    component: "del",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "details",
+    component: "details",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "dfn",
+    component: "dfn",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "dialog",
+    component: "dialog",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "dir",
+    component: "dir",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "div",
+    component: "div",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "dl",
+    component: "dl",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "dt",
+    component: "dt",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "em",
+    component: "em",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "embed",
+    component: "embed",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "fieldset",
+    component: "fieldset",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "figcaption",
+    component: "figcaption",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "figure",
+    component: "figure",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "font",
+    component: "font",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "footer",
+    component: "footer",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "form",
+    component: "form",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "frame",
+    component: "frame",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "frameset",
+    component: "frameset",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "h1",
+    component: "h1",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "head",
+    component: "head",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "header",
+    component: "header",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "hr",
+    component: "hr",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "html",
+    component: "html",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "i",
+    component: "i",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "iframe",
+    component: "iframe",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "img",
+    component: "img",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "input",
+    component: "input",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "ins",
+    component: "ins",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "kbd",
+    component: "kbd",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "label",
+    component: "label",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "legend",
+    component: "legend",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "li",
+    component: "li",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "link",
+    component: "link",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "main",
+    component: "main",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "map",
+    component: "map",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "mark",
+    component: "mark",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "meta",
+    component: "meta",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "meter",
+    component: "meter",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "nav",
+    component: "nav",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "noframes",
+    component: "noframes",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "noscript",
+    component: "noscript",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "object",
+    component: "object",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "ol",
+    component: "ol",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "optgroup",
+    component: "optgroup",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "option",
+    component: "option",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "output",
+    component: "output",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "p",
+    component: "p",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "param",
+    component: "param",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "picture",
+    component: "picture",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "pre",
+    component: "pre",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "progress",
+    component: "progress",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "q",
+    component: "q",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "rp",
+    component: "rp",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "rt",
+    component: "rt",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "ruby",
+    component: "ruby",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "s",
+    component: "s",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "samp",
+    component: "samp",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "script",
+    component: "script",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "section",
+    component: "section",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "select",
+    component: "select",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "small",
+    component: "small",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "source",
+    component: "source",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "span",
+    component: "span",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "strike",
+    component: "strike",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "strong",
+    component: "strong",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "style",
+    component: "style",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "sub",
+    component: "sub",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "summary",
+    component: "summary",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "sup",
+    component: "sup",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "svg",
+    component: "svg",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "table",
+    component: "table",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "tbody",
+    component: "tbody",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "td",
+    component: "td",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "template",
+    component: "template",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "textarea",
+    component: "textarea",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "tfoot",
+    component: "tfoot",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "th",
+    component: "th",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "thead",
+    component: "thead",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "time",
+    component: "time",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "title",
+    component: "title",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "tr",
+    component: "tr",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "track",
+    component: "track",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "tt",
+    component: "tt",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "u",
+    component: "u",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "ul",
+    component: "ul",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "var",
+    component: "var",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "video",
+    component: "video",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "wbr",
+    component: "wbr",
+    children: [],
+    props: {},
   },
 ]
 

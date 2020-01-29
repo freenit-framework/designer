@@ -6,7 +6,6 @@ import {
 } from '@material-ui/core'
 import { withStore } from 'freenit'
 import getStyles from './styles'
-import Template from 'templates/default/detail'
 
 
 class Landing extends Component {
@@ -18,19 +17,17 @@ class Landing extends Component {
     const height = this.props.height || 'calc(100vh - 64px - 40px)'
     const styles = getStyles(this.props.theme, height);
     return (
-      <Template style={{}}>
-        <div style={styles.root}>
-          <h1>
-            Freenit Designer
-          </h1>
-          <div style={styles.small}>
-            Design pages blazingly fast!
-          </div>
-          <Button style={styles.freenit} onClick={this.handleDesign}>
-            Designs
-          </Button>
+      <div style={styles.root}>
+        <h1>
+          Freenit Designer
+        </h1>
+        <div style={styles.small}>
+          Design pages blazingly fast!
         </div>
-      </Template>
+        <Button style={styles.freenit} onClick={this.handleDesign}>
+          Designs
+        </Button>
+      </div>
     )
   }
 }

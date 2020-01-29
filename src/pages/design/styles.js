@@ -1,13 +1,17 @@
 export default {
   root: {
-    minHeight: '100vh',
+    minHeight: 'calc(100vh - 65px)',
     display: 'grid',
     gridTemplateColumns: '250px auto 400px',
   },
 
+  provider: {
+    height: '100%',
+  },
+
   components: {
     backgroundColor: '#eee',
-    maxHeight: '100vh',
+    height: 'calc(100vh - 65px)',
     overflowY: 'auto',
   },
 }

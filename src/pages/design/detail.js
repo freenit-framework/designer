@@ -38,7 +38,7 @@ class Design extends React.Component {
         onKeyUp={this.handleKeyUp}
         tabIndex="0"
       >
-        <DndProvider backend={Backend}>
+        <DndProvider backend={Backend} style={styles.provider}>
           <div style={styles.components}>
             {components.map(
               data => <Component data={data} key={data.identity} />
