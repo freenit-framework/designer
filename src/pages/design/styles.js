@@ -11,7 +11,12 @@ export default {
 
   components: {
     backgroundColor: '#eee',
-    height: 'calc(100vh - 65px)',
+    height: 'calc(100vh)',
     overflowY: 'auto',
+  },
+
+  search: {
+    marginLeft: 10,
+    marginBottom: 10,
   },
 }

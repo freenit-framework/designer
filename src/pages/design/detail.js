@@ -9,11 +9,18 @@ import {
   Display,
   Editor,
 } from 'components'
+import {
+  TextField,
+} from '@material-ui/core'
 
 import styles from './styles'
 
 
 class Design extends React.Component {
+  state = {
+    search: '',
+  }
+
   handleKeyDown = (event) => {
     const { design } = this.props.store
     if (event.key === 'Shift') {
@@ -30,6 +37,17 @@ class Design extends React.Component {
     }
   }
 
+  handleSearchChange = (event) => {
+    this.setState({ search: event.target.value })
+  }
+
+  filterComponents = () => {
+    if (this.state.search === '') {
+      return components
+    }
+    return components.filter(item => item.name.includes(this.state.search))
+  }
+
   render() {
     return (
       <div
@@ -40,7 +58,12 @@ class Design extends React.Component {
       >
         <DndProvider backend={Backend} style={styles.provider}>
           <div style={styles.components}>
-            {components.map(
+            <TextField
+              label="Search"
+              style={styles.search}
+              onChange={this.handleSearchChange}
+            />
+            {this.filterComponents().map(
               data => <Component data={data} key={data.identity} />
             )}
           </div>
