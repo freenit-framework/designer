@@ -5,9 +5,8 @@ import { decompile } from 'components'
 
 import styles from './styles'
 
+const reactImport = "import React from 'react'\n"
 const begining = `
-import React from 'react'
-import * as mui from '@material-ui/core'
 
 
 class Page extends React.Component {
@@ -40,16 +39,17 @@ function stringify(obj_from_json){
 
 
 class Export extends React.Component {
+  mui = {}
+
   exportCode = (data, level = 6) => {
+    if (typeof data.component !== 'string') {
+      this.mui[data.name] = true
+    }
     let output = ' '.repeat(level)
-    output += typeof data.component === 'string'
-      ? `<${data.name}`
-      : `<mui.${data.name}`
+    output += `<${data.name}`
     Object.getOwnPropertyNames(data.props).forEach(propName => {
       const propValue = stringify(data.props[propName])
-      output += typeof data.props[propName] === 'string'
-        ? ` ${propName}=${propValue}`
-        :  ` ${propName}={${propValue}}`
+      output += ` ${propName}=${propValue}`
     })
     const containsData = data.text || data.children.length > 0
     output += containsData
@@ -61,20 +61,28 @@ class Export extends React.Component {
     ).join('')
     if (containsData) {
       output += ' '.repeat(level)
-      output += typeof data.component === 'string'
-        ? `</${data.name}>\n`
-        : `</mui.${data.name}>\n`
+      output += `</${data.name}>\n`
     }
     return output
   }
 
   render() {
+    this.mui = {}
     const data = decompile(this.props.store.design.tree)
     const output = this.exportCode(data)
+    const muiComponents = Object.getOwnPropertyNames(this.mui)
+    let muiImport = ''
+    if (muiComponents.length > 0) {
+      muiImport += 'import {\n'
+      muiComponents.forEach(comp => { muiImport += `  ${comp},\n` })
+      muiImport += "} from '@material-ui/core'"
+    }
     return (
       <div style={styles.root}>
         Export
         <pre>
+          {reactImport}
+          {muiImport}
           {begining}
           {output}
           {ending}
