@@ -2,12 +2,8 @@ import React, { useState } from 'react'
 
 // Pages
 import {
-  Auth,
   EmptyTemplate,
-  Me,
-  Role,
   Store,
-  User,
 } from 'freenit'
 import Design from 'pages/design'
 import Resolution from 'pages/resolution'
@@ -19,7 +15,6 @@ export const data = {}
 
 const StoreProvider = (props) => {
   const store = {
-    auth: new Auth.store(useState(Auth.initial.detail)),
     design: new Design.store(
       useState(Design.initial.tree),
       useState(Design.initial.selected),
@@ -28,21 +23,10 @@ const StoreProvider = (props) => {
       useState(Design.initial.rearranging),
     ),
     history: props.history,
-    me: new Me.store(
-      useState(Me.initial.detail),
-    ),
     notification: new EmptyTemplate.store(
       useState(EmptyTemplate.initial.detail),
     ),
     resolution: new Resolution.store(useState(Resolution.initial.detail)),
-    role: new Role.store(
-      useState(Role.initial.detail),
-      useState(Role.initial.list),
-    ),
-    user: new User.store(
-      useState(User.initial.detail),
-      useState(User.initial.list),
-    ),
   }
   data.store = store
   return (

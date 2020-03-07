@@ -23,4 +23,3 @@ project.conf
 site.retry
 vars.mk
 yarn-error.log
-yarn.lock
