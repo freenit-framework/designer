@@ -1,6 +1,7 @@
 export default {
   root: {
     height: '50vh',
+    overflow: 'auto',
   },
 
   text: {

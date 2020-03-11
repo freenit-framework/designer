@@ -1201,6 +1201,41 @@ const components = [
   },
 
   {
+    name: "h2",
+    component: "h2",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "h3",
+    component: "h3",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "h4",
+    component: "h4",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "h5",
+    component: "h5",
+    children: [],
+    props: {},
+  },
+
+  {
+    name: "h6",
+    component: "h6",
+    children: [],
+    props: {},
+  },
+
+  {
     name: "head",
     component: "head",
     children: [],

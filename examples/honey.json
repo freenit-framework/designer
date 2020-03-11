@@ -1,0 +1,360 @@
+{
+  "children": [
+    {
+      "component": "AppBar",
+      "props": {
+        "position": "sticky",
+        "style": {
+          "backgroundColor": "#372b2b"
+        }
+      },
+      "children": [
+        {
+          "component": "Toolbar",
+          "props": {},
+          "children": [
+            {
+              "component": "Typography",
+              "props": {
+                "variant": "h6"
+              },
+              "text": "Gazdinstvo Grbić",
+              "children": [],
+              "existing": true
+            }
+          ],
+          "existing": true
+        }
+      ],
+      "type": "COMPONENT",
+      "existing": true
+    },
+    {
+      "component": "div",
+      "children": [
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {
+              "fontSize": 48,
+              "marginBottom": 20
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "Direktno iz košnice"
+        },
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {
+              "color": "#333",
+              "fontSize": 24,
+              "marginBottom": 20
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "Otkrite prirodna svojstva meda"
+        },
+        {
+          "component": "a",
+          "children": [
+            {
+              "component": "Paper",
+              "props": {
+                "style": {
+                  "height": 60,
+                  "width": 150,
+                  "display": "flex",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "textTransform": "uppercase",
+                  "fontSize": 24,
+                  "fontWeight": "bold",
+                  "color": "white",
+                  "backgroundColor": "#372b2b"
+                }
+              },
+              "children": [],
+              "type": "COMPONENT",
+              "existing": true,
+              "text": "naručite"
+            }
+          ],
+          "props": {
+            "href": "#narucivanje"
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": null
+        }
+      ],
+      "props": {
+        "style": {
+          "minHeight": "calc(100vh - 40px - 60px)",
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "flexDirection": "column",
+          "padding": 20,
+          "backgroundImage": "url(\"https://as2.ftcdn.net/jpg/01/40/91/57/500_F_140915723_DPQA5uFOB4K23w0ljgcE8P0e4jSVIt1M.jpg\")",
+          "backgroundRepeat": "no-repeat",
+          "backgroundSize": "100% 100%"
+        }
+      },
+      "type": "COMPONENT",
+      "existing": true,
+      "text": null
+    },
+    {
+      "component": "div",
+      "children": [
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {
+              "fontSize": 48,
+              "textAlign": "center"
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "Proizvodi"
+        },
+        {
+          "component": "div",
+          "children": [
+            {
+              "component": "Card",
+              "children": [
+                {
+                  "component": "CardHeader",
+                  "children": [],
+                  "props": {
+                    "title": "Med",
+                    "subheader": "livadski, bagremov, prirodni, vrcani ..."
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "image": "https://as2.ftcdn.net/jpg/01/40/91/57/500_F_140915723_DPQA5uFOB4K23w0ljgcE8P0e4jSVIt1M.jpg",
+                    "style": {
+                      "height": 120
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {
+                "style": {
+                  "width": "30%"
+                }
+              },
+              "type": "COMPONENT",
+              "existing": true
+            },
+            {
+              "component": "Card",
+              "children": [
+                {
+                  "component": "CardHeader",
+                  "children": [],
+                  "props": {
+                    "title": "Matična mleč",
+                    "subheader": "zdravlje na prvom mestu"
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "image": "https://as2.ftcdn.net/jpg/01/40/91/57/500_F_140915723_DPQA5uFOB4K23w0ljgcE8P0e4jSVIt1M.jpg",
+                    "style": {
+                      "height": 120
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {
+                "style": {
+                  "width": "30%"
+                }
+              },
+              "type": "COMPONENT",
+              "existing": true
+            },
+            {
+              "component": "Card",
+              "children": [
+                {
+                  "component": "CardHeader",
+                  "children": [],
+                  "props": {
+                    "title": "Propolis",
+                    "subheader": "samo najbolje što pčela daje"
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "image": "https://as2.ftcdn.net/jpg/01/40/91/57/500_F_140915723_DPQA5uFOB4K23w0ljgcE8P0e4jSVIt1M.jpg",
+                    "style": {
+                      "height": 120
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {
+                "style": {
+                  "width": "30%"
+                }
+              },
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {
+            "style": {
+              "display": "flex",
+              "alignItems": "stretch",
+              "justifyContent": "space-between",
+              "marginTop": 20
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true
+        },
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {
+              "marginTop": 50,
+              "textAlign": "center",
+              "fontSize": 24,
+              "color": "#555",
+              "marginBottom": 50
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "Sve je proizvedeno sa najvećom pažnjom"
+        },
+        {
+          "component": "div",
+          "children": [
+            {
+              "component": "a",
+              "children": [
+                {
+                  "component": "Paper",
+                  "props": {
+                    "style": {
+                      "height": 60,
+                      "width": 150,
+                      "display": "flex",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "textTransform": "uppercase",
+                      "fontSize": 24,
+                      "fontWeight": "bold",
+                      "color": "white",
+                      "backgroundColor": "#372b2b"
+                    }
+                  },
+                  "children": [],
+                  "type": "COMPONENT",
+                  "existing": true,
+                  "text": "naručite"
+                }
+              ],
+              "props": {
+                "href": "#narucivanje"
+              },
+              "type": "COMPONENT",
+              "existing": true,
+              "text": null
+            }
+          ],
+          "props": {
+            "style": {
+              "display": "flex",
+              "alignItems": "center",
+              "justifyContent": "center"
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true
+        }
+      ],
+      "props": {
+        "style": {
+          "padding": 20,
+          "paddingTop": 70,
+          "minHeight": "calc(100vh - 90px)"
+        }
+      },
+      "type": "COMPONENT",
+      "existing": true
+    },
+    {
+      "component": "div",
+      "children": [
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {
+              "fontSize": 48,
+              "textAlign": "center",
+              "marginBottom": 50
+            },
+            "id": "narucivanje"
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "Naručivanje"
+        },
+        {
+          "component": "p",
+          "children": [],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "Poručivanje putem telefona"
+        }
+      ],
+      "props": {
+        "style": {
+          "padding": 20
+        }
+      },
+      "type": "COMPONENT",
+      "existing": true
+    }
+  ],
+  "component": "div",
+  "props": {
+    "style": {
+      "minHeight": "calc(100vh - 4px - 48px - 5px)"
+    }
+  }
+}
