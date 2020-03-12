@@ -34,7 +34,7 @@ function stringify(obj_from_json){
         .keys(obj_from_json)
         .map(key => `${key}: ${stringify(obj_from_json[key])}`)
         .join(", ")
-    return `{${props}}`
+    return `{{ ${props} }}`
 }
 
 
