@@ -12,6 +12,28 @@ import {
 import styles from './styles'
 
 
+class Renderer extends React.Component {
+  state = {
+    error: false,
+  }
+
+  static getDerivedStateFromError(error) {
+    return { error: true }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.log('Renderer error', error, errorInfo)
+  }
+
+  render() {
+    if (this.state.error) {
+      return `Renderer error in render() ${this.props.data.identity}`
+    }
+    return <DnD data={this.props.data} />
+  }
+}
+
+
 class Display extends React.Component {
   state = {
     value: 0,
@@ -26,7 +48,7 @@ class Display extends React.Component {
     const { value } = this.state
     let display
     if (value === 0) {
-      display = <DnD data={tree} />
+      display = <Renderer data={tree} />
     } else if (value === 1) {
       display = <Save />
     } else if (value === 2) {
