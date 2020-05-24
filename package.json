@@ -3,17 +3,15 @@
   "version": "0.0.1",
   "private": false,
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
-    "@material-ui/icons": "^4.9.1",
-    "freenit": "^0.0.12",
+    "freenit": "^0.0.14",
     "prop-types": "^15.7.2",
     "radium": "^0.26.0",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
-    "react-dom": "^16.13.0",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.0"
+    "react-scripts": "^3.4.1"
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
