@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useDrag, useDrop } from 'react-dnd'
 import { withStore } from 'freenit'
-import { toProps } from 'components'
+import { noChildrenComponents, toProps } from 'components'
 import types from 'types'
 
 
@@ -56,6 +56,20 @@ const DnD = ({ data, parent, store }) => {
   }
   ownProps.style.opacity = isDragging ? 0 : 1
   drag(drop(ref))
+  if (noChildrenComponents.includes(Component)) {
+    return (
+      <Component
+        {...ownProps}
+        ref={ref}
+        onClick={(event) => {
+          event.stopPropagation()
+          store.design.onClick(data)
+        }}
+        onMouseEnter={() => setOver(true)}
+        onMouseLeave={() => setOver(false)}
+      />
+    )
+  }
   return (
     <Component
       {...ownProps}

@@ -1720,4 +1720,10 @@ const components = [
 ]
 
 
+export const noChildrenComponents = [
+  'img',
+  'hr',
+]
+
+
 export default components.map(item => compile(item))
