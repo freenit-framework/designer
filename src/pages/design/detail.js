@@ -10,6 +10,7 @@ import {
   Editor,
 } from 'components'
 import {
+  Paper,
   TextField,
 } from '@material-ui/core'
 
@@ -18,6 +19,7 @@ import styles from './styles'
 
 class Design extends React.Component {
   state = {
+    caseSensitive: true,
     search: '',
   }
 
@@ -45,10 +47,22 @@ class Design extends React.Component {
     if (this.state.search === '') {
       return components
     }
-    return components.filter(item => item.name.includes(this.state.search))
+    if (this.state.caseSensitive) {
+      return components.filter(item => item.name.includes(this.state.search))
+    }
+    return components.filter(
+      item => item.name.toLowerCase().includes(this.state.search.toLowerCase())
+    )
+  }
+
+  toggleCase = () => {
+    this.setState({ caseSensitive: !this.state.caseSensitive })
   }
 
   render() {
+    const caseText = this.state.caseSensitive
+      ? 'A'
+      : 'a'
     return (
       <div
         style={styles.root}
@@ -58,11 +72,20 @@ class Design extends React.Component {
       >
         <DndProvider backend={Backend} style={styles.provider}>
           <div style={styles.components}>
-            <TextField
-              label="Search"
-              style={styles.search}
-              onChange={this.handleSearchChange}
-            />
+            <div style={styles.find}>
+              <TextField
+                label="Search"
+                style={styles.search}
+                onChange={this.handleSearchChange}
+              />
+              <Paper
+                style={styles.case}
+                onClick={this.toggleCase}
+                title="Case sensitivity"
+              >
+                {caseText}
+              </Paper>
+            </div>
             {this.filterComponents().map(
               data => <Component data={data} key={data.identity} />
             )}

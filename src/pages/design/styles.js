@@ -19,4 +19,21 @@ export default {
     marginLeft: 10,
     marginBottom: 10,
   },
+
+  find: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  case: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: 50,
+    height: 50,
+    margin: 10,
+    cursor: 'grabbing',
+  },
 }
