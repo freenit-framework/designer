@@ -16,10 +16,53 @@
             {
               "component": "Typography",
               "props": {
-                "variant": "h6"
+                "variant": "h6",
+                "style": {
+                  "flex": 1
+                }
               },
               "text": "Gazdinstvo Grbić",
               "children": [],
+              "existing": true
+            },
+            {
+              "component": "Link",
+              "children": [
+                {
+                  "component": "Button",
+                  "children": [],
+                  "props": {
+                    "color": "inherit"
+                  },
+                  "type": "COMPONENT",
+                  "existing": true,
+                  "text": "O Nama"
+                }
+              ],
+              "props": {
+                "color": "inherit"
+              },
+              "type": "COMPONENT",
+              "existing": true
+            },
+            {
+              "component": "Link",
+              "children": [
+                {
+                  "component": "Button",
+                  "children": [],
+                  "props": {
+                    "color": "inherit"
+                  },
+                  "type": "COMPONENT",
+                  "existing": true,
+                  "text": "Galerija"
+                }
+              ],
+              "props": {
+                "color": "inherit"
+              },
+              "type": "COMPONENT",
               "existing": true
             }
           ],
@@ -339,7 +382,23 @@
           "props": {},
           "type": "COMPONENT",
           "existing": true,
-          "text": "Poručivanje putem telefona"
+          "text": "Mi se nalazimo u ..."
+        },
+        {
+          "component": "p",
+          "children": [],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "tel: 2222222222"
+        },
+        {
+          "component": "p",
+          "children": [],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "tel: 1111111111"
         }
       ],
       "props": {

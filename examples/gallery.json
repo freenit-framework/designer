@@ -1,0 +1,313 @@
+{
+  "children": [
+    {
+      "component": "div",
+      "children": [
+        {
+          "component": "Card",
+          "children": [
+            {
+              "component": "CardActionArea",
+              "children": [
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "title": "Album 1",
+                    "image": "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+                    "style": {
+                      "height": 140
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardContent",
+                  "children": [
+                    {
+                      "component": "Typography",
+                      "text": "Typography",
+                      "props": {
+                        "variant": "h6",
+                        "gutterBottom": "true"
+                      },
+                      "children": [],
+                      "type": "COMPONENT",
+                      "existing": true
+                    }
+                  ],
+                  "props": {},
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {},
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true
+        },
+        {
+          "component": "Card",
+          "children": [
+            {
+              "component": "CardActionArea",
+              "children": [
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "title": "Album 1",
+                    "image": "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+                    "style": {
+                      "height": 140
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardContent",
+                  "children": [
+                    {
+                      "component": "Typography",
+                      "text": "Typography",
+                      "props": {
+                        "variant": "h6",
+                        "gutterBottom": "true"
+                      },
+                      "children": [],
+                      "type": "COMPONENT",
+                      "existing": true
+                    }
+                  ],
+                  "props": {},
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {},
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true
+        },
+        {
+          "component": "Card",
+          "children": [
+            {
+              "component": "CardActionArea",
+              "children": [
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "title": "Album 1",
+                    "image": "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+                    "style": {
+                      "height": 140
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardContent",
+                  "children": [
+                    {
+                      "component": "Typography",
+                      "text": "Typography",
+                      "props": {
+                        "variant": "h6",
+                        "gutterBottom": "true"
+                      },
+                      "children": [],
+                      "type": "COMPONENT",
+                      "existing": true
+                    }
+                  ],
+                  "props": {},
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {},
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true
+        },
+        {
+          "component": "Card",
+          "children": [
+            {
+              "component": "CardActionArea",
+              "children": [
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "title": "Album 1",
+                    "image": "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+                    "style": {
+                      "height": 140
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardContent",
+                  "children": [
+                    {
+                      "component": "Typography",
+                      "text": "Typography",
+                      "props": {
+                        "variant": "h6",
+                        "gutterBottom": "true"
+                      },
+                      "children": [],
+                      "type": "COMPONENT",
+                      "existing": true
+                    }
+                  ],
+                  "props": {},
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {},
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true
+        },
+        {
+          "component": "Card",
+          "children": [
+            {
+              "component": "CardActionArea",
+              "children": [
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "title": "Album 1",
+                    "image": "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+                    "style": {
+                      "height": 140
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardContent",
+                  "children": [
+                    {
+                      "component": "Typography",
+                      "text": "Typography",
+                      "props": {
+                        "variant": "h6",
+                        "gutterBottom": "true"
+                      },
+                      "children": [],
+                      "type": "COMPONENT",
+                      "existing": true
+                    }
+                  ],
+                  "props": {},
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {},
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true
+        },
+        {
+          "component": "Card",
+          "children": [
+            {
+              "component": "CardActionArea",
+              "children": [
+                {
+                  "component": "CardMedia",
+                  "children": [],
+                  "props": {
+                    "title": "Album 1",
+                    "image": "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+                    "style": {
+                      "height": 140
+                    }
+                  },
+                  "type": "COMPONENT",
+                  "existing": true
+                },
+                {
+                  "component": "CardContent",
+                  "children": [
+                    {
+                      "component": "Typography",
+                      "text": "Typography",
+                      "props": {
+                        "variant": "h6",
+                        "gutterBottom": "true"
+                      },
+                      "children": [],
+                      "type": "COMPONENT",
+                      "existing": true
+                    }
+                  ],
+                  "props": {},
+                  "type": "COMPONENT",
+                  "existing": true
+                }
+              ],
+              "props": {},
+              "type": "COMPONENT",
+              "existing": true
+            }
+          ],
+          "props": {},
+          "type": "COMPONENT",
+          "existing": true
+        }
+      ],
+      "props": {
+        "style": {
+          "display": "grid",
+          "gridTemplateColumns": "repeat(4, auto)",
+          "columnGap": 10,
+          "rowGap": 10
+        }
+      },
+      "type": "COMPONENT",
+      "existing": true
+    }
+  ],
+  "component": "div",
+  "props": {
+    "style": {
+      "minHeight": "calc(100vh - 4px - 48px - 5px)"
+    }
+  }
+}
