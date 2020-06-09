@@ -10,3 +10,5 @@ Modes are:
 * Rearange - If you drag component A to component B, B has parent C, A will become C's child and placed right before B
 
 To enter `rearange` mode, press `Shift` key. To exit that mode and switch back to `add`, release `Shift`.
+
+![demo](demo.gif)
