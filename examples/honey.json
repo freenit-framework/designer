@@ -161,7 +161,8 @@
           "props": {
             "style": {
               "fontSize": 48,
-              "textAlign": "center"
+              "textAlign": "center",
+              "fontWeight": "bold"
             }
           },
           "type": "COMPONENT",
@@ -366,9 +367,45 @@
           "children": [],
           "props": {
             "style": {
+              "textAlign": "center",
+              "fontSize": 48,
+              "fontWeight": "bold",
+              "marginBottom": 50
+            }
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "O nama"
+        },
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {}
+          },
+          "type": "COMPONENT",
+          "existing": true,
+          "text": "OPG Grbić,  TRG REPUBLIKE HRVATSKE  3/21 VUKOVAR Registrovan 2005. Proizvodnja matica pčela Tel. 098270803 Tel. 098346178 Osim matica,med,propolis,pelud,matična mliječ,kreme na bazi propolisa"
+        }
+      ],
+      "props": {
+        "p43cl": "value"
+      },
+      "type": "COMPONENT",
+      "existing": true
+    },
+    {
+      "component": "div",
+      "children": [
+        {
+          "component": "div",
+          "children": [],
+          "props": {
+            "style": {
               "fontSize": 48,
               "textAlign": "center",
-              "marginBottom": 50
+              "marginBottom": 50,
+              "fontWeight": "bold"
             },
             "id": "narucivanje"
           },
