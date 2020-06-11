@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "private": false,
   "dependencies": {
-    "freenit": "^0.0.14",
+    "freenit": "^0.0.15",
     "prop-types": "^15.7.2",
     "radium": "^0.26.0",
     "react": "^16.13.1",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1"
   },
   "devDependencies": {
