@@ -10,6 +10,7 @@ import {
   Editor,
 } from 'components'
 import {
+  Button,
   Paper,
   TextField,
 } from '@material-ui/core'
@@ -71,24 +72,43 @@ class Design extends React.Component {
         tabIndex="0"
       >
         <DndProvider backend={Backend} style={styles.provider}>
-          <div style={styles.components}>
-            <div style={styles.find}>
-              <TextField
-                label="Search"
-                style={styles.search}
-                onChange={this.handleSearchChange}
-              />
-              <Paper
-                style={styles.case}
-                onClick={this.toggleCase}
-                title="Case sensitivity"
-              >
-                {caseText}
-              </Paper>
+          <div>
+            <div style={styles.components}>
+              <div style={styles.find}>
+                <TextField
+                  label="Search"
+                  style={styles.search}
+                  onChange={this.handleSearchChange}
+                />
+                <Paper
+                  style={styles.case}
+                  onClick={this.toggleCase}
+                  title="Case sensitivity"
+                >
+                  {caseText}
+                </Paper>
+              </div>
+              {this.filterComponents().map(
+                data => <Component data={data} key={data.identity} />
+              )}
             </div>
-            {this.filterComponents().map(
-              data => <Component data={data} key={data.identity} />
-            )}
+            <div style={styles.components.container}>
+              <a href="">
+                <Button style={styles.components.button} variant="outlined">
+                  Load
+                </Button>
+              </a>
+              <a href="">
+                <Button style={styles.components.button} variant="outlined">
+                  Save
+                </Button>
+              </a>
+              <a href="">
+                <Button style={styles.components.button} variant="outlined">
+                  Export
+                </Button>
+              </a>
+            </div>
           </div>
           <Display />
           <Editor />

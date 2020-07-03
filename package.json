@@ -4,6 +4,7 @@
   "private": false,
   "dependencies": {
     "freenit": "^0.0.14",
+    "js-base64": "^2.6.2",
     "prop-types": "^15.7.2",
     "radium": "^0.26.0",
     "react": "^16.13.1",

@@ -2,7 +2,7 @@ export default {
   root: {
     minHeight: 'calc(100vh - 65px)',
     display: 'grid',
-    gridTemplateColumns: '250px auto 400px',
+    gridTemplateColumns: '300px auto 400px',
   },
 
   provider: {
@@ -11,8 +11,15 @@ export default {
 
   components: {
     backgroundColor: '#eee',
-    height: 'calc(100vh)',
+    height: 'calc(100vh - 40px - 20px - 10px)',
     overflowY: 'auto',
+    container: {
+      padding: 10,
+      borderRight: 'solid 1px #eee',
+    },
+    button: {
+      margin: 5,
+    },
   },
 
   search: {
