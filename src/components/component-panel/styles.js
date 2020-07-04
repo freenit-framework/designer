@@ -1,11 +1,18 @@
 export default {
+  root: {
+    width: 300,
+    height: '100%',
+    transition: 'all 0.5s',
+    borderRight: 'solid 1px #eee',
+    backgroundColor: '#eee',
+  },
+
   components: {
     backgroundColor: '#eee',
-    height: 'calc(100vh - 40px - 20px - 10px)',
+    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px)',
     overflowY: 'auto',
     container: {
       padding: 10,
-      borderRight: 'solid 1px #eee',
     },
     button: {
       margin: 5,

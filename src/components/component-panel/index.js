@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Button,
+  IconButton,
   Paper,
   TextField,
 } from '@material-ui/core'
@@ -13,6 +14,9 @@ import {
   decompile,
 } from 'components'
 import { Base64 } from 'js-base64'
+
+import LeftIcon from '@material-ui/icons/KeyboardArrowLeft'
+import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 
 import styles from './styles'
 
@@ -54,6 +58,7 @@ class ComponentPanel extends React.Component {
   state = {
     caseSensitive: true,
     search: '',
+    open: true,
   }
 
   fileInput = React.createRef()
@@ -144,6 +149,10 @@ class ComponentPanel extends React.Component {
     this.fileInput.current.click()
   }
 
+  toggleHide = () => {
+    this.setState({ open: !this.state.open })
+  }
+
   render() {
     this.mui = {}
     const data = decompile(this.props.store.design.tree)
@@ -163,8 +172,59 @@ class ComponentPanel extends React.Component {
     const caseText = this.state.caseSensitive
       ? 'A'
       : 'a'
+    const icon = this.state.open ? <LeftIcon /> : <RightIcon />
+    const rootStyle = this.state.open
+      ? styles.root
+      : { ...styles.root, width: 50 }
+    const content = this.state.open
+      ? (
+        <div>
+          <div style={styles.components}>
+            <div style={styles.find}>
+              <TextField
+                label="Search"
+                style={styles.search}
+                onChange={this.handleSearchChange}
+              />
+              <Paper
+                style={styles.case}
+                onClick={this.toggleCase}
+                title="Case sensitivity"
+              >
+                {caseText}
+              </Paper>
+            </div>
+            {this.filterComponents().map(
+              data => <Component data={data} key={data.identity} />
+            )}
+          </div>
+          <Paper style={styles.components.container}>
+            <Button
+              variant="outlined"
+              onClick={this.handleClick}
+              style={styles.components.button}
+            >
+              Load
+            </Button>
+            <a href={saveData} download="design.json">
+              <Button style={styles.components.button} variant="outlined">
+                Save
+              </Button>
+            </a>
+            <a
+              href={`data:application/javascript;base64,${codeData}`}
+              download="page.js"
+            >
+              <Button style={styles.components.button} variant="outlined">
+                Export
+              </Button>
+            </a>
+          </Paper>
+        </div>
+      ) : null
     return (
-      <div>
+      <div style={rootStyle}>
+        <IconButton onClick={this.toggleHide}>{icon}</IconButton>
         <input
           ref={this.fileInput}
           type="file"
@@ -173,47 +233,7 @@ class ComponentPanel extends React.Component {
           multiple
           onChange={this.handleFileChange}
         />
-        <div style={styles.components}>
-          <div style={styles.find}>
-            <TextField
-              label="Search"
-              style={styles.search}
-              onChange={this.handleSearchChange}
-            />
-            <Paper
-              style={styles.case}
-              onClick={this.toggleCase}
-              title="Case sensitivity"
-            >
-              {caseText}
-            </Paper>
-          </div>
-          {this.filterComponents().map(
-            data => <Component data={data} key={data.identity} />
-          )}
-        </div>
-        <div style={styles.components.container}>
-          <Button
-            variant="outlined"
-            onClick={this.handleClick}
-            style={styles.components.button}
-          >
-            Load
-          </Button>
-          <a href={saveData} download="design.json">
-            <Button style={styles.components.button} variant="outlined">
-              Save
-            </Button>
-          </a>
-          <a
-            href={`data:application/javascript;base64,${codeData}`}
-            download="page.js"
-          >
-            <Button style={styles.components.button} variant="outlined">
-              Export
-            </Button>
-          </a>
-        </div>
+        {content}
       </div>
     )
   }
