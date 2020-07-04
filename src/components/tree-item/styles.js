@@ -8,8 +8,4 @@ export default {
     display: 'flex',
     alignItems: 'center',
   },
-
-  icon: {
-    marginRight: 10,
-  },
 }

@@ -5,6 +5,7 @@ export default {
     transition: 'all 0.5s',
     borderRight: 'solid 1px #eee',
     backgroundColor: '#eee',
+    overflow: 'hidden',
   },
 
   components: {

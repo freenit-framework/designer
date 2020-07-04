@@ -1,9 +1,10 @@
 export default {
   root: {
-    width: 300,
+    width: 350,
     height: '100%',
     transition: 'all 0.5s',
     backgroundColor: '#eee',
+    overflow: 'hidden',
   },
 
   content: {
