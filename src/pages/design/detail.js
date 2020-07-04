@@ -4,26 +4,15 @@ import { DndProvider } from 'react-dnd'
 import { withStore } from 'freenit'
 import Backend from 'react-dnd-html5-backend'
 import {
-  default as components,
-  Component,
+  ComponentPanel,
   Display,
   Editor,
 } from 'components'
-import {
-  Button,
-  Paper,
-  TextField,
-} from '@material-ui/core'
 
 import styles from './styles'
 
 
 class Design extends React.Component {
-  state = {
-    caseSensitive: true,
-    search: '',
-  }
-
   handleKeyDown = (event) => {
     const { design } = this.props.store
     if (event.key === 'Shift') {
@@ -40,30 +29,7 @@ class Design extends React.Component {
     }
   }
 
-  handleSearchChange = (event) => {
-    this.setState({ search: event.target.value })
-  }
-
-  filterComponents = () => {
-    if (this.state.search === '') {
-      return components
-    }
-    if (this.state.caseSensitive) {
-      return components.filter(item => item.name.includes(this.state.search))
-    }
-    return components.filter(
-      item => item.name.toLowerCase().includes(this.state.search.toLowerCase())
-    )
-  }
-
-  toggleCase = () => {
-    this.setState({ caseSensitive: !this.state.caseSensitive })
-  }
-
   render() {
-    const caseText = this.state.caseSensitive
-      ? 'A'
-      : 'a'
     return (
       <div
         style={styles.root}
@@ -72,44 +38,7 @@ class Design extends React.Component {
         tabIndex="0"
       >
         <DndProvider backend={Backend} style={styles.provider}>
-          <div>
-            <div style={styles.components}>
-              <div style={styles.find}>
-                <TextField
-                  label="Search"
-                  style={styles.search}
-                  onChange={this.handleSearchChange}
-                />
-                <Paper
-                  style={styles.case}
-                  onClick={this.toggleCase}
-                  title="Case sensitivity"
-                >
-                  {caseText}
-                </Paper>
-              </div>
-              {this.filterComponents().map(
-                data => <Component data={data} key={data.identity} />
-              )}
-            </div>
-            <div style={styles.components.container}>
-              <a href="">
-                <Button style={styles.components.button} variant="outlined">
-                  Load
-                </Button>
-              </a>
-              <a href="">
-                <Button style={styles.components.button} variant="outlined">
-                  Save
-                </Button>
-              </a>
-              <a href="">
-                <Button style={styles.components.button} variant="outlined">
-                  Export
-                </Button>
-              </a>
-            </div>
-          </div>
+          <ComponentPanel />
           <Display />
           <Editor />
         </DndProvider>

@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import { useDrag } from 'react-dnd'
 import { withStore } from 'freenit'
 import types from 'types'

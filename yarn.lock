@@ -4920,10 +4920,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-freenit@^0.0.14:
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/freenit/-/freenit-0.0.14.tgz#780cb36e4efe218327e07ec0ba2abeee95647a4a"
-  integrity sha512-xJW2bElWgB5Q1lAAre1M5AMeZ7TDwmqBmKlGYis05dAxP2KYVacoJXfHDcR+RIvHVSnZpyEeMwhRigevOG1Cng==
+freenit@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/freenit/-/freenit-0.0.15.tgz#d331fa2f75ccb500e34fe0b0391c163e6bf66421"
+  integrity sha512-TXn8GoU4okm76L/D4RnoF/0bxm9/Cu5QrrPCiKUPykQIufdsfi+SCGvNGT7BKFM2RVWIFHkhtiGT3DSGLdtJsQ==
   dependencies:
     "@material-ui/core" "^4.9.14"
     "@material-ui/icons" "^4.9.1"
@@ -9217,7 +9217,7 @@ react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-router-dom@^5.1.2, react-router-dom@^5.2.0:
+react-router-dom@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
   integrity sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA==
