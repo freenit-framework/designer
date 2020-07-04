@@ -10,7 +10,7 @@ export default {
 
   components: {
     backgroundColor: '#eee',
-    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px)',
+    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 65px)',
     overflowY: 'auto',
     container: {
       padding: 10,
@@ -50,5 +50,9 @@ export default {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+
+  button: {
+    marginRight: 10,
   },
 }

@@ -54,11 +54,18 @@ function stringify(obj_from_json){
 }
 
 
+const tabLabels = [
+  'components',
+  'icons',
+]
+
+
 class ComponentPanel extends React.Component {
   state = {
     caseSensitive: true,
     search: '',
     open: true,
+    tab: 'components'
   }
 
   fileInput = React.createRef()
@@ -153,6 +160,10 @@ class ComponentPanel extends React.Component {
     this.setState({ open: !this.state.open })
   }
 
+  switchTab = (tab) => () => {
+    this.setState({ tab })
+  }
+
   render() {
     this.mui = {}
     const data = decompile(this.props.store.design.tree)
@@ -176,60 +187,35 @@ class ComponentPanel extends React.Component {
     const rootStyle = this.state.open
       ? styles.root
       : { ...styles.root, width: 50 }
-    const content = this.state.open
-      ? (
-        <div>
+    let content
+    if (this.state.open) {
+      content = this.state.tab === 'components'
+        ? (
           <div style={styles.components}>
-            <div style={styles.find}>
-              <TextField
-                label="Search"
-                style={styles.search}
-                onChange={this.handleSearchChange}
-              />
-              <Paper
-                style={styles.case}
-                onClick={this.toggleCase}
-                title="Case sensitivity"
-              >
-                {caseText}
-              </Paper>
-            </div>
             {this.filterComponents().map(
               data => <Component data={data} key={data.identity} />
             )}
           </div>
-          <Paper style={styles.components.container}>
-            <a href={saveData} download="design.json">
-              <Button
-                color="primary"
-                variant="outlined"
-                style={styles.components.button}
-              >
-                Save
-              </Button>
-            </a>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={this.handleClick}
-              style={styles.components.button}
-            >
-              Load
-            </Button>
-            <a
-              href={`data:application/javascript;base64,${codeData}`}
-              download="page.js"
-            >
-              <Button style={styles.components.button} variant="outlined">
-                Export
-              </Button>
-            </a>
-          </Paper>
-        </div>
-      ) : null
+        ) : (
+          <div style={styles.components} />
+        )
+    }
+    const tabs = this.state.open
+      ? tabLabels.map(label => (
+        <Button
+          key={label}
+          style={styles.button}
+          variant="outlined"
+          onClick={this.switchTab(label)}
+          disabled={label === this.state.tab}
+        >
+          {label}
+        </Button>
+      )) : null
     return (
       <div style={rootStyle}>
         <div style={styles.toggle}>
+          {tabs}
           <IconButton onClick={this.toggleHide}>{icon}</IconButton>
         </div>
         <input
@@ -240,7 +226,58 @@ class ComponentPanel extends React.Component {
           multiple
           onChange={this.handleFileChange}
         />
+        {
+          this.state.open
+            ? (
+              <div style={styles.find}>
+                <TextField
+                  label="Search"
+                  style={styles.search}
+                  onChange={this.handleSearchChange}
+                />
+                <Paper
+                  style={styles.case}
+                  onClick={this.toggleCase}
+                  title="Case sensitivity"
+                >
+                  {caseText}
+                </Paper>
+              </div>
+            ) : null
+        }
         {content}
+        {
+          this.state.open
+            ? (
+              <Paper style={styles.components.container}>
+                <a href={saveData} download="design.json">
+                  <Button
+                    color="primary"
+                    variant="outlined"
+                    style={styles.components.button}
+                  >
+                    Save
+                  </Button>
+                </a>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={this.handleClick}
+                  style={styles.components.button}
+                >
+                  Load
+                </Button>
+                <a
+                  href={`data:application/javascript;base64,${codeData}`}
+                  download="page.js"
+                >
+                  <Button style={styles.components.button} variant="outlined">
+                    Export
+                  </Button>
+                </a>
+              </Paper>
+            ) : null
+        }
       </div>
     )
   }

@@ -11,4 +11,8 @@ export default {
     width: '100%',
     height: 'calc(100% - 65px)',
   },
+
+  button: {
+    marginRight: 20,
+  },
 }

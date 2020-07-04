@@ -6,6 +6,7 @@ import {
 } from 'components'
 import {
   IconButton,
+  Button,
   Paper,
 } from '@material-ui/core'
 
@@ -15,13 +16,25 @@ import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import styles from './styles'
 
 
+const tabLabels = [
+  'props',
+  'theme',
+  'files',
+]
+
+
 class Editor extends React.Component {
   state = {
     open: true,
+    tab: 'props'
   }
 
   toggleHide = () => {
     this.setState({ open: !this.state.open })
+  }
+
+  switchTab = (tab) => () => {
+    this.setState({ tab })
   }
 
   render() {
@@ -29,20 +42,39 @@ class Editor extends React.Component {
     const rootStyle = this.state.open
       ? styles.root
       : { ...styles.root, width: 50 }
-    const content = this.state.open
-      ? (
-        <div style={styles.content}>
-          <Menu />
-          <Props />
-        </div>
-      ) : null
+    const tabs = this.state.open
+      ? tabLabels.map(label => (
+        <Button
+          key={label}
+          style={styles.button}
+          variant="outlined"
+          onClick={this.switchTab(label)}
+          disabled={label === this.state.tab}
+        >
+          {label}
+        </Button>
+      )) : null
+    let content
+    if (this.state.open) {
+      content = this.state.tab === 'props'
+        ? (
+          <div style={styles.content}>
+            <Menu />
+            <Props />
+          </div>
+        ) : null
+    }
     return (
       <Paper style={rootStyle}>
-        <IconButton onClick={this.toggleHide}>{icon}</IconButton>
+        <div style={styles.buttons}>
+          <IconButton onClick={this.toggleHide}>{icon}</IconButton>
+          {tabs}
+        </div>
         {content}
       </Paper>
     )
   }
 }
+
 
 export default withStore(Editor)
