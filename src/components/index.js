@@ -1725,4 +1725,9 @@ export const noChildrenComponents = [
 ]
 
 
+export const textOnlyComponents = [
+  'textarea',
+]
+
+
 export default components.map(item => compile(item))

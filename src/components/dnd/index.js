@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useDrag, useDrop } from 'react-dnd'
 import { withStore } from 'freenit'
-import { noChildrenComponents, toProps } from 'components'
+import { noChildrenComponents, textOnlyComponents, toProps } from 'components'
 import types from 'types'
 
 
@@ -68,6 +68,22 @@ const DnD = ({ data, parent, store }) => {
         onMouseEnter={() => setOver(true)}
         onMouseLeave={() => setOver(false)}
       />
+    )
+  }
+  if (textOnlyComponents.includes(Component)) {
+    return (
+      <Component
+        {...ownProps}
+        ref={ref}
+        onClick={(event) => {
+          event.stopPropagation()
+          store.design.onClick(data)
+        }}
+        onMouseEnter={() => setOver(true)}
+        onMouseLeave={() => setOver(false)}
+      >
+        {data.text}
+      </Component>
     )
   }
   return (
