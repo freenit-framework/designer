@@ -38,9 +38,7 @@ class Editor extends React.Component {
       ) : null
     return (
       <Paper style={rootStyle}>
-        <div style={styles.toggle}>
-          <IconButton onClick={this.toggleHide}>{icon}</IconButton>
-        </div>
+        <IconButton onClick={this.toggleHide}>{icon}</IconButton>
         {content}
       </Paper>
     )

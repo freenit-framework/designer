@@ -11,11 +11,4 @@ export default {
     width: '100%',
     height: 'calc(100% - 65px)',
   },
-
-  toggle: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    transition: 'all 0.5s',
-  },
 }

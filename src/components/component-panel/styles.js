@@ -45,4 +45,10 @@ export default {
   input: {
     display: 'none',
   },
+
+  toggle: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
 }

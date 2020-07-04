@@ -199,18 +199,23 @@ class ComponentPanel extends React.Component {
             )}
           </div>
           <Paper style={styles.components.container}>
+            <a href={saveData} download="design.json">
+              <Button
+                color="primary"
+                variant="outlined"
+                style={styles.components.button}
+              >
+                Save
+              </Button>
+            </a>
             <Button
               variant="outlined"
+              color="secondary"
               onClick={this.handleClick}
               style={styles.components.button}
             >
               Load
             </Button>
-            <a href={saveData} download="design.json">
-              <Button style={styles.components.button} variant="outlined">
-                Save
-              </Button>
-            </a>
             <a
               href={`data:application/javascript;base64,${codeData}`}
               download="page.js"
@@ -224,7 +229,9 @@ class ComponentPanel extends React.Component {
       ) : null
     return (
       <div style={rootStyle}>
-        <IconButton onClick={this.toggleHide}>{icon}</IconButton>
+        <div style={styles.toggle}>
+          <IconButton onClick={this.toggleHide}>{icon}</IconButton>
+        </div>
         <input
           ref={this.fileInput}
           type="file"
