@@ -39,7 +39,9 @@ class Design extends React.Component {
       >
         <DndProvider backend={Backend} style={styles.provider}>
           <ComponentPanel />
-          <Display />
+          <div style={styles.display}>
+            <Display />
+          </div>
           <Editor />
         </DndProvider>
       </div>

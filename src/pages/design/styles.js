@@ -1,11 +1,19 @@
 export default {
   root: {
-    minHeight: 'calc(100vh - 65px)',
-    display: 'grid',
-    gridTemplateColumns: '300px auto 400px',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'auto',
   },
 
   provider: {
     height: '100%',
+  },
+
+  display: {
+    height: '100%',
+    overflow: 'auto',
+    flex: 1,
   },
 }

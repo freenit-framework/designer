@@ -12,7 +12,7 @@ export default {
     name: 'div',
     props: {
       style: {
-        minHeight: 'calc(100vh - 4px - 48px - 5px)',
+        minHeight: 'calc(100vh - 4px)',
       },
     },
   }),
