@@ -1,4 +1,5 @@
 import React from 'react'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { withStore } from 'freenit'
 import { DnD } from 'components'
 
@@ -36,8 +37,17 @@ class Display extends React.Component {
 
   render() {
     const { tree } = this.props.store.design
+    const theme = createMuiTheme({
+      // palette: {
+        // primary: {
+          // main: '#bbb',
+        // }
+      // }
+    })
     return (
-      <Renderer data={tree} />
+      <ThemeProvider theme={theme}>
+        <Renderer data={tree} />
+      </ThemeProvider>
     )
   }
 }
