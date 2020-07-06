@@ -1,5 +1,6 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { Button } from '@material-ui/core'
 import { withStore } from 'freenit'
 import { DnD } from 'components'
 
@@ -17,9 +18,26 @@ class Renderer extends React.Component {
     console.log('Renderer error', error, errorInfo)
   }
 
+  resetErrors = () => {
+    this.setState({ error: false })
+  }
+
   render() {
     if (this.state.error) {
-      return `Renderer error in render() ${this.props.data.identity}`
+      return (
+        <div>
+          Renderer error in render() {this.props.data.identity}
+          <div>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.resetErrors}
+            >
+              Reset errors
+            </Button>
+          </div>
+        </div>
+      )
     }
     return <DnD data={this.props.data} />
   }
