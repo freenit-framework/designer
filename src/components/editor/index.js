@@ -3,6 +3,7 @@ import { withStore } from 'freenit'
 import {
   Menu,
   Props,
+  ThemeEditor,
 } from 'components'
 import {
   IconButton,
@@ -56,13 +57,21 @@ class Editor extends React.Component {
       )) : null
     let content
     if (this.state.open) {
-      content = this.state.tab === 'props'
-        ? (
+      if (this.state.tab === 'props') {
+        content = (
           <div style={styles.content}>
             <Menu />
             <Props />
           </div>
-        ) : null
+        )
+      }
+      if (this.state.tab === 'theme') {
+        content = (
+          <div style={styles.content}>
+            <ThemeEditor />
+          </div>
+        )
+      }
     }
     return (
       <Paper style={rootStyle}>

@@ -8,6 +8,7 @@ export { default as Editor } from './editor'
 export { default as Menu } from './menu'
 export { default as PropItem } from './prop-item'
 export { default as Props } from './props'
+export { default as ThemeEditor} from './theme-editor'
 export { default as TreeItem } from './tree-item'
 
 
@@ -27,7 +28,7 @@ export const isSimple = data => typeof data === 'number' ||
                                 typeof data === 'string'
 
 
-const convert = (key, value) => {
+export const convert = (key, value) => {
   const base = {
     name: key,
     identity: Math.random()
@@ -81,16 +82,6 @@ export const decompile = (data) => {
   result.children = result.children.map(item => decompile(item))
   return result
 }
-
-
-export const StringComponents = {}
-Object.getOwnPropertyNames(mui).forEach(
-  name => {
-    if (mui[name].render) {
-      StringComponents[name] = mui[name]
-    }
-  }
-)
 
 
 const components = [
