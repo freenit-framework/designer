@@ -61,11 +61,11 @@ class PropItem extends React.Component {
     design.setOver(data)
   }
 
-  addItem = (data) => () => {
+  addItem = () => {
     this.props.store.design.addProp()
   }
 
-  removeItem = (data) => () => {
+  removeItem = () => {
     this.props.store.design.removeProp()
   }
 
@@ -99,9 +99,9 @@ class PropItem extends React.Component {
               {data.name}: &#123;
             </span>
             <div style={styles.item}>
-              <AddIcon style={iconStyle} onClick={this.addItem(data)} />
+              <AddIcon style={iconStyle} onClick={this.addItem} />
               {data.identity !== tree.props.identity
-                ? <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                ? <RemoveIcon style={iconStyle} onClick={this.removeItem} />
                 : null
               }
             </div>
@@ -146,8 +146,8 @@ class PropItem extends React.Component {
                 {data.name}: &#91;
               </span>
               <div style={styles.item}>
-                <AddIcon style={iconStyle} onClick={this.addItem(data)} />
-                <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                <AddIcon style={iconStyle} onClick={this.addItem} />
+                <RemoveIcon style={iconStyle} onClick={this.removeItem} />
               </div>
             </span>
           )
@@ -208,7 +208,7 @@ class PropItem extends React.Component {
                 {data.value}
               </span>
               <div style={styles.item}>
-                <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                <RemoveIcon style={iconStyle} onClick={this.removeItem} />
               </div>
             </span>
           )
@@ -245,7 +245,7 @@ class PropItem extends React.Component {
               {data.value}
             </span>
             <div style={styles.item}>
-              <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+              <RemoveIcon style={iconStyle} onClick={this.removeItem} />
             </div>
           </div>
         )
