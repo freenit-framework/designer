@@ -189,30 +189,40 @@ export default class DesignStore {
     this.setEditing({})
   }
 
-  addNewProp = (prop, name, value) => {
+  addNewProp = (prop, identity, name, value) => {
     const result = { ...prop }
-    if (result.identity === this.over.identity) {
-      const child = { identity: Math.random(), value }
-      if (result.children) { result.children.push({ ...child, name }) }
-      if (Array.isArray(result.value)) { result.value.push(child) }
+    if (result.identity === identity) {
+      const child = { identity: Math.random(), name }
+      if (value.children) {
+        child.children = value.children
+      } else {
+        child.value = value
+      }
+      if (result.children) {
+        result.children = [ ...result.children, { ...child, name }]
+      }
+      if (Array.isArray(result.value)) {
+        result.value = [ ...result.value, child ]
+      }
       return result
     }
     if (result.children) {
       result.children = result.children.map(
-        item => this.addNewProp(item, name, value)
+        item => this.addNewProp(item, identity, name, value)
       )
     }
     if (Array.isArray(result.value)) {
       result.value = result.value.map(
-        item => this.addNewProp(item, name, value)
+        item => this.addNewProp(item, identity, name, value)
       )
     }
     return result
   }
 
-  addProp = (name, value) => {
+  addProp = (identity, name, value) => {
     const component = this.findComponent(this.selected.identity)
-    component.props = this.addNewProp(component.props, name, value)
+    const newProps = this.addNewProp(component.props, identity, name, value)
+    component.props = newProps
     this.setEditing({})
   }
 

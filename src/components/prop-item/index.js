@@ -97,7 +97,10 @@ class PropItem extends React.Component {
               {data.name}: &#123;
             </span>
             <div style={styles.item}>
-              <AddIcon style={iconStyle} onClick={this.props.onAdd} />
+              <AddIcon
+                style={iconStyle}
+                onClick={this.props.onAdd(data.identity)}
+              />
               {data.identity !== tree.props.identity
                 ? <RemoveIcon style={iconStyle} onClick={this.removeItem} />
                 : null
@@ -145,7 +148,10 @@ class PropItem extends React.Component {
                 {data.name}: &#91;
               </span>
               <div style={styles.item}>
-                <AddIcon style={iconStyle} onClick={this.props.onAdd} />
+                <AddIcon
+                  style={iconStyle}
+                  onClick={this.props.onAdd(data.identity)}
+                />
                 <RemoveIcon style={iconStyle} onClick={this.removeItem} />
               </div>
             </span>

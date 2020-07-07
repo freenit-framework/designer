@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
+  Button,
   Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   TextField,
 } from '@material-ui/core'
 import { withStore } from 'freenit'
 
-import { PropItem } from 'components'
+import { convert, PropItem } from 'components'
 import styles from './styles'
 
 
@@ -15,7 +19,9 @@ class Props extends React.Component {
     editing: false,
     over: false,
     text: '',
-    add: false,
+    add: null,
+    name: '',
+    value: '',
   }
 
   handleFocus = (event) => {
@@ -44,12 +50,30 @@ class Props extends React.Component {
     this.setState({ editing: false })
   }
 
-  showAdd = () => {
-    this.setState({ add: true })
+  showAdd = (identity) => () => {
+    this.setState({ add: identity })
   }
 
   closeAdd = () => {
-    this.setState({ add: false })
+    this.setState({ add: null })
+  }
+
+  addProp = () => {
+    const { add, name, value } = this.state
+    this.props.store.design.addProp(
+      add,
+      name,
+      value === '{}' ? convert('value', {}) : value,
+    )
+    this.setState({ name: '', value: '', add: null })
+  }
+
+  handleNewName = (event) => {
+    this.setState({ name: event.target.value })
+  }
+
+  handleNewValue = (event) => {
+    this.setState({ value: event.target.value })
   }
 
   render() {
@@ -80,8 +104,35 @@ class Props extends React.Component {
           )
           : null
         }
-        <Dialog open={this.state.add} onClose={this.closeAdd}>
-          cvrc
+        <Dialog open={this.state.add !== null} onClose={this.closeAdd}>
+          <DialogTitle>Add new property</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              label="name"
+              value={this.state.name}
+              onChange={this.handleNewName}
+            />
+            <TextField
+              label="value"
+              value={this.state.value}
+              onChange={this.handleNewValue}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={this.addProp}
+              variant="outlined"
+            >
+              Add
+            </Button>
+            <Button
+              onClick={this.closeAdd}
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+          </DialogActions>
         </Dialog>
       </div>
     )
