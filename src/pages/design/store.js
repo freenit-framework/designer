@@ -1,5 +1,5 @@
 export default class DesignStore {
-  constructor(tree, selected, editing, over, rearranging) {
+  constructor(tree, selected, editing, over, rearranging, theme) {
     this.tree = tree[0]
     this.setTree = tree[1]
     this.selected = selected[0]
@@ -10,6 +10,8 @@ export default class DesignStore {
     this.setOver = over[1]
     this.rearranging = rearranging[0]
     this.setRearranging = rearranging[1]
+    this.theme = theme[0]
+    this.setTheme = theme[1]
   }
 
   copyItem = (item) => {
@@ -187,31 +189,31 @@ export default class DesignStore {
     this.setEditing({})
   }
 
-  addNewProp = (prop) => {
+  addNewProp = (prop, name, value) => {
     const result = { ...prop }
     if (result.identity === this.over.identity) {
-      const child = {
-        identity: Math.random(),
-        value: 'value',
-      }
-      if (result.children) {
-        result.children.push({
-          ...child,
-          name: Math.random().toString(36).substring(7),
-        })
-      }
-      if (Array.isArray(result.value)) {
-        result.value.push(child)
-      }
+      const child = { identity: Math.random(), value }
+      if (result.children) { result.children.push({ ...child, name }) }
+      if (Array.isArray(result.value)) { result.value.push(child) }
       return result
     }
     if (result.children) {
-      result.children = result.children.map(item => this.addNewProp(item))
+      result.children = result.children.map(
+        item => this.addNewProp(item, name, value)
+      )
     }
     if (Array.isArray(result.value)) {
-      result.value = result.value.map(item => this.addNewProp(item))
+      result.value = result.value.map(
+        item => this.addNewProp(item, name, value)
+      )
     }
     return result
+  }
+
+  addProp = (name, value) => {
+    const component = this.findComponent(this.selected.identity)
+    component.props = this.addNewProp(component.props, name, value)
+    this.setEditing({})
   }
 
   removeExistingProp = (prop) => {
@@ -227,12 +229,6 @@ export default class DesignStore {
       ).map(item => this.removeExistingProp(item))
     }
     return result
-  }
-
-  addProp = () => {
-    const component = this.findComponent(this.selected.identity)
-    component.props = this.addNewProp(component.props)
-    this.setEditing({})
   }
 
   removeProp = () => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
+  Dialog,
   TextField,
 } from '@material-ui/core'
 import { withStore } from 'freenit'
@@ -14,6 +15,7 @@ class Props extends React.Component {
     editing: false,
     over: false,
     text: '',
+    add: false,
   }
 
   handleFocus = (event) => {
@@ -42,6 +44,14 @@ class Props extends React.Component {
     this.setState({ editing: false })
   }
 
+  showAdd = () => {
+    this.setState({ add: true })
+  }
+
+  closeAdd = () => {
+    this.setState({ add: false })
+  }
+
   render() {
     const { selected } = this.props.store.design
     const data = selected.props || {}
@@ -60,7 +70,7 @@ class Props extends React.Component {
       ) : <span onClick={this.handleText}>{text}</span>
     return (
       <div style={styles.root}>
-        <PropItem data={data} />
+        <PropItem data={data} onAdd={this.showAdd} />
         {selected.identity
           ? (
             <div style={styles.text}>
@@ -70,6 +80,9 @@ class Props extends React.Component {
           )
           : null
         }
+        <Dialog open={this.state.add} onClose={this.closeAdd}>
+          cvrc
+        </Dialog>
       </div>
     )
   }

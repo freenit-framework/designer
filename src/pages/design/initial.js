@@ -1,4 +1,4 @@
-import { compile } from 'components'
+import { compile, convert } from 'components'
 
 
 export default {
@@ -6,6 +6,7 @@ export default {
   over: {},
   rearranging: false,
   selected: {},
+  theme: convert('theme', { palette: {} }),
   tree: compile({
     children: [],
     component: 'div',

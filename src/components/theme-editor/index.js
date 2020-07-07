@@ -1,7 +1,6 @@
 import React from 'react'
 import { withStore } from 'freenit'
 import {
-  convert,
   PropItem,
 } from 'components'
 // import styles from './styles'
@@ -9,14 +8,8 @@ import {
 
 
 class ThemeEditor extends React.Component {
-  theme = {
-    palette: {
-    }
-  }
-
   render() {
-    const data = convert('theme', this.theme)
-    return <PropItem data={data} />
+    return <PropItem data={this.props.store.design.theme} />
   }
 }
 

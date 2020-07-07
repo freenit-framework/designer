@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStore } from 'freenit'
-import {
-  TextField,
-} from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 
@@ -99,7 +97,7 @@ class PropItem extends React.Component {
               {data.name}: &#123;
             </span>
             <div style={styles.item}>
-              <AddIcon style={iconStyle} onClick={this.addItem(data)} />
+              <AddIcon style={iconStyle} onClick={this.props.onAdd} />
               {data.identity !== tree.props.identity
                 ? <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
                 : null
@@ -116,6 +114,7 @@ class PropItem extends React.Component {
                 data={item}
                 store={this.props.store}
                 key={item.identity}
+                onAdd={this.props.onAdd}
               />
             ))}
           </div>
@@ -146,7 +145,7 @@ class PropItem extends React.Component {
                 {data.name}: &#91;
               </span>
               <div style={styles.item}>
-                <AddIcon style={iconStyle} onClick={this.addItem(data)} />
+                <AddIcon style={iconStyle} onClick={this.props.onAdd} />
                 <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
               </div>
             </span>
@@ -159,6 +158,7 @@ class PropItem extends React.Component {
                 store={this.props.store}
                 key={item.identity}
                 data={item}
+                onAdd={this.props.onAdd}
               />
             ))}
             <span>&#93;</span>

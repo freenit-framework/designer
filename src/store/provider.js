@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 // Pages
 import {
   EmptyTemplate,
+  Resolution,
   Store,
 } from 'freenit'
 import Design from 'pages/design'
-import Resolution from 'pages/resolution'
 import { withRouter } from 'react-router-dom'
 
 
@@ -21,6 +21,7 @@ const StoreProvider = (props) => {
       useState(Design.initial.editing),
       useState(Design.initial.over),
       useState(Design.initial.rearranging),
+      useState(Design.initial.theme),
     ),
     history: props.history,
     notification: new EmptyTemplate.store(
