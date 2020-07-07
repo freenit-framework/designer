@@ -59,11 +59,11 @@ class PropItem extends React.Component {
     design.setOver(data)
   }
 
-  addItem = (data) => () => {
+  addItem = () => {
     this.props.store.design.addProp()
   }
 
-  removeItem = (data) => () => {
+  removeItem = () => {
     this.props.store.design.removeProp()
   }
 
@@ -99,7 +99,7 @@ class PropItem extends React.Component {
             <div style={styles.item}>
               <AddIcon style={iconStyle} onClick={this.props.onAdd} />
               {data.identity !== tree.props.identity
-                ? <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                ? <RemoveIcon style={iconStyle} onClick={this.removeItem} />
                 : null
               }
             </div>
@@ -146,7 +146,7 @@ class PropItem extends React.Component {
               </span>
               <div style={styles.item}>
                 <AddIcon style={iconStyle} onClick={this.props.onAdd} />
-                <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                <RemoveIcon style={iconStyle} onClick={this.removeItem} />
               </div>
             </span>
           )
@@ -208,7 +208,7 @@ class PropItem extends React.Component {
                 {data.value}
               </span>
               <div style={styles.item}>
-                <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+                <RemoveIcon style={iconStyle} onClick={this.removeItem} />
               </div>
             </span>
           )
@@ -245,7 +245,7 @@ class PropItem extends React.Component {
               {data.value}
             </span>
             <div style={styles.item}>
-              <RemoveIcon style={iconStyle} onClick={this.removeItem(data)} />
+              <RemoveIcon style={iconStyle} onClick={this.removeItem} />
             </div>
           </div>
         )
