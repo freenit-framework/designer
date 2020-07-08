@@ -126,9 +126,9 @@ export default class DesignStore {
     return result
   }
 
-  changePropName = (prop, name) => {
+  changePropName = (prop, name, identity = this.editing.identity) => {
     const result = { ...prop }
-    if (result.identity === this.editing.identity) {
+    if (result.identity === identity) {
       const data = {
         ...result,
         name,
@@ -148,9 +148,9 @@ export default class DesignStore {
     return result
   }
 
-  changePropValue = (prop, v) => {
+  changePropValue = (prop, v, identity = this.editing.identity) => {
     const result = { ...prop }
-    if (result.identity === this.editing.identity) { // simple value
+    if (result.identity === identity) { // simple value
       let value = Number(v)
       if (v === '{}') {
         delete result.value
@@ -171,7 +171,9 @@ export default class DesignStore {
     }
     if (result.value) { // array
       if (Array.isArray(result.value)) {
-        result.value = result.value.map(item => this.changePropValue(item, v))
+        result.value = result.value.map(
+          item => this.changePropValue(item, v, identity)
+        )
       }
     }
     return result
@@ -250,6 +252,24 @@ export default class DesignStore {
   setText = (text) => {
     const component = this.findComponent(this.selected.identity)
     component.text = text
+    this.setEditing({})
+  }
+
+  addThemeProp = (identity, name, value) => {
+    this.setTheme(this.addNewProp(this.theme, identity, name, value))
+  }
+
+  removeThemeProp = () => {
+    this.setTheme(this.removeExistingProp(this.theme))
+  }
+
+  setThemePropName = (identity, name) => {
+    this.setTheme(this.changePropName(this.theme, name, identity))
+    this.setEditing({})
+  }
+
+  setThemePropValue = (identity, value) => {
+    this.setTheme(this.changePropValue(this.theme, value, identity))
     this.setEditing({})
   }
 }

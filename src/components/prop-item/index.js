@@ -46,25 +46,35 @@ class PropItem extends React.Component {
 
   handleSubmitName = (event) => {
     event.preventDefault()
-    this.props.store.design.setPropName(this.state.name)
+    const { design } = this.props.store
+    if (this.props.flavor === 'props') {
+      design.setPropName(this.state.name)
+    } else {
+      design.setThemePropName(this.props.data.identity, this.state.name)
+    }
   }
 
   handleSubmitValue = (event) => {
     event.preventDefault()
-    this.props.store.design.setPropValue(this.state.value)
+    const { design } = this.props.store
+    if (this.props.flavor === 'props') {
+      design.setPropValue(this.state.value)
+    } else {
+      design.setThemePropValue(this.props.data.identity, this.state.value)
+    }
   }
 
   setOver = (data) => () => {
-    const { design } = this.props.store
-    design.setOver(data)
-  }
-
-  addItem = () => {
-    this.props.store.design.addProp()
+    this.props.store.design.setOver(data)
   }
 
   removeItem = () => {
-    this.props.store.design.removeProp()
+    const { design } = this.props.store
+    if (this.props.flavor === 'props') {
+      design.removeProp(this.props.identity)
+    } else {
+      design.removeThemeProp(this.props.identity)
+    }
   }
 
   render() {
@@ -118,6 +128,7 @@ class PropItem extends React.Component {
                 store={this.props.store}
                 key={item.identity}
                 onAdd={this.props.onAdd}
+                flavor={this.props.flavor}
               />
             ))}
           </div>
@@ -165,6 +176,7 @@ class PropItem extends React.Component {
                 key={item.identity}
                 data={item}
                 onAdd={this.props.onAdd}
+                flavor={this.props.flavor}
               />
             ))}
             <span>&#93;</span>
@@ -264,6 +276,12 @@ class PropItem extends React.Component {
 
 PropItem.propTypes = {
   data: PropTypes.shape({}).isRequired,
+  flavor: PropTypes.string.isRequired,
+}
+
+
+PropItem.defaultProps = {
+  flavor: 'props',
 }
 
 
