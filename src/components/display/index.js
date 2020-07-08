@@ -2,7 +2,7 @@ import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { withStore } from 'freenit'
-import { DnD } from 'components'
+import { toProps, DnD } from 'components'
 
 
 class Renderer extends React.Component {
@@ -39,7 +39,17 @@ class Renderer extends React.Component {
         </div>
       )
     }
-    return <DnD data={this.props.data} />
+    let themeData
+    try {
+      themeData = createMuiTheme(this.props.themeData)
+    } catch (error) {
+      themeData = {}
+    }
+    return (
+      <ThemeProvider theme={themeData}>
+        <DnD data={this.props.data} />
+      </ThemeProvider>
+    )
   }
 }
 
@@ -54,19 +64,9 @@ class Display extends React.Component {
   }
 
   render() {
-    const { tree } = this.props.store.design
-    const theme = createMuiTheme({
-      // palette: {
-        // primary: {
-          // main: '#bbb',
-        // }
-      // }
-    })
-    return (
-      <ThemeProvider theme={theme}>
-        <Renderer data={tree} />
-      </ThemeProvider>
-    )
+    const { theme, tree } = this.props.store.design
+    const data = toProps(theme)
+    return <Renderer data={tree} themeData={data} />
   }
 }
 
