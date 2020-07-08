@@ -15,7 +15,6 @@ rest.interceptors.request.use(
       ? 'csrf_refresh_token'
       : 'csrf_access_token'
     const csrf = getCookie(csrfType)
-    config.headers.withCredentials = true
     if (csrf) {
       config.headers['X-CSRF-TOKEN'] = csrf
     }

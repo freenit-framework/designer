@@ -1,4 +1,5 @@
 import * as mui from '@material-ui/core'
+import types from 'types'
 
 export { default as Component } from './component'
 export { default as ComponentPanel } from './component-panel'
@@ -13,10 +14,12 @@ export { default as ThemeEditor} from './theme-editor'
 export { default as TreeItem } from './tree-item'
 
 
+
 export const compile = (component) => {
   const result = {
     ...component,
     identity: Math.random(),
+    type: types.COMPONENT,
   }
   result.props = convert('props', result.props)
   result.children = result.children.map(item => compile(item))

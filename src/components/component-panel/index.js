@@ -153,10 +153,10 @@ class ComponentPanel extends React.Component {
   loadData = (data, top = true) => {
     const result = { ...data }
     result.name = result.component
-    if (result.type === types.COMPONENT) {
-      result.component = mui[result.name] || result.name
-    } else if (result.type === types.ICON) {
+    if (result.type === types.ICON) {
       result.component = icons[result.name]
+    } else {
+      result.component = mui[result.name] || result.name
     }
     result.children = result.children.map(item => this.loadData(item, false))
     if (top) {
