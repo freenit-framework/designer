@@ -9,9 +9,11 @@ import * as mui from '@material-ui/core'
 import { withStore } from 'freenit'
 import {
   default as components,
-  Component,
   compile,
+  convert,
   decompile,
+  toProps,
+  Component,
 } from 'components'
 import { Base64 } from 'js-base64'
 
@@ -22,16 +24,18 @@ import styles from './styles'
 
 
 const reactImport = "import React from 'react'\n"
+const themeImport = "import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'\n"
 const begining = `
-
 
 class Page extends React.Component {
   render() {
     return (
+      <ThemeProvider theme={theme}>
 `
 
 
-const ending = `    )
+const ending = `      </ThemeProvider>
+    )
   }
 }
 
@@ -39,18 +43,18 @@ const ending = `    )
 export default Page
 `
 
-function stringify(obj_from_json){
-    if(typeof obj_from_json !== "object" || Array.isArray(obj_from_json)){
-        // not an object, stringify using native function
-        return JSON.stringify(obj_from_json);
-    }
-    // Implements recursive object serialization according to JSON spec
-    // but without quotes around the keys.
-    const props = Object
-        .keys(obj_from_json)
-        .map(key => `${key}: ${stringify(obj_from_json[key])}`)
-        .join(", ")
-    return `{{ ${props} }}`
+const stringify = (obj_from_json) => {
+  if(typeof obj_from_json !== "object" || Array.isArray(obj_from_json)){
+    // not an object, stringify using native function
+    return JSON.stringify(obj_from_json);
+  }
+  // Implements recursive object serialization according to JSON spec
+  // but without quotes around the keys.
+  const props = Object
+    .keys(obj_from_json)
+    .map(key => `${key}: ${stringify(obj_from_json[key])}`)
+    .join(", ")
+  return `{{ ${props} }}`
 }
 
 
@@ -72,7 +76,7 @@ class ComponentPanel extends React.Component {
 
   mui = {}
 
-  exportCode = (data, level = 6) => {
+  exportCode = (data, level = 8) => {
     if (typeof data.component !== 'string') {
       this.mui[data.name] = true
     }
@@ -107,12 +111,32 @@ class ComponentPanel extends React.Component {
     return result
   }
 
+  exportTheme = (data, level = 0) => {
+    if(typeof data !== "object" || Array.isArray(data)){
+      // not an object, stringify using native function
+      return JSON.stringify(data);
+    }
+    // Implements recursive object serialization according to JSON spec
+    // but without quotes around the keys.
+    const ident = ' '.repeat(level + 2)
+    const props = Object
+      .keys(data)
+      .map(key => `${ident}${key}: ${this.exportTheme(data[key], level + 2)}`)
+      .join(", ")
+    let output = '{\n'
+    output += `${props}`
+    output += ' '.repeat(level)
+    output += '},\n'
+    return output
+  }
+
   loadData = (data) => {
     const result = { ...data }
     result.name = result.component
     result.component = mui[result.name] || result.name
     result.children = result.children.map(item => this.loadData(item))
     this.props.store.design.setTree(compile(result))
+    this.props.store.design.setTheme(convert('theme', result.theme))
     return result
   }
 
@@ -167,9 +191,13 @@ class ComponentPanel extends React.Component {
   render() {
     this.mui = {}
     const data = decompile(this.props.store.design.tree)
+    data.theme = toProps(this.props.store.design.theme)
     const display = JSON.stringify(this.exportJson(data), null, 2)
     const saveData = `data:application/json;base64,${Base64.encode(display)}`
     const output = this.exportCode(data)
+    let themeOutput = `\n\nconst theme = ${this.exportTheme(data.theme)}`
+    themeOutput = themeOutput.substr(0, themeOutput.length - 2)
+    themeOutput += '\n'
     const muiComponents = Object.getOwnPropertyNames(this.mui)
     let muiImport = ''
     if (muiComponents.length > 0) {
@@ -178,7 +206,7 @@ class ComponentPanel extends React.Component {
       muiImport += "} from '@material-ui/core'"
     }
     const codeData = Base64.encode(
-      `${reactImport}${muiImport}${begining}${output}${ending}`
+      `${reactImport}${muiImport}${themeImport}${themeOutput}${begining}${output}${ending}`
     )
     const caseText = this.state.caseSensitive
       ? 'A'
