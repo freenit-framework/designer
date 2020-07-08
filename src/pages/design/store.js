@@ -1,3 +1,6 @@
+import { makeid } from 'utils'
+
+
 export default class DesignStore {
   constructor(tree, selected, editing, over, rearranging, theme) {
     this.tree = tree[0]
@@ -17,7 +20,7 @@ export default class DesignStore {
   copyItem = (item) => {
     const newitem = {
       ...item,
-      identity: Math.random(),
+      identity: makeid(8),
       existing: true,
     }
     if (newitem.children) {
@@ -38,7 +41,7 @@ export default class DesignStore {
 
   rearrange = (item, parent, before) => {
     if (!parent || before.identity === this.tree.identity) { return }
-    const identity = Math.random()
+    const identity = makeid(8)
     const newitem = {
       ...item,
       identity,
@@ -196,7 +199,7 @@ export default class DesignStore {
   addNewProp = (prop, identity, name, value) => {
     const result = { ...prop }
     if (result.identity === identity) {
-      const child = { identity: Math.random(), name }
+      const child = { identity: makeid(8), name }
       if (value.children) {
         child.children = value.children
       } else {

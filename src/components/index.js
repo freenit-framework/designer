@@ -1,5 +1,6 @@
 import * as mui from '@material-ui/core'
 import types from 'types'
+import { makeid } from 'utils'
 
 export { default as Component } from './component'
 export { default as ComponentPanel } from './component-panel'
@@ -18,7 +19,7 @@ export { default as TreeItem } from './tree-item'
 export const compile = (component) => {
   const result = {
     ...component,
-    identity: Math.random(),
+    identity: makeid(8),
     type: types.COMPONENT,
   }
   result.props = convert('props', result.props)
@@ -35,7 +36,7 @@ export const isSimple = data => typeof data === 'number' ||
 export const convert = (key, value) => {
   const base = {
     name: key,
-    identity: Math.random()
+    identity: makeid(8)
   }
   if (isSimple(value)) {
     return {

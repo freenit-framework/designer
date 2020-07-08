@@ -62,7 +62,7 @@ const data = PropTypes.shape({
     PropTypes.string,
     PropTypes.shape({}),
   ]).isRequired,
-  identity: PropTypes.number.isRequired,
+  identity: PropTypes.string.isRequired,
   props: PropTypes.shape({}).isRequired,
 })
 
