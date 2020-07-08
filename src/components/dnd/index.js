@@ -13,7 +13,7 @@ const DnD = ({ data, parent, store }) => {
   const ref = useRef(null)
   const [ over, setOver ] = React.useState(false)
   const [{ canDrop, isOver }, drop] = useDrop({
-    accept: types.COMPONENT,
+    accept: [types.COMPONENT, types.ICON],
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
         if (design.rearranging) {

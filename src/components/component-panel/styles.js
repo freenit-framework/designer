@@ -58,9 +58,11 @@ export default {
 
   icons: {
     backgroundColor: '#eee',
-    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 65px)',
+    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 65px - 20px)',
     overflowY: 'auto',
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, auto)',
+    gridTemplateColumns: 'repeat(5, auto)',
+    gridRowGap: 10,
+    padding: 10,
   },
 }

@@ -65,7 +65,7 @@ class Display extends React.Component {
 
   render() {
     const { theme, tree } = this.props.store.design
-    const data = toProps(theme)
+    const data = toProps(theme || {})
     return <Renderer data={tree} themeData={data} />
   }
 }

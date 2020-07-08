@@ -20,7 +20,9 @@ export default class DesignStore {
       identity: Math.random(),
       existing: true,
     }
-    newitem.children = newitem.children.map(item => this.copyItem(item))
+    if (newitem.children) {
+      newitem.children = newitem.children.map(item => this.copyItem(item))
+    }
     return newitem
   }
 

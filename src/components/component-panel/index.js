@@ -15,17 +15,19 @@ import {
   decompile,
   toProps,
   Component,
+  Icon,
 } from 'components'
 import { Base64 } from 'js-base64'
 
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
+import types from 'types'
 
 import styles from './styles'
 
 
 const iconNames = Object.getOwnPropertyNames(icons).filter(icon => {
-  if (!Boolean(icons[icon].displayName)) { return false }
+  if (icons[icon].muiName !== 'SvgIcon') { return false }
   if (icon[0] !== icon[0].toUpperCase()) { return false }
   if (icon.endsWith('Outlined')) { return false }
   if (icon.endsWith('Rounded')) { return false }
@@ -33,6 +35,7 @@ const iconNames = Object.getOwnPropertyNames(icons).filter(icon => {
   if (icon.endsWith('TwoTone')) { return false }
   return true
 })
+const iconData = iconNames.map(name => ({ ...icons[name], name }))
 
 
 const reactImport = "import React from 'react'\n"
@@ -87,10 +90,15 @@ class ComponentPanel extends React.Component {
   fileInput = React.createRef()
 
   mui = {}
+  icons = {}
 
   exportCode = (data, level = 8) => {
     if (typeof data.component !== 'string') {
-      this.mui[data.name] = true
+      if (data.type === types.COMPONENT) {
+        this.mui[data.name] = true
+      } else if (data.type === types.ICON) {
+        this.icons[data.name] = true
+      }
     }
     let output = ' '.repeat(level)
     output += `<${data.name}`
@@ -142,13 +150,19 @@ class ComponentPanel extends React.Component {
     return output
   }
 
-  loadData = (data) => {
+  loadData = (data, top = true) => {
     const result = { ...data }
     result.name = result.component
-    result.component = mui[result.name] || result.name
-    result.children = result.children.map(item => this.loadData(item))
-    this.props.store.design.setTree(compile(result))
-    this.props.store.design.setTheme(convert('theme', result.theme))
+    if (result.type === types.COMPONENT) {
+      result.component = mui[result.name] || result.name
+    } else if (result.type === types.ICON) {
+      result.component = icons[result.name]
+    }
+    result.children = result.children.map(item => this.loadData(item, false))
+    if (top) {
+      this.props.store.design.setTree(compile(result))
+      this.props.store.design.setTheme(convert('theme', result.theme))
+    }
     return result
   }
 
@@ -162,10 +176,6 @@ class ComponentPanel extends React.Component {
       }
       reader.readAsText(file)
     }
-  }
-
-  handleUpload = () => {
-    this.fileInput.current.click()
   }
 
   handleSearchChange = (event) => {
@@ -184,17 +194,17 @@ class ComponentPanel extends React.Component {
     )
   }
 
-  filterIconsNames = () => {
+  filterIcons = () => {
     if (this.state.search === '') {
-      return iconNames
+      return iconData
     }
     if (this.state.caseSensitive) {
-      return iconNames.filter(
-        item => item.includes(this.state.search)
+      return iconData.filter(
+        item => item.name.includes(this.state.search)
       )
     }
-    return iconNames.filter(
-      item => item.toLowerCase().includes(this.state.search.toLowerCase())
+    return iconData.filter(
+      item => item.name.toLowerCase().includes(this.state.search.toLowerCase())
     )
   }
 
@@ -217,7 +227,7 @@ class ComponentPanel extends React.Component {
   render() {
     this.mui = {}
     const data = decompile(this.props.store.design.tree)
-    data.theme = toProps(this.props.store.design.theme)
+    data.theme = toProps(this.props.store.design.theme || {})
     const display = JSON.stringify(this.exportJson(data), null, 2)
     const saveData = `data:application/json;base64,${Base64.encode(display)}`
     const output = this.exportCode(data)
@@ -229,10 +239,17 @@ class ComponentPanel extends React.Component {
     if (muiComponents.length > 0) {
       muiImport += 'import {\n'
       muiComponents.forEach(comp => { muiImport += `  ${comp},\n` })
-      muiImport += "} from '@material-ui/core'"
+      muiImport += "} from '@material-ui/core'\n"
+    }
+    const iconComponents = Object.getOwnPropertyNames(this.icons)
+    let iconImport = ''
+    if (iconComponents.length > 0) {
+      iconImport += 'import {\n'
+      iconComponents.forEach(comp => { iconImport += `  ${comp},\n` })
+      iconImport += "} from '@material-ui/icons'\n"
     }
     const codeData = Base64.encode(
-      `${reactImport}${muiImport}${themeImport}${themeOutput}${begining}${output}${ending}`
+      `${reactImport}${muiImport}${iconImport}${themeImport}${themeOutput}${begining}${output}${ending}`
     )
     const caseText = this.state.caseSensitive
       ? 'A'
@@ -253,11 +270,8 @@ class ComponentPanel extends React.Component {
         ) : (
           <div style={styles.icons}>
             {
-              this.filterIconsNames().map(
-                icon => {
-                  const Icon = icons[icon]
-                  return <Icon key={icon} />
-                }
+              this.filterIcons().map(
+                data => <Icon key={data.name} icon={data} />
               )
             }
           </div>
