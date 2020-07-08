@@ -20,7 +20,6 @@ import styles from './styles'
 const tabLabels = [
   'props',
   'theme',
-  'files',
 ]
 
 

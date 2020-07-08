@@ -55,4 +55,12 @@ export default {
   button: {
     marginRight: 10,
   },
+
+  icons: {
+    backgroundColor: '#eee',
+    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 65px)',
+    overflowY: 'auto',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, auto)',
+  },
 }

@@ -6,6 +6,7 @@ import {
   TextField,
 } from '@material-ui/core'
 import * as mui from '@material-ui/core'
+import * as icons from '@material-ui/icons'
 import { withStore } from 'freenit'
 import {
   default as components,
@@ -21,6 +22,17 @@ import LeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 
 import styles from './styles'
+
+
+const iconNames = Object.getOwnPropertyNames(icons).filter(icon => {
+  if (!Boolean(icons[icon].displayName)) { return false }
+  if (icon[0] !== icon[0].toUpperCase()) { return false }
+  if (icon.endsWith('Outlined')) { return false }
+  if (icon.endsWith('Rounded')) { return false }
+  if (icon.endsWith('Sharp')) { return false }
+  if (icon.endsWith('TwoTone')) { return false }
+  return true
+})
 
 
 const reactImport = "import React from 'react'\n"
@@ -172,6 +184,20 @@ class ComponentPanel extends React.Component {
     )
   }
 
+  filterIconsNames = () => {
+    if (this.state.search === '') {
+      return iconNames
+    }
+    if (this.state.caseSensitive) {
+      return iconNames.filter(
+        item => item.includes(this.state.search)
+      )
+    }
+    return iconNames.filter(
+      item => item.toLowerCase().includes(this.state.search.toLowerCase())
+    )
+  }
+
   toggleCase = () => {
     this.setState({ caseSensitive: !this.state.caseSensitive })
   }
@@ -225,7 +251,16 @@ class ComponentPanel extends React.Component {
             )}
           </div>
         ) : (
-          <div style={styles.components} />
+          <div style={styles.icons}>
+            {
+              this.filterIconsNames().map(
+                icon => {
+                  const Icon = icons[icon]
+                  return <Icon key={icon} />
+                }
+              )
+            }
+          </div>
         )
     }
     const tabs = this.state.open
