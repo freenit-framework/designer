@@ -12,4 +12,8 @@ export default {
       alignItems: 'center',
     },
   },
+
+  file: {
+    display: 'none',
+  },
 }
