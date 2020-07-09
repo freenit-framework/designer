@@ -12,15 +12,23 @@ class PropItem extends React.Component {
   state = {
     name: null,
     value: null,
+    open: false,
   }
+
+  fileInput = React.createRef()
 
   handleValue = (data) => () => {
     const { identity, value } = data
-    this.setState({ value })
     this.props.store.design.setEditing({
       identity,
       type: 'value',
     })
+    if (this.props.store.design.rearranging) {
+      this.fileInput.current.click()
+      this.setState({ value: '' })
+    } else {
+      this.setState({ value })
+    }
   }
 
   handleName = (data) => () => {
@@ -77,7 +85,26 @@ class PropItem extends React.Component {
     }
   }
 
+  handleFileChange = (event) => {
+    if (event.target.files.length > 0) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const { design } = this.props.store
+        design.setPropValue(e.target.result, this.props.data.identity)
+      }
+      const [ file ] = event.target.files
+      reader.readAsDataURL(file)
+    }
+  }
+
   render() {
+    const fileHandler = <input
+      ref={this.fileInput}
+      type="file"
+      style={styles.file}
+      onChange={this.handleFileChange}
+    />
+
     const { data } = this.props
     const { editing, over, tree } = this.props.store.design
     const editingThis = editing.identity === data.identity &&
@@ -120,6 +147,7 @@ class PropItem extends React.Component {
         )
       return (
         <div style={styles.item}>
+          {fileHandler}
           {nameComponent}
           <div>
             {data.children.map(item => (
@@ -169,6 +197,7 @@ class PropItem extends React.Component {
           )
         return (
           <div key={data.identity} style={styles.item}>
+            {fileHandler}
             {nameComponent}
             {data.value.map(item => (
               <PropItem
@@ -232,6 +261,7 @@ class PropItem extends React.Component {
           )
         return (
           <div style={styles.item}>
+            {fileHandler}
             {nameComponent}
             {valueComponent}
           </div>
@@ -259,6 +289,7 @@ class PropItem extends React.Component {
             onMouseEnter={this.setOver(data)}
             onMouseLeave={this.setOver({})}
           >
+            {fileHandler}
             <span onClick={this.handleValue(data)}>
               {data.value}
             </span>

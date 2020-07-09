@@ -154,16 +154,16 @@ export default class DesignStore {
   }
 
   changePropValue = (prop, v, identity = this.editing.identity) => {
+    console.log(identity, prop)
     const result = { ...prop }
     if (result.identity === identity) { // simple value
-      let value = Number(v)
       if (v === '{}') {
         delete result.value
         result.children = []
       } else if (v === '[]') {
         result.value = []
-      } else if (!isNaN(value)) {
-        result.value = value
+      } else if (!isNaN(Number(v))) {
+        result.value = Number(v)
       } else {
         result.value = v
       }
@@ -190,7 +190,7 @@ export default class DesignStore {
     this.setEditing({})
   }
 
-  setPropValue = (value) => {
+  setPropValue = (value, identity = this.editing.identity) => {
     const component = this.findComponent(this.selected.identity)
     component.props = this.changePropValue(component.props, value)
     this.setEditing({})
