@@ -45,7 +45,7 @@ const begining = `
 class Page extends React.Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={createMuiTheme(theme)}>
 `
 
 
@@ -141,12 +141,12 @@ class ComponentPanel extends React.Component {
     const ident = ' '.repeat(level + 2)
     const props = Object
       .keys(data)
-      .map(key => `${ident}${key}: ${this.exportTheme(data[key], level + 2)}`)
-      .join(", ")
+      .map(key => `${ident}${key}: ${this.exportTheme(data[key], level + 2)},\n`)
+      .join("")
     let output = '{\n'
     output += `${props}`
     output += ' '.repeat(level)
-    output += '},\n'
+    output += '}'
     return output
   }
 
@@ -232,7 +232,6 @@ class ComponentPanel extends React.Component {
     const saveData = `data:application/json;base64,${Base64.encode(display)}`
     const output = this.exportCode(data)
     let themeOutput = `\n\nconst theme = ${this.exportTheme(data.theme)}`
-    themeOutput = themeOutput.substr(0, themeOutput.length - 2)
     themeOutput += '\n'
     const muiComponents = Object.getOwnPropertyNames(this.mui)
     let muiImport = ''
