@@ -10,18 +10,21 @@ import {
 } from '@material-ui/core'
 import { withStore } from 'freenit'
 
-import { convert, PropItem } from 'components'
+import {
+  convert,
+  EditProp,
+  PropItem,
+} from 'components'
 import styles from './styles'
 
 
 class Props extends React.Component {
   state = {
+    add: null,
+    edit: null,
     editing: false,
     over: false,
     text: '',
-    add: null,
-    name: '',
-    value: '',
   }
 
   handleFocus = (event) => {
@@ -58,6 +61,16 @@ class Props extends React.Component {
     this.setState({ add: null })
   }
 
+  showEdit = (prop) => () => {
+    this.setState({ edit: prop })
+    this.props.store.design.setEditing(prop)
+  }
+
+  closeEdit = () => {
+    this.setState({ edit: null })
+    this.props.store.design.setEditing({})
+  }
+
   addProp = () => {
     const { add, name, value } = this.state
     this.props.store.design.addProp(
@@ -68,11 +81,11 @@ class Props extends React.Component {
     this.setState({ name: '', value: '', add: null })
   }
 
-  handleNewName = (event) => {
+  editName = (event) => {
     this.setState({ name: event.target.value })
   }
 
-  handleNewValue = (event) => {
+  editValue = (event) => {
     this.setState({ value: event.target.value })
   }
 
@@ -92,9 +105,19 @@ class Props extends React.Component {
           />
         </form>
       ) : <span onClick={this.handleText}>{text}</span>
+    let propView
+    if (this.state.edit) {
+      propView = <EditProp data={this.state.edit} onClose={this.closeEdit} />
+    } else if (this.state.add) {
+      propView = <div>add</div>
+    } else {
+      propView = (
+        <PropItem data={data} onAdd={this.showAdd} onEdit={this.showEdit} />
+      )
+    }
     return (
       <div style={styles.root}>
-        <PropItem data={data} onAdd={this.showAdd} />
+        {propView}
         {selected.identity
           ? (
             <div style={styles.text}>

@@ -154,7 +154,6 @@ export default class DesignStore {
   }
 
   changePropValue = (prop, v, identity = this.editing.identity) => {
-    console.log(identity, prop)
     const result = { ...prop }
     if (result.identity === identity) { // simple value
       if (v === '{}') {
