@@ -5,8 +5,8 @@ import {
   Paper,
   TextField,
 } from '@material-ui/core'
-import * as mui from '@material-ui/core'
 import * as icons from '@material-ui/icons'
+import * as mui from '@material-ui/core'
 import { withStore } from 'freenit'
 import {
   default as components,
@@ -161,7 +161,8 @@ class ComponentPanel extends React.Component {
     result.children = result.children.map(item => this.loadData(item, false))
     if (top) {
       this.props.store.design.setTree(compile(result))
-      this.props.store.design.setTheme(convert('theme', result.theme))
+      const theme = convert('theme', result.theme || {})
+      this.props.store.design.setTheme(theme)
     }
     return result
   }
@@ -171,8 +172,14 @@ class ComponentPanel extends React.Component {
       const [ file ] = event.target.files
       const reader = new FileReader()
       reader.onload = (e) => {
+        const { design } = this.props.store
         const data = JSON.parse(e.target.result)
-        this.loadData(data)
+        if (data.tree && data.theme) {
+          design.setTree(data.tree)
+          design.setTheme(data.theme)
+        } else {
+          this.loadData(data)
+        }
       }
       reader.readAsText(file)
     }
@@ -228,7 +235,11 @@ class ComponentPanel extends React.Component {
     this.mui = {}
     const data = decompile(this.props.store.design.tree)
     data.theme = toProps(this.props.store.design.theme || {})
-    const display = JSON.stringify(this.exportJson(data), null, 2)
+    const result = {
+      tree: this.props.store.design.tree,
+      theme: this.props.store.design.theme,
+    }
+    const display = JSON.stringify(result, null, 2)
     const saveData = `data:application/json;base64,${Base64.encode(display)}`
     const output = this.exportCode(data)
     let themeOutput = `\n\nconst theme = ${this.exportTheme(data.theme)}`
@@ -358,5 +369,6 @@ class ComponentPanel extends React.Component {
     )
   }
 }
+
 
 export default withStore(ComponentPanel)
