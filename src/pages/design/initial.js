@@ -14,6 +14,7 @@ export default {
     props: {
       style: {
         minHeight: 'calc(100vh - 4px)',
+        backgroundColor: '#bbb',
       },
     },
   }),

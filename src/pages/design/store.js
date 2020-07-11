@@ -183,15 +183,44 @@ export default class DesignStore {
     return result
   }
 
+  changePropType = (prop, type, identity = this.editing.identity) => {
+    const result = { ...prop }
+    if (result.identity === identity) {
+      const data = {
+        ...result,
+        type,
+      }
+      return data
+    }
+    if (result.children) { // object
+      result.children = prop.children.map(
+        item => this.changePropType(item, type),
+      )
+    }
+    if (result.value) { // array
+      if (Array.isArray(result.value)) {
+        result.value = result.value.map(
+          item => this.changePropType(item, type)
+        )
+      }
+    }
+    return result
+  }
+
   setPropName = (name) => {
     const component = this.findComponent(this.selected.identity)
     component.props = this.changePropName(component.props, name)
     this.setEditing({})
   }
 
-  setPropValue = (value, identity = this.editing.identity) => {
+  setPropValue = (value) => {
     const component = this.findComponent(this.selected.identity)
     component.props = this.changePropValue(component.props, value)
+  }
+
+  setPropType = (type, identity = this.editing.identity) => {
+    const component = this.findComponent(this.selected.identity)
+    component.props = this.changePropType(component.props, type)
     this.setEditing({})
   }
 
