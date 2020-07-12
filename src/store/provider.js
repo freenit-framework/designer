@@ -6,7 +6,14 @@ import {
   Resolution,
   Store,
 } from 'freenit'
-import Design from 'pages/design'
+import {
+  Editing,
+  Over,
+  Rearrange,
+  Selected,
+  Theme,
+  Tree,
+} from 'pages'
 import { withRouter } from 'react-router-dom'
 
 
@@ -15,19 +22,17 @@ export const data = {}
 
 const StoreProvider = (props) => {
   const store = {
-    design: new Design.store(
-      useState(Design.initial.tree),
-      useState(Design.initial.selected),
-      useState(Design.initial.editing),
-      useState(Design.initial.over),
-      useState(Design.initial.rearranging),
-      useState(Design.initial.theme),
-    ),
+    editing: new Editing.store(useState(Editing.initial.editing)),
     history: props.history,
     notification: new EmptyTemplate.store(
       useState(EmptyTemplate.initial.detail),
     ),
+    over: new Over.store(useState(Over.initial.over)),
+    rearrange: new Rearrange.store(useState(Rearrange.initial.rearrange)),
     resolution: new Resolution.store(useState(Resolution.initial.detail)),
+    selected: new Selected.store(useState(Selected.initial.selected)),
+    theme: new Theme.store(useState(Theme.initial.theme)),
+    tree: new Tree.store(useState(Tree.initial.tree)),
   }
   data.store = store
   return (

@@ -10,6 +10,7 @@ export default {
   content: {
     width: '100%',
     height: 'calc(100% - 65px)',
+    overflow: 'auto',
   },
 
   button: {

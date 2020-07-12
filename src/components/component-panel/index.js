@@ -233,11 +233,12 @@ class ComponentPanel extends React.Component {
 
   render() {
     this.mui = {}
-    const data = decompile(this.props.store.design.tree)
-    data.theme = toProps(this.props.store.design.theme || {})
+    const { tree, theme } = this.props.store
+    const data = decompile(tree.tree)
+    data.theme = toProps(theme.theme || {})
     const result = {
-      tree: this.props.store.design.tree,
-      theme: this.props.store.design.theme,
+      tree: tree.tree,
+      theme: theme.theme,
     }
     const display = JSON.stringify(result, null, 2)
     const saveData = `data:application/json;base64,${Base64.encode(display)}`

@@ -6,41 +6,43 @@ import {
 } from 'components'
 
 
-
 class ThemeEditor extends React.Component {
   state = {
-    edit: null,
-    name: '',
-    value: '',
+    edit: false,
+    data: null,
+    identity: null,
   }
 
-  showEdit = (prop, identity) => () => {
-    this.setState({ edit: prop, identity })
+  showEdit = (data, identity) => () => {
+    this.setState({ edit: true, data, identity })
   }
 
   closeEdit = () => {
-    this.setState({ edit: null })
+    this.setState({
+      edit: false,
+      data: null,
+      identity: null,
+    })
   }
 
   render() {
-    let propView
-    if (this.state.edit) {
-      propView = (
+    const { theme } = this.props.store
+    const propView = this.state.edit
+      ? (
         <EditProp
+          flavor="theme"
+          onEdit={this.showEdit}
           onClose={this.closeEdit}
+          data={this.state.data}
           identity={this.state.identity}
-          data={this.props.store.design.theme}
         />
-      )
-    } else {
-      propView = (
+      ) : (
         <PropItem
           flavor="theme"
           onEdit={this.showEdit}
-          data={this.props.store.design.theme}
+          data={theme.theme}
         />
       )
-    }
     return (
       <div>
         {propView}

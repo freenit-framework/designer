@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { DndProvider } from 'react-dnd'
 import { withStore } from 'freenit'
 import Backend from 'react-dnd-html5-backend'
@@ -14,18 +13,18 @@ import styles from './styles'
 
 class Design extends React.Component {
   handleKeyDown = (event) => {
-    const { design } = this.props.store
+    const { rearrange, selected, tree } = this.props.store
     if (event.key === 'Shift') {
-      design.setRearranging(true)
+      rearrange.setRearrange(true)
     } else if (event.key === 'Delete') {
-      design.remove()
+      tree.remove(selected.selected)
     }
   }
 
   handleKeyUp = (event) => {
-    const { design } = this.props.store
+    const { rearrange } = this.props.store
     if (event.key === 'Shift') {
-      design.setRearranging(false)
+      rearrange.setRearrange(false)
     }
   }
 
@@ -51,11 +50,6 @@ class Design extends React.Component {
 
 
 Design.propTypes = {
-  store: PropTypes.shape({
-    design: PropTypes.shape({
-      remove: PropTypes.func.isRequired,
-    }).isRequired,
-  }).isRequired,
 }
 
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStore } from 'freenit'
 import { List } from '@material-ui/core'
 
@@ -13,7 +12,7 @@ class Menu extends React.Component {
     return (
       <div style={styles.root}>
         <List component="div" disablePadding>
-          <TreeItem data={this.props.store.design.tree} />
+          <TreeItem data={this.props.store.tree.tree} />
         </List>
       </div>
     )
@@ -22,9 +21,6 @@ class Menu extends React.Component {
 
 
 Menu.propTypes = {
-  store: PropTypes.shape({
-    design: PropTypes.shape({}).isRequired,
-  }).isRequired,
 }
 
 

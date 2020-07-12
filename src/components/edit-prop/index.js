@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core'
 import { withStore } from 'freenit'
 import { SketchPicker } from 'react-color'
+import { convert } from 'components'
 
 import styles from './styles'
 
@@ -39,10 +40,13 @@ class EditProp extends React.Component {
 
   changeColor = (color, event) => {
     if (this.state.identity) {
-      const { design } = this.props.store
-      design.setPropType('color')
-      design.setPropValue(color.hex)
-      design.setEditing(this.props.data)
+      const { editing, selected, tree } = this.props.store
+      tree.setPropValue(
+        color.hex,
+        selected.selected,
+        this.props.data.identity,
+      )
+      editing.setEditing({ ...this.props.data })
     } else {
       this.setState({ value: color.hex })
     }
@@ -50,20 +54,55 @@ class EditProp extends React.Component {
 
   submit = (event) => {
     event.preventDefault()
-    const { design } = this.props.store
+    const { notification, selected, theme, tree } = this.props.store
     if (this.state.name === '') {
-      const { notification } = this.props.store
       notification.show('Property name can not be empty')
       return
     }
+    let complex
+    let value
+    if (this.state.value === '{}') {
+      complex = true
+      value = convert('value', {})
+    } else if (this.state.value === '[]') {
+      complex = true
+      value = convert('value', [])
+    } else if (this.state.type === 'number') {
+      value = Number(this.state.value)
+    } else {
+      value = this.state.value
+    }
     if (this.state.identity) {
-      if (this.state.type !== 'color') {
-        design.setPropName(this.state.name)
-        design.setPropValue(this.state.value)
-        design.setPropType(this.state.type)
+      const { identity } = this.state
+      if (this.state.type === 'color') {
+        if (this.props.flavor === 'theme') {
+          theme.setPropType(this.props.data, this.state.type)
+        } else {
+          tree.setPropType(this.state.type, selected.selected, identity)
+        }
+      } else {
+        if (this.props.flavor === 'theme') {
+          theme.setPropName(this.props.data, this.state.name)
+          theme.setPropType(this.props.data, this.state.type)
+        } else {
+          tree.setPropName(this.state.name, selected.selected, identity)
+          tree.setPropType(this.state.type, selected.selected, identity)
+          if (!complex) { tree.setPropValue(value, selected.selected, identity) }
+        }
       }
     } else {
-      design.addProp(this.props.identity, this.state)
+      if (this.props.flavor === 'theme') {
+        theme.addProp(
+          this.props.identity,
+          { ...this.state, value },
+        )
+      } else {
+        tree.addProp(
+          this.props.identity,
+          { ...this.state, value },
+          selected.selected,
+        )
+      }
     }
     this.props.onClose()
   }
@@ -80,6 +119,17 @@ class EditProp extends React.Component {
         />
       )
     }
+    if (this.state.type === 'number') {
+      valueView = (
+        <TextField
+          fullWidth
+          label="value"
+          type="number"
+          value={this.state.value}
+          onChange={this.editValue}
+        />
+      )
+    }
     if (this.state.type === 'color') {
       const color = this.state.identity
         ? this.props.data.value
@@ -91,6 +141,17 @@ class EditProp extends React.Component {
         />
       )
     }
+    const nameView = this.state.identity
+      ? null
+      : (
+        <TextField
+          autoFocus
+          fullWidth
+          label="name"
+          value={this.state.name}
+          onChange={this.editName}
+        />
+      )
     return (
       <form onSubmit={this.submit} style={styles.form}>
         <div>
@@ -102,16 +163,11 @@ class EditProp extends React.Component {
             onChange={this.editType}
           >
             <MenuItem value="string">string</MenuItem>
+            <MenuItem value="number">number</MenuItem>
             <MenuItem value="color">color</MenuItem>
             <MenuItem value="file">file</MenuItem>
           </TextField>
-          <TextField
-            autoFocus
-            fullWidth
-            label="name"
-            value={this.state.name}
-            onChange={this.editName}
-          />
+          {nameView}
           {valueView}
         </div>
         <div style={styles.buttons}>
@@ -125,10 +181,6 @@ class EditProp extends React.Component {
       </form>
     )
   }
-}
-
-
-EditProp.propTypes = {
 }
 
 

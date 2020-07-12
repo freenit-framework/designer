@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStore } from 'freenit'
 import {
   Collapse,
@@ -23,7 +22,7 @@ class Item extends React.Component {
   select = (event) => {
     event.stopPropagation()
     const { store, data } = this.props
-    store.design.setSelected(data)
+    store.selected.setSelected(data)
   }
 
   toggleOpen = (event) => {
@@ -41,7 +40,7 @@ class Item extends React.Component {
       : <DownIcon />
     const style = {
       ...styles.root,
-      border: data.identity === store.design.selected.identity
+      border: data.identity === store.selected.selected.identity
         ? '1px dashed gray'
         : styles.root.border
     }
@@ -68,11 +67,6 @@ class Item extends React.Component {
 
 
 Item.propTypes = {
-  data: PropTypes.shape({
-  }).isRequired,
-  store: PropTypes.shape({
-    design: PropTypes.shape({}).isRequired,
-  }).isRequired,
 }
 
 

@@ -16,4 +16,8 @@ export default {
   file: {
     display: 'none',
   },
+
+  buttons: {
+    marginTop: 10,
+  },
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   TextField,
 } from '@material-ui/core'
@@ -27,7 +26,7 @@ class Props extends React.Component {
   handleText = () => {
     this.setState({
       editing: true,
-      text: this.props.store.design.selected.text || '<no value>',
+      text: this.props.store.selected.selected.text || '<no value>',
     })
   }
 
@@ -37,27 +36,28 @@ class Props extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { setText } = this.props.store.design
+    const { selected, tree } = this.props.store
     if (this.state.text === '') {
-      setText(null)
+      tree.setText(null, selected.selected)
     } else {
-      setText(this.state.text)
+      tree.setText(this.state.text, selected.selected)
     }
+    tree.setTree({ ...tree.tree })
     this.setState({ editing: false })
   }
 
   showEdit = (prop, identity) => () => {
     this.setState({ edit: prop, identity })
-    this.props.store.design.setEditing(prop)
+    this.props.store.editing.setEditing(prop)
   }
 
   closeEdit = () => {
     this.setState({ edit: null })
-    this.props.store.design.setEditing({})
+    this.props.store.editing.setEditing({})
   }
 
   render() {
-    const { selected } = this.props.store.design
+    const { selected } = this.props.store.selected
     const data = selected.props || {}
     const text = selected.text || '<no value>'
     const textComponent = this.state.editing
@@ -105,9 +105,6 @@ class Props extends React.Component {
 
 
 Props.propTypes = {
-  store: PropTypes.shape({
-    design: PropTypes.shape({}).isRequired,
-  }).isRequired,
 }
 
 

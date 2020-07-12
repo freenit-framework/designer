@@ -9,17 +9,18 @@ import types from 'types'
 const DnD = ({ data, parent, store }) => {
   const { identity } = data
   const Component = data.component
-  const { design } = store
+  const { rearrange, selected, tree } = store
   const ref = useRef(null)
   const [ over, setOver ] = React.useState(false)
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: [types.COMPONENT, types.ICON],
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
-        if (design.rearranging) {
-          design.rearrange(item, parent, data)
+        if (rearrange.rearrange) {
+          tree.rearrange(item, parent, data)
         } else {
-          design.add(item, data)
+          const child = tree.add(item, data)
+          selected.select(child)
         }
       }
     },
@@ -49,7 +50,7 @@ const DnD = ({ data, parent, store }) => {
   }
   if (canDrop && isOver) {
     ownProps.style.border = '2px dashed green'
-  } else if (store.design.selected.identity === identity) {
+  } else if (store.selected.selected.identity === identity) {
     ownProps.style.border = '2px dashed red'
   } else if (over) {
     ownProps.style.border = '1px dashed gray'
@@ -92,7 +93,7 @@ const DnD = ({ data, parent, store }) => {
       ref={ref}
       onClick={(event) => {
         event.stopPropagation()
-        store.design.onClick(data)
+        store.selected.select(data)
       }}
       onMouseEnter={() => setOver(true)}
       onMouseLeave={() => setOver(false)}

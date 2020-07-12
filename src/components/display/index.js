@@ -40,7 +40,7 @@ class Renderer extends React.Component {
       )
     }
     let themeData
-    const data = toProps(this.props.store.design.theme || {})
+    const data = toProps(this.props.store.theme.theme || {})
     try {
       themeData = createMuiTheme(data)
     } catch (error) {
@@ -65,7 +65,7 @@ class Display extends React.Component {
   }
 
   render() {
-    const { tree } = this.props.store.design
+    const { tree } = this.props.store.tree
     return <Renderer data={tree} store={this.props.store} />
   }
 }

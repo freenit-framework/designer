@@ -13,10 +13,10 @@ const TreeItem = ({ data, parent, store }) => {
     accept: types.COMPONENT,
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
-        if (store.design.rearranging) {
-          store.design.rearrange(item, parent, data)
+        if (store.rearrange.rearrange) {
+          store.tree.rearrange(item, parent, data)
         } else {
-          store.design.add(item, data)
+          store.tree.add(item, data)
         }
       }
     },
@@ -37,7 +37,7 @@ const TreeItem = ({ data, parent, store }) => {
   const style = {}
   if (canDrop && isOver) {
     style.border = '1px dashed green'
-  } else if (store.design.selected.identity === data.identity) {
+  } else if (store.selected.selected.identity === data.identity) {
     style.border = '1px dashed red'
   }
   style.opacity = isDragging ? 0.5 : 1
