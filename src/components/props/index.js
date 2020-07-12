@@ -1,17 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   TextField,
 } from '@material-ui/core'
 import { withStore } from 'freenit'
 
 import {
-  convert,
   EditProp,
   PropItem,
 } from 'components'
@@ -20,7 +14,6 @@ import styles from './styles'
 
 class Props extends React.Component {
   state = {
-    add: null,
     edit: null,
     editing: false,
     over: false,
@@ -53,32 +46,14 @@ class Props extends React.Component {
     this.setState({ editing: false })
   }
 
-  showAdd = (identity) => () => {
-    this.setState({ add: identity })
-  }
-
-  closeAdd = () => {
-    this.setState({ add: null })
-  }
-
-  showEdit = (prop) => () => {
-    this.setState({ edit: prop })
+  showEdit = (prop, identity) => () => {
+    this.setState({ edit: prop, identity })
     this.props.store.design.setEditing(prop)
   }
 
   closeEdit = () => {
     this.setState({ edit: null })
     this.props.store.design.setEditing({})
-  }
-
-  addProp = () => {
-    const { add, name, value } = this.state
-    this.props.store.design.addProp(
-      add,
-      name,
-      value === '{}' ? convert('value', {}) : value,
-    )
-    this.setState({ name: '', value: '', add: null })
   }
 
   editName = (event) => {
@@ -107,12 +82,16 @@ class Props extends React.Component {
       ) : <span onClick={this.handleText}>{text}</span>
     let propView
     if (this.state.edit) {
-      propView = <EditProp data={this.state.edit} onClose={this.closeEdit} />
-    } else if (this.state.add) {
-      propView = <div>add</div>
+      propView = (
+        <EditProp
+          data={this.state.edit}
+          onClose={this.closeEdit}
+          identity={this.state.identity}
+        />
+      )
     } else {
       propView = (
-        <PropItem data={data} onAdd={this.showAdd} onEdit={this.showEdit} />
+        <PropItem data={data} onEdit={this.showEdit} />
       )
     }
     return (
@@ -127,36 +106,6 @@ class Props extends React.Component {
           )
           : null
         }
-        <Dialog open={this.state.add !== null} onClose={this.closeAdd}>
-          <DialogTitle>Add new property</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              label="name"
-              value={this.state.name}
-              onChange={this.handleNewName}
-            />
-            <TextField
-              label="value"
-              value={this.state.value}
-              onChange={this.handleNewValue}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={this.addProp}
-              variant="outlined"
-            >
-              Add
-            </Button>
-            <Button
-              onClick={this.closeAdd}
-              variant="outlined"
-            >
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
       </div>
     )
   }

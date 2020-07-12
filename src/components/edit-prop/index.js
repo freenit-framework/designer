@@ -13,8 +13,16 @@ import styles from './styles'
 class EditProp extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props.data
-    this.state.type = props.data.type || 'string'
+    if (props.data.identity) {
+      this.state = props.data
+      this.state.type = props.data.type || 'string'
+    } else {
+      this.state = {
+        name: '',
+        value: '',
+        type: 'string',
+      }
+    }
   }
 
   editName = (event) => {
@@ -30,19 +38,32 @@ class EditProp extends React.Component {
   }
 
   changeColor = (color, event) => {
-    const { design } = this.props.store
-    design.setPropType('color')
-    design.setPropValue(color.hex)
-    design.setEditing(this.props.data)
+    if (this.state.identity) {
+      const { design } = this.props.store
+      design.setPropType('color')
+      design.setPropValue(color.hex)
+      design.setEditing(this.props.data)
+    } else {
+      this.setState({ value: color.hex })
+    }
   }
 
   submit = (event) => {
     event.preventDefault()
-    if (this.state.type !== 'color') {
-      const { design } = this.props.store
-      design.setPropName(this.state.name)
-      design.setPropValue(this.state.value)
-      design.setPropType(this.state.type)
+    const { design } = this.props.store
+    if (this.state.name === '') {
+      const { notification } = this.props.store
+      notification.show('Property name can not be empty')
+      return
+    }
+    if (this.state.identity) {
+      if (this.state.type !== 'color') {
+        design.setPropName(this.state.name)
+        design.setPropValue(this.state.value)
+        design.setPropType(this.state.type)
+      }
+    } else {
+      design.addProp(this.props.identity, this.state)
     }
     this.props.onClose()
   }
@@ -60,10 +81,13 @@ class EditProp extends React.Component {
       )
     }
     if (this.state.type === 'color') {
+      const color = this.state.identity
+        ? this.props.data.value
+        : this.state.value
       valueView = (
         <SketchPicker
           onChange={this.changeColor}
-          color={this.props.data.value}
+          color={color}
         />
       )
     }

@@ -41,7 +41,7 @@ class PropItem extends React.Component {
           <div style={styles.item}>
             <AddIcon
               style={iconStyle}
-              onClick={this.props.onAdd(data.identity)}
+              onClick={this.props.onEdit({}, data.identity)}
             />
             {data.identity !== tree.props.identity
               ? <RemoveIcon style={iconStyle} onClick={this.removeItem} />
@@ -59,7 +59,6 @@ class PropItem extends React.Component {
                 data={item}
                 store={this.props.store}
                 key={item.identity}
-                onAdd={this.props.onAdd}
                 onEdit={this.props.onEdit}
                 flavor={this.props.flavor}
               />
@@ -83,7 +82,7 @@ class PropItem extends React.Component {
             <div style={styles.item}>
               <AddIcon
                 style={iconStyle}
-                onClick={this.props.onAdd(data.identity)}
+                onClick={this.props.onEdit({}, data.identity)}
               />
               <RemoveIcon style={iconStyle} onClick={this.removeItem} />
             </div>
@@ -97,7 +96,6 @@ class PropItem extends React.Component {
                 store={this.props.store}
                 key={item.identity}
                 data={item}
-                onAdd={this.props.onAdd}
                 onEdit={this.props.onEdit}
                 flavor={this.props.flavor}
               />

@@ -224,17 +224,17 @@ export default class DesignStore {
     this.setEditing({})
   }
 
-  addNewProp = (prop, identity, name, value) => {
+  addNewProp = (prop, identity, data) => {
     const result = { ...prop }
     if (result.identity === identity) {
-      const child = { identity: makeid(8), name }
-      if (value.children) {
-        child.children = value.children
+      const child = { ...data, identity: makeid(8) }
+      if (data.value.children) {
+        child.children = data.value.children
       } else {
-        child.value = value
+        child.value = data.value
       }
       if (result.children) {
-        result.children = [ ...result.children, { ...child, name }]
+        result.children = [ ...result.children, child ]
       }
       if (Array.isArray(result.value)) {
         result.value = [ ...result.value, child ]
@@ -243,20 +243,20 @@ export default class DesignStore {
     }
     if (result.children) {
       result.children = result.children.map(
-        item => this.addNewProp(item, identity, name, value)
+        item => this.addNewProp(item, identity, data)
       )
     }
     if (Array.isArray(result.value)) {
       result.value = result.value.map(
-        item => this.addNewProp(item, identity, name, value)
+        item => this.addNewProp(item, identity, data)
       )
     }
     return result
   }
 
-  addProp = (identity, name, value) => {
+  addProp = (identity, data) => {
     const component = this.findComponent(this.selected.identity)
-    const newProps = this.addNewProp(component.props, identity, name, value)
+    const newProps = this.addNewProp(component.props, identity, data)
     component.props = newProps
     this.setEditing({})
   }
