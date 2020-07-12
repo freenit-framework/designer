@@ -56,14 +56,6 @@ class Props extends React.Component {
     this.props.store.design.setEditing({})
   }
 
-  editName = (event) => {
-    this.setState({ name: event.target.value })
-  }
-
-  editValue = (event) => {
-    this.setState({ value: event.target.value })
-  }
-
   render() {
     const { selected } = this.props.store.design
     const data = selected.props || {}
