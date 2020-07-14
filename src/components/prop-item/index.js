@@ -26,7 +26,7 @@ class PropItem extends React.Component {
     if (this.props.flavor === 'props') {
       tree.removeProp(this.props.data, selected.selected.props)
     } else {
-      theme.removeProp(this.props.data.identity)
+      theme.removeProp(this.props.data)
     }
     editing.setEditing({})
   }

@@ -55,4 +55,24 @@ export default class DesignStore {
     prop.value = value
     this.setTheme({ ...this.theme })
   }
+
+  removeOldProp = (item, props) => {
+    if (props.children) {
+      props.children = props.children.filter(
+        prop => item.identity !== prop.identity
+      )
+      props.children.forEach(prop => this.removeProp(item, prop))
+    }
+    if (props.value && Array.isArray(props.value)) {
+      props.value = props.value.filter(
+        prop => item.identity !== prop.identity,
+      )
+      props.value.forEach(prop => this.removeProp(item, prop))
+    }
+    return item
+  }
+
+  removeProp = (item) => {
+    this.removeOldProp(item, this.theme)
+  }
 }
