@@ -58,7 +58,6 @@ export const errors = (response) => {
 }
 
 
-
 export const makeid = (length) => {
    let result = '';
    const  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';

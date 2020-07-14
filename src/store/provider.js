@@ -7,6 +7,7 @@ import {
   Store,
 } from 'freenit'
 import {
+  Clipboard,
   Editing,
   Over,
   Rearrange,
@@ -22,6 +23,7 @@ export const data = {}
 
 const StoreProvider = (props) => {
   const store = {
+    clipboard: new Clipboard.store(useState(Clipboard.initial.clipboard)),
     editing: new Editing.store(useState(Editing.initial.editing)),
     history: props.history,
     notification: new EmptyTemplate.store(

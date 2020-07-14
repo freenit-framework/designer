@@ -1,7 +1,7 @@
 import { makeid } from 'utils'
 
 
-export default class TreeStore {
+export default class ThemeStore {
   constructor(tree) {
     this.tree = tree[0]
     this.setTree = tree[1]

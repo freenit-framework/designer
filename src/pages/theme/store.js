@@ -1,7 +1,7 @@
 import { makeid } from 'utils'
 
 
-export default class DesignStore {
+export default class ThemeStore {
   constructor(theme) {
     this.theme = theme[0]
     this.setTheme = theme[1]
