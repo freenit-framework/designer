@@ -39,21 +39,20 @@ class EditProp extends React.Component {
   }
 
   changeColor = (color, event) => {
+    const { a } = color.rgb
+    const alpha = Math.ceil(255 * a).toString(16)
+    const value = `${color.hex}${alpha}`
     if (this.state.identity) {
       if (this.props.flavor === 'theme') {
         const { theme } = this.props.store
-        theme.setPropValue(this.props.data, color.hex)
+        theme.setPropValue(this.props.data, value)
       } else {
         const { editing, selected, tree } = this.props.store
-        tree.setPropValue(
-          color.hex,
-          selected.selected,
-          this.props.data.identity,
-        )
+        tree.setPropValue(value, selected.selected, this.props.data.identity)
         editing.setEditing({ ...this.props.data })
       }
     } else {
-      this.setState({ value: color.hex })
+      this.setState({ value: value })
     }
   }
 
