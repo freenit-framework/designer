@@ -63,6 +63,9 @@ export const convert = (key, value) => {
 
 
 export const toProps = (data) => {
+  if (data.type === 'file') {
+    return `${data.pre}${data.file}${data.post}`
+  }
   if (data.children) { // object
     const props = {}
     data.children.forEach(prop => {

@@ -128,7 +128,7 @@ class EditProp extends React.Component {
         } else {
           tree.setPropName(this.state.name, selected.selected, identity)
           tree.setPropType(this.state.type, selected.selected, identity)
-          tree.setPropFile(this.props.data, this.state)
+          tree.setPropFile(this.state, selected.selected, identity)
         }
       } else {
         if (this.props.flavor === 'theme') {

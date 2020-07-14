@@ -1,7 +1,7 @@
 import { makeid } from 'utils'
 
 
-export default class DesignStore {
+export default class TreeStore {
   constructor(tree) {
     this.tree = tree[0]
     this.setTree = tree[1]
@@ -221,11 +221,31 @@ export default class DesignStore {
     component.text = text
   }
 
-  setPropFile = (prop, data) => {
-    prop.type = data.type
-    prop.pre = data.pre
-    prop.post = data.post
-    prop.file = data.file
-    this.setTree({ ...this.tree })
+  changePropFile = (prop, data, identity) => {
+    const result = { ...prop }
+    if (result.identity === identity) { // simple value
+      result.pre = data.pre
+      result.post = data.post
+      result.file = data.file
+      result.type = data.type
+      return result
+    }
+    if (result.children) { // object
+      result.children = result.children.map(
+        item => this.changePropFile(item, data, identity),
+      )
+    }
+    if (result.value) { // array
+      if (Array.isArray(result.value)) {
+        result.value = result.value.map(
+          item => this.changePropFile(item, data, identity)
+        )
+      }
+    }
+    return result
+  }
+
+  setPropFile = (data, component, identity) => {
+    component.props = this.changePropFile(component.props, data, identity)
   }
 }
