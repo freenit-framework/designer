@@ -61,13 +61,13 @@ export default class DesignStore {
       props.children = props.children.filter(
         prop => item.identity !== prop.identity
       )
-      props.children.forEach(prop => this.removeProp(item, prop))
+      props.children.forEach(prop => this.removeOldProp(item, prop))
     }
     if (props.value && Array.isArray(props.value)) {
       props.value = props.value.filter(
         prop => item.identity !== prop.identity,
       )
-      props.value.forEach(prop => this.removeProp(item, prop))
+      props.value.forEach(prop => this.removeOldProp(item, prop))
     }
     return item
   }
