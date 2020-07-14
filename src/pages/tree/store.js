@@ -220,4 +220,12 @@ export default class DesignStore {
   setText = (text, component) => {
     component.text = text
   }
+
+  setPropFile = (prop, data) => {
+    prop.type = data.type
+    prop.pre = data.pre
+    prop.post = data.post
+    prop.file = data.file
+    this.setTree({ ...this.tree })
+  }
 }

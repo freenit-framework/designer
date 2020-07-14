@@ -131,7 +131,29 @@ class PropItem extends React.Component {
           </div>
         )
       }
-      if (data.value) { // simple value or array
+      if (data.type === 'file') {
+        nameComponent = (
+          <span
+            style={styles.prop.name}
+            onMouseEnter={this.setOver(data)}
+            onMouseLeave={this.setOver({})}
+          >
+            <span onClick={this.openEdit}>
+              {data.name}:
+            </span>
+            &nbsp;
+            <span onClick={this.props.onEdit(data)}>
+              {data.pre}{'<file>'}{data.post}
+            </span>
+            <RemoveIcon style={iconStyle} onClick={this.removeItem} />
+          </span>
+        )
+        return (
+          <div style={styles.item}>
+            {nameComponent}
+          </div>
+        )
+      } else if (data.value) { // simple value or array
         if (Array.isArray(data.value)) { // array
           nameComponent = (
             <span

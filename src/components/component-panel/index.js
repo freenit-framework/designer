@@ -172,11 +172,11 @@ class ComponentPanel extends React.Component {
       const [ file ] = event.target.files
       const reader = new FileReader()
       reader.onload = (e) => {
-        const { design } = this.props.store
+        const { theme, tree } = this.props.store
         const data = JSON.parse(e.target.result)
         if (data.tree && data.theme) {
-          design.setTree(data.tree)
-          design.setTheme(data.theme)
+          tree.setTree(data.tree)
+          theme.setTheme(data.theme)
         } else {
           this.loadData(data)
         }

@@ -14,16 +14,44 @@ import styles from './styles'
 class EditProp extends React.Component {
   constructor(props) {
     super(props)
+    const data = {
+      pre: '',
+      post: '',
+      file: '',
+    }
     if (props.data.identity) {
-      this.state = props.data
-      this.state.type = props.data.type || 'string'
+      this.state = {
+        ...props.data,
+        ...data,
+        type: props.data.type || 'string',
+        pre: props.data.pre || '',
+        post: props.data.post || '',
+        file: props.data.file || '',
+      }
     } else {
       this.state = {
+        ...data,
         name: '',
         value: '',
         type: 'string',
       }
     }
+  }
+
+  fileInput = React.createRef()
+
+  handleFileChange = (event) => {
+    for (let i = 0; i < event.target.files.length; ++i) {
+      const reader = new FileReader()
+      reader.onload = (e) => this.setState({
+        file: e.target.result,
+      })
+      reader.readAsDataURL(event.target.files[i])
+    }
+  }
+
+  openFileBrowser = () => {
+    this.fileInput.current.click()
   }
 
   editName = (event) => {
@@ -36,6 +64,14 @@ class EditProp extends React.Component {
 
   editType = (event) => {
     this.setState({ type: event.target.value })
+  }
+
+  editPre = (event) => {
+    this.setState({ pre: event.target.value })
+  }
+
+  editPost = (event) => {
+    this.setState({ post: event.target.value })
   }
 
   changeColor = (color, event) => {
@@ -83,6 +119,16 @@ class EditProp extends React.Component {
           theme.setPropType(this.props.data, this.state.type)
         } else {
           tree.setPropType(this.state.type, selected.selected, identity)
+        }
+      } else if (this.state.type === 'file'){
+        if (this.props.flavor === 'theme') {
+          theme.setPropName(this.props.data, this.state.name)
+          theme.setPropType(this.props.data, this.state.type)
+          theme.setPropFile(this.props.data, this.state)
+        } else {
+          tree.setPropName(this.state.name, selected.selected, identity)
+          tree.setPropType(this.state.type, selected.selected, identity)
+          tree.setPropFile(this.props.data, this.state)
         }
       } else {
         if (this.props.flavor === 'theme') {
@@ -146,6 +192,31 @@ class EditProp extends React.Component {
         />
       )
     }
+    if (this.state.type === 'file') {
+      valueView = (
+        <div style={styles.file}>
+          <TextField
+            fullWidth
+            label="pre"
+            value={this.state.pre}
+            onChange={this.editPre}
+          />
+          <TextField
+            fullWidth
+            label="post"
+            value={this.state.post}
+            onChange={this.editPost}
+          />
+          <Button
+            variant="outlined"
+            style={styles.buttons}
+            onClick={this.openFileBrowser}
+          >
+            Browse
+          </Button>
+        </div>
+      )
+    }
     const nameView = this.state.identity
       ? null
       : (
@@ -159,6 +230,12 @@ class EditProp extends React.Component {
       )
     return (
       <form onSubmit={this.submit} style={styles.form}>
+        <input
+          ref={this.fileInput}
+          type="file"
+          style={styles.input}
+          onChange={this.handleFileChange}
+        />
         <div>
           <TextField
             select
