@@ -47,7 +47,7 @@ const TreeItem = ({ data, parent, store }) => {
       ref={ref}
       onClick={(event) => {
         event.stopPropagation()
-        store.design.onClick(data)
+        store.selected.select(data)
       }}
       style={style}
     >

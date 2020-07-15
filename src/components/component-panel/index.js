@@ -160,9 +160,9 @@ class ComponentPanel extends React.Component {
     }
     result.children = result.children.map(item => this.loadData(item, false))
     if (top) {
-      this.props.store.design.setTree(compile(result))
+      this.props.store.tree.setTree(compile(result))
       const theme = convert('theme', result.theme || {})
-      this.props.store.design.setTheme(theme)
+      this.props.store.theme.setTheme(theme)
     }
     return result
   }

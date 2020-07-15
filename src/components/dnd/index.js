@@ -64,7 +64,7 @@ const DnD = ({ data, parent, store }) => {
         ref={ref}
         onClick={(event) => {
           event.stopPropagation()
-          store.design.onClick(data)
+          store.selected.select(data)
         }}
         onMouseEnter={() => setOver(true)}
         onMouseLeave={() => setOver(false)}
@@ -78,7 +78,7 @@ const DnD = ({ data, parent, store }) => {
         ref={ref}
         onClick={(event) => {
           event.stopPropagation()
-          store.design.onClick(data)
+          store.selected.select(data)
         }}
         onMouseEnter={() => setOver(true)}
         onMouseLeave={() => setOver(false)}
