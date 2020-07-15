@@ -228,6 +228,16 @@ class EditProp extends React.Component {
           onChange={this.editName}
         />
       )
+    const typeViews = [
+      <MenuItem value="string">string</MenuItem>,
+      <MenuItem value="number">number</MenuItem>,
+      <MenuItem value="color">color</MenuItem>,
+    ]
+    if (this.props.flavor !== 'theme') {
+      typeViews.push(
+        <MenuItem value="file">file</MenuItem>
+      )
+    }
     return (
       <form onSubmit={this.submit} style={styles.form}>
         <input
@@ -244,10 +254,7 @@ class EditProp extends React.Component {
             value={this.state.type}
             onChange={this.editType}
           >
-            <MenuItem value="string">string</MenuItem>
-            <MenuItem value="number">number</MenuItem>
-            <MenuItem value="color">color</MenuItem>
-            <MenuItem value="file">file</MenuItem>
+            {typeViews}
           </TextField>
           {nameView}
           {valueView}
