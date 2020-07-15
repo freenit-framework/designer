@@ -12,7 +12,7 @@ import styles from './styles'
 
 
 class Design extends React.Component {
-  handleKeyDown = (event) => {
+  handleKeyDown = async (event) => {
     const { clipboard, rearrange, selected, tree } = this.props.store
     if (event.key === 'Shift') {
       rearrange.setRearrange(true)
@@ -24,11 +24,18 @@ class Design extends React.Component {
       const listener = function(ev) {
         ev.preventDefault()
         const display = JSON.stringify(selected.selected)
-        ev.clipboardData.setData('text/plain', display)
+        if (display !== {}) {
+          ev.clipboardData.setData('text/plain', display)
+        }
       }
       document.addEventListener('copy', listener)
       document.execCommand('copy')
       document.removeEventListener('copy', listener)
+    } else if (clipboard.clipboard.ctrl && event.key === 'v') {
+      const input = document.getElementById('pasteFromClipboard')
+      input.focus()
+      input.select()
+      document.execCommand('paste')
     }
   }
 
@@ -41,6 +48,14 @@ class Design extends React.Component {
     }
   }
 
+  handlePaste = (event) => {
+    const { selected, tree } = this.props.store
+    if (selected.selected !== {}) {
+      const pasted = JSON.parse(event.target.value)
+      tree.add(pasted, selected.selected)
+    }
+  }
+
   render() {
     return (
       <div
@@ -49,6 +64,12 @@ class Design extends React.Component {
         onKeyUp={this.handleKeyUp}
         tabIndex="0"
       >
+        <input
+          type="text"
+          id="pasteFromClipboard"
+          style={styles.paste}
+          onChange={this.handlePaste}
+        />
         <DndProvider backend={Backend} style={styles.provider}>
           <ComponentPanel />
           <div style={styles.display}>

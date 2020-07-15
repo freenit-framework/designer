@@ -17,7 +17,9 @@ export default {
     flex: 1,
   },
 
-  copy: {
-    display: 'none',
+  paste: {
+    position: 'absolute',
+    opacity: 0,
+    zIndex: -999,
   },
 }
