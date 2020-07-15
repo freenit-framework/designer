@@ -10,7 +10,10 @@ import {
 import types from 'types'
 import * as icons from '@material-ui/icons'
 import * as mui from '@material-ui/core'
-import { exportJson } from 'utils'
+import {
+  changeIds,
+  exportJson,
+} from 'utils'
 
 import styles from './styles'
 
@@ -38,6 +41,7 @@ class Design extends React.Component {
       document.removeEventListener('copy', listener)
     } else if (clipboard.clipboard.ctrl && event.key === 'v') {
       const input = document.getElementById('pasteFromClipboard')
+      input.value = ''
       input.focus()
       input.select()
       document.execCommand('paste')
@@ -67,9 +71,11 @@ class Design extends React.Component {
 
   handlePaste = (event) => {
     const { selected, tree } = this.props.store
-    if (selected.selected !== {}) {
-      const pasted = JSON.parse(event.target.value)
-      const data = this.loadData(pasted)
+    const { value } = event.target
+    if (selected.selected !== {} && value !== '') {
+      const pasted = JSON.parse(value)
+      const changedData = changeIds(pasted)
+      const data = this.loadData(changedData)
       tree.add(data, selected.selected)
     }
   }

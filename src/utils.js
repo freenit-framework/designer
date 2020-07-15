@@ -77,3 +77,10 @@ export const exportJson = (data) => {
   result.children = result.children.map(item => exportJson(item))
   return result
 }
+
+
+export const changeIds = (component) => {
+  component.identity = makeid(8)
+  component.children.forEach(item => changeIds(item))
+  return component
+}

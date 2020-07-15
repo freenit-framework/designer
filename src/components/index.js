@@ -21,7 +21,7 @@ export const compile = (component) => {
   const result = {
     ...component,
     identity: makeid(8),
-    type: types.COMPONENT,
+    type: component.type || types.COMPONENT,
   }
   result.props = convert('props', result.props)
   result.children = result.children.map(item => compile(item))

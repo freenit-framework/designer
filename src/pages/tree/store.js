@@ -25,6 +25,7 @@ export default class ThemeStore {
     if (item.existing) {
       this.remove(item)
     }
+    this.setTree({ ...this.tree })
     return newitem
   }
 
