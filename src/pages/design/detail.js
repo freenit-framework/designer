@@ -7,6 +7,10 @@ import {
   Display,
   Editor,
 } from 'components'
+import types from 'types'
+import * as icons from '@material-ui/icons'
+import * as mui from '@material-ui/core'
+import { exportJson } from 'utils'
 
 import styles from './styles'
 
@@ -23,7 +27,8 @@ class Design extends React.Component {
     } else if (clipboard.clipboard.ctrl && event.key === 'c') {
       const listener = function(ev) {
         ev.preventDefault()
-        const display = JSON.stringify(selected.selected)
+        const data = exportJson(selected.selected)
+        const display = JSON.stringify(data)
         if (display !== {}) {
           ev.clipboardData.setData('text/plain', display)
         }
@@ -48,11 +53,24 @@ class Design extends React.Component {
     }
   }
 
+  loadData = (data) => {
+    const result = { ...data }
+    result.name = result.component
+    if (result.type === types.ICON) {
+      result.component = icons[result.name]
+    } else {
+      result.component = mui[result.name] || result.name
+    }
+    result.children = result.children.map(item => this.loadData(item))
+    return result
+  }
+
   handlePaste = (event) => {
     const { selected, tree } = this.props.store
     if (selected.selected !== {}) {
       const pasted = JSON.parse(event.target.value)
-      tree.add(pasted, selected.selected)
+      const data = this.loadData(pasted)
+      tree.add(data, selected.selected)
     }
   }
 

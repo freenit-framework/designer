@@ -66,3 +66,14 @@ export const makeid = (length) => {
    }
    return result;
 }
+
+
+export const exportJson = (data) => {
+  const result = {
+    ...data,
+    component: data.name
+  }
+  delete result.name
+  result.children = result.children.map(item => exportJson(item))
+  return result
+}

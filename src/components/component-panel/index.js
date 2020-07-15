@@ -22,6 +22,7 @@ import { Base64 } from 'js-base64'
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import types from 'types'
+import { exportJson } from 'utils'
 
 import styles from './styles'
 
@@ -121,16 +122,6 @@ class ComponentPanel extends React.Component {
     return output
   }
 
-  exportJson = (data) => {
-    const result = {
-      ...data,
-      component: data.name
-    }
-    delete result.name
-    result.children = result.children.map(item => this.exportJson(item))
-    return result
-  }
-
   exportTheme = (data, level = 0) => {
     if(typeof data !== "object" || Array.isArray(data)){
       // not an object, stringify using native function
@@ -150,7 +141,7 @@ class ComponentPanel extends React.Component {
     return output
   }
 
-  loadData = (data, top = true) => {
+  loadData = (data, compatibility = false, top = true) => {
     const result = { ...data }
     result.name = result.component
     if (result.type === types.ICON) {
@@ -158,8 +149,10 @@ class ComponentPanel extends React.Component {
     } else {
       result.component = mui[result.name] || result.name
     }
-    result.children = result.children.map(item => this.loadData(item, false))
-    if (top) {
+    result.children = result.children.map(
+      item => this.loadData(item, compatibility, false)
+    )
+    if (compatibility && top) {
       this.props.store.tree.setTree(compile(result))
       const theme = convert('theme', result.theme || {})
       this.props.store.theme.setTheme(theme)
@@ -175,10 +168,10 @@ class ComponentPanel extends React.Component {
         const { theme, tree } = this.props.store
         const data = JSON.parse(e.target.result)
         if (data.tree && data.theme) {
-          tree.setTree(data.tree)
+          tree.setTree(this.loadData(data.tree))
           theme.setTheme(data.theme)
         } else {
-          this.loadData(data)
+          this.loadData(data, true)
         }
       }
       reader.readAsText(file)
@@ -237,7 +230,7 @@ class ComponentPanel extends React.Component {
     const data = decompile(tree.tree)
     data.theme = toProps(theme.theme || {})
     const result = {
-      tree: tree.tree,
+      tree: exportJson(tree.tree),
       theme: theme.theme,
     }
     const display = JSON.stringify(result, null, 2)
