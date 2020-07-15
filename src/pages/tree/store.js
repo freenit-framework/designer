@@ -25,17 +25,16 @@ export default class ThemeStore {
     if (item.existing) {
       this.remove(item)
     }
-    this.setTree({ ...this.tree })
     return newitem
   }
 
   removeComponent = (identity, tree = this.tree) => {
     const newtree = { ...tree }
     newtree.children = newtree.children.filter(
-      component => component.identity !== identity,
+      component => component.identity !== identity
     )
     newtree.children = newtree.children.map(
-      component => this.removeComponent(identity, component),
+      component => this.removeComponent(identity, component)
     )
     return newtree
   }
@@ -51,7 +50,8 @@ export default class ThemeStore {
     if (identity === this.tree.identity) {
       return
     }
-    this.setTree(this.removeComponent(identity))
+    const newtree = this.removeComponent(identity)
+    this.setTree({ ...newtree })
   }
 
   rearrange = (item, parent, before) => {
