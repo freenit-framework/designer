@@ -13,6 +13,14 @@ export default {
     overflow: 'auto',
   },
 
+  rearrange: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
   button: {
     marginRight: 20,
   },

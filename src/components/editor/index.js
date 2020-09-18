@@ -37,6 +37,11 @@ class Editor extends React.Component {
     this.setState({ tab })
   }
 
+  toggleRearrange = () => {
+    const { rearrange } = this.props.store
+    rearrange.setRearrange(!rearrange.rearrange)
+  }
+
   render() {
     const icon = this.state.open ? <RightIcon /> : <LeftIcon />
     const rootStyle = this.state.open
@@ -72,11 +77,23 @@ class Editor extends React.Component {
         )
       }
     }
+    const color = this.props.store.rearrange.rearrange
+      ? 'secondary'
+      : 'default'
     return (
       <Paper style={rootStyle}>
         <div style={styles.buttons}>
           <IconButton onClick={this.toggleHide}>{icon}</IconButton>
           {tabs}
+        </div>
+        <div style={styles.rearrange}>
+          <Button
+            color={color}
+            variant="outlined"
+            onClick={this.toggleRearrange}
+          >
+            Rearrange
+          </Button>
         </div>
         {content}
       </Paper>
