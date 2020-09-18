@@ -60,7 +60,22 @@ class Editor extends React.Component {
         </Button>
       )) : null
     let content
+    let rearrange
     if (this.state.open) {
+      const color = this.props.store.rearrange.rearrange
+        ? 'secondary'
+        : 'default'
+      rearrange = (
+        <div style={styles.rearrange}>
+          <Button
+            color={color}
+            variant="outlined"
+            onClick={this.toggleRearrange}
+          >
+            Rearrange
+          </Button>
+        </div>
+      )
       if (this.state.tab === 'props') {
         content = (
           <div style={styles.content}>
@@ -77,24 +92,13 @@ class Editor extends React.Component {
         )
       }
     }
-    const color = this.props.store.rearrange.rearrange
-      ? 'secondary'
-      : 'default'
     return (
       <Paper style={rootStyle}>
         <div style={styles.buttons}>
           <IconButton onClick={this.toggleHide}>{icon}</IconButton>
           {tabs}
         </div>
-        <div style={styles.rearrange}>
-          <Button
-            color={color}
-            variant="outlined"
-            onClick={this.toggleRearrange}
-          >
-            Rearrange
-          </Button>
-        </div>
+        {rearrange}
         {content}
       </Paper>
     )
