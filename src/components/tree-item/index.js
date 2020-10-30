@@ -10,7 +10,7 @@ import Item from './item'
 const TreeItem = ({ data, parent, store }) => {
   const ref = useRef(null)
   const [{ canDrop, isOver }, drop] = useDrop({
-    accept: types.COMPONENT,
+    accept: [types.COMPONENT, types.ICON],
     drop: (item, monitor) => {
       if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
         if (store.rearrange.rearrange) {
