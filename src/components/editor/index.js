@@ -13,6 +13,10 @@ import {
 
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
+import RearrangeIcon from '@material-ui/icons/FormatIndentIncrease'
+import UndoIcon from '@material-ui/icons/Undo'
+import RedoIcon from '@material-ui/icons/Redo'
+import FindIcon from '@material-ui/icons/FindReplace'
 
 import styles from './styles'
 
@@ -42,6 +46,10 @@ class Editor extends React.Component {
     rearrange.setRearrange(!rearrange.rearrange)
   }
 
+  undo = () => {}
+  redo = () => {}
+  find = () => {}
+
   render() {
     const icon = this.state.open ? <RightIcon /> : <LeftIcon />
     const rootStyle = this.state.open
@@ -67,13 +75,28 @@ class Editor extends React.Component {
         : 'default'
       rearrange = (
         <div style={styles.rearrange}>
-          <Button
+          <IconButton
             color={color}
             variant="outlined"
             onClick={this.toggleRearrange}
           >
-            Rearrange
-          </Button>
+            <RearrangeIcon />
+          </IconButton>
+          <IconButton
+            onClick={this.undo}
+          >
+            <UndoIcon />
+          </IconButton>
+          <IconButton
+            onClick={this.redo}
+          >
+            <RedoIcon />
+          </IconButton>
+          <IconButton
+            onClick={this.find}
+          >
+            <FindIcon />
+          </IconButton>
         </div>
       )
       if (this.state.tab === 'props') {
