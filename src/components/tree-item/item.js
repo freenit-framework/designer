@@ -27,7 +27,9 @@ class Item extends React.Component {
 
   toggleOpen = (event) => {
     event.stopPropagation()
-    this.setState({ open: !this.state.open })
+    const { data } = this.props
+    data.open = !data.open
+    this.setState({ open: data.open })
   }
 
   render() {
@@ -35,7 +37,7 @@ class Item extends React.Component {
     const children = data.children.map(item => (
       <TreeItem data={item} parent={data} store={store} key={item.identity} />
     ))
-    const icon = this.state.open
+    const icon = data.open
       ? <UpIcon />
       : <DownIcon />
     const style = {
@@ -55,7 +57,7 @@ class Item extends React.Component {
             {icon}
           </IconButton>
         </div>
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+        <Collapse in={data.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {children}
           </List>

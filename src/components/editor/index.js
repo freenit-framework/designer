@@ -16,7 +16,7 @@ import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import RearrangeIcon from '@material-ui/icons/FormatIndentIncrease'
 import UndoIcon from '@material-ui/icons/Undo'
 import RedoIcon from '@material-ui/icons/Redo'
-import FindIcon from '@material-ui/icons/FindReplace'
+import FindIcon from '@material-ui/icons/Search'
 
 import styles from './styles'
 
@@ -48,7 +48,11 @@ class Editor extends React.Component {
 
   undo = () => {}
   redo = () => {}
-  find = () => {}
+  find = () => {
+    const { tree, selected } = this.props.store
+    tree.showSelected(selected.selected)
+    this.setState({ tab: this.state.tab })
+  }
 
   render() {
     const icon = this.state.open ? <RightIcon /> : <LeftIcon />
@@ -68,12 +72,12 @@ class Editor extends React.Component {
         </Button>
       )) : null
     let content
-    let rearrange
+    let actions
     if (this.state.open) {
       const color = this.props.store.rearrange.rearrange
         ? 'secondary'
         : 'default'
-      rearrange = (
+      actions = (
         <div style={styles.rearrange}>
           <IconButton
             color={color}
@@ -121,7 +125,7 @@ class Editor extends React.Component {
           <IconButton onClick={this.toggleHide}>{icon}</IconButton>
           {tabs}
         </div>
-        {rearrange}
+        {actions}
         {content}
       </Paper>
     )

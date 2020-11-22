@@ -1,7 +1,7 @@
 import { makeid } from 'utils'
 
 
-export default class ThemeStore {
+export default class TreeStore {
   constructor(tree) {
     this.tree = tree[0]
     this.setTree = tree[1]
@@ -95,9 +95,11 @@ export default class ThemeStore {
     }
     let result = {}
     tree.children.forEach(comp => {
-      const res = this.findComponent(identity, comp)
-      if (res.identity) {
-        result = res
+      if (!result.identity) {
+        const res = this.findComponent(identity, comp)
+        if (res.identity) {
+          result = res
+        }
       }
     })
     return result
@@ -248,5 +250,21 @@ export default class ThemeStore {
 
   setPropFile = (data, component, identity) => {
     component.props = this.changePropFile(component.props, data, identity)
+  }
+
+  showSelected = (selected, tree = this.tree) => {
+    if (!selected.identity) { return false }
+    if (selected.identity === tree.identity) {
+      tree.open = !Boolean(tree.open)
+      return true
+    }
+    let found = false
+    tree.children.forEach(comp => {
+      if (!found && this.showSelected(selected, comp)) {
+        found = true
+        tree.open = true
+      }
+    })
+    return found
   }
 }

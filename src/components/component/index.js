@@ -8,13 +8,8 @@ import styles from './styles'
 
 const Component = ({ data, store }) => {
   const [{ isDragging }, drag] = useDrag({
-    item: {
-      ...data,
-      type: types.COMPONENT,
-    },
-    collect: monitor => ({
-      isDragging: monitor.isDragging(),
-    }),
+    item: { ...data, type: types.COMPONENT },
+    collect: monitor => ({ isDragging: monitor.isDragging() }),
   })
   const opacity = isDragging ? 0.4 : 1
   return (
