@@ -1,6 +1,9 @@
-import detail from './detail'
+import Detail from './detail'
 
 
-export default {
-  detail,
+const landing = {
+  Detail,
 }
+
+
+export default landing

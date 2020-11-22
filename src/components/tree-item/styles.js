@@ -1,4 +1,4 @@
-export default {
+const styles = {
   root: {
     display: 'block',
     paddingRight: 0,
@@ -9,3 +9,6 @@ export default {
     alignItems: 'center',
   },
 }
+
+
+export default styles

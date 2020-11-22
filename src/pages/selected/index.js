@@ -2,7 +2,10 @@ import initial from './initial'
 import store from './store'
 
 
-export default {
+const selected = {
   initial,
   store,
 }
+
+
+export default selected

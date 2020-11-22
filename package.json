@@ -3,23 +3,25 @@
   "version": "0.0.1",
   "private": false,
   "dependencies": {
-    "freenit": "^0.0.15",
-    "js-base64": "^3.5.2",
+    "axios": "^0.21.0",
+    "freenit": "^0.0.27",
+    "js-base64": "^3.6.0",
     "prop-types": "^15.7.2",
-    "radium": "^0.26.0",
-    "react": "^16.13.1",
-    "react-color": "^2.18.1",
+    "radium": "^0.26.1",
+    "react": "^17.0.1",
+    "react-color": "^2.19.3",
     "react-dnd": "^11.1.3",
     "react-dnd-html5-backend": "^11.1.3",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.3"
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.0"
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.4",
-    "http-proxy-middleware": "^1.0.5",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "http-proxy-middleware": "^1.0.6",
     "jest-enzyme": "^7.1.2",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^17.0.1"
   },
   "jest": {
     "collectCoverageFrom": [

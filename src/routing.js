@@ -6,17 +6,19 @@ import {
   NoPage,
   Profile,
 } from 'freenit'
-import Landing from 'pages/landing'
-import Design from 'pages/design'
+import {
+  Landing,
+  Design,
+} from 'pages'
 
 
 const Routing = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Landing.detail} />
-      <Route exact path="/design" component={Design.detail} />
-      <Route exact path="/profile" component={Profile.detail} />
-      <Route path="*" component={NoPage.detail} />
+      <Route exact path="/" component={Landing.Detail} />
+      <Route exact path="/design" component={Design.Detail} />
+      <Route exact path="/profile" component={Profile.Detail} />
+      <Route path="*" component={NoPage.Detail} />
     </Switch>
   )
 }

@@ -1,4 +1,4 @@
-export default {
+const styles = {
   root: {
     height: '100vh',
     display: 'flex',
@@ -23,3 +23,6 @@ export default {
     zIndex: -999,
   },
 }
+
+
+export default styles

@@ -1,3 +1,6 @@
-export default {
+const initial = {
   editing: {},
 }
+
+
+export default initial

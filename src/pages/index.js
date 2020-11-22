@@ -1,5 +1,7 @@
 export { default as Clipboard } from 'pages/clipboard'
+export { default as Design } from 'pages/design'
 export { default as Editing } from 'pages/editing'
+export { default as Landing } from 'pages/landing'
 export { default as Over } from 'pages/over'
 export { default as Rearrange } from 'pages/rearrange'
 export { default as Selected } from 'pages/selected'

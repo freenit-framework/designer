@@ -1,4 +1,4 @@
-export default {
+const styles = {
   root: {
     width: 300,
     height: '100%',
@@ -66,3 +66,6 @@ export default {
     padding: 10,
   },
 }
+
+
+export default styles

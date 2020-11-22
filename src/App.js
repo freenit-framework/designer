@@ -9,7 +9,7 @@ import theme from 'theme'
 import styles from 'styles'
 
 
-export default () => {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Style rules={styles} />
@@ -21,3 +21,6 @@ export default () => {
     </ThemeProvider>
   )
 }
+
+
+export default App

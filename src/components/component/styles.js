@@ -1,4 +1,4 @@
-export default {
+const styles = {
   root: {
     border: '1px dashed gray',
     backgroundColor: 'white',
@@ -8,3 +8,6 @@ export default {
     cursor: 'move',
   },
 }
+
+
+export default styles

@@ -1,6 +1,9 @@
 import { convert } from 'components'
 
 
-export default {
+const initial = {
   theme: convert('theme', { palette: {} }),
 }
+
+
+export default initial

@@ -122,7 +122,7 @@ class Template extends React.Component {
             {AuthButton}
           </Toolbar>
         </AppBar>
-        <EmptyTemplate.detail secure={this.props.secure} style={this.props.style}>
+        <EmptyTemplate.Detail secure={this.props.secure} style={this.props.style}>
           {this.props.children}
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
@@ -145,7 +145,7 @@ class Template extends React.Component {
               {AuthMenu}
             </div>
           </Drawer>
-        </EmptyTemplate.detail>
+        </EmptyTemplate.Detail>
       </div>
     )
   }

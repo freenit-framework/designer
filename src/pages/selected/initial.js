@@ -1,3 +1,6 @@
-export default {
+const initial = {
   selected: {},
 }
+
+
+export default initial

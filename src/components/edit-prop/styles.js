@@ -5,7 +5,7 @@ const center = {
 }
 
 
-export default {
+const styles = {
   form: {
     ...center,
     width: 'calc(100% - 40px)',
@@ -26,3 +26,6 @@ export default {
     display: 'none',
   },
 }
+
+
+export default styles

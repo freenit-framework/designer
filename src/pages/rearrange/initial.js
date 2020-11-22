@@ -1,3 +1,6 @@
-export default {
+const initial = {
   rearrange: false,
 }
+
+
+export default initial

@@ -1,4 +1,4 @@
-export default {
+const styles = {
   root: {
   },
 
@@ -21,3 +21,6 @@ export default {
     marginTop: 10,
   },
 }
+
+
+export default styles

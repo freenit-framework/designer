@@ -1,7 +1,7 @@
 import { compile, convert } from 'components'
 
 
-export default {
+const initial = {
   editing: {},
   over: {},
   rearranging: false,
@@ -19,3 +19,6 @@ export default {
     },
   }),
 }
+
+
+export default initial

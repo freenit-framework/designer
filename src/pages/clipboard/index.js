@@ -2,7 +2,10 @@ import initial from './initial'
 import store from './store'
 
 
-export default {
+const clipboard ={
   initial,
   store,
 }
+
+
+export default clipboard

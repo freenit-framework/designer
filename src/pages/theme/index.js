@@ -2,7 +2,10 @@ import initial from './initial'
 import store from './store'
 
 
-export default {
+const theme = {
   initial,
   store,
 }
+
+
+export default theme

@@ -1,7 +1,7 @@
 import { compile } from 'components'
 
 
-export default {
+const initial = {
   tree: compile({
     children: [],
     component: 'div',
@@ -11,3 +11,6 @@ export default {
     },
   }),
 }
+
+
+export default initial
