@@ -58,7 +58,7 @@ const styles = {
 
   icons: {
     backgroundColor: '#eee',
-    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 65px - 20px)',
+    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 120px)',
     overflowY: 'auto',
     display: 'grid',
     gridTemplateColumns: 'repeat(5, auto)',
