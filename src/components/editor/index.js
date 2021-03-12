@@ -11,12 +11,17 @@ import {
   Paper,
 } from '@material-ui/core'
 
-import LeftIcon from '@material-ui/icons/KeyboardArrowLeft'
-import RightIcon from '@material-ui/icons/KeyboardArrowRight'
-import RearrangeIcon from '@material-ui/icons/FormatIndentIncrease'
-import UndoIcon from '@material-ui/icons/Undo'
-import RedoIcon from '@material-ui/icons/Redo'
-import FindIcon from '@material-ui/icons/Search'
+import {
+  DesktopMac,
+  FormatIndentIncrease,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+  PhoneAndroid,
+  Redo,
+  Search,
+  Tablet,
+  Undo,
+} from '@material-ui/icons'
 
 import styles from './styles'
 
@@ -54,8 +59,12 @@ class Editor extends React.Component {
     this.setState({ tab: this.state.tab })
   }
 
+  setDisplay = (display) => () => {
+    this.props.store.display.setDisplay(display)
+  }
+
   render() {
-    const icon = this.state.open ? <RightIcon /> : <LeftIcon />
+    const icon = this.state.open ? <KeyboardArrowRight /> : <KeyboardArrowLeft />
     const rootStyle = this.state.open
       ? styles.root
       : { ...styles.root, width: 50 }
@@ -84,22 +93,22 @@ class Editor extends React.Component {
             variant="outlined"
             onClick={this.toggleRearrange}
           >
-            <RearrangeIcon />
+            <FormatIndentIncrease />
           </IconButton>
           <IconButton
             onClick={this.undo}
           >
-            <UndoIcon />
+            <Undo />
           </IconButton>
           <IconButton
             onClick={this.redo}
           >
-            <RedoIcon />
+            <Redo />
           </IconButton>
           <IconButton
             onClick={this.find}
           >
-            <FindIcon />
+            <Search />
           </IconButton>
         </div>
       )
@@ -127,6 +136,17 @@ class Editor extends React.Component {
         </div>
         {actions}
         {content}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: 'white' }}>
+          <IconButton onClick={this.setDisplay('mobile')}>
+            <PhoneAndroid />
+          </IconButton>
+          <IconButton onClick={this.setDisplay('tablet')}>
+            <Tablet />
+          </IconButton>
+          <IconButton onClick={this.setDisplay('desktop')}>
+            <DesktopMac />
+          </IconButton>
+        </div>
       </Paper>
     )
   }

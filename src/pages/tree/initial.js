@@ -7,7 +7,7 @@ const initial = {
     component: 'div',
     name: 'div',
     props: {
-      style: { minHeight: '100%' },
+      style: { minHeight: 'calc(100vh - 4px)' },
     },
   }),
 }

@@ -27,7 +27,7 @@ const resolutions = {
 
   desktop: {
     width: '100%',
-    minHeight: 'calc(100vh - 37px)',
+    minHeight: 'calc(100vh - 4px)',
     backgroundColor: '#fff',
     alignSelf: 'top'
   },
@@ -78,7 +78,7 @@ class Renderer extends React.Component {
     }
     const resolution = resolutions[this.props.type] || resolutions.desktop
     return (
-      <div style={{ display: 'flex', backgroundColor: '#eee', justifyContent: 'center', minHeight: 'calc(100vh - 37px)' }}>
+      <div style={{ display: 'flex', backgroundColor: '#eee', justifyContent: 'center', minHeight: 'calc(100vh - 4px)' }}>
         <div style={resolution}>
           <ThemeProvider theme={themeData} >
             <DnD data={this.props.data} />

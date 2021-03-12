@@ -4,8 +4,8 @@ import { withStore } from 'freenit'
 import { HTML5Backend as Backend } from 'react-dnd-html5-backend'
 import {
   ComponentPanel,
-  Display,
   Editor,
+  Renderer,
 } from 'components'
 import types from 'types'
 import * as icons from '@material-ui/icons'
@@ -81,6 +81,8 @@ class Design extends React.Component {
   }
 
   render() {
+    const { store } = this.props
+    const { display, tree } = store
     return (
       <div
         style={styles.root}
@@ -97,7 +99,7 @@ class Design extends React.Component {
         <DndProvider backend={Backend} style={styles.provider}>
           <ComponentPanel />
           <div style={styles.display}>
-            <Display />
+            <Renderer data={tree.tree} store={store} type={display.display} />
           </div>
           <Editor />
         </DndProvider>

@@ -9,7 +9,7 @@ const styles = {
 
   content: {
     width: '100%',
-    height: 'calc(100% - 65px)',
+    height: 'calc(100% - 65px - 100px)',
     overflow: 'auto',
   },
 
