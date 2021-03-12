@@ -4,6 +4,8 @@ import {
   IconButton,
   Paper,
   TextField,
+  FormControlLabel,
+  Switch
 } from '@material-ui/core'
 import * as icons from '@material-ui/icons'
 import * as mui from '@material-ui/core'
@@ -41,16 +43,18 @@ const iconData = iconNames.map(name => ({ ...icons[name], name }))
 
 const reactImport = "import React from 'react'\n"
 const themeImport = "import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'\n"
-const begining = `
+
+const exportTemplates = {
+  class: {
+    begining: `
 
 class Page extends React.Component {
   render() {
     return (
       <ThemeProvider theme={createMuiTheme(theme)}>
-`
-
-
-const ending = `      </ThemeProvider>
+`,
+    ending: `
+      </ThemeProvider>
     )
   }
 }
@@ -58,9 +62,28 @@ const ending = `      </ThemeProvider>
 
 export default Page
 `
+  },
+  function: {
+    begining: `
+
+const Page = (props) => {
+    return (
+      <ThemeProvider theme={createMuiTheme(theme)}>
+`,
+    ending: `
+      </ThemeProvider>
+    )
+}
+
+
+export default Page
+`
+
+  }
+}
 
 const stringify = (obj_from_json) => {
-  if(typeof obj_from_json !== "object" || Array.isArray(obj_from_json)){
+  if (typeof obj_from_json !== "object" || Array.isArray(obj_from_json)) {
     // not an object, stringify using native function
     return JSON.stringify(obj_from_json);
   }
@@ -85,7 +108,8 @@ class ComponentPanel extends React.Component {
     caseSensitive: true,
     search: '',
     open: true,
-    tab: 'components'
+    tab: 'components',
+    typeOfExport: 'class'
   }
 
   fileInput = React.createRef()
@@ -123,7 +147,7 @@ class ComponentPanel extends React.Component {
   }
 
   exportTheme = (data, level = 0) => {
-    if(typeof data !== "object" || Array.isArray(data)){
+    if (typeof data !== "object" || Array.isArray(data)) {
       // not an object, stringify using native function
       return JSON.stringify(data);
     }
@@ -162,7 +186,7 @@ class ComponentPanel extends React.Component {
 
   handleFileChange = (event) => {
     if (event.target.files.length > 0) {
-      const [ file ] = event.target.files
+      const [file] = event.target.files
       const reader = new FileReader()
       reader.onload = (e) => {
         const { theme, tree } = this.props.store
@@ -224,9 +248,14 @@ class ComponentPanel extends React.Component {
     this.setState({ tab })
   }
 
+  switchTypeOfExport = () => {
+    this.setState({ typeOfExport: this.state.typeOfExport === 'class' ? 'function' : 'class' })
+  }
+
   render() {
     this.mui = {}
     const { tree, theme } = this.props.store
+    const { begining, ending } = exportTemplates[this.state.typeOfExport];
     const data = decompile(tree.tree)
     data.theme = toProps(theme.theme || {})
     const result = {
@@ -331,31 +360,49 @@ class ComponentPanel extends React.Component {
           this.state.open
             ? (
               <Paper style={styles.components.container}>
-                <a href={saveData} download="design.json">
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={this.state.typeOfExport === 'class'}
+                        onChange={this.switchTypeOfExport}
+                        name="typeOfExport"
+                        color="primary"
+                      />
+                    }
+                    style={{}}
+                    label={this.state.typeOfExport === 'class' ? 'Class Component' : 'Function Component'}
+                  />
+                </div>
+                <div>
+                  <a href={saveData} download="design.json">
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      style={styles.components.button}
+                    >
+                      Save
+                  </Button>
+                  </a>
                   <Button
-                    color="primary"
                     variant="outlined"
+                    color="secondary"
+                    onClick={this.handleClick}
                     style={styles.components.button}
                   >
-                    Save
-                  </Button>
-                </a>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={this.handleClick}
-                  style={styles.components.button}
-                >
-                  Load
+                    Load
                 </Button>
-                <a
-                  href={`data:application/javascript;base64,${codeData}`}
-                  download="page.js"
-                >
-                  <Button style={styles.components.button} variant="outlined">
-                    Export
+                  <a
+                    href={`data:application/javascript;base64,${codeData}`}
+                    download="page.js"
+                  >
+                    <Button style={styles.components.button} variant="outlined">
+                      Export
                   </Button>
-                </a>
+                  </a>
+
+                </div>
+
               </Paper>
             ) : null
         }

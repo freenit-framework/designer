@@ -10,7 +10,7 @@ const styles = {
 
   components: {
     backgroundColor: '#eee',
-    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 65px)',
+    height: 'calc(100vh - 40px - 20px - 10px - 40px - 4px - 100px)',
     overflowY: 'auto',
     container: {
       padding: 10,
