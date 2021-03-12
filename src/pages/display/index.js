@@ -2,10 +2,10 @@ import initial from './initial'
 import store from './store'
 
 
-const clipboard = {
+const display = {
   initial,
   store,
 }
 
 
-export default clipboard
+export default display

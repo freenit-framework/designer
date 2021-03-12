@@ -1,5 +1,6 @@
 export { default as Clipboard } from 'pages/clipboard'
 export { default as Design } from 'pages/design'
+export { default as Display } from 'pages/display'
 export { default as Editing } from 'pages/editing'
 export { default as Landing } from 'pages/landing'
 export { default as Over } from 'pages/over'
