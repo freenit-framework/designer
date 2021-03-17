@@ -17,9 +17,7 @@ class PropItem extends React.Component {
     name: '',
   }
 
-  setOver = (data) => () => {
-    this.props.store.over.setOver(data)
-  }
+  setOver = (data) => () => { this.props.store.over.over = data }
 
   removeItem = () => {
     const { editing, selected, theme, tree } = this.props.store
@@ -28,14 +26,11 @@ class PropItem extends React.Component {
     } else {
       theme.removeProp(this.props.data)
     }
-    editing.setEditing({})
+    editing.editing = {}
   }
 
   openEdit = () => {
-    this.setState({
-      edit: true,
-      name: this.props.data.name,
-    })
+    this.setState({ edit: true, name: this.props.data.name })
   }
 
   closeEdit = () => {
@@ -58,7 +53,7 @@ class PropItem extends React.Component {
         selected.selected,
         this.props.data.identity,
       )
-      editing.setEditing({})
+      editing.editing = {}
     }
     this.closeEdit()
   }

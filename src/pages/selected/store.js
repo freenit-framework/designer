@@ -1,10 +1,14 @@
+import { makeAutoObservable } from 'mobx'
+
+
 export default class SelectedStore {
-  constructor(selected) {
-    this.selected = selected[0]
-    this.setSelected = selected[1]
+  selected = {}
+
+  constructor() {
+    makeAutoObservable(this)
   }
 
   select = (component) => {
-    this.setSelected(component)
+    this.selected = component
   }
 }

@@ -1,10 +1,8 @@
-import initial from './initial'
-import store from './store'
+import Store from './store'
 
 
 const selected = {
-  initial,
-  store,
+  store: new Store(),
 }
 
 

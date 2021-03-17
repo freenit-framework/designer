@@ -177,9 +177,9 @@ class ComponentPanel extends React.Component {
       item => this.loadData(item, compatibility, false)
     )
     if (compatibility && top) {
-      this.props.store.tree.setTree(compile(result))
+      this.props.store.tree.tree = compile(result)
       const theme = convert('theme', result.theme || {})
-      this.props.store.theme.setTheme(theme)
+      this.props.store.theme.theme = theme
     }
     return result
   }
@@ -192,11 +192,9 @@ class ComponentPanel extends React.Component {
         const { theme, tree } = this.props.store
         const data = JSON.parse(e.target.result)
         if (data.tree && data.theme) {
-          tree.setTree(this.loadData(data.tree))
-          theme.setTheme(data.theme)
-        } else {
-          this.loadData(data, true)
-        }
+          tree.tree = this.loadData(data.tree)
+          theme.theme = data.theme
+        } else { this.loadData(data, true) }
       }
       reader.readAsText(file)
     }

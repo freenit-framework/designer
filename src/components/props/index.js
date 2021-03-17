@@ -48,12 +48,12 @@ class Props extends React.Component {
 
   showEdit = (prop, identity) => () => {
     this.setState({ edit: prop, identity })
-    this.props.store.editing.setEditing(prop)
+    this.props.store.editing.editing = prop
   }
 
   closeEdit = () => {
     this.setState({ edit: null })
-    this.props.store.editing.setEditing({})
+    this.props.store.editing.editing = {}
   }
 
   render() {

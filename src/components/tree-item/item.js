@@ -22,7 +22,7 @@ class Item extends React.Component {
   select = (event) => {
     event.stopPropagation()
     const { store, data } = this.props
-    store.selected.setSelected(data)
+    store.selected.selected = data
   }
 
   toggleOpen = (event) => {

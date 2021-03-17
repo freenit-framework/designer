@@ -1,10 +1,18 @@
+import { makeAutoObservable } from 'mobx'
+import { compile } from 'components'
 import { makeid } from 'utils'
 
 
 export default class TreeStore {
-  constructor(tree) {
-    this.tree = tree[0]
-    this.setTree = tree[1]
+  tree = compile({
+    children: [],
+    component: 'div',
+    name: 'div',
+    props: { style: { minHeight: 'calc(100vh - 4px)' } },
+  })
+
+  constructor() {
+    makeAutoObservable(this)
   }
 
   copyItem = (item) => {
@@ -22,9 +30,7 @@ export default class TreeStore {
   add = (item, parent) => {
     const newitem = this.copyItem(item)
     parent.children.push(newitem)
-    if (item.existing) {
-      this.remove(item)
-    }
+    if (item.existing) { this.remove(item) }
     return newitem
   }
 
@@ -40,18 +46,12 @@ export default class TreeStore {
   }
 
   remove = (component) => {
-    if (!component) {
-      return
-    }
-    if (!component.identity) {
-      return
-    }
+    if (!component) { return }
+    if (!component.identity) { return }
     const { identity } = component
-    if (identity === this.tree.identity) {
-      return
-    }
+    if (identity === this.tree.identity) { return }
     const newtree = this.removeComponent(identity)
-    this.setTree({ ...newtree })
+    this.tree = { ...newtree }
   }
 
   rearrange = (item, parent, before) => {
@@ -97,9 +97,7 @@ export default class TreeStore {
     tree.children.forEach(comp => {
       if (!result.identity) {
         const res = this.findComponent(identity, comp)
-        if (res.identity) {
-          result = res
-        }
+        if (res.identity) { result = res }
       }
     })
     return result
@@ -109,14 +107,9 @@ export default class TreeStore {
     const result = { ...prop }
     if (result.identity === identity) {
       const child = { ...data, identity: makeid(8) }
-      if (data.value.children) {
-        child.children = data.value.children
-      } else {
-        child.value = data.value
-      }
-      if (result.children) {
-        result.children = [ ...result.children, child ]
-      }
+      if (data.value.children) { child.children = data.value.children }
+      else { child.value = data.value }
+      if (result.children) { result.children = [ ...result.children, child ] }
       if (Array.isArray(result.value)) {
         result.value = [ ...result.value, child ]
       }
@@ -141,13 +134,7 @@ export default class TreeStore {
 
   changePropName = (prop, name, identity) => {
     const result = { ...prop }
-    if (result.identity === identity) {
-      const data = {
-        ...result,
-        name,
-      }
-      return data
-    }
+    if (result.identity === identity) { return { ...result, name } }
     if (result.children) { // object
       result.children = prop.children.map(
         item => this.changePropName(item, name, identity),

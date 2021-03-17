@@ -1,6 +1,10 @@
+import { makeAutoObservable } from 'mobx'
+
+
 export default class DisplayStore {
-  constructor(detail) {
-    this.display = detail[0]
-    this.setDisplay = detail[1]
+  display = 'desktop'
+
+  constructor() {
+    makeAutoObservable(this)
   }
 }

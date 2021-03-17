@@ -1,10 +1,13 @@
+import { makeAutoObservable } from 'mobx'
+import { convert } from 'components'
 import { makeid } from 'utils'
 
 
 export default class ThemeStore {
-  constructor(theme) {
-    this.theme = theme[0]
-    this.setTheme = theme[1]
+  theme = convert('theme', { palette: {} })
+
+  constructor() {
+    makeAutoObservable(this)
   }
 
   addNewProp = (prop, identity, data) => {
@@ -38,23 +41,14 @@ export default class ThemeStore {
   }
 
   addProp = (identity, data) => {
-    this.setTheme(this.addNewProp(this.theme, identity, data))
+    this.theme = this.addNewProp(this.theme, identity, data)
   }
 
-  setPropName = (prop, name) => {
-    prop.name = name
-    this.setTheme({ ...this.theme })
-  }
+  setPropName = (prop, name) => { prop.name = name }
 
-  setPropType = (prop, type) => {
-    prop.type = type
-    this.setTheme({ ...this.theme })
-  }
+  setPropType = (prop, type) => { prop.type = type }
 
-  setPropValue = (prop, value) => {
-    prop.value = value
-    this.setTheme({ ...this.theme })
-  }
+  setPropValue = (prop, value) => { prop.value = value }
 
   removeOldProp = (item, props) => {
     if (props.children) {

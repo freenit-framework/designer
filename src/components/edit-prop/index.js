@@ -85,7 +85,7 @@ class EditProp extends React.Component {
       } else {
         const { editing, selected, tree } = this.props.store
         tree.setPropValue(value, selected.selected, this.props.data.identity)
-        editing.setEditing({ ...this.props.data })
+        editing.editing = this.props.data
       }
     } else {
       this.setState({ value: value })

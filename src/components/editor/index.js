@@ -48,7 +48,7 @@ class Editor extends React.Component {
 
   toggleRearrange = () => {
     const { rearrange } = this.props.store
-    rearrange.setRearrange(!rearrange.rearrange)
+    rearrange.rearrange = !rearrange.rearrange
   }
 
   undo = () => {}
@@ -60,7 +60,7 @@ class Editor extends React.Component {
   }
 
   setDisplay = (display) => () => {
-    this.props.store.display.setDisplay(display)
+    this.props.store.display.display = display
   }
 
   render() {

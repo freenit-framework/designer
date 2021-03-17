@@ -1,10 +1,8 @@
-import initial from './initial'
-import store from './store'
+import Store from './store'
 
 
 const theme = {
-  initial,
-  store,
+  store: new Store(),
 }
 
 
