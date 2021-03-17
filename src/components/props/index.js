@@ -37,12 +37,8 @@ class Props extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { selected, tree } = this.props.store
-    if (this.state.text === '') {
-      tree.setText(null, selected.selected)
-    } else {
-      tree.setText(this.state.text, selected.selected)
-    }
-    tree.setTree({ ...tree.tree })
+    if (this.state.text === '') { tree.setText(null, selected.selected) }
+    else { tree.setText(this.state.text, selected.selected) }
     this.setState({ editing: false })
   }
 

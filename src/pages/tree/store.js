@@ -35,14 +35,13 @@ export default class TreeStore {
   }
 
   removeComponent = (identity, tree = this.tree) => {
-    const newtree = { ...tree }
-    newtree.children = newtree.children.filter(
+    tree.children = tree.children.filter(
       component => component.identity !== identity
     )
-    newtree.children = newtree.children.map(
+    tree.children = tree.children.map(
       component => this.removeComponent(identity, component)
     )
-    return newtree
+    return tree
   }
 
   remove = (component) => {
@@ -50,8 +49,7 @@ export default class TreeStore {
     if (!component.identity) { return }
     const { identity } = component
     if (identity === this.tree.identity) { return }
-    const newtree = this.removeComponent(identity)
-    this.tree = { ...newtree }
+    this.removeComponent(identity)
   }
 
   rearrange = (item, parent, before) => {
@@ -90,9 +88,7 @@ export default class TreeStore {
   }
 
   findComponent = (identity, tree = this.tree) => {
-    if (tree.identity === identity) {
-      return tree
-    }
+    if (tree.identity === identity) { return tree }
     let result = {}
     tree.children.forEach(comp => {
       if (!result.identity) {
@@ -104,28 +100,25 @@ export default class TreeStore {
   }
 
   addNewProp = (prop, identity, data) => {
-    const result = { ...prop }
-    if (result.identity === identity) {
+    if (prop.identity === identity) {
       const child = { ...data, identity: makeid(8) }
       if (data.value.children) { child.children = data.value.children }
       else { child.value = data.value }
-      if (result.children) { result.children = [ ...result.children, child ] }
-      if (Array.isArray(result.value)) {
-        result.value = [ ...result.value, child ]
-      }
-      return result
+      if (prop.children) { prop.children = [ ...prop.children, child ] }
+      if (Array.isArray(prop.value)) { prop.value = [ ...prop.value, child ] }
+      return prop
     }
-    if (result.children) {
-      result.children = result.children.map(
+    if (prop.children) {
+      prop.children = prop.children.map(
         item => this.addNewProp(item, identity, data)
       )
     }
-    if (Array.isArray(result.value)) {
-      result.value = result.value.map(
+    if (Array.isArray(prop.value)) {
+      prop.value = prop.value.map(
         item => this.addNewProp(item, identity, data)
       )
     }
-    return result
+    return prop
   }
 
   addProp = (identity, data, component) => {
@@ -133,66 +126,63 @@ export default class TreeStore {
   }
 
   changePropName = (prop, name, identity) => {
-    const result = { ...prop }
-    if (result.identity === identity) { return { ...result, name } }
-    if (result.children) { // object
-      result.children = prop.children.map(
+    if (prop.identity === identity) { return { ...prop, name } }
+    if (prop.children) { // object
+      prop.children = prop.children.map(
         item => this.changePropName(item, name, identity),
       )
     }
-    if (result.value) { // array
-      if (Array.isArray(result.value)) {
-        result.value = result.value.map(
+    if (prop.value) { // array
+      if (Array.isArray(prop.value)) {
+        prop.value = prop.value.map(
           item => this.changePropName(item, name, identity)
         )
       }
     }
-    return result
+    return prop
   }
 
   changePropValue = (prop, v, identity) => {
-    const result = { ...prop }
-    if (result.identity === identity) { // simple value
-      result.value = v
-      return result
+    if (prop.identity === identity) { // simple value
+      prop.value = v
+      return prop
     }
-    if (result.children) { // object
-      result.children = result.children.map(
+    if (prop.children) { // object
+      prop.children = prop.children.map(
         item => this.changePropValue(item, v, identity),
       )
     }
-    if (result.value) { // array
-      if (Array.isArray(result.value)) {
-        result.value = result.value.map(
+    if (prop.value) { // array
+      if (Array.isArray(prop.value)) {
+        prop.value = prop.value.map(
           item => this.changePropValue(item, v, identity)
         )
       }
     }
-    return result
+    return prop
   }
 
   changePropType = (prop, type, identity) => {
-    const result = { ...prop }
-    if (result.identity === identity) {
+    if (prop.identity === identity) {
       const data = {
-        ...result,
+        ...prop,
         type,
       }
       return data
     }
-    if (result.children) { // object
-      result.children = prop.children.map(
+    if (prop.children) { // object
+      prop.children = prop.children.map(
         item => this.changePropType(item, type),
       )
     }
-    if (result.value) { // array
-      if (Array.isArray(result.value)) {
-        result.value = result.value.map(
+    if (prop.value) { // array
+      if (Array.isArray(prop.value)) {
+        prop.value = prop.value.map(
           item => this.changePropType(item, type)
         )
       }
     }
-    return result
+    return prop
   }
 
   setPropName = (name, component, identity) => {
@@ -212,27 +202,26 @@ export default class TreeStore {
   }
 
   changePropFile = (prop, data, identity) => {
-    const result = { ...prop }
-    if (result.identity === identity) { // simple value
-      result.pre = data.pre
-      result.post = data.post
-      result.file = data.file
-      result.type = data.type
-      return result
+    if (prop.identity === identity) { // simple value
+      prop.pre = data.pre
+      prop.post = data.post
+      prop.file = data.file
+      prop.type = data.type
+      return prop
     }
-    if (result.children) { // object
-      result.children = result.children.map(
+    if (prop.children) { // object
+      prop.children = prop.children.map(
         item => this.changePropFile(item, data, identity),
       )
     }
-    if (result.value) { // array
-      if (Array.isArray(result.value)) {
-        result.value = result.value.map(
+    if (prop.value) { // array
+      if (Array.isArray(prop.value)) {
+        prop.value = prop.value.map(
           item => this.changePropFile(item, data, identity)
         )
       }
     }
-    return result
+    return prop
   }
 
   setPropFile = (data, component, identity) => {
