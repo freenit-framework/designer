@@ -12,10 +12,8 @@ export { default as Menu } from './menu'
 export { default as PropItem } from './prop-item'
 export { default as Props } from './props'
 export { default as Renderer } from './renderer'
-export { default as ThemeEditor} from './theme-editor'
+export { default as ThemeEditor } from './theme-editor'
 export { default as TreeItem } from './tree-item'
-
-
 
 export const compile = (component) => {
   const result = {
@@ -24,20 +22,19 @@ export const compile = (component) => {
     type: component.type || types.COMPONENT,
   }
   result.props = convert('props', result.props)
-  result.children = result.children.map(item => compile(item))
+  result.children = result.children.map((item) => compile(item))
   return result
 }
 
-
-export const isSimple = data => typeof data === 'number' ||
-                                typeof data === 'boolean' ||
-                                typeof data === 'string'
-
+export const isSimple = (data) =>
+  typeof data === 'number' ||
+  typeof data === 'boolean' ||
+  typeof data === 'string'
 
 export const convert = (key, value) => {
   const base = {
     name: key,
-    identity: makeid(8)
+    identity: makeid(8),
   }
   if (isSimple(value)) {
     return {
@@ -48,39 +45,40 @@ export const convert = (key, value) => {
   if (Array.isArray(value)) {
     return {
       ...base,
-      value: value.map(v => convert(null, v)),
+      value: value.map((v) => convert(null, v)),
     }
   }
   if (typeof value === 'object') {
     return {
       ...base,
-      children: Object.getOwnPropertyNames(value).map(
-        name => convert(name, value[name]),
+      children: Object.getOwnPropertyNames(value).map((name) =>
+        convert(name, value[name])
       ),
     }
   }
 }
 
-
 export const toProps = (data) => {
   if (data.type === 'file') {
     return `${data.pre}${data.file}${data.post}`
   }
-  if (data.children) { // object
+  if (data.children) {
+    // object
     const props = {}
-    data.children.forEach(prop => {
+    data.children.forEach((prop) => {
       props[prop.name] = toProps(prop)
     })
     return props
   }
-  if (data.value) { // simple value or array
-    if (Array.isArray(data.value)) { // array
-      return data.value.map(item => item.value)
+  if (data.value) {
+    // simple value or array
+    if (Array.isArray(data.value)) {
+      // array
+      return data.value.map((item) => item.value)
     }
     return data.value // simple value
   }
 }
-
 
 export const decompile = (data) => {
   const result = {
@@ -88,10 +86,9 @@ export const decompile = (data) => {
   }
   delete result.identity
   result.props = toProps(result.props)
-  result.children = result.children.map(item => decompile(item))
+  result.children = result.children.map((item) => decompile(item))
   return result
 }
-
 
 const components = [
   {
@@ -100,20 +97,24 @@ const components = [
     props: {
       position: 'static',
     },
-    children: [{
-      component: mui.Toolbar,
-      name: 'Toolbar',
-      props: {},
-      children: [{
-        component: mui.Typography,
-        name: 'Typography',
-        props: {
-          variant: 'h6',
-        },
-        text: 'Title',
-        children: [],
-      }],
-    }],
+    children: [
+      {
+        component: mui.Toolbar,
+        name: 'Toolbar',
+        props: {},
+        children: [
+          {
+            component: mui.Typography,
+            name: 'Typography',
+            props: {
+              variant: 'h6',
+            },
+            text: 'Title',
+            children: [],
+          },
+        ],
+      },
+    ],
   },
 
   {
@@ -864,870 +865,862 @@ const components = [
   },
 
   {
-    name: "a",
-    component: "a",
+    name: 'a',
+    component: 'a',
     children: [],
     props: {},
   },
 
   {
-    name: "abbr",
-    component: "abbr",
+    name: 'abbr',
+    component: 'abbr',
     children: [],
     props: {},
   },
 
   {
-    name: "acronym",
-    component: "acronym",
+    name: 'acronym',
+    component: 'acronym',
     children: [],
     props: {},
   },
 
   {
-    name: "address",
-    component: "address",
+    name: 'address',
+    component: 'address',
     children: [],
     props: {},
   },
 
   {
-    name: "applet",
-    component: "applet",
+    name: 'applet',
+    component: 'applet',
     children: [],
     props: {},
   },
 
   {
-    name: "area",
-    component: "area",
+    name: 'area',
+    component: 'area',
     children: [],
     props: {},
   },
 
   {
-    name: "article",
-    component: "article",
+    name: 'article',
+    component: 'article',
     children: [],
     props: {},
   },
 
   {
-    name: "aside",
-    component: "aside",
+    name: 'aside',
+    component: 'aside',
     children: [],
     props: {},
   },
 
   {
-    name: "audio",
-    component: "audio",
+    name: 'audio',
+    component: 'audio',
     children: [],
     props: {},
   },
 
   {
-    name: "b",
-    component: "b",
+    name: 'b',
+    component: 'b',
     children: [],
     props: {},
   },
 
   {
-    name: "base",
-    component: "base",
+    name: 'base',
+    component: 'base',
     children: [],
     props: {},
   },
 
   {
-    name: "basefont",
-    component: "basefont",
+    name: 'basefont',
+    component: 'basefont',
     children: [],
     props: {},
   },
 
   {
-    name: "bdi",
-    component: "bdi",
+    name: 'bdi',
+    component: 'bdi',
     children: [],
     props: {},
   },
 
   {
-    name: "bdo",
-    component: "bdo",
+    name: 'bdo',
+    component: 'bdo',
     children: [],
     props: {},
   },
 
   {
-    name: "big",
-    component: "big",
+    name: 'big',
+    component: 'big',
     children: [],
     props: {},
   },
 
   {
-    name: "blockquote",
-    component: "blockquote",
+    name: 'blockquote',
+    component: 'blockquote',
     children: [],
     props: {},
   },
 
   {
-    name: "body",
-    component: "body",
+    name: 'body',
+    component: 'body',
     children: [],
     props: {},
   },
 
   {
-    name: "br",
-    component: "br",
+    name: 'br',
+    component: 'br',
     children: [],
     props: {},
   },
 
   {
-    name: "button",
-    component: "button",
+    name: 'button',
+    component: 'button',
     children: [],
     props: {},
   },
 
   {
-    name: "canvas",
-    component: "canvas",
+    name: 'canvas',
+    component: 'canvas',
     children: [],
     props: {},
   },
 
   {
-    name: "caption",
-    component: "caption",
+    name: 'caption',
+    component: 'caption',
     children: [],
     props: {},
   },
 
   {
-    name: "center",
-    component: "center",
+    name: 'center',
+    component: 'center',
     children: [],
     props: {},
   },
 
   {
-    name: "cite",
-    component: "cite",
+    name: 'cite',
+    component: 'cite',
     children: [],
     props: {},
   },
 
   {
-    name: "code",
-    component: "code",
+    name: 'code',
+    component: 'code',
     children: [],
     props: {},
   },
 
   {
-    name: "col",
-    component: "col",
+    name: 'col',
+    component: 'col',
     children: [],
     props: {},
   },
 
   {
-    name: "colgroup",
-    component: "colgroup",
+    name: 'colgroup',
+    component: 'colgroup',
     children: [],
     props: {},
   },
 
   {
-    name: "data",
-    component: "data",
+    name: 'data',
+    component: 'data',
     children: [],
     props: {},
   },
 
   {
-    name: "datalist",
-    component: "datalist",
+    name: 'datalist',
+    component: 'datalist',
     children: [],
     props: {},
   },
 
   {
-    name: "dd",
-    component: "dd",
+    name: 'dd',
+    component: 'dd',
     children: [],
     props: {},
   },
 
   {
-    name: "del",
-    component: "del",
+    name: 'del',
+    component: 'del',
     children: [],
     props: {},
   },
 
   {
-    name: "details",
-    component: "details",
+    name: 'details',
+    component: 'details',
     children: [],
     props: {},
   },
 
   {
-    name: "dfn",
-    component: "dfn",
+    name: 'dfn',
+    component: 'dfn',
     children: [],
     props: {},
   },
 
   {
-    name: "dialog",
-    component: "dialog",
+    name: 'dialog',
+    component: 'dialog',
     children: [],
     props: {},
   },
 
   {
-    name: "dir",
-    component: "dir",
+    name: 'dir',
+    component: 'dir',
     children: [],
     props: {},
   },
 
   {
-    name: "div",
-    component: "div",
+    name: 'div',
+    component: 'div',
     children: [],
     props: {},
   },
 
   {
-    name: "dl",
-    component: "dl",
+    name: 'dl',
+    component: 'dl',
     children: [],
     props: {},
   },
 
   {
-    name: "dt",
-    component: "dt",
+    name: 'dt',
+    component: 'dt',
     children: [],
     props: {},
   },
 
   {
-    name: "em",
-    component: "em",
+    name: 'em',
+    component: 'em',
     children: [],
     props: {},
   },
 
   {
-    name: "embed",
-    component: "embed",
+    name: 'embed',
+    component: 'embed',
     children: [],
     props: {},
   },
 
   {
-    name: "fieldset",
-    component: "fieldset",
+    name: 'fieldset',
+    component: 'fieldset',
     children: [],
     props: {},
   },
 
   {
-    name: "figcaption",
-    component: "figcaption",
+    name: 'figcaption',
+    component: 'figcaption',
     children: [],
     props: {},
   },
 
   {
-    name: "figure",
-    component: "figure",
+    name: 'figure',
+    component: 'figure',
     children: [],
     props: {},
   },
 
   {
-    name: "font",
-    component: "font",
+    name: 'font',
+    component: 'font',
     children: [],
     props: {},
   },
 
   {
-    name: "footer",
-    component: "footer",
+    name: 'footer',
+    component: 'footer',
     children: [],
     props: {},
   },
 
   {
-    name: "form",
-    component: "form",
+    name: 'form',
+    component: 'form',
     children: [],
     props: {},
   },
 
   {
-    name: "frame",
-    component: "frame",
+    name: 'frame',
+    component: 'frame',
     children: [],
     props: {},
   },
 
   {
-    name: "frameset",
-    component: "frameset",
+    name: 'frameset',
+    component: 'frameset',
     children: [],
     props: {},
   },
 
   {
-    name: "h1",
-    component: "h1",
+    name: 'h1',
+    component: 'h1',
     children: [],
     props: {},
   },
 
   {
-    name: "h2",
-    component: "h2",
+    name: 'h2',
+    component: 'h2',
     children: [],
     props: {},
   },
 
   {
-    name: "h3",
-    component: "h3",
+    name: 'h3',
+    component: 'h3',
     children: [],
     props: {},
   },
 
   {
-    name: "h4",
-    component: "h4",
+    name: 'h4',
+    component: 'h4',
     children: [],
     props: {},
   },
 
   {
-    name: "h5",
-    component: "h5",
+    name: 'h5',
+    component: 'h5',
     children: [],
     props: {},
   },
 
   {
-    name: "h6",
-    component: "h6",
+    name: 'h6',
+    component: 'h6',
     children: [],
     props: {},
   },
 
   {
-    name: "head",
-    component: "head",
+    name: 'head',
+    component: 'head',
     children: [],
     props: {},
   },
 
   {
-    name: "header",
-    component: "header",
+    name: 'header',
+    component: 'header',
     children: [],
     props: {},
   },
 
   {
-    name: "hr",
-    component: "hr",
+    name: 'hr',
+    component: 'hr',
     children: [],
     props: {},
   },
 
   {
-    name: "html",
-    component: "html",
+    name: 'html',
+    component: 'html',
     children: [],
     props: {},
   },
 
   {
-    name: "i",
-    component: "i",
+    name: 'i',
+    component: 'i',
     children: [],
     props: {},
   },
 
   {
-    name: "iframe",
-    component: "iframe",
+    name: 'iframe',
+    component: 'iframe',
     children: [],
     props: {},
   },
 
   {
-    name: "img",
-    component: "img",
+    name: 'img',
+    component: 'img',
     children: [],
     props: {},
   },
 
   {
-    name: "input",
-    component: "input",
+    name: 'input',
+    component: 'input',
     children: [],
     props: {},
   },
 
   {
-    name: "ins",
-    component: "ins",
+    name: 'ins',
+    component: 'ins',
     children: [],
     props: {},
   },
 
   {
-    name: "kbd",
-    component: "kbd",
+    name: 'kbd',
+    component: 'kbd',
     children: [],
     props: {},
   },
 
   {
-    name: "label",
-    component: "label",
+    name: 'label',
+    component: 'label',
     children: [],
     props: {},
   },
 
   {
-    name: "legend",
-    component: "legend",
+    name: 'legend',
+    component: 'legend',
     children: [],
     props: {},
   },
 
   {
-    name: "li",
-    component: "li",
+    name: 'li',
+    component: 'li',
     children: [],
     props: {},
   },
 
   {
-    name: "link",
-    component: "link",
+    name: 'link',
+    component: 'link',
     children: [],
     props: {},
   },
 
   {
-    name: "main",
-    component: "main",
+    name: 'main',
+    component: 'main',
     children: [],
     props: {},
   },
 
   {
-    name: "map",
-    component: "map",
+    name: 'map',
+    component: 'map',
     children: [],
     props: {},
   },
 
   {
-    name: "mark",
-    component: "mark",
+    name: 'mark',
+    component: 'mark',
     children: [],
     props: {},
   },
 
   {
-    name: "meta",
-    component: "meta",
+    name: 'meta',
+    component: 'meta',
     children: [],
     props: {},
   },
 
   {
-    name: "meter",
-    component: "meter",
+    name: 'meter',
+    component: 'meter',
     children: [],
     props: {},
   },
 
   {
-    name: "nav",
-    component: "nav",
+    name: 'nav',
+    component: 'nav',
     children: [],
     props: {},
   },
 
   {
-    name: "noframes",
-    component: "noframes",
+    name: 'noframes',
+    component: 'noframes',
     children: [],
     props: {},
   },
 
   {
-    name: "noscript",
-    component: "noscript",
+    name: 'noscript',
+    component: 'noscript',
     children: [],
     props: {},
   },
 
   {
-    name: "object",
-    component: "object",
+    name: 'object',
+    component: 'object',
     children: [],
     props: {},
   },
 
   {
-    name: "ol",
-    component: "ol",
+    name: 'ol',
+    component: 'ol',
     children: [],
     props: {},
   },
 
   {
-    name: "optgroup",
-    component: "optgroup",
+    name: 'optgroup',
+    component: 'optgroup',
     children: [],
     props: {},
   },
 
   {
-    name: "option",
-    component: "option",
+    name: 'option',
+    component: 'option',
     children: [],
     props: {},
   },
 
   {
-    name: "output",
-    component: "output",
+    name: 'output',
+    component: 'output',
     children: [],
     props: {},
   },
 
   {
-    name: "p",
-    component: "p",
+    name: 'p',
+    component: 'p',
     children: [],
     props: {},
   },
 
   {
-    name: "param",
-    component: "param",
+    name: 'param',
+    component: 'param',
     children: [],
     props: {},
   },
 
   {
-    name: "picture",
-    component: "picture",
+    name: 'picture',
+    component: 'picture',
     children: [],
     props: {},
   },
 
   {
-    name: "pre",
-    component: "pre",
+    name: 'pre',
+    component: 'pre',
     children: [],
     props: {},
   },
 
   {
-    name: "progress",
-    component: "progress",
+    name: 'progress',
+    component: 'progress',
     children: [],
     props: {},
   },
 
   {
-    name: "q",
-    component: "q",
+    name: 'q',
+    component: 'q',
     children: [],
     props: {},
   },
 
   {
-    name: "rp",
-    component: "rp",
+    name: 'rp',
+    component: 'rp',
     children: [],
     props: {},
   },
 
   {
-    name: "rt",
-    component: "rt",
+    name: 'rt',
+    component: 'rt',
     children: [],
     props: {},
   },
 
   {
-    name: "ruby",
-    component: "ruby",
+    name: 'ruby',
+    component: 'ruby',
     children: [],
     props: {},
   },
 
   {
-    name: "s",
-    component: "s",
+    name: 's',
+    component: 's',
     children: [],
     props: {},
   },
 
   {
-    name: "samp",
-    component: "samp",
+    name: 'samp',
+    component: 'samp',
     children: [],
     props: {},
   },
 
   {
-    name: "script",
-    component: "script",
+    name: 'script',
+    component: 'script',
     children: [],
     props: {},
   },
 
   {
-    name: "section",
-    component: "section",
+    name: 'section',
+    component: 'section',
     children: [],
     props: {},
   },
 
   {
-    name: "select",
-    component: "select",
+    name: 'select',
+    component: 'select',
     children: [],
     props: {},
   },
 
   {
-    name: "small",
-    component: "small",
+    name: 'small',
+    component: 'small',
     children: [],
     props: {},
   },
 
   {
-    name: "source",
-    component: "source",
+    name: 'source',
+    component: 'source',
     children: [],
     props: {},
   },
 
   {
-    name: "span",
-    component: "span",
+    name: 'span',
+    component: 'span',
     children: [],
     props: {},
   },
 
   {
-    name: "strike",
-    component: "strike",
+    name: 'strike',
+    component: 'strike',
     children: [],
     props: {},
   },
 
   {
-    name: "strong",
-    component: "strong",
+    name: 'strong',
+    component: 'strong',
     children: [],
     props: {},
   },
 
   {
-    name: "style",
-    component: "style",
+    name: 'style',
+    component: 'style',
     children: [],
     props: {},
   },
 
   {
-    name: "sub",
-    component: "sub",
+    name: 'sub',
+    component: 'sub',
     children: [],
     props: {},
   },
 
   {
-    name: "summary",
-    component: "summary",
+    name: 'summary',
+    component: 'summary',
     children: [],
     props: {},
   },
 
   {
-    name: "sup",
-    component: "sup",
+    name: 'sup',
+    component: 'sup',
     children: [],
     props: {},
   },
 
   {
-    name: "svg",
-    component: "svg",
+    name: 'svg',
+    component: 'svg',
     children: [],
     props: {},
   },
 
   {
-    name: "table",
-    component: "table",
+    name: 'table',
+    component: 'table',
     children: [],
     props: {},
   },
 
   {
-    name: "tbody",
-    component: "tbody",
+    name: 'tbody',
+    component: 'tbody',
     children: [],
     props: {},
   },
 
   {
-    name: "td",
-    component: "td",
+    name: 'td',
+    component: 'td',
     children: [],
     props: {},
   },
 
   {
-    name: "template",
-    component: "template",
+    name: 'template',
+    component: 'template',
     children: [],
     props: {},
   },
 
   {
-    name: "textarea",
-    component: "textarea",
+    name: 'textarea',
+    component: 'textarea',
     children: [],
     props: {},
   },
 
   {
-    name: "tfoot",
-    component: "tfoot",
+    name: 'tfoot',
+    component: 'tfoot',
     children: [],
     props: {},
   },
 
   {
-    name: "th",
-    component: "th",
+    name: 'th',
+    component: 'th',
     children: [],
     props: {},
   },
 
   {
-    name: "thead",
-    component: "thead",
+    name: 'thead',
+    component: 'thead',
     children: [],
     props: {},
   },
 
   {
-    name: "time",
-    component: "time",
+    name: 'time',
+    component: 'time',
     children: [],
     props: {},
   },
 
   {
-    name: "title",
-    component: "title",
+    name: 'title',
+    component: 'title',
     children: [],
     props: {},
   },
 
   {
-    name: "tr",
-    component: "tr",
+    name: 'tr',
+    component: 'tr',
     children: [],
     props: {},
   },
 
   {
-    name: "track",
-    component: "track",
+    name: 'track',
+    component: 'track',
     children: [],
     props: {},
   },
 
   {
-    name: "tt",
-    component: "tt",
+    name: 'tt',
+    component: 'tt',
     children: [],
     props: {},
   },
 
   {
-    name: "u",
-    component: "u",
+    name: 'u',
+    component: 'u',
     children: [],
     props: {},
   },
 
   {
-    name: "ul",
-    component: "ul",
+    name: 'ul',
+    component: 'ul',
     children: [],
     props: {},
   },
 
   {
-    name: "var",
-    component: "var",
+    name: 'var',
+    component: 'var',
     children: [],
     props: {},
   },
 
   {
-    name: "video",
-    component: "video",
+    name: 'video',
+    component: 'video',
     children: [],
     props: {},
   },
 
   {
-    name: "wbr",
-    component: "wbr",
+    name: 'wbr',
+    component: 'wbr',
     children: [],
     props: {},
   },
 ]
 
+export const noChildrenComponents = ['img', 'hr']
 
-export const noChildrenComponents = [
-  'img',
-  'hr',
-]
+export const textOnlyComponents = ['textarea']
 
-
-export const textOnlyComponents = [
-  'textarea',
-]
-
-
-export default components.map(item => compile(item))
+export default components.map((item) => compile(item))

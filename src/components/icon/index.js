@@ -1,9 +1,8 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
-import { withStore } from 'freenit'
+import store from 'store'
 import { compile } from 'components'
 import types from 'types'
-
 
 const Icon = ({ icon, store }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -12,11 +11,9 @@ const Icon = ({ icon, store }) => {
       component: icon,
       children: [],
       props: {},
-      type: types.ICON,
     }),
-    collect: monitor => ({
-      isDragging: monitor.isDragging(),
-    }),
+    type: types.ICON,
+    collect: (monitor) => ({ isDragging: monitor.isDragging() }),
   })
   const opacity = isDragging ? 0.4 : 1
   const IconData = icon
@@ -27,5 +24,4 @@ const Icon = ({ icon, store }) => {
   )
 }
 
-
-export default withStore(Icon)
+export default Icon

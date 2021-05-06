@@ -1,9 +1,8 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import { withStore } from 'freenit'
+import store from 'store'
 import { toProps, DnD } from 'components'
-
 
 const resolutions = {
   mobile: {
@@ -12,7 +11,7 @@ const resolutions = {
     maxHeight: '667px',
     overflowY: 'scroll',
     backgroundColor: '#fff',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 
   tablet: {
@@ -22,18 +21,17 @@ const resolutions = {
     maxHeight: '600px',
     overflowY: 'scroll',
     backgroundColor: '#fff',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 
   desktop: {
     width: '100%',
     minHeight: 'calc(100vh - 4px)',
     backgroundColor: '#fff',
-    alignSelf: 'top'
+    alignSelf: 'top',
   },
 }
 resolutions.default = resolutions.desktop
-
 
 class Renderer extends React.Component {
   state = {
@@ -70,7 +68,7 @@ class Renderer extends React.Component {
       )
     }
     let themeData
-    const data = toProps(this.props.store.theme.theme || {})
+    const data = toProps(store.theme.theme || {})
     try {
       themeData = createMuiTheme(data)
     } catch (error) {
@@ -78,9 +76,16 @@ class Renderer extends React.Component {
     }
     const resolution = resolutions[this.props.type] || resolutions.desktop
     return (
-      <div style={{ display: 'flex', backgroundColor: '#eee', justifyContent: 'center', minHeight: 'calc(100vh - 4px)' }}>
+      <div
+        style={{
+          display: 'flex',
+          backgroundColor: '#eee',
+          justifyContent: 'center',
+          minHeight: 'calc(100vh - 4px)',
+        }}
+      >
         <div style={resolution}>
-          <ThemeProvider theme={themeData} >
+          <ThemeProvider theme={themeData}>
             <DnD data={this.props.data} />
           </ThemeProvider>
         </div>
@@ -89,4 +94,4 @@ class Renderer extends React.Component {
   }
 }
 
-export default withStore(Renderer)
+export default Renderer

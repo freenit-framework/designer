@@ -1,16 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { NoPage, Profile } from '@freenit-framework/core'
 
-// Pages
-import {
-  NoPage,
-  Profile,
-} from 'freenit'
-import {
-  Landing,
-  Design,
-} from 'pages'
-
+import { Landing, Design } from 'pages'
 
 const Routing = () => {
   return (
@@ -22,6 +14,5 @@ const Routing = () => {
     </Switch>
   )
 }
-
 
 export default Routing

@@ -1,15 +1,6 @@
 import React from 'react'
-import { withStore } from 'freenit'
-import {
-  Menu,
-  Props,
-  ThemeEditor,
-} from 'components'
-import {
-  IconButton,
-  Button,
-  Paper,
-} from '@material-ui/core'
+import { Menu, Props, ThemeEditor } from 'components'
+import { IconButton, Button, Paper } from '@material-ui/core'
 
 import {
   DesktopMac,
@@ -22,20 +13,16 @@ import {
   Tablet,
   Undo,
 } from '@material-ui/icons'
+import store from 'store'
 
 import styles from './styles'
 
-
-const tabLabels = [
-  'props',
-  'theme',
-]
-
+const tabLabels = ['props', 'theme']
 
 class Editor extends React.Component {
   state = {
     open: true,
-    tab: 'props'
+    tab: 'props',
   }
 
   toggleHide = () => {
@@ -47,45 +34,48 @@ class Editor extends React.Component {
   }
 
   toggleRearrange = () => {
-    const { rearrange } = this.props.store
+    const { rearrange } = store
     rearrange.rearrange = !rearrange.rearrange
   }
 
   undo = () => {}
   redo = () => {}
   find = () => {
-    const { tree, selected } = this.props.store
+    const { tree, selected } = store
     tree.showSelected(selected.selected)
     this.setState({ tab: this.state.tab })
   }
 
   setDisplay = (display) => () => {
-    this.props.store.display.display = display
+    store.display.display = display
   }
 
   render() {
-    const icon = this.state.open ? <KeyboardArrowRight /> : <KeyboardArrowLeft />
+    const icon = this.state.open ? (
+      <KeyboardArrowRight />
+    ) : (
+      <KeyboardArrowLeft />
+    )
     const rootStyle = this.state.open
       ? styles.root
       : { ...styles.root, width: 50 }
     const tabs = this.state.open
-      ? tabLabels.map(label => (
-        <Button
-          key={label}
-          style={styles.button}
-          variant="outlined"
-          onClick={this.switchTab(label)}
-          disabled={label === this.state.tab}
-        >
-          {label}
-        </Button>
-      )) : null
+      ? tabLabels.map((label) => (
+          <Button
+            key={label}
+            style={styles.button}
+            variant="outlined"
+            onClick={this.switchTab(label)}
+            disabled={label === this.state.tab}
+          >
+            {label}
+          </Button>
+        ))
+      : null
     let content
     let actions
     if (this.state.open) {
-      const color = this.props.store.rearrange.rearrange
-        ? 'secondary'
-        : 'default'
+      const color = store.rearrange.rearrange ? 'secondary' : 'default'
       actions = (
         <div style={styles.rearrange}>
           <IconButton
@@ -95,19 +85,13 @@ class Editor extends React.Component {
           >
             <FormatIndentIncrease />
           </IconButton>
-          <IconButton
-            onClick={this.undo}
-          >
+          <IconButton onClick={this.undo}>
             <Undo />
           </IconButton>
-          <IconButton
-            onClick={this.redo}
-          >
+          <IconButton onClick={this.redo}>
             <Redo />
           </IconButton>
-          <IconButton
-            onClick={this.find}
-          >
+          <IconButton onClick={this.find}>
             <Search />
           </IconButton>
         </div>
@@ -136,7 +120,13 @@ class Editor extends React.Component {
         </div>
         {actions}
         {content}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: 'white' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            backgroundColor: 'white',
+          }}
+        >
           <IconButton onClick={this.setDisplay('mobile')}>
             <PhoneAndroid />
           </IconButton>
@@ -152,5 +142,4 @@ class Editor extends React.Component {
   }
 }
 
-
-export default withStore(Editor)
+export default Editor

@@ -1,15 +1,15 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
-import { withStore } from 'freenit'
+import store from 'store'
 import types from 'types'
 
 import styles from './styles'
 
-
-const Component = ({ data, store }) => {
+const Component = ({ data }) => {
   const [{ isDragging }, drag] = useDrag({
-    item: { ...data, type: types.COMPONENT },
-    collect: monitor => ({ isDragging: monitor.isDragging() }),
+    item: data,
+    type: types.COMPONENT,
+    collect: (monitor) => ({ isDragging: monitor.isDragging() }),
   })
   const opacity = isDragging ? 0.4 : 1
   return (
@@ -19,5 +19,4 @@ const Component = ({ data, store }) => {
   )
 }
 
-
-export default withStore(Component)
+export default Component

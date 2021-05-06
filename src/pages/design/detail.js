@@ -1,26 +1,18 @@
 import React from 'react'
 import { DndProvider } from 'react-dnd'
-import { withStore } from 'freenit'
 import { HTML5Backend as Backend } from 'react-dnd-html5-backend'
-import {
-  ComponentPanel,
-  Editor,
-  Renderer,
-} from 'components'
+import { ComponentPanel, Editor, Renderer } from 'components'
 import types from 'types'
 import * as icons from '@material-ui/icons'
 import * as mui from '@material-ui/core'
-import {
-  changeIds,
-  exportJson,
-} from 'utils'
+import { changeIds, exportJson } from 'utils'
+import store from 'store'
 
 import styles from './styles'
 
-
 class Design extends React.Component {
   handleKeyDown = async (event) => {
-    const { clipboard, rearrange, selected, tree } = this.props.store
+    const { clipboard, rearrange, selected, tree } = store
     if (event.key === 'Shift') {
       rearrange.rearrange = true
     } else if (event.key === 'Delete') {
@@ -28,7 +20,7 @@ class Design extends React.Component {
     } else if (event.key === 'Control') {
       clipboard.control(true)
     } else if (clipboard.clipboard.ctrl && event.key === 'c') {
-      const listener = function(ev) {
+      const listener = function (ev) {
         ev.preventDefault()
         const data = exportJson(selected.selected)
         const display = JSON.stringify(data)
@@ -49,7 +41,7 @@ class Design extends React.Component {
   }
 
   handleKeyUp = (event) => {
-    const { clipboard, rearrange } = this.props.store
+    const { clipboard, rearrange } = store
     if (event.key === 'Shift') {
       rearrange.rearrange = false
     } else if (event.key === 'Control') {
@@ -65,12 +57,12 @@ class Design extends React.Component {
     } else {
       result.component = mui[result.name] || result.name
     }
-    result.children = result.children.map(item => this.loadData(item))
+    result.children = result.children.map((item) => this.loadData(item))
     return result
   }
 
   handlePaste = (event) => {
-    const { selected, tree } = this.props.store
+    const { selected, tree } = store
     const { value } = event.target
     if (selected.selected !== {} && value !== '') {
       const pasted = JSON.parse(value)
@@ -81,7 +73,6 @@ class Design extends React.Component {
   }
 
   render() {
-    const { store } = this.props
     const { display, tree } = store
     return (
       <div
@@ -99,7 +90,7 @@ class Design extends React.Component {
         <DndProvider backend={Backend} style={styles.provider}>
           <ComponentPanel />
           <div style={styles.display}>
-            <Renderer data={tree.tree} store={store} type={display.display} />
+            <Renderer data={tree.tree} type={display.display} />
           </div>
           <Editor />
         </DndProvider>
@@ -108,5 +99,4 @@ class Design extends React.Component {
   }
 }
 
-
-export default withStore(Design)
+export default Design

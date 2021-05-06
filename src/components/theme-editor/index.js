@@ -1,10 +1,6 @@
 import React from 'react'
-import { withStore } from 'freenit'
-import {
-  EditProp,
-  PropItem,
-} from 'components'
-
+import store from 'store'
+import { EditProp, PropItem } from 'components'
 
 class ThemeEditor extends React.Component {
   state = {
@@ -26,30 +22,20 @@ class ThemeEditor extends React.Component {
   }
 
   render() {
-    const { theme } = this.props.store
-    const propView = this.state.edit
-      ? (
-        <EditProp
-          flavor="theme"
-          onEdit={this.showEdit}
-          onClose={this.closeEdit}
-          data={this.state.data}
-          identity={this.state.identity}
-        />
-      ) : (
-        <PropItem
-          flavor="theme"
-          onEdit={this.showEdit}
-          data={theme.theme}
-        />
-      )
-    return (
-      <div>
-        {propView}
-      </div>
+    const { theme } = store
+    const propView = this.state.edit ? (
+      <EditProp
+        flavor="theme"
+        onEdit={this.showEdit}
+        onClose={this.closeEdit}
+        data={this.state.data}
+        identity={this.state.identity}
+      />
+    ) : (
+      <PropItem flavor="theme" onEdit={this.showEdit} data={theme.theme} />
     )
+    return <div>{propView}</div>
   }
 }
 
-
-export default withStore(ThemeEditor)
+export default ThemeEditor

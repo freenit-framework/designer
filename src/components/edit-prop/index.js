@@ -1,15 +1,10 @@
 import React from 'react'
-import {
-  Button,
-  MenuItem,
-  TextField,
-} from '@material-ui/core'
-import { withStore } from 'freenit'
+import { Button, MenuItem, TextField } from '@material-ui/core'
 import { SketchPicker } from 'react-color'
 import { convert } from 'components'
+import store from 'store'
 
 import styles from './styles'
-
 
 class EditProp extends React.Component {
   constructor(props) {
@@ -43,9 +38,10 @@ class EditProp extends React.Component {
   handleFileChange = (event) => {
     for (let i = 0; i < event.target.files.length; ++i) {
       const reader = new FileReader()
-      reader.onload = (e) => this.setState({
-        file: e.target.result,
-      })
+      reader.onload = (e) =>
+        this.setState({
+          file: e.target.result,
+        })
       reader.readAsDataURL(event.target.files[i])
     }
   }
@@ -80,10 +76,10 @@ class EditProp extends React.Component {
     const value = `${color.hex}${alpha}`
     if (this.state.identity) {
       if (this.props.flavor === 'theme') {
-        const { theme } = this.props.store
+        const { theme } = store
         theme.setPropValue(this.props.data, value)
       } else {
-        const { editing, selected, tree } = this.props.store
+        const { editing, selected, tree } = store
         tree.setPropValue(value, selected.selected, this.props.data.identity)
         editing.editing = this.props.data
       }
@@ -94,7 +90,7 @@ class EditProp extends React.Component {
 
   submit = (event) => {
     event.preventDefault()
-    const { notification, selected, theme, tree } = this.props.store
+    const { notification, selected, theme, tree } = store
     if (this.state.name === '') {
       notification.show('Property name can not be empty')
       return
@@ -120,7 +116,7 @@ class EditProp extends React.Component {
         } else {
           tree.setPropType(this.state.type, selected.selected, identity)
         }
-      } else if (this.state.type === 'file'){
+      } else if (this.state.type === 'file') {
         if (this.props.flavor === 'theme') {
           theme.setPropName(this.props.data, this.state.name)
           theme.setPropType(this.props.data, this.state.type)
@@ -138,20 +134,19 @@ class EditProp extends React.Component {
         } else {
           tree.setPropName(this.state.name, selected.selected, identity)
           tree.setPropType(this.state.type, selected.selected, identity)
-          if (!complex) { tree.setPropValue(value, selected.selected, identity) }
+          if (!complex) {
+            tree.setPropValue(value, selected.selected, identity)
+          }
         }
       }
     } else {
       if (this.props.flavor === 'theme') {
-        theme.addProp(
-          this.props.identity,
-          { ...this.state, value },
-        )
+        theme.addProp(this.props.identity, { ...this.state, value })
       } else {
         tree.addProp(
           this.props.identity,
           { ...this.state, value },
-          selected.selected,
+          selected.selected
         )
       }
     }
@@ -185,12 +180,7 @@ class EditProp extends React.Component {
       const color = this.state.identity
         ? this.props.data.value
         : this.state.value
-      valueView = (
-        <SketchPicker
-          onChange={this.changeColor}
-          color={color}
-        />
-      )
+      valueView = <SketchPicker onChange={this.changeColor} color={color} />
     }
     if (this.state.type === 'file') {
       valueView = (
@@ -217,26 +207,22 @@ class EditProp extends React.Component {
         </div>
       )
     }
-    const nameView = this.state.identity
-      ? null
-      : (
-        <TextField
-          autoFocus
-          fullWidth
-          label="name"
-          value={this.state.name}
-          onChange={this.editName}
-        />
-      )
+    const nameView = this.state.identity ? null : (
+      <TextField
+        autoFocus
+        fullWidth
+        label="name"
+        value={this.state.name}
+        onChange={this.editName}
+      />
+    )
     const typeViews = [
       <MenuItem value="string">string</MenuItem>,
       <MenuItem value="number">number</MenuItem>,
       <MenuItem value="color">color</MenuItem>,
     ]
     if (this.props.flavor !== 'theme') {
-      typeViews.push(
-        <MenuItem value="file">file</MenuItem>
-      )
+      typeViews.push(<MenuItem value="file">file</MenuItem>)
     }
     return (
       <form onSubmit={this.submit} style={styles.form}>
@@ -272,5 +258,4 @@ class EditProp extends React.Component {
   }
 }
 
-
-export default withStore(EditProp)
+export default EditProp

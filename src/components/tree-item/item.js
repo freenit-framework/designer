@@ -1,5 +1,4 @@
 import React from 'react'
-import { withStore } from 'freenit'
 import {
   Collapse,
   IconButton,
@@ -10,9 +9,9 @@ import {
 import DownIcon from '@material-ui/icons/KeyboardArrowDown'
 import UpIcon from '@material-ui/icons/KeyboardArrowUp'
 
-import TreeItem from '.'
+import store from 'store'
+import TreeItem from './index'
 import styles from './styles'
-
 
 class Item extends React.Component {
   state = {
@@ -21,7 +20,7 @@ class Item extends React.Component {
 
   select = (event) => {
     event.stopPropagation()
-    const { store, data } = this.props
+    const { data } = this.props
     store.selected.selected = data
   }
 
@@ -33,29 +32,23 @@ class Item extends React.Component {
   }
 
   render() {
-    const { data, store } = this.props
-    const children = data.children.map(item => (
-      <TreeItem data={item} parent={data} store={store} key={item.identity} />
+    const { data } = this.props
+    const children = data.children.map((item) => (
+      <TreeItem data={item} parent={data} key={item.identity} />
     ))
-    const icon = data.open
-      ? <UpIcon />
-      : <DownIcon />
+    const icon = data.open ? <UpIcon /> : <DownIcon />
     const style = {
       ...styles.root,
-      border: data.identity === store.selected.selected.identity
-        ? '1px dashed gray'
-        : styles.root.border
+      border:
+        data.identity === store.selected.selected.identity
+          ? '1px dashed gray'
+          : styles.root.border,
     }
     return (
       <ListItem button style={style} onClick={this.select}>
         <div style={styles.text}>
-          <ListItemText
-            primary={data.name}
-            secondary={data.identity}
-          />
-          <IconButton onClick={this.toggleOpen}>
-            {icon}
-          </IconButton>
+          <ListItemText primary={data.name} secondary={data.identity} />
+          <IconButton onClick={this.toggleOpen}>{icon}</IconButton>
         </div>
         <Collapse in={data.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
@@ -67,9 +60,4 @@ class Item extends React.Component {
   }
 }
 
-
-Item.propTypes = {
-}
-
-
-export default withStore(Item)
+export default Item

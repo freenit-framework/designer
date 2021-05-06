@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStore } from 'freenit'
+import store from 'store'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
-import {
-  Button,
-  TextField,
-} from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 
 import styles from './styles'
-
 
 class PropItem extends React.Component {
   state = {
@@ -17,10 +13,12 @@ class PropItem extends React.Component {
     name: '',
   }
 
-  setOver = (data) => () => { this.props.store.over.over = data }
+  setOver = (data) => () => {
+    store.over.over = data
+  }
 
   removeItem = () => {
-    const { editing, selected, theme, tree } = this.props.store
+    const { editing, selected, theme, tree } = store
     if (this.props.flavor === 'props') {
       tree.removeProp(this.props.data, selected.selected.props)
     } else {
@@ -44,14 +42,14 @@ class PropItem extends React.Component {
   submit = (event) => {
     event.preventDefault()
     if (this.props.flavor === 'theme') {
-      const { theme } = this.props.store
+      const { theme } = store
       theme.setPropName(this.props.data, this.state.name)
     } else {
-      const { editing, selected, tree } = this.props.store
+      const { editing, selected, tree } = store
       tree.setPropName(
         this.state.name,
         selected.selected,
-        this.props.data.identity,
+        this.props.data.identity
       )
       editing.editing = {}
     }
@@ -59,12 +57,11 @@ class PropItem extends React.Component {
   }
 
   render() {
-    const { data, store } = this.props
+    const { data } = this.props
     const { over } = store.over
     const { tree } = store.tree
-    const iconStyle = over.identity === data.identity
-      ? { opacity: 0.4 }
-      : { opacity: 0 }
+    const iconStyle =
+      over.identity === data.identity ? { opacity: 0.4 } : { opacity: 0 }
     if (this.state.edit) {
       return (
         <form onSubmit={this.submit}>
@@ -86,25 +83,23 @@ class PropItem extends React.Component {
       )
     } else {
       let nameComponent
-      if (data.children) { // object
+      if (data.children) {
+        // object
         nameComponent = (
           <span
             style={styles.prop.name}
             onMouseEnter={this.setOver(data)}
             onMouseLeave={this.setOver({})}
           >
-            <span onClick={this.openEdit}>
-              {data.name}: &#123;
-            </span>
+            <span onClick={this.openEdit}>{data.name}: &#123;</span>
             <div style={styles.item}>
               <AddIcon
                 style={iconStyle}
                 onClick={this.props.onEdit({}, data.identity)}
               />
-              {data.identity !== tree.props.identity
-                ? <RemoveIcon style={iconStyle} onClick={this.removeItem} />
-                : null
-              }
+              {data.identity !== tree.props.identity ? (
+                <RemoveIcon style={iconStyle} onClick={this.removeItem} />
+              ) : null}
             </div>
           </span>
         )
@@ -112,10 +107,9 @@ class PropItem extends React.Component {
           <div style={styles.item}>
             {nameComponent}
             <div>
-              {data.children.map(item => (
+              {data.children.map((item) => (
                 <PropItem
                   data={item}
-                  store={this.props.store}
                   key={item.identity}
                   onEdit={this.props.onEdit}
                   flavor={this.props.flavor}
@@ -133,32 +127,28 @@ class PropItem extends React.Component {
             onMouseEnter={this.setOver(data)}
             onMouseLeave={this.setOver({})}
           >
-            <span onClick={this.openEdit}>
-              {data.name}:
-            </span>
+            <span onClick={this.openEdit}>{data.name}:</span>
             &nbsp;
             <span onClick={this.props.onEdit(data)}>
-              {data.pre}{'<file>'}{data.post}
+              {data.pre}
+              {'<file>'}
+              {data.post}
             </span>
             <RemoveIcon style={iconStyle} onClick={this.removeItem} />
           </span>
         )
-        return (
-          <div style={styles.item}>
-            {nameComponent}
-          </div>
-        )
-      } else if (data.value) { // simple value or array
-        if (Array.isArray(data.value)) { // array
+        return <div style={styles.item}>{nameComponent}</div>
+      } else if (data.value) {
+        // simple value or array
+        if (Array.isArray(data.value)) {
+          // array
           nameComponent = (
             <span
               style={styles.prop.name}
               onMouseEnter={this.setOver(data)}
               onMouseLeave={this.setOver({})}
             >
-              <span onClick={this.openEdit}>
-                {data.name}: &#91;
-              </span>
+              <span onClick={this.openEdit}>{data.name}: &#91;</span>
               <div style={styles.item}>
                 <AddIcon
                   style={iconStyle}
@@ -171,9 +161,8 @@ class PropItem extends React.Component {
           return (
             <div key={data.identity} style={styles.item}>
               {nameComponent}
-              {data.value.map(item => (
+              {data.value.map((item) => (
                 <PropItem
-                  store={this.props.store}
                   key={item.identity}
                   data={item}
                   onEdit={this.props.onEdit}
@@ -200,9 +189,7 @@ class PropItem extends React.Component {
               onMouseEnter={this.setOver(data)}
               onMouseLeave={this.setOver({})}
             >
-              <span onClick={this.props.onEdit(data)}>
-                {data.value}
-              </span>
+              <span onClick={this.props.onEdit(data)}>{data.value}</span>
               <div style={styles.item}>
                 <RemoveIcon style={iconStyle} onClick={this.removeItem} />
               </div>
@@ -215,16 +202,13 @@ class PropItem extends React.Component {
   }
 }
 
-
 PropItem.propTypes = {
   data: PropTypes.shape({}).isRequired,
   flavor: PropTypes.string.isRequired,
 }
 
-
 PropItem.defaultProps = {
   flavor: 'props',
 }
 
-
-export default withStore(PropItem)
+export default PropItem

@@ -5,11 +5,11 @@ import {
   Paper,
   TextField,
   FormControlLabel,
-  Switch
+  Switch,
 } from '@material-ui/core'
 import * as icons from '@material-ui/icons'
 import * as mui from '@material-ui/core'
-import { withStore } from 'freenit'
+import store from 'store'
 import {
   default as components,
   compile,
@@ -28,21 +28,32 @@ import { exportJson } from 'utils'
 
 import styles from './styles'
 
-
-const iconNames = Object.getOwnPropertyNames(icons).filter(icon => {
-  if (icons[icon].muiName !== 'SvgIcon') { return false }
-  if (icon[0] !== icon[0].toUpperCase()) { return false }
-  if (icon.endsWith('Outlined')) { return false }
-  if (icon.endsWith('Rounded')) { return false }
-  if (icon.endsWith('Sharp')) { return false }
-  if (icon.endsWith('TwoTone')) { return false }
+const iconNames = Object.getOwnPropertyNames(icons).filter((icon) => {
+  if (icons[icon].muiName !== 'SvgIcon') {
+    return false
+  }
+  if (icon[0] !== icon[0].toUpperCase()) {
+    return false
+  }
+  if (icon.endsWith('Outlined')) {
+    return false
+  }
+  if (icon.endsWith('Rounded')) {
+    return false
+  }
+  if (icon.endsWith('Sharp')) {
+    return false
+  }
+  if (icon.endsWith('TwoTone')) {
+    return false
+  }
   return true
 })
-const iconData = iconNames.map(name => ({ ...icons[name], name }))
-
+const iconData = iconNames.map((name) => ({ ...icons[name], name }))
 
 const reactImport = "import React from 'react'\n"
-const themeImport = "import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'\n"
+const themeImport =
+  "import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'\n"
 
 const exportTemplates = {
   class: {
@@ -61,7 +72,7 @@ class Page extends React.Component {
 
 
 export default Page
-`
+`,
   },
   function: {
     begining: `
@@ -77,31 +88,24 @@ const Page = (props) => {
 
 
 export default Page
-`
-
-  }
+`,
+  },
 }
 
 const stringify = (obj_from_json) => {
-  if (typeof obj_from_json !== "object" || Array.isArray(obj_from_json)) {
+  if (typeof obj_from_json !== 'object' || Array.isArray(obj_from_json)) {
     // not an object, stringify using native function
-    return JSON.stringify(obj_from_json);
+    return JSON.stringify(obj_from_json)
   }
   // Implements recursive object serialization according to JSON spec
   // but without quotes around the keys.
-  const props = Object
-    .keys(obj_from_json)
-    .map(key => `${key}: ${stringify(obj_from_json[key])}`)
-    .join(", ")
+  const props = Object.keys(obj_from_json)
+    .map((key) => `${key}: ${stringify(obj_from_json[key])}`)
+    .join(', ')
   return `{{ ${props} }}`
 }
 
-
-const tabLabels = [
-  'components',
-  'icons',
-]
-
+const tabLabels = ['components', 'icons']
 
 class ComponentPanel extends React.Component {
   state = {
@@ -109,7 +113,7 @@ class ComponentPanel extends React.Component {
     search: '',
     open: true,
     tab: 'components',
-    typeOfExport: 'class'
+    typeOfExport: 'class',
   }
 
   fileInput = React.createRef()
@@ -127,18 +131,18 @@ class ComponentPanel extends React.Component {
     }
     let output = ' '.repeat(level)
     output += `<${data.name}`
-    Object.getOwnPropertyNames(data.props).forEach(propName => {
+    Object.getOwnPropertyNames(data.props).forEach((propName) => {
       const propValue = stringify(data.props[propName])
       output += ` ${propName}=${propValue}`
     })
     const containsData = data.text || data.children.length > 0
-    output += containsData
-      ? '>\n'
-      : ' />\n'
-    if (data.text) { output += ' '.repeat(level + 2) + data.text + '\n' }
-    output += data.children.map(
-      item => this.exportCode(item, level + 2),
-    ).join('')
+    output += containsData ? '>\n' : ' />\n'
+    if (data.text) {
+      output += ' '.repeat(level + 2) + data.text + '\n'
+    }
+    output += data.children
+      .map((item) => this.exportCode(item, level + 2))
+      .join('')
     if (containsData) {
       output += ' '.repeat(level)
       output += `</${data.name}>\n`
@@ -147,17 +151,18 @@ class ComponentPanel extends React.Component {
   }
 
   exportTheme = (data, level = 0) => {
-    if (typeof data !== "object" || Array.isArray(data)) {
+    if (typeof data !== 'object' || Array.isArray(data)) {
       // not an object, stringify using native function
-      return JSON.stringify(data);
+      return JSON.stringify(data)
     }
     // Implements recursive object serialization according to JSON spec
     // but without quotes around the keys.
     const ident = ' '.repeat(level + 2)
-    const props = Object
-      .keys(data)
-      .map(key => `${ident}${key}: ${this.exportTheme(data[key], level + 2)},\n`)
-      .join("")
+    const props = Object.keys(data)
+      .map(
+        (key) => `${ident}${key}: ${this.exportTheme(data[key], level + 2)},\n`
+      )
+      .join('')
     let output = '{\n'
     output += `${props}`
     output += ' '.repeat(level)
@@ -173,13 +178,13 @@ class ComponentPanel extends React.Component {
     } else {
       result.component = mui[result.name] || result.name
     }
-    result.children = result.children.map(
-      item => this.loadData(item, compatibility, false)
+    result.children = result.children.map((item) =>
+      this.loadData(item, compatibility, false)
     )
     if (compatibility && top) {
-      this.props.store.tree.tree = compile(result)
+      store.tree.tree = compile(result)
       const theme = convert('theme', result.theme || {})
-      this.props.store.theme.theme = theme
+      store.theme.theme = theme
     }
     return result
   }
@@ -189,12 +194,14 @@ class ComponentPanel extends React.Component {
       const [file] = event.target.files
       const reader = new FileReader()
       reader.onload = (e) => {
-        const { theme, tree } = this.props.store
+        const { theme, tree } = store
         const data = JSON.parse(e.target.result)
         if (data.tree && data.theme) {
           tree.tree = this.loadData(data.tree)
           theme.theme = data.theme
-        } else { this.loadData(data, true) }
+        } else {
+          this.loadData(data, true)
+        }
       }
       reader.readAsText(file)
     }
@@ -209,10 +216,10 @@ class ComponentPanel extends React.Component {
       return components
     }
     if (this.state.caseSensitive) {
-      return components.filter(item => item.name.includes(this.state.search))
+      return components.filter((item) => item.name.includes(this.state.search))
     }
-    return components.filter(
-      item => item.name.toLowerCase().includes(this.state.search.toLowerCase())
+    return components.filter((item) =>
+      item.name.toLowerCase().includes(this.state.search.toLowerCase())
     )
   }
 
@@ -221,12 +228,10 @@ class ComponentPanel extends React.Component {
       return iconData
     }
     if (this.state.caseSensitive) {
-      return iconData.filter(
-        item => item.name.includes(this.state.search)
-      )
+      return iconData.filter((item) => item.name.includes(this.state.search))
     }
-    return iconData.filter(
-      item => item.name.toLowerCase().includes(this.state.search.toLowerCase())
+    return iconData.filter((item) =>
+      item.name.toLowerCase().includes(this.state.search.toLowerCase())
     )
   }
 
@@ -247,13 +252,15 @@ class ComponentPanel extends React.Component {
   }
 
   switchTypeOfExport = () => {
-    this.setState({ typeOfExport: this.state.typeOfExport === 'class' ? 'function' : 'class' })
+    this.setState({
+      typeOfExport: this.state.typeOfExport === 'class' ? 'function' : 'class',
+    })
   }
 
   render() {
     this.mui = {}
-    const { tree, theme } = this.props.store
-    const { begining, ending } = exportTemplates[this.state.typeOfExport];
+    const { tree, theme } = store
+    const { begining, ending } = exportTemplates[this.state.typeOfExport]
     const data = decompile(tree.tree)
     data.theme = toProps(theme.theme || {})
     const result = {
@@ -269,57 +276,58 @@ class ComponentPanel extends React.Component {
     let muiImport = ''
     if (muiComponents.length > 0) {
       muiImport += 'import {\n'
-      muiComponents.forEach(comp => { muiImport += `  ${comp},\n` })
+      muiComponents.forEach((comp) => {
+        muiImport += `  ${comp},\n`
+      })
       muiImport += "} from '@material-ui/core'\n"
     }
     const iconComponents = Object.getOwnPropertyNames(this.icons)
     let iconImport = ''
     if (iconComponents.length > 0) {
       iconImport += 'import {\n'
-      iconComponents.forEach(comp => { iconImport += `  ${comp},\n` })
+      iconComponents.forEach((comp) => {
+        iconImport += `  ${comp},\n`
+      })
       iconImport += "} from '@material-ui/icons'\n"
     }
     const codeData = Base64.encode(
       `${reactImport}${muiImport}${iconImport}${themeImport}${themeOutput}${begining}${output}${ending}`
     )
-    const caseText = this.state.caseSensitive
-      ? 'A'
-      : 'a'
+    const caseText = this.state.caseSensitive ? 'A' : 'a'
     const icon = this.state.open ? <LeftIcon /> : <RightIcon />
     const rootStyle = this.state.open
       ? styles.root
       : { ...styles.root, width: 50 }
     let content
     if (this.state.open) {
-      content = this.state.tab === 'components'
-        ? (
+      content =
+        this.state.tab === 'components' ? (
           <div style={styles.components}>
-            {this.filterComponents().map(
-              data => <Component data={data} key={data.identity} />
-            )}
+            {this.filterComponents().map((data) => (
+              <Component data={data} key={data.identity} />
+            ))}
           </div>
         ) : (
           <div style={styles.icons}>
-            {
-              this.filterIcons().map(
-                data => <Icon key={data.name} icon={data} />
-              )
-            }
+            {this.filterIcons().map((data) => (
+              <Icon key={data.name} icon={data} />
+            ))}
           </div>
         )
     }
     const tabs = this.state.open
-      ? tabLabels.map(label => (
-        <Button
-          key={label}
-          style={styles.button}
-          variant="outlined"
-          onClick={this.switchTab(label)}
-          disabled={label === this.state.tab}
-        >
-          {label}
-        </Button>
-      )) : null
+      ? tabLabels.map((label) => (
+          <Button
+            key={label}
+            style={styles.button}
+            variant="outlined"
+            onClick={this.switchTab(label)}
+            disabled={label === this.state.tab}
+          >
+            {label}
+          </Button>
+        ))
+      : null
     return (
       <div style={rootStyle}>
         <div style={styles.toggle}>
@@ -334,80 +342,75 @@ class ComponentPanel extends React.Component {
           multiple
           onChange={this.handleFileChange}
         />
-        {
-          this.state.open
-            ? (
-              <div style={styles.find}>
-                <TextField
-                  label="Search"
-                  style={styles.search}
-                  onChange={this.handleSearchChange}
-                />
-                <Paper
-                  style={styles.case}
-                  onClick={this.toggleCase}
-                  title="Case sensitivity"
-                >
-                  {caseText}
-                </Paper>
-              </div>
-            ) : null
-        }
+        {this.state.open ? (
+          <div style={styles.find}>
+            <TextField
+              label="Search"
+              style={styles.search}
+              onChange={this.handleSearchChange}
+            />
+            <Paper
+              style={styles.case}
+              onClick={this.toggleCase}
+              title="Case sensitivity"
+            >
+              {caseText}
+            </Paper>
+          </div>
+        ) : null}
         {content}
-        {
-          this.state.open
-            ? (
-              <Paper style={styles.components.container}>
-                <div>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={this.state.typeOfExport === 'class'}
-                        onChange={this.switchTypeOfExport}
-                        name="typeOfExport"
-                        color="primary"
-                      />
-                    }
-                    style={{}}
-                    label={this.state.typeOfExport === 'class' ? 'Class Component' : 'Function Component'}
+        {this.state.open ? (
+          <Paper style={styles.components.container}>
+            <div>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={this.state.typeOfExport === 'class'}
+                    onChange={this.switchTypeOfExport}
+                    name="typeOfExport"
+                    color="primary"
                   />
-                </div>
-                <div>
-                  <a href={saveData} download="design.json">
-                    <Button
-                      color="primary"
-                      variant="outlined"
-                      style={styles.components.button}
-                    >
-                      Save
-                  </Button>
-                  </a>
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={this.handleClick}
-                    style={styles.components.button}
-                  >
-                    Load
+                }
+                style={{}}
+                label={
+                  this.state.typeOfExport === 'class'
+                    ? 'Class Component'
+                    : 'Function Component'
+                }
+              />
+            </div>
+            <div>
+              <a href={saveData} download="design.json">
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  style={styles.components.button}
+                >
+                  Save
                 </Button>
-                  <a
-                    href={`data:application/javascript;base64,${codeData}`}
-                    download="page.js"
-                  >
-                    <Button style={styles.components.button} variant="outlined">
-                      Export
-                  </Button>
-                  </a>
-
-                </div>
-
-              </Paper>
-            ) : null
-        }
+              </a>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={this.handleClick}
+                style={styles.components.button}
+              >
+                Load
+              </Button>
+              <a
+                href={`data:application/javascript;base64,${codeData}`}
+                download="page.js"
+              >
+                <Button style={styles.components.button} variant="outlined">
+                  Export
+                </Button>
+              </a>
+            </div>
+          </Paper>
+        ) : null}
       </div>
     )
   }
 }
 
-
-export default withStore(ComponentPanel)
+export default ComponentPanel

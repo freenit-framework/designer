@@ -1,21 +1,20 @@
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useDrag, useDrop } from 'react-dnd'
-import { withStore } from 'freenit'
+import store from 'store'
 import { noChildrenComponents, textOnlyComponents, toProps } from 'components'
 import types from 'types'
 
-
-const DnD = ({ data, parent, store }) => {
+const DnD = ({ data, parent }) => {
   const { identity } = data
   const Component = data.component
   const { rearrange, selected, tree } = store
   const ref = useRef(null)
-  const [ over, setOver ] = React.useState(false)
+  const [over, setOver] = React.useState(false)
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: [types.COMPONENT, types.ICON],
     drop: (item, monitor) => {
-      if (monitor.isOver({ shallow:true }) && monitor.canDrop()) {
+      if (monitor.isOver({ shallow: true }) && monitor.canDrop()) {
         if (rearrange.rearrange) {
           tree.rearrange(item, parent, data)
         } else {
@@ -24,19 +23,15 @@ const DnD = ({ data, parent, store }) => {
         }
       }
     },
-    collect: monitor => ({
+    collect: (monitor) => ({
       isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop(),
     }),
   })
   const [{ isDragging }, drag] = useDrag({
-    item: {
-      ...data,
-      type: types.COMPONENT,
-    },
-    collect: monitor => ({
-      isDragging: monitor.isDragging(),
-    }),
+    item: data,
+    type: types.COMPONENT,
+    collect: (monitor) => ({ isDragging: monitor.isDragging() }),
   })
   const ownProps = toProps(data.props)
   if (ownProps.style) {
@@ -99,34 +94,23 @@ const DnD = ({ data, parent, store }) => {
       onMouseLeave={() => setOver(false)}
     >
       {data.text}
-      {data.children.map(item => (
-        <DnD
-          data={item}
-          store={store}
-          key={item.identity}
-          parent={data}
-        />
+      {data.children.map((item) => (
+        <DnD data={item} store={store} key={item.identity} parent={data} />
       ))}
     </Component>
   )
 }
 
-
 const data = PropTypes.shape({
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape({}),
-  ]).isRequired,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})])
+    .isRequired,
   identity: PropTypes.string.isRequired,
   props: PropTypes.shape({}).isRequired,
 })
 
-
 DnD.propTypes = {
   data: data.isRequired,
   parent: data,
-  store: PropTypes.shape({}).isRequired,
 }
 
-
-export default withStore(DnD)
+export default DnD
