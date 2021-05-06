@@ -1,5 +1,4 @@
-import { makeAutoObservable } from 'mobx'
-
+import { action, makeAutoObservable } from 'mobx'
 
 export default class ClipboardStore {
   clipboard = { ctrl: false }
@@ -8,5 +7,7 @@ export default class ClipboardStore {
     makeAutoObservable(this)
   }
 
-  control = (ctrl) => { this.clipboard.ctrl = ctrl }
+  control = action((ctrl) => {
+    this.clipboard.ctrl = ctrl
+  })
 }

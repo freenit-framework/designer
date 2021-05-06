@@ -1,5 +1,4 @@
-import { makeAutoObservable } from 'mobx'
-
+import { action, makeAutoObservable } from 'mobx'
 
 export default class DisplayStore {
   display = 'desktop'
@@ -7,4 +6,8 @@ export default class DisplayStore {
   constructor() {
     makeAutoObservable(this)
   }
+
+  setDisplay = action((d) => {
+    this.display = d
+  })
 }

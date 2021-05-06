@@ -15,7 +15,7 @@ class Design extends React.Component {
   handleKeyDown = async (event) => {
     const { clipboard, rearrange, selected, tree } = store
     if (event.key === 'Shift') {
-      rearrange.rearrange = true
+      rearrange.setRearrange(true)
     } else if (event.key === 'Delete') {
       tree.remove(selected.selected)
     } else if (event.key === 'Control') {
@@ -44,7 +44,7 @@ class Design extends React.Component {
   handleKeyUp = (event) => {
     const { clipboard, rearrange } = store
     if (event.key === 'Shift') {
-      rearrange.rearrange = false
+      rearrange.setRearrange(false)
     } else if (event.key === 'Control') {
       clipboard.control(false)
     }

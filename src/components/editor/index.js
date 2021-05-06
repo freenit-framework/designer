@@ -35,7 +35,7 @@ class Editor extends React.Component {
 
   toggleRearrange = () => {
     const { rearrange } = store
-    rearrange.rearrange = !rearrange.rearrange
+    rearrange.setRearrange(!rearrange.rearrange)
   }
 
   undo = () => {}

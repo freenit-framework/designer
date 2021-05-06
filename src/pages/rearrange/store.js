@@ -1,5 +1,4 @@
-import { makeAutoObservable } from 'mobx'
-
+import { action, makeAutoObservable } from 'mobx'
 
 export default class RearrangeStore {
   rearrange = false
@@ -7,4 +6,8 @@ export default class RearrangeStore {
   constructor() {
     makeAutoObservable(this)
   }
+
+  setRearrange = action((r) => {
+    this.rearrange = r
+  })
 }

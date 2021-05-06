@@ -15,7 +15,7 @@ class PropItem extends React.Component {
   }
 
   setOver = (data) => () => {
-    store.over.over = data
+    store.over.setOver(data)
   }
 
   removeItem = () => {
@@ -25,7 +25,7 @@ class PropItem extends React.Component {
     } else {
       theme.removeProp(this.props.data)
     }
-    editing.editing = {}
+    editing.setEditing({})
   }
 
   openEdit = () => {

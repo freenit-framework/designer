@@ -1,5 +1,4 @@
-import { makeAutoObservable } from 'mobx'
-
+import { action, makeAutoObservable } from 'mobx'
 
 export default class EditingStore {
   editing = {}
@@ -7,4 +6,8 @@ export default class EditingStore {
   constructor() {
     makeAutoObservable(this)
   }
+
+  setEditing = action((e) => {
+    this.editing = e
+  })
 }
