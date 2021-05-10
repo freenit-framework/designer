@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { TextField } from '@material-ui/core'
 import store from 'store'
 
@@ -92,4 +93,4 @@ class Props extends React.Component {
   }
 }
 
-export default Props
+export default observer(Props)

@@ -1,5 +1,4 @@
-import { makeAutoObservable } from 'mobx'
-
+import { makeAutoObservable, action } from 'mobx'
 
 export default class SelectedStore {
   selected = {}
@@ -8,7 +7,7 @@ export default class SelectedStore {
     makeAutoObservable(this)
   }
 
-  select = (component) => {
+  select = action((component) => {
     this.selected = component
-  }
+  })
 }

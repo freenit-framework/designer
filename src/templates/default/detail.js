@@ -1,10 +1,8 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
-import {
-  EmptyTemplate,
-  withStore,
-} from 'freenit'
+import { EmptyTemplate } from '@freenit-framework/core'
 
 // Components
 import {
@@ -26,8 +24,8 @@ import ReorderIcon from '@material-ui/icons/Reorder'
 import UserIcon from '@material-ui/icons/PeopleOutline'
 import RoleIcon from '@material-ui/icons/People'
 
+import store from 'store'
 import styles from './styles'
-
 
 class Template extends React.Component {
   state = {
@@ -35,7 +33,7 @@ class Template extends React.Component {
   }
 
   handleLogout = async () => {
-    const { auth  } = this.props.store
+    const { auth } = store
     const response = await auth.logout()
     if (response.ok === undefined) {
       this.props.history.push('/')
@@ -51,7 +49,7 @@ class Template extends React.Component {
   }
 
   render() {
-    const { auth  } = this.props.store
+    const { auth } = store
     const AnonButton = (
       <Link to="/login" style={styles.login}>
         <Button color="inherit">Login</Button>
@@ -65,7 +63,6 @@ class Template extends React.Component {
     const AuthButton = auth.detail.ok ? LoggedinButton : AnonButton
     const AuthMenu = auth.detail.ok
       ? [
-        (
           <Link to="/dashboard" key="dashboard">
             <MenuItem>
               <ListItemIcon>
@@ -73,9 +70,7 @@ class Template extends React.Component {
               </ListItemIcon>
               Dashboard
             </MenuItem>
-          </Link>
-        ),
-        (
+          </Link>,
           <Link to="/me" key="me">
             <MenuItem>
               <ListItemIcon>
@@ -83,9 +78,7 @@ class Template extends React.Component {
               </ListItemIcon>
               Me
             </MenuItem>
-          </Link>
-        ),
-        (
+          </Link>,
           <Link to="/users" key="users">
             <MenuItem>
               <ListItemIcon>
@@ -93,9 +86,7 @@ class Template extends React.Component {
               </ListItemIcon>
               Users
             </MenuItem>
-          </Link>
-        ),
-        (
+          </Link>,
           <Link to="/roles" key="roles">
             <MenuItem>
               <ListItemIcon>
@@ -103,9 +94,8 @@ class Template extends React.Component {
               </ListItemIcon>
               Roles
             </MenuItem>
-          </Link>
-        ),
-      ]
+          </Link>,
+        ]
       : null
     return (
       <div>
@@ -122,7 +112,10 @@ class Template extends React.Component {
             {AuthButton}
           </Toolbar>
         </AppBar>
-        <EmptyTemplate.Detail secure={this.props.secure} style={this.props.style}>
+        <EmptyTemplate.Detail
+          secure={this.props.secure}
+          style={this.props.style}
+        >
           {this.props.children}
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
@@ -151,7 +144,6 @@ class Template extends React.Component {
   }
 }
 
-
 Template.propTypes = {
   children: PropTypes.node,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
@@ -160,5 +152,4 @@ Template.propTypes = {
   title: PropTypes.string,
 }
 
-
-export default withRouter(withStore(Template))
+export default withRouter(observer(Template))

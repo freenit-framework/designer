@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { Button, MenuItem, TextField } from '@material-ui/core'
 import { SketchPicker } from 'react-color'
 import { convert } from 'components'
@@ -258,4 +259,4 @@ class EditProp extends React.Component {
   }
 }
 
-export default EditProp
+export default observer(EditProp)

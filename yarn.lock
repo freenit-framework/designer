@@ -982,10 +982,10 @@
     webpack-cli "^4.6.0"
     webpack-dev-server "^4.0.0-beta.2"
 
-"@freenit-framework/core@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@freenit-framework/core/-/core-0.0.10.tgz#690a64d68b57cb0f492eb0eee4fa684b2f31439a"
-  integrity sha512-ncOEj2cLA9R2nZVgscotZajw1KuA58OY3gWrvkZs6b5qF1shbuYN1NriwFQUBIwP9snWgW6KafUz2BBvytSBzg==
+"@freenit-framework/core@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@freenit-framework/core/-/core-0.0.11.tgz#2bc1244e4e7fc266a4a8be6b4c70d4572cafd083"
+  integrity sha512-IwVcYVjSPh1U680PNXnF7yez4hRvVxsAg6Z1IkiKXH6q/bzeBXGcP8oSA0cH0zRQsFeK2JqX/lZIKNYo1bsHNQ==
 
 "@icons/material@^0.2.4":
   version "0.2.4"

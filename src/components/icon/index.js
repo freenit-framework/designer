@@ -1,10 +1,9 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
-import store from 'store'
 import { compile } from 'components'
 import types from 'types'
 
-const Icon = ({ icon, store }) => {
+const Icon = ({ icon }) => {
   const [{ isDragging }, drag] = useDrag({
     item: compile({
       name: icon.name,

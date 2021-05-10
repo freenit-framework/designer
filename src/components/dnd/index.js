@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { useDrag, useDrop } from 'react-dnd'
 import store from 'store'
@@ -113,4 +114,4 @@ DnD.propTypes = {
   parent: data,
 }
 
-export default DnD
+export default observer(DnD)

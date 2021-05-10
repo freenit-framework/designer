@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { withTheme } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
@@ -31,4 +32,4 @@ Landing.propTypes = {
   theme: PropTypes.shape({}).isRequired,
 }
 
-export default withTheme(Landing)
+export default withTheme(observer(Landing))

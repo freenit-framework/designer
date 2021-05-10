@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
-import store from 'store'
 import types from 'types'
 
 import styles from './styles'

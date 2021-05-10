@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { List } from '@material-ui/core'
 
 import store from 'store'
@@ -18,4 +19,4 @@ class Menu extends React.Component {
   }
 }
 
-export default Menu
+export default observer(Menu)

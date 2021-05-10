@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend as Backend } from 'react-dnd-html5-backend'
 import { ComponentPanel, Editor, Renderer } from 'components'
@@ -99,4 +100,4 @@ class Design extends React.Component {
   }
 }
 
-export default Design
+export default observer(Design)

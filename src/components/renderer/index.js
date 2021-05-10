@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import store from 'store'
@@ -94,4 +95,4 @@ class Renderer extends React.Component {
   }
 }
 
-export default Renderer
+export default observer(Renderer)

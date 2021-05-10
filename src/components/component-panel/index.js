@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import {
   Button,
   IconButton,
@@ -413,4 +414,4 @@ class ComponentPanel extends React.Component {
   }
 }
 
-export default ComponentPanel
+export default observer(ComponentPanel)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import {
   Collapse,
   IconButton,
@@ -60,4 +61,4 @@ class Item extends React.Component {
   }
 }
 
-export default Item
+export default observer(Item)

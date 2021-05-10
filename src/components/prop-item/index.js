@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import store from 'store'
 import AddIcon from '@material-ui/icons/Add'
@@ -211,4 +212,4 @@ PropItem.defaultProps = {
   flavor: 'props',
 }
 
-export default PropItem
+export default observer(PropItem)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import store from 'store'
 import { EditProp, PropItem } from 'components'
 
@@ -38,4 +39,4 @@ class ThemeEditor extends React.Component {
   }
 }
 
-export default ThemeEditor
+export default observer(ThemeEditor)
