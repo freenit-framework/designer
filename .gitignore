@@ -19,7 +19,7 @@ ansible/roles/*
 !ansible/roles/.keep
 !ansible/roles/devel
 ansible/site.yml
-project.conf
+project.mk
 site.retry
 vars.mk
 yarn-error.log
