@@ -960,10 +960,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@freenit-framework/cli@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@freenit-framework/cli/-/cli-0.0.11.tgz#0d7135c62e334760d9937f6653b610d96640d5d8"
-  integrity sha512-E7i2XB8ukv6BTS1rjNVvNrlXI9Meep5oMSgQbiQoRkAo2ue/Ngvu4hbvf0PIHQVJJXZLGekseXtUT3Krt1rvuw==
+"@freenit-framework/cli@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@freenit-framework/cli/-/cli-0.0.13.tgz#1e678efa84114aef22de8bbfc8b1464d0aa05320"
+  integrity sha512-LSBtVRQ+sJv+HEr/4B/YV2QuVsY6eXqsqR8J1eHnFjbRos9NlK1981e1Zo0kyQEDaFXN8Nr5zoAX56VVUi23CQ==
   dependencies:
     "@babel/core" "^7.13.14"
     "@babel/eslint-parser" "^7.13.14"
@@ -973,6 +973,7 @@
     "@babel/preset-env" "^7.13.12"
     "@babel/preset-react" "^7.13.13"
     babel-loader "^8.2.2"
+    clean-terminal-webpack-plugin "^3.0.0"
     eslint "^7.24.0"
     eslint-config-prettier "^8.1.0"
     eslint-plugin-prettier "^3.3.1"
@@ -980,12 +981,12 @@
     prettier "^2.2.1"
     webpack "^5.35.1"
     webpack-cli "^4.6.0"
-    webpack-dev-server "^4.0.0-beta.2"
+    webpack-dev-server "^4.0.0-beta.3"
 
-"@freenit-framework/core@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@freenit-framework/core/-/core-0.0.11.tgz#2bc1244e4e7fc266a4a8be6b4c70d4572cafd083"
-  integrity sha512-IwVcYVjSPh1U680PNXnF7yez4hRvVxsAg6Z1IkiKXH6q/bzeBXGcP8oSA0cH0zRQsFeK2JqX/lZIKNYo1bsHNQ==
+"@freenit-framework/core@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@freenit-framework/core/-/core-0.0.13.tgz#e3af0c2d321cb21be7df41f79e54d8f5db52c316"
+  integrity sha512-5iVWeZ5yV3+mfnLQ+SATJp+ply5X6ffumx5f64uzq6rObi1bOG6wYiKXHJCvWXxui9ZjeE1qrEmkvFZVo2chcw==
 
 "@icons/material@^0.2.4":
   version "0.2.4"
@@ -1665,6 +1666,11 @@ clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
   integrity sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==
+
+clean-terminal-webpack-plugin@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/clean-terminal-webpack-plugin/-/clean-terminal-webpack-plugin-3.0.0.tgz#e042ebcf05b0bf90f7d7923ea1dc5685c819228f"
+  integrity sha512-wcgkQZmwEWYYjHblXc0+UGFDtx37S+1qgUQl4EOhhinzSHbZpixWBiasQ91RoCMf5lAm67j1XOt9z+HN+sWkWA==
 
 clone-deep@^4.0.1:
   version "4.0.1"
@@ -4441,7 +4447,7 @@ webpack-dev-middleware@^4.1.0:
     range-parser "^1.2.1"
     schema-utils "^3.0.0"
 
-webpack-dev-server@^4.0.0-beta.2:
+webpack-dev-server@^4.0.0-beta.3:
   version "4.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-4.0.0-beta.3.tgz#57368679f7f1fdd7ec8d9dd287275117271164f0"
   integrity sha512-Ud7ieH15No/KiSdRuzk+2k+S4gSCR/N7m4hJhesDbKQEZy3P+NPXTXfsimNOZvbVX2TRuIEFB+VdLZFn8DwGwg==
