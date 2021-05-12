@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "dependencies": {
-    "@freenit-framework/core": "^0.0.11",
+    "@freenit-framework/core": "^0.0.13",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
-    "@freenit-framework/cli": "^0.0.11",
+    "@freenit-framework/cli": "^0.0.13",
     "babel-plugin-module-resolver": "^4.1.0"
   },
   "scripts": {

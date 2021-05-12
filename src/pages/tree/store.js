@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx'
+import { action, makeAutoObservable } from 'mobx'
 import { compile } from 'components'
 import { makeid } from 'utils'
 
@@ -26,16 +26,16 @@ export default class TreeStore {
     return newitem
   }
 
-  add = (item, parent) => {
+  add = action((item, parent) => {
     const newitem = this.copyItem(item)
     parent.children.push(newitem)
     if (item.existing) {
       this.remove(item)
     }
     return newitem
-  }
+  })
 
-  removeComponent = (identity, tree = this.tree) => {
+  removeComponent = action((identity, tree = this.tree) => {
     tree.children = tree.children.filter(
       (component) => component.identity !== identity
     )
@@ -43,9 +43,9 @@ export default class TreeStore {
       this.removeComponent(identity, component)
     )
     return tree
-  }
+  })
 
-  remove = (component) => {
+  remove = action((component) => {
     if (!component) {
       return
     }
@@ -57,9 +57,9 @@ export default class TreeStore {
       return
     }
     this.removeComponent(identity)
-  }
+  })
 
-  rearrange = (item, parent, before) => {
+  rearrange = action((item, parent, before) => {
     if (!parent || before.identity === this.tree.identity) {
       return
     }
@@ -78,9 +78,9 @@ export default class TreeStore {
         this.remove(item)
       }
     }
-  }
+  })
 
-  removeProp = (item, props) => {
+  removeProp = action((item, props) => {
     if (props.children) {
       props.children = props.children.filter(
         (prop) => item.identity !== prop.identity
@@ -94,9 +94,9 @@ export default class TreeStore {
       props.value.forEach((prop) => this.removeProp(item, prop))
     }
     return item
-  }
+  })
 
-  findComponent = (identity, tree = this.tree) => {
+  findComponent = action((identity, tree = this.tree) => {
     if (tree.identity === identity) {
       return tree
     }
@@ -110,9 +110,9 @@ export default class TreeStore {
       }
     })
     return result
-  }
+  })
 
-  addNewProp = (prop, identity, data) => {
+  addNewProp = action((prop, identity, data) => {
     if (prop.identity === identity) {
       const child = { ...data, identity: makeid(8) }
       if (data.value.children) {
@@ -139,13 +139,13 @@ export default class TreeStore {
       )
     }
     return prop
-  }
+  })
 
-  addProp = (identity, data, component) => {
+  addProp = action((identity, data, component) => {
     component.props = this.addNewProp(component.props, identity, data)
-  }
+  })
 
-  changePropName = (prop, name, identity) => {
+  changePropName = action((prop, name, identity) => {
     if (prop.identity === identity) {
       return { ...prop, name }
     }
@@ -164,9 +164,9 @@ export default class TreeStore {
       }
     }
     return prop
-  }
+  })
 
-  changePropValue = (prop, v, identity) => {
+  changePropValue = action((prop, v, identity) => {
     if (prop.identity === identity) {
       // simple value
       prop.value = v
@@ -187,9 +187,9 @@ export default class TreeStore {
       }
     }
     return prop
-  }
+  })
 
-  changePropType = (prop, type, identity) => {
+  changePropType = action((prop, type, identity) => {
     if (prop.identity === identity) {
       const data = {
         ...prop,
@@ -210,25 +210,25 @@ export default class TreeStore {
       }
     }
     return prop
-  }
+  })
 
-  setPropName = (name, component, identity) => {
+  setPropName = action((name, component, identity) => {
     component.props = this.changePropName(component.props, name, identity)
-  }
+  })
 
-  setPropValue = (value, component, identity) => {
+  setPropValue = action((value, component, identity) => {
     component.props = this.changePropValue(component.props, value, identity)
-  }
+  })
 
-  setPropType = (type, component, identity) => {
+  setPropType = action((type, component, identity) => {
     component.props = this.changePropType(component.props, type, identity)
-  }
+  })
 
   setText = (text, component) => {
     component.text = text
   }
 
-  changePropFile = (prop, data, identity) => {
+  changePropFile = action((prop, data, identity) => {
     if (prop.identity === identity) {
       // simple value
       prop.pre = data.pre
@@ -252,13 +252,13 @@ export default class TreeStore {
       }
     }
     return prop
-  }
+  })
 
-  setPropFile = (data, component, identity) => {
+  setPropFile = action((data, component, identity) => {
     component.props = this.changePropFile(component.props, data, identity)
-  }
+  })
 
-  showSelected = (selected, tree = this.tree) => {
+  showSelected = action((selected, tree = this.tree) => {
     if (!selected.identity) {
       return false
     }
@@ -274,5 +274,5 @@ export default class TreeStore {
       }
     })
     return found
-  }
+  })
 }

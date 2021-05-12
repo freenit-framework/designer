@@ -25,7 +25,7 @@ class PropItem extends React.Component {
     } else {
       theme.removeProp(this.props.data)
     }
-    editing.editing = {}
+    editing.setEditing({})
   }
 
   openEdit = () => {
