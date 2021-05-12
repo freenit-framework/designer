@@ -15,7 +15,7 @@ class PropItem extends React.Component {
   }
 
   setOver = (data) => () => {
-    store.over.over = data
+    store.over.setOver(data)
   }
 
   removeItem = () => {

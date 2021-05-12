@@ -1,4 +1,5 @@
 import React from 'react'
+import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import {
   Collapse,
@@ -22,15 +23,15 @@ class Item extends React.Component {
   select = (event) => {
     event.stopPropagation()
     const { data } = this.props
-    store.selected.selected = data
+    store.selected.select(data)
   }
 
-  toggleOpen = (event) => {
+  toggleOpen = action((event) => {
     event.stopPropagation()
     const { data } = this.props
     data.open = !data.open
     this.setState({ open: data.open })
-  }
+  })
 
   render() {
     const { data } = this.props

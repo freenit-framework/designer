@@ -218,12 +218,22 @@ class EditProp extends React.Component {
       />
     )
     const typeViews = [
-      <MenuItem value="string">string</MenuItem>,
-      <MenuItem value="number">number</MenuItem>,
-      <MenuItem value="color">color</MenuItem>,
+      <MenuItem key="string" value="string">
+        string
+      </MenuItem>,
+      <MenuItem key="number" value="number">
+        number
+      </MenuItem>,
+      <MenuItem key="color" value="color">
+        color
+      </MenuItem>,
     ]
     if (this.props.flavor !== 'theme') {
-      typeViews.push(<MenuItem value="file">file</MenuItem>)
+      typeViews.push(
+        <MenuItem key="file" value="file">
+          file
+        </MenuItem>
+      )
     }
     return (
       <form onSubmit={this.submit} style={styles.form}>
