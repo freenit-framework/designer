@@ -1,13 +1,11 @@
 import React from 'react'
-import { observer } from 'mobx-react'
-import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { EmptyTemplate } from '@freenit-framework/core'
+import store from 'store'
 
 // Components
 import {
   AppBar,
-  Button,
   Drawer,
   IconButton,
   ListItemIcon,
@@ -19,12 +17,13 @@ import {
 // Icons
 import CloseIcon from '@material-ui/icons/Clear'
 import DashboardIcon from '@material-ui/icons/Dashboard'
-import MeIcon from '@material-ui/icons/AccountCircle'
-import ReorderIcon from '@material-ui/icons/Reorder'
-import UserIcon from '@material-ui/icons/PeopleOutline'
+import LoginIcon from '@material-ui/icons/Input'
+import LogoutIcon from '@material-ui/icons/PowerSettingsNew'
+import ProfileIcon from '@material-ui/icons/AccountCircle'
+import MenuIcon from '@material-ui/icons/Menu'
 import RoleIcon from '@material-ui/icons/People'
+import UserIcon from '@material-ui/icons/PeopleOutline'
 
-import store from 'store'
 import styles from './styles'
 
 class Template extends React.Component {
@@ -33,10 +32,9 @@ class Template extends React.Component {
   }
 
   handleLogout = async () => {
-    const { auth } = store
-    const response = await auth.logout()
-    if (response.ok === undefined) {
-      this.props.history.push('/')
+    const response = await store.auth.logout()
+    if (response.ok) {
+      store.history.push('/')
     }
   }
 
@@ -49,19 +47,21 @@ class Template extends React.Component {
   }
 
   render() {
-    const { auth } = store
+    const { auth, profile, resolution } = store
     const AnonButton = (
       <Link to="/login" style={styles.login}>
-        <Button color="inherit">Login</Button>
+        <IconButton color="inherit">
+          <LoginIcon />
+        </IconButton>
       </Link>
     )
     const LoggedinButton = (
-      <Button color="inherit" onClick={this.handleLogout}>
-        Logout
-      </Button>
+      <IconButton color="inherit" onClick={this.handleLogout}>
+        <LogoutIcon />
+      </IconButton>
     )
-    const AuthButton = auth.detail.ok ? LoggedinButton : AnonButton
-    const AuthMenu = auth.detail.ok
+    const AuthButton = auth.authenticated() ? LoggedinButton : AnonButton
+    const AdminMenu = profile.detail.admin
       ? [
           <Link to="/dashboard" key="dashboard">
             <MenuItem>
@@ -69,14 +69,6 @@ class Template extends React.Component {
                 <DashboardIcon />
               </ListItemIcon>
               Dashboard
-            </MenuItem>
-          </Link>,
-          <Link to="/me" key="me">
-            <MenuItem>
-              <ListItemIcon>
-                <MeIcon />
-              </ListItemIcon>
-              Me
             </MenuItem>
           </Link>,
           <Link to="/users" key="users">
@@ -96,20 +88,51 @@ class Template extends React.Component {
             </MenuItem>
           </Link>,
         ]
+      : []
+    const LoggingMenu = auth.authenticated() ? (
+      <MenuItem onClick={this.handleLogout}>
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
+        Logout
+      </MenuItem>
+    ) : (
+      <Link to="/login">
+        <MenuItem>
+          <ListItemIcon>
+            <LoginIcon />
+          </ListItemIcon>
+          Login
+        </MenuItem>
+      </Link>
+    )
+    const AuthMenu = auth.authenticated()
+      ? [
+          <Link to="/profile" key="profile">
+            <MenuItem>
+              <ListItemIcon>
+                <ProfileIcon />
+              </ListItemIcon>
+              Profile
+            </MenuItem>
+          </Link>,
+          ...AdminMenu,
+        ]
       : null
+    const BarLinks = resolution.width > 410 ? <div>{AuthButton}</div> : null
     return (
       <div>
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h5" color="inherit" style={styles.flex}>
               <IconButton color="inherit" onClick={this.handleMenuOpen}>
-                <ReorderIcon />
+                <MenuIcon />
               </IconButton>
               <Link to="/" data-id="app">
-                Freenit Designer
+                Freenit
               </Link>
             </Typography>
-            {AuthButton}
+            {BarLinks}
           </Toolbar>
         </AppBar>
         <EmptyTemplate.Detail
@@ -136,6 +159,7 @@ class Template extends React.Component {
               onKeyDown={this.handleMenuClose}
             >
               {AuthMenu}
+              {LoggingMenu}
             </div>
           </Drawer>
         </EmptyTemplate.Detail>
@@ -144,12 +168,4 @@ class Template extends React.Component {
   }
 }
 
-Template.propTypes = {
-  children: PropTypes.node,
-  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-  secure: PropTypes.bool,
-  style: PropTypes.shape({}),
-  title: PropTypes.string,
-}
-
-export default withRouter(observer(Template))
+export default Template
