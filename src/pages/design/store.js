@@ -7,7 +7,7 @@ class DesignStore {
     identity: 'root',
     name: 'div',
     type: 'html',
-    text: 'root',
+    text: '',
     props: {
       style: {
         height: 'calc(100vh - 2px)',

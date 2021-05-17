@@ -2,27 +2,31 @@ import React from 'react'
 import { withTheme } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 
-import Template from 'templates/default/detail'
+import { EmptyTemplate } from '@freenit-framework/core'
+import store from 'store'
 import styles from './styles'
 
-
 class Landing extends React.Component {
+  design = () => {
+    store.history.push('/design')
+  }
+
   render() {
     return (
-      <Template style={styles.root}>
-        <h1>
-          Freenit Framework
-        </h1>
-        <div style={styles.small}>
-          Startkit for fast React development
-        </div>
-        <Button color="primary" variant="contained" style={styles.freenit}>
-          Freenit
+      <EmptyTemplate.Detail style={styles.root}>
+        <h1>Freenit Designer</h1>
+        <div style={styles.small}>Design pages blazingly fast!</div>
+        <Button
+          color="primary"
+          variant="contained"
+          style={styles.freenit}
+          onClick={this.design}
+        >
+          Design
         </Button>
-      </Template>
+      </EmptyTemplate.Detail>
     )
   }
 }
-
 
 export default withTheme(Landing)
