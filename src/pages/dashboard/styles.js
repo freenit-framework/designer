@@ -1,10 +1,12 @@
 const styles = {
   root: {
     display: 'flex',
-    alignItems: 'stretch',
     justifyContent: 'center',
-    height: '100vh',
+    alignItems: 'center',
+    height: 'calc(100vh - 64px - 40px)',
+    padding: 20,
   },
 }
+
 
 export default styles

@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/styles'
 import { Style } from 'radium'
 import { StoreContext, StoreProvider } from '@freenit-framework/core'
+import mui from 'components'
 
 import store from 'store'
 import Routing from 'routing'

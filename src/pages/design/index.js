@@ -1,9 +1,9 @@
 import Detail from './detail'
+import store from './store'
 
-
-const design = {
+const landing = {
   Detail,
+  store,
 }
 
-
-export default design
+export default landing

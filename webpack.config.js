@@ -1,17 +1,14 @@
 const _ = require('lodash')
-const path = require('path')
+const HtmlPlugin = require('html-webpack-plugin')
 const config = require('@freenit-framework/cli')
 
+const defaultConfig = config.webpack(__dirname)
+
 const myconfig = {
-  context: path.resolve(__dirname, 'src'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-  },
+  plugins: [
+    new HtmlPlugin({ template: 'index.html' }),
+    ...defaultConfig.plugins,
+  ],
 }
 
 const target = process.env.BACKEND_URL
@@ -21,6 +18,6 @@ if (target) {
   }
 }
 
-const webpackConfig = _.merge(config.webpack, myconfig)
+const webpackConfig = _.merge(defaultConfig, myconfig)
 
 module.exports = webpackConfig

@@ -1,35 +1,28 @@
-import React, { Component } from 'react'
-import { observer } from 'mobx-react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import { withTheme } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import store from 'store'
 
-import getStyles from './styles'
+import Template from 'templates/default/detail'
+import styles from './styles'
 
-class Landing extends Component {
-  handleDesign = () => {
-    store.history.push('/design')
-  }
 
+class Landing extends React.Component {
   render() {
-    const height = this.props.height || 'calc(100vh - 64px - 40px)'
-    const styles = getStyles(this.props.theme, height)
     return (
-      <div style={styles.root}>
-        <h1>Freenit Designer</h1>
-        <div style={styles.small}>Design pages blazingly fast!</div>
-        <Button style={styles.freenit} onClick={this.handleDesign}>
-          Designs
+      <Template style={styles.root}>
+        <h1>
+          Freenit Framework
+        </h1>
+        <div style={styles.small}>
+          Startkit for fast React development
+        </div>
+        <Button color="primary" variant="contained" style={styles.freenit}>
+          Freenit
         </Button>
-      </div>
+      </Template>
     )
   }
 }
 
-Landing.propTypes = {
-  height: PropTypes.number,
-  theme: PropTypes.shape({}).isRequired,
-}
 
-export default withTheme(observer(Landing))
+export default withTheme(Landing)

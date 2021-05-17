@@ -1,38 +1,31 @@
-export default function getStyles(theme, height) {
-  const styles = {
-    ...theme,
+const styles = {
+  root: {
+    minHeight: 'calc(100vh - 64px - 40px)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
 
-    root: {
-      minHeight: height,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-    },
+  small: {
+    fontSize: '25px',
+    marginTop: 10,
+    color: 'rgb(80, 80, 80)',
+  },
 
-    small: {
-      fontSize: '25px',
-      marginTop: 10,
-      color: 'rgb(80, 80, 80)',
-    },
+  link: {
+    color: 'white',
+  },
 
-    link: {
-      color: 'white',
-    },
-
-    freenit: {
-      height: 70,
-      width: 290,
-      maxWidth: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.palette.primary.main,
-      color: 'white',
-      fontSize: 36,
-      marginTop: 40,
-    },
-  }
-  return styles
+  freenit: {
+    height: 70,
+    width: 290,
+    maxWidth: '100%',
+    fontSize: 36,
+    marginTop: 40,
+  },
 }
+
+
+export default styles

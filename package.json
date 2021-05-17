@@ -1,33 +1,9 @@
 {
   "name": "freenit-designer",
   "version": "0.0.1",
+  "main": "index.js",
+  "license": "BSD-2-Clause",
   "private": false,
-  "dependencies": {
-    "@freenit-framework/core": "^0.0.13",
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "axios": "^0.21.1",
-    "js-base64": "^3.6.0",
-    "mobx": "^6.3.0",
-    "mobx-react": "^7.1.0",
-    "prop-types": "^15.7.2",
-    "radium": "^0.26.1",
-    "react": "^17.0.2",
-    "react-color": "^2.19.3",
-    "react-dnd": "^14.0.2",
-    "react-dnd-html5-backend": "^14.0.0",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@freenit-framework/cli": "^0.0.13",
-    "babel-plugin-module-resolver": "^4.1.0"
-  },
-  "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack serve"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -39,5 +15,26 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@freenit-framework/cli": "^0.0.18"
+  },
+  "scripts": {
+    "build": "webpack build --mode=production",
+    "start": "webpack serve"
+  },
+  "dependencies": {
+    "@freenit-framework/core": "^0.0.14",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "axios": "^0.21.1",
+    "html-webpack-plugin": "^5.3.1",
+    "mobx": "^6.3.0",
+    "mobx-react": "^7.1.0",
+    "radium": "^0.26.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "regenerator-runtime": "^0.13.7"
   }
 }

@@ -15,6 +15,7 @@ rest.interceptors.request.use(
       ? 'csrf_refresh_token'
       : 'csrf_access_token'
     const csrf = getCookie(csrfType)
+    config.headers.withCredentials = true
     if (csrf) {
       config.headers['X-CSRF-TOKEN'] = csrf
     }
@@ -55,32 +56,4 @@ export const errors = (response) => {
     })
   }
   return data
-}
-
-
-export const makeid = (length) => {
-   let result = '';
-   const  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-   for (let i = 0; i < length; ++i) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-   }
-   return result;
-}
-
-
-export const exportJson = (data) => {
-  const result = {
-    ...data,
-    component: data.name
-  }
-  delete result.name
-  result.children = result.children.map(item => exportJson(item))
-  return result
-}
-
-
-export const changeIds = (component) => {
-  component.identity = makeid(8)
-  component.children.forEach(item => changeIds(item))
-  return component
 }
