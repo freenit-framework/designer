@@ -2,8 +2,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
-import components from '..'
-
+import components from 'components'
 import styles from './styles'
 
 const Renderer = observer(
@@ -19,7 +18,7 @@ const Renderer = observer(
         <Component {...toJS(props)}>
           {text}
           {children.map((child) => (
-            <Renderer data={child} />
+            <Renderer data={child} key={child.identity} />
           ))}
         </Component>
       )

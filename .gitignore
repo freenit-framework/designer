@@ -11,8 +11,6 @@ yarn-error.log
 
 node_modules
 dist/*
-!dist/index.html
-!dist/favicon.ico
 *.lock
 stats.html
 cbsd.conf

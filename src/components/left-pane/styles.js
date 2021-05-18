@@ -13,9 +13,10 @@ const styles = {
     padding: 5,
     paddingBottom: 0,
     transition: 'all 0.5s',
+    overflow: 'hidden',
   },
 
-  types: {
+  tabs: {
     ...center,
     justifyContent: 'space-between',
     height: 50,

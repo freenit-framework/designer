@@ -55,15 +55,15 @@ class LeftPane extends React.Component {
   }
 
   render() {
-    const typesStyle = this.state.open
-      ? styles.types
+    const tabsStyle = this.state.open
+      ? styles.tabs
       : {
-          ...styles.types,
+          ...styles.tabs,
           overflow: 'hidden',
           justifyContent: 'flex-end',
         }
-    const controls = this.state.open ? (
-      <div style={typesStyle}>
+    const tabs = this.state.open ? (
+      <div style={tabsStyle}>
         <Button variant="outlined">Components</Button>
         <Button variant="outlined">Icons</Button>
         <IconButton onClick={this.toggleOpen}>
@@ -71,7 +71,7 @@ class LeftPane extends React.Component {
         </IconButton>
       </div>
     ) : (
-      <div style={typesStyle}>
+      <div style={tabsStyle}>
         <IconButton onClick={this.toggleOpen}>
           <KeyboardArrowRight />
         </IconButton>
@@ -97,7 +97,6 @@ class LeftPane extends React.Component {
       : {
           ...styles.root,
           maxWidth: 50,
-          overflow: 'hidden',
         }
     const search = this.state.open ? (
       <div style={styles.search}>
@@ -114,7 +113,7 @@ class LeftPane extends React.Component {
     const fileControl = this.state.open ? <FileControls /> : null
     return (
       <div style={rootStyle}>
-        {controls}
+        {tabs}
         {search}
         <div style={styles.components}>
           {muiComponents}

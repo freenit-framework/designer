@@ -1,7 +1,9 @@
 import { action, makeAutoObservable } from 'mobx'
 
 class DesignStore {
+  device = 'desktop'
   over = {}
+  rearrange = false
   selected = {}
   theme = {}
   tree = {
@@ -30,16 +32,20 @@ class DesignStore {
     makeAutoObservable(this)
   }
 
+  setDevice = action((device) => {
+    this.device = device
+  })
+
   setOver = action((data) => {
     this.over = data
   })
 
-  setSelected = action((data) => {
-    this.selecte = data
+  setRearrange = action((data) => {
+    this.rearrange = data
   })
 
-  change = action(() => {
-    this.tree.props.style.backgroundColor = 'red'
+  setSelected = action((data) => {
+    this.selecte = data
   })
 }
 

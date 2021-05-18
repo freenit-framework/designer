@@ -1,21 +1,99 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { observer } from 'mobx-react'
+import { Button, IconButton } from '@material-ui/core'
+import {
+  FormatIndentIncrease,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+  Redo,
+  Search,
+  Undo,
+} from '@material-ui/icons'
 
 import store from 'store'
+import { Device } from 'components'
 import styles from './styles'
 
 class RightPane extends React.Component {
-  change = () => {
-    store.design.change()
+  state = {
+    open: true,
   }
 
+  toggleOpen = () => {
+    this.setState({ open: !this.state.open })
+  }
+
+  toggleRearrange = () => {
+    store.design.setRearrange(!store.design.rearrange)
+  }
+
+  undo = () => {}
+
+  redo = () => {}
+
+  find = () => {}
+
   render() {
+    const tabsStyle = this.state.open
+      ? styles.tabs
+      : {
+          ...styles.tabs,
+          overflow: 'hidden',
+          justifyContent: 'flex-end',
+        }
+    const tabs = this.state.open ? (
+      <div style={tabsStyle}>
+        <IconButton onClick={this.toggleOpen}>
+          <KeyboardArrowRight />
+        </IconButton>
+        <Button variant="outlined" style={styles.props}>
+          Props
+        </Button>
+        <Button variant="outlined">Theme</Button>
+      </div>
+    ) : (
+      <div style={tabsStyle}>
+        <IconButton onClick={this.toggleOpen}>
+          <KeyboardArrowLeft />
+        </IconButton>
+      </div>
+    )
+    const rootStyle = this.state.open
+      ? styles.root
+      : {
+          ...styles.root,
+          maxWidth: 50,
+        }
+    const device = this.state.open ? <Device /> : null
+    const color = store.design.rearrange ? 'secondary' : 'default'
+    const actions = this.state.open ? (
+      <div style={styles.actions}>
+        <IconButton
+          color={color}
+          variant="outlined"
+          onClick={this.toggleRearrange}
+        >
+          <FormatIndentIncrease />
+        </IconButton>
+        <IconButton onClick={this.undo}>
+          <Undo />
+        </IconButton>
+        <IconButton onClick={this.redo}>
+          <Redo />
+        </IconButton>
+        <IconButton onClick={this.find}>
+          <Search />
+        </IconButton>
+      </div>
+    ) : null
     return (
-      <div style={styles.root}>
-        <Button onClick={this.change}>change</Button>
+      <div style={rootStyle}>
+        {tabs}
+        {actions}
+        {device}
       </div>
     )
   }
 }
 
-export default RightPane
+export default observer(RightPane)
