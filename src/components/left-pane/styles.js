@@ -50,16 +50,6 @@ const styles = {
     height: 'calc(100vh - 55px - 60px - 10px - 80px)',
     overflow: 'auto',
   },
-
-  file: {
-    height: 85,
-    width: '100%',
-    controls: {
-      ...center,
-      width: '100%',
-      justifyContent: 'space-around',
-    },
-  },
 }
 
 export default styles

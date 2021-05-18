@@ -14,7 +14,16 @@ class DesignStore {
         height: 'calc(100vh - 2px)',
       },
     },
-    children: [],
+    children: [
+      {
+        identity: 'something',
+        name: 'div',
+        type: 'html',
+        text: '',
+        props: {},
+        children: [],
+      },
+    ],
   }
 
   constructor() {

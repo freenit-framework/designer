@@ -1,9 +1,10 @@
 import React from 'react'
 import { toJS } from 'mobx'
-import { Button, IconButton, Paper, Switch, TextField } from '@material-ui/core'
+import { observer } from 'mobx-react'
+import { Button, IconButton, Paper, TextField } from '@material-ui/core'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
 
-import { default as components, Save } from 'components'
+import { default as components, FileControls } from 'components'
 import store from 'store'
 
 import styles from './styles'
@@ -13,7 +14,6 @@ class LeftPane extends React.Component {
     open: true,
     search: '',
     caseSensitive: true,
-    func: false,
   }
 
   toggleOpen = () => {
@@ -22,10 +22,6 @@ class LeftPane extends React.Component {
 
   toggleCase = () => {
     this.setState({ caseSensitive: !this.state.caseSensitive })
-  }
-
-  toggleFunc = () => {
-    this.setState({ func: !this.state.func })
   }
 
   changeSearch = (event) => {
@@ -115,23 +111,7 @@ class LeftPane extends React.Component {
         </Paper>
       </div>
     ) : null
-    const fileControl = this.state.open ? (
-      <Paper style={styles.file}>
-        <Switch
-          checked={!this.state.func}
-          color="primary"
-          onChange={this.toggleFunc}
-        />
-        Class Component
-        <div style={styles.file.controls}>
-          <Save />
-          <Button variant="outlined" color="secondary">
-            Load
-          </Button>
-          <Button variant="outlined">Export</Button>
-        </div>
-      </Paper>
-    ) : null
+    const fileControl = this.state.open ? <FileControls /> : null
     return (
       <div style={rootStyle}>
         {controls}
@@ -146,4 +126,4 @@ class LeftPane extends React.Component {
   }
 }
 
-export default LeftPane
+export default observer(LeftPane)
