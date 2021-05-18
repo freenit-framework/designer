@@ -1,8 +1,10 @@
+import React from 'react'
+import { toJS } from 'mobx'
 import { Button, IconButton, Paper, Switch, TextField } from '@material-ui/core'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
-import React from 'react'
 
-import components from '..'
+import { default as components, Save } from 'components'
+import store from 'store'
 
 import styles from './styles'
 
@@ -122,9 +124,7 @@ class LeftPane extends React.Component {
         />
         Class Component
         <div style={styles.file.controls}>
-          <Button variant="outlined" color="primary">
-            Save
-          </Button>
+          <Save />
           <Button variant="outlined" color="secondary">
             Load
           </Button>

@@ -3,6 +3,7 @@ import { action, makeAutoObservable } from 'mobx'
 class DesignStore {
   over = {}
   selected = {}
+  theme = {}
   tree = {
     identity: 'root',
     name: 'div',
