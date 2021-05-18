@@ -27,6 +27,10 @@ const styles = {
     ...center,
     height: 50,
   },
+
+  edit: {
+    height: 'calc(100vh - 50px - 50px - 50px)',
+  },
 }
 
 export default styles

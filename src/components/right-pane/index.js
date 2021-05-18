@@ -90,6 +90,7 @@ class RightPane extends React.Component {
       <div style={rootStyle}>
         {tabs}
         {actions}
+        <div style={styles.edit}></div>
         {device}
       </div>
     )

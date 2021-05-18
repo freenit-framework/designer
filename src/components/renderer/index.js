@@ -8,7 +8,8 @@ import styles from './styles'
 const Renderer = observer(
   class Ren extends React.Component {
     render() {
-      const { children, name, props, text, type } = this.props.data
+      const { data, parent } = this.props
+      const { children, name, props, text, type } = data
       const comps = components[type]
       if (!comps) {
         return null
@@ -18,7 +19,7 @@ const Renderer = observer(
         <Component {...toJS(props)}>
           {text}
           {children.map((child) => (
-            <Renderer data={child} key={child.identity} />
+            <Renderer data={child} key={child.identity} parent={data} />
           ))}
         </Component>
       )
