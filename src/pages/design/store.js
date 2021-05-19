@@ -11,6 +11,7 @@ class DesignStore {
     name: 'div',
     type: 'html',
     text: '',
+    opened: false,
     props: {
       style: {
         height: 'calc(100vh - 2px)',
@@ -22,7 +23,8 @@ class DesignStore {
         name: 'div',
         type: 'html',
         text: '',
-        props: {},
+        opened: false,
+        props: { style: { height: 100, backgroundColor: 'gray' } },
         children: [],
       },
     ],

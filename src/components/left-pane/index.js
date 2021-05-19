@@ -14,6 +14,7 @@ class LeftPane extends React.Component {
     open: true,
     search: '',
     caseSensitive: true,
+    tab: 'components',
   }
 
   toggleOpen = () => {
@@ -26,6 +27,10 @@ class LeftPane extends React.Component {
 
   changeSearch = (event) => {
     this.setState({ search: event.target.value })
+  }
+
+  changeTab = (tab) => () => {
+    this.setState({ tab })
   }
 
   filterComponents = () => {
@@ -54,29 +59,7 @@ class LeftPane extends React.Component {
     return result
   }
 
-  render() {
-    const tabsStyle = this.state.open
-      ? styles.tabs
-      : {
-          ...styles.tabs,
-          overflow: 'hidden',
-          justifyContent: 'flex-end',
-        }
-    const tabs = this.state.open ? (
-      <div style={tabsStyle}>
-        <Button variant="outlined">Components</Button>
-        <Button variant="outlined">Icons</Button>
-        <IconButton onClick={this.toggleOpen}>
-          <KeyboardArrowLeft />
-        </IconButton>
-      </div>
-    ) : (
-      <div style={tabsStyle}>
-        <IconButton onClick={this.toggleOpen}>
-          <KeyboardArrowRight />
-        </IconButton>
-      </div>
-    )
+  componentView = () => {
     const filteredComponents = this.filterComponents(components)
     const muiComponents = this.state.open
       ? Object.keys(filteredComponents.mui).map((name) => (
@@ -92,6 +75,47 @@ class LeftPane extends React.Component {
           </div>
         ))
       : null
+    return (
+      <>
+        {muiComponents}
+        {htmlComponents}
+      </>
+    )
+  }
+
+  iconView = () => {
+    return null
+  }
+
+  render() {
+    const tabsStyle = this.state.open
+      ? styles.tabs
+      : {
+          ...styles.tabs,
+          overflow: 'hidden',
+          justifyContent: 'flex-end',
+        }
+    const tabs = this.state.open ? (
+      <div style={tabsStyle}>
+        <Button variant="outlined" onClick={this.changeTab('components')}>
+          Components
+        </Button>
+        <Button variant="outlined" onClick={this.changeTab('icons')}>
+          Icons
+        </Button>
+        <IconButton onClick={this.toggleOpen}>
+          <KeyboardArrowLeft />
+        </IconButton>
+      </div>
+    ) : (
+      <div style={tabsStyle}>
+        <IconButton onClick={this.toggleOpen}>
+          <KeyboardArrowRight />
+        </IconButton>
+      </div>
+    )
+    const componentView =
+      this.state.tab === 'components' ? this.componentView() : this.iconView()
     const rootStyle = this.state.open
       ? styles.root
       : {
@@ -115,10 +139,7 @@ class LeftPane extends React.Component {
       <div style={rootStyle}>
         {tabs}
         {search}
-        <div style={styles.components}>
-          {muiComponents}
-          {htmlComponents}
-        </div>
+        <div style={styles.components}>{componentView}</div>
         {fileControl}
       </div>
     )

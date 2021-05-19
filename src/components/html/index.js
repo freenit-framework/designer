@@ -133,6 +133,7 @@ htmlNames.forEach((name) => {
     props: {},
     children: [],
     text: '',
+    opened: false,
   }
 })
 

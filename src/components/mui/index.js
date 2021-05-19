@@ -15,6 +15,7 @@ names.forEach((name) => {
     props: {},
     children: [],
     text: '',
+    opened: false,
   }
 })
 
