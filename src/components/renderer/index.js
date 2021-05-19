@@ -7,6 +7,11 @@ import store from 'store'
 import styles from './styles'
 
 const overStyle = { borderStyle: 'dotted', borderWidth: 1 }
+const selectedStyle = {
+  borderStyle: 'dotted',
+  borderWidth: 1,
+  borderColor: 'red',
+}
 
 const Renderer = observer(
   class Ren extends React.Component {
@@ -24,6 +29,10 @@ const Renderer = observer(
       store.design.setOver({})
     }
 
+    select = () => {
+      store.design.setSelected(this.props.data)
+    }
+
     render() {
       const { data, parent } = this.props
       const { children, name, props, text, type } = data
@@ -32,16 +41,19 @@ const Renderer = observer(
         return null
       }
       const Component = comps[name].component
-      const style =
-        store.design.over.identity === data.identity
-          ? { ...props.style, ...overStyle }
-          : props.style
+      let style = props.style
+      if (store.design.selected.identity === data.identity) {
+        style = { ...props.style, ...selectedStyle }
+      } else if (store.design.over.identity === data.identity) {
+        style = { ...props.style, ...overStyle }
+      }
       return (
         <Component
           {...toJS(props)}
           style={toJS(style)}
           onMouseOver={this.mouseOver}
           onMouseLeave={this.mouseLeave}
+          onClick={this.select}
         >
           {text}
           {children.map((child) => (

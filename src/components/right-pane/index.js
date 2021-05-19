@@ -11,7 +11,7 @@ import {
 } from '@material-ui/icons'
 
 import store from 'store'
-import { Device } from 'components'
+import { Device, Props, Tree } from 'components'
 import styles from './styles'
 
 class RightPane extends React.Component {
@@ -90,7 +90,10 @@ class RightPane extends React.Component {
       <div style={rootStyle}>
         {tabs}
         {actions}
-        <div style={styles.edit}></div>
+        <div style={styles.edit}>
+          <Tree />
+          <Props />
+        </div>
         {device}
       </div>
     )

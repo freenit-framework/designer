@@ -18,7 +18,22 @@ class DesignStore {
         overflow: 'auto',
       },
     },
-    children: [],
+    children: [
+      {
+        identity: 'something',
+        name: 'div',
+        type: 'html',
+        text: '',
+        opened: false,
+        children: [],
+        props: {
+          style: {
+            height: 100,
+            overflow: 'auto',
+          },
+        },
+      },
+    ],
   }
 
   constructor() {
