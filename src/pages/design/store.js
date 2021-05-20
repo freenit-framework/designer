@@ -47,7 +47,19 @@ class DesignStore {
   })
 
   setSelected = action((data) => {
-    this.selecte = data
+    this.selected = data
+  })
+
+  setTheme = action((data) => {
+    this.theme = data
+  })
+
+  setTree = action((data) => {
+    this.tree = data
+  })
+
+  setChildren = action((data) => {
+    this.tree.children = data
   })
 }
 

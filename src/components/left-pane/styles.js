@@ -57,6 +57,8 @@ const styles = {
     gridTemplateColumns: 'auto auto auto auto',
     height: 'calc(100vh - 55px - 60px - 10px - 80px)',
     overflow: 'auto',
+    alignItems: 'center',
+    justifyItems: 'center',
   },
 }
 

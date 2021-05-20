@@ -14,6 +14,10 @@ const styles = {
       justifyContent: 'space-around',
     },
   },
+
+  input: {
+    display: 'none',
+  },
 }
 
 export default styles

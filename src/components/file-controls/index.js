@@ -4,6 +4,8 @@ import { deepObserve } from 'mobx-utils'
 import { Button, Paper, Switch } from '@material-ui/core'
 import { Base64 } from 'js-base64'
 
+import components from 'components'
+import types from 'types'
 import store from 'store'
 import styles from './styles'
 
@@ -26,8 +28,7 @@ export default Page
     begining: `
 const Page = (props) => {
     return (
-      <ThemeProvider theme={createMuiTheme(theme)}>
-`,
+      <ThemeProvider theme={createMuiTheme(theme)}>`,
     ending: `
       </ThemeProvider>
     )
@@ -63,6 +64,7 @@ class FileControls extends React.Component {
 
   mui = {}
   icons = {}
+  fileInput = React.createRef()
 
   constructor(props) {
     super(props)
@@ -135,6 +137,41 @@ class FileControls extends React.Component {
     return output
   }
 
+  handleLoad = () => {
+    this.fileInput.current.click()
+  }
+
+  loadData = (data) => {
+    const result = { ...data }
+    result.name = result.component
+    if (result.type === types.ICON) {
+      result.type = 'icons'
+    } else {
+      let component = components.mui[result.name]
+      if (!component) {
+        result.type = 'html'
+      } else {
+        result.type = 'mui'
+      }
+    }
+    result.children = result.children.map((item) => this.loadData(item))
+    return result
+  }
+
+  handleFileChange = (event) => {
+    if (event.target.files.length > 0) {
+      const [file] = event.target.files
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const data = JSON.parse(e.target.result)
+        const root = this.loadData(data.tree, true)
+        store.design.setChildren(root.children)
+        store.design.setTheme(data.theme)
+      }
+      reader.readAsText(file)
+    }
+  }
+
   render() {
     this.mui = {}
     this.icons = {}
@@ -169,21 +206,35 @@ class FileControls extends React.Component {
     const codeData = Base64.encode(
       `${reactImport}${muiImport}${iconImport}${themeImport}${themeOutput}${begining}${output}${ending}`
     )
+    const componentType = this.state.func
+      ? 'Functional Component'
+      : 'Class Component'
     return (
       <Paper style={styles.file}>
+        <input
+          ref={this.fileInput}
+          type="file"
+          accept=".json"
+          style={styles.input}
+          onChange={this.handleFileChange}
+        />
         <Switch
           checked={!this.state.func}
           color="primary"
           onChange={this.toggleFunc}
         />
-        Class Component
+        {componentType}
         <div style={styles.file.controls}>
           <a href={saveData} download="design.json">
             <Button variant="outlined" color="primary">
               Save
             </Button>
           </a>
-          <Button variant="outlined" color="secondary">
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={this.handleLoad}
+          >
             Load
           </Button>
           <a
