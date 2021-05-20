@@ -15,19 +15,10 @@ class DesignStore {
     props: {
       style: {
         height: 'calc(100vh - 2px)',
+        overflow: 'auto',
       },
     },
-    children: [
-      {
-        identity: 'something',
-        name: 'div',
-        type: 'html',
-        text: '',
-        opened: false,
-        props: { style: { height: 100, backgroundColor: 'gray' } },
-        children: [],
-      },
-    ],
+    children: [],
   }
 
   constructor() {

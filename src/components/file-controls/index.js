@@ -4,7 +4,7 @@ import { deepObserve } from 'mobx-utils'
 import { Button, Paper, Switch } from '@material-ui/core'
 import { Base64 } from 'js-base64'
 
-import components from 'components'
+import components, { toProps } from 'components'
 import types from 'types'
 import store from 'store'
 import styles from './styles'
@@ -155,6 +155,7 @@ class FileControls extends React.Component {
       }
     }
     result.children = result.children.map((item) => this.loadData(item))
+    result.props = toProps(result.props)
     return result
   }
 
