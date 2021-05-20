@@ -51,6 +51,13 @@ const styles = {
     height: 'calc(100vh - 55px - 60px - 10px - 80px)',
     overflow: 'auto',
   },
+
+  icons: {
+    display: 'grid',
+    gridTemplateColumns: 'auto auto auto auto',
+    height: 'calc(100vh - 55px - 60px - 10px - 80px)',
+    overflow: 'auto',
+  },
 }
 
 export default styles

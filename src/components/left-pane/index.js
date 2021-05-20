@@ -59,6 +59,22 @@ class LeftPane extends React.Component {
     return result
   }
 
+  filterIcons = () => {
+    const result = {
+      icons: {},
+    }
+    const rawIconNames = Object.keys(components.icons)
+    const iconNames = this.state.caseSensitive
+      ? rawIconNames.filter((name) => name.includes(this.state.search))
+      : rawIconNames.filter((name) =>
+          name.toLowerCase().includes(this.state.search)
+        )
+    iconNames.forEach((name) => {
+      result.icons[name] = components.icons[name]
+    })
+    return result
+  }
+
   componentView = () => {
     const filteredComponents = this.filterComponents(components)
     const muiComponents = this.state.open
@@ -76,15 +92,26 @@ class LeftPane extends React.Component {
         ))
       : null
     return (
-      <>
+      <div style={styles.components}>
         {muiComponents}
         {htmlComponents}
-      </>
+      </div>
     )
   }
 
   iconView = () => {
-    return null
+    const filteredIcons = this.filterIcons(components)
+    const icons = this.state.open
+      ? Object.keys(filteredIcons.icons).map((name) => {
+          const Icon = filteredIcons.icons[name].component
+          return (
+            <div key={`icon-${name}`} title={name}>
+              <Icon />
+            </div>
+          )
+        })
+      : null
+    return <div style={styles.icons}>{icons}</div>
   }
 
   render() {
@@ -97,10 +124,18 @@ class LeftPane extends React.Component {
         }
     const tabs = this.state.open ? (
       <div style={tabsStyle}>
-        <Button variant="outlined" onClick={this.changeTab('components')}>
+        <Button
+          variant="outlined"
+          onClick={this.changeTab('components')}
+          disabled={this.state.tab === 'components'}
+        >
           Components
         </Button>
-        <Button variant="outlined" onClick={this.changeTab('icons')}>
+        <Button
+          variant="outlined"
+          onClick={this.changeTab('icons')}
+          disabled={this.state.tab === 'icons'}
+        >
           Icons
         </Button>
         <IconButton onClick={this.toggleOpen}>
@@ -139,7 +174,7 @@ class LeftPane extends React.Component {
       <div style={rootStyle}>
         {tabs}
         {search}
-        <div style={styles.components}>{componentView}</div>
+        {componentView}
         {fileControl}
       </div>
     )
