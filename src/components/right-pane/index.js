@@ -86,14 +86,17 @@ class RightPane extends React.Component {
         </IconButton>
       </div>
     ) : null
+    const editor = this.state.open ? (
+      <div style={styles.edit}>
+        <Tree />
+        <Props />
+      </div>
+    ) : null
     return (
       <div style={rootStyle}>
         {tabs}
         {actions}
-        <div style={styles.edit}>
-          <Tree />
-          <Props />
-        </div>
+        {editor}
         {device}
       </div>
     )

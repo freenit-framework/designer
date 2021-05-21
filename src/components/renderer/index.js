@@ -9,7 +9,7 @@ import styles from './styles'
 const overStyle = { borderStyle: 'dotted', borderWidth: 1 }
 const selectedStyle = {
   borderStyle: 'dotted',
-  borderWidth: 1,
+  borderWidth: 2,
   borderColor: 'red',
 }
 
@@ -29,7 +29,8 @@ const Renderer = observer(
       store.design.setOver({})
     }
 
-    select = () => {
+    select = (event) => {
+      event.stopPropagation()
       store.design.setSelected(this.props.data)
     }
 

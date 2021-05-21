@@ -14,7 +14,7 @@ class DesignStore {
     opened: false,
     props: {
       style: {
-        height: 'calc(100vh - 2px)',
+        height: 'calc(100vh - 4px)',
         overflow: 'auto',
       },
     },
