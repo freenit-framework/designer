@@ -21,18 +21,20 @@ class Page extends React.Component {
     )
   }
 }
+
 export default Page
 `,
   },
   function: {
     begining: `
 const Page = (props) => {
-    return (
-      <ThemeProvider theme={createMuiTheme(theme)}>`,
+  return (
+    <ThemeProvider theme={createMuiTheme(theme)}>`,
     ending: `
-      </ThemeProvider>
-    )
+    </ThemeProvider>
+  )
 }
+
 export default Page
 `,
   },
@@ -104,7 +106,7 @@ class FileControls extends React.Component {
     const containsData = data.text || data.children.length > 0
     output += containsData ? '>' : ' />'
     if (data.text) {
-      output += `${' '.repeat(level + 2)}${data.text}\n`
+      output += `\n${' '.repeat(level + 2)}${data.text}`
     }
     output += data.children
       .map((item) => this.exportCode(item, level + 2))
@@ -203,7 +205,8 @@ class FileControls extends React.Component {
     const themeOutput = `\nconst theme = ${this.exportTheme(
       this.state.theme
     )}\n`
-    const output = this.exportCode(this.state.tree)
+    const level = this.state.func ? 6 : 8
+    const output = this.exportCode(this.state.tree, level)
     const codeData = Base64.encode(
       `${reactImport}${muiImport}${iconImport}${themeImport}${themeOutput}${begining}${output}${ending}`
     )
