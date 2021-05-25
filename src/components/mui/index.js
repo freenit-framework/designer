@@ -1,4 +1,5 @@
 import * as mui from '@material-ui/core'
+import { compile } from 'utils'
 
 const names = Object.keys(mui).filter((name) => {
   const component = mui[name]
@@ -12,7 +13,7 @@ names.forEach((name) => {
     name,
     type: 'mui',
     component: mui[name],
-    props: {},
+    props: compile({}),
     children: [],
     text: '',
     opened: false,

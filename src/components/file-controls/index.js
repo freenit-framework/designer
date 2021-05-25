@@ -4,9 +4,10 @@ import { deepObserve } from 'mobx-utils'
 import { Button, Paper, Switch } from '@material-ui/core'
 import { Base64 } from 'js-base64'
 
-import components, { toProps } from 'components'
+import components from 'components'
 import types from 'types'
 import store from 'store'
+import { decompile } from 'utils'
 import styles from './styles'
 
 const exportTemplates = {
@@ -157,7 +158,7 @@ class FileControls extends React.Component {
       }
     }
     result.children = result.children.map((item) => this.loadData(item))
-    result.props = toProps(result.props)
+    result.props = decompile(result.props)
     return result
   }
 

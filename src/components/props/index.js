@@ -26,11 +26,11 @@ class Props extends React.Component {
     if (!selected || !selected.identity) {
       return null
     }
-    const propsView = Object.keys(selected.props).map((name) => (
+    const propsView = Object.keys(selected.props.value).map((name) => (
       <PropItem
         key={name}
         name={name}
-        data={selected.props[name]}
+        data={selected.props.value[name]}
         parent={selected.props}
         level={2}
       />

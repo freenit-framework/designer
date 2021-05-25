@@ -12,6 +12,17 @@ const styles = {
     padding: 5,
     border: '1px solid #aaa',
   },
+
+  over: {
+    borderStyle: 'dotted',
+    borderWidth: 1,
+  },
+
+  selected: {
+    borderStyle: 'dotted',
+    borderWidth: 2,
+    borderColor: 'red',
+  },
 }
 
 export default styles

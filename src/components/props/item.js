@@ -24,7 +24,7 @@ const PropItem = observer(
 
     removeProp = (prop) =>
       action(() => {
-        delete this.props.parent[prop]
+        delete this.props.parent.value[prop]
       })
 
     // data is either simple value (string, number, ...), array or object
@@ -43,8 +43,8 @@ const PropItem = observer(
       const style = {
         marginLeft: level * 5,
       }
-      if (isSimple(data)) {
-        const view = name ? `${name}: ${data}` : null
+      if (isSimple(data.value)) {
+        const view = name ? `${name}: ${data.value}` : null
         return (
           <div
             style={{ ...styles.name, ...style }}
@@ -55,7 +55,7 @@ const PropItem = observer(
           </div>
         )
       }
-      if (Array.isArray(data)) {
+      if (Array.isArray(data.value)) {
         return (
           <div style={style}>
             <div
@@ -64,7 +64,7 @@ const PropItem = observer(
             >
               {this.props.name}: &#91; {addView} {removeView}
             </div>{' '}
-            {data.map((item) => (
+            {data.value.map((item) => (
               <PropItem
                 key={item}
                 data={item}
@@ -83,15 +83,15 @@ const PropItem = observer(
           onMouseEnter={() => this.setState({ over: true })}
           onMouseLeave={() => this.setState({ over: false })}
         >
-          {this.props.name}: &#123; {addView} {removeView}
+          {name}: &#123; {addView} {removeView}
         </div>
       ) : null
       const endNameView = name ? '}' : null
-      const childrenView = Object.keys(data).map((n) => (
+      const childrenView = Object.keys(data.value).map((n) => (
         <PropItem
           key={n}
           name={n}
-          data={data[n]}
+          data={data.value[n]}
           parent={data}
           level={level + 1}
         />

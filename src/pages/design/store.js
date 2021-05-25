@@ -1,4 +1,5 @@
 import { action, makeAutoObservable } from 'mobx'
+import { compile } from 'utils'
 
 class DesignStore {
   device = 'desktop'
@@ -12,28 +13,13 @@ class DesignStore {
     type: 'html',
     text: '',
     opened: false,
-    props: {
+    props: compile({
       style: {
         height: 'calc(100vh - 4px)',
         overflow: 'auto',
       },
-    },
-    children: [
-      {
-        identity: 'something',
-        name: 'div',
-        type: 'html',
-        text: '',
-        opened: false,
-        children: [],
-        props: {
-          style: {
-            height: 100,
-            overflow: 'auto',
-          },
-        },
-      },
-    ],
+    }),
+    children: [],
   }
 
   constructor() {

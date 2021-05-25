@@ -44,7 +44,7 @@ const TreeItem = observer(
             <ListItemText primary={data.name} secondary={data.identity} />
             <IconButton onClick={this.toggleOpen}>{icon}</IconButton>
           </div>
-          <Collapse in={data.open} timeout="auto" unmountOnExit>
+          <Collapse in={data.open} timeout="auto">
             <List component="div" disablePadding>
               {children}
             </List>

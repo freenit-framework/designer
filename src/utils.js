@@ -45,13 +45,22 @@ export const errors = (response) => {
     }
   }
   if (data.errors) {
-    Object.getOwnPropertyNames(data.errors).forEach((property) => {
+    Object.keys(data.errors).forEach((property) => {
       if (property !== 'message') {
         data.errors[property] = data.errors[property].join(' ')
       }
     })
   }
   return data
+}
+
+export const makeid = (length) => {
+  let result = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  for (let i = 0; i < length; ++i) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+  return result
 }
 
 export const isSimple = (data) => {
@@ -61,4 +70,36 @@ export const isSimple = (data) => {
     typeof data === 'string' ||
     typeof data === 'boolean'
   )
+}
+
+export const compile = (value) => {
+  const result = { identity: makeid(8) }
+  if (isSimple(value)) {
+    result.value = value
+  } else if (Array.isArray(value)) {
+    result.value = value.map((v) => compile(v))
+  } else {
+    result.value = {}
+    Object.keys(value).forEach((name) => {
+      result.value[name] = compile(value[name])
+    })
+  }
+  return result
+}
+
+export const decompile = (data) => {
+  if (data.type === 'file') {
+    return `${data.pre}${data.file}${data.post}`
+  }
+  if (Array.isArray(data.value)) {
+    return data.value.map((item) => decompile(item.value))
+  }
+  if (isSimple(data.value)) {
+    return data.value
+  }
+  const props = {}
+  Object.keys(data.value).forEach((name) => {
+    props[name] = decompile(data.value[name])
+  })
+  return props
 }
