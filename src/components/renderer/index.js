@@ -10,15 +10,12 @@ import styles from './styles'
 
 const Renderer = observer(
   class Ren extends React.Component {
-    state = {
-      props: {},
-    }
-
     constructor(props) {
       super(props)
-      this.state.props = decompile(toJS(props.data.props))
-      this.disposer = deepObserve(props.data.props, () => {
-        this.setState({ props: decompile(toJS(props.data.props)) })
+      const { data } = props
+      this.state = { props: decompile(toJS(data.props)) }
+      this.disposer = deepObserve(data.props, () => {
+        this.setState({ props: decompile(toJS(data.props)) })
       })
     }
 
