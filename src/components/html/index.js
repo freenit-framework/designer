@@ -1,3 +1,5 @@
+import { compile } from 'utils'
+
 const htmlNames = [
   'a',
   'abbr',
@@ -130,7 +132,7 @@ htmlNames.forEach((name) => {
     name,
     type: 'html',
     component: name,
-    props: {},
+    props: compile({}),
     children: [],
     text: '',
     opened: false,

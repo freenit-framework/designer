@@ -13,13 +13,28 @@ class DesignStore {
     type: 'html',
     text: '',
     opened: false,
+    component: 'div',
     props: compile({
       style: {
         height: 'calc(100vh - 4px)',
-        overflow: 'auto',
       },
     }),
-    children: [],
+    children: [
+      {
+        identity: 'something',
+        name: 'div',
+        type: 'html',
+        text: 'sub',
+        opened: false,
+        children: [],
+        component: 'div',
+        props: compile({
+          style: {
+            backgroundColor: 'gray',
+          },
+        }),
+      },
+    ],
   }
 
   constructor() {

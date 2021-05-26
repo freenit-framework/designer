@@ -1,11 +1,12 @@
-import components from 'components'
+import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { deepObserve } from 'mobx-utils'
-import React from 'react'
 
 import { decompile } from 'utils'
+import components from 'components'
 import store from 'store'
+import DnD from './dnd'
 import styles from './styles'
 
 const Renderer = observer(
@@ -57,19 +58,22 @@ const Renderer = observer(
       } else {
         style = myStyle
       }
+      const myProps = {
+        ...props,
+        onMouseOver: this.mouseOver,
+        onMouseLeave: this.mouseLeave,
+        onClick: this.select,
+      }
+      delete myProps.style
       return (
-        <Component
-          {...props}
+        <DnD
+          props={myProps}
+          data={this.props.data}
           style={style}
-          onMouseOver={this.mouseOver}
-          onMouseLeave={this.mouseLeave}
-          onClick={this.select}
-        >
-          {text}
-          {children.map((child) => (
-            <Renderer data={child} key={child.identity} parent={data} />
-          ))}
-        </Component>
+          mouseOver={this.mouseOver}
+          mouseLeave={this.mouseLeave}
+          select={this.select}
+        />
       )
     }
   }

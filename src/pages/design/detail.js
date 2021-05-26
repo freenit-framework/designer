@@ -1,4 +1,6 @@
 import React from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend as Backend } from 'react-dnd-html5-backend'
 import { EmptyTemplate } from '@freenit-framework/core'
 
 import { Display, LeftPane, RightPane } from 'components'
@@ -8,9 +10,11 @@ class Design extends React.Component {
   render() {
     return (
       <EmptyTemplate.Detail style={styles.root}>
-        <LeftPane />
-        <Display />
-        <RightPane />
+        <DndProvider backend={Backend} style={styles.provider}>
+          <LeftPane />
+          <Display />
+          <RightPane />
+        </DndProvider>
       </EmptyTemplate.Detail>
     )
   }

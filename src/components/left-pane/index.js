@@ -7,6 +7,7 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
 import { default as components, FileControls } from 'components'
 import store from 'store'
 
+import Drag from './drag'
 import styles from './styles'
 
 class LeftPane extends React.Component {
@@ -79,9 +80,7 @@ class LeftPane extends React.Component {
     const filteredComponents = this.filterComponents(components)
     const muiComponents = this.state.open
       ? Object.keys(filteredComponents.mui).map((name) => (
-          <div key={`mui-${name}`} style={styles.component}>
-            {name}
-          </div>
+          <Drag key={`mui-${name}`} data={filteredComponents.mui[name]} />
         ))
       : null
     const htmlComponents = this.state.open
