@@ -5,6 +5,7 @@ import Icon from '@material-ui/icons/Add'
 import store from 'store'
 import AddProp from './add'
 import EditProp from './edit'
+import EditText from './edit-text'
 import styles from './styles'
 import PropItem from './item'
 
@@ -12,6 +13,7 @@ class Props extends React.Component {
   state = {
     add: false,
     over: false,
+    text: false,
   }
 
   showAdd = () => {
@@ -20,6 +22,22 @@ class Props extends React.Component {
 
   hideAdd = () => {
     this.setState({ add: false })
+  }
+
+  showOver = () => {
+    this.setState({ over: true })
+  }
+
+  hideOver = () => {
+    this.setState({ over: false })
+  }
+
+  showText = () => {
+    this.setState({ text: true })
+  }
+
+  hideText = () => {
+    this.setState({ text: false })
   }
 
   render() {
@@ -48,17 +66,18 @@ class Props extends React.Component {
           handleClose={this.hideAdd}
           data={selected.props}
         />
+        <EditText open={this.state.text} handleClose={this.hideText} />
         <div
           style={styles.name}
-          onMouseEnter={() => this.setState({ over: true })}
-          onMouseLeave={() => this.setState({ over: false })}
+          onMouseEnter={this.showOver}
+          onMouseLeave={this.hideOver}
         >
           props: &#123;
           {addView}
         </div>
         {propsView}
         &#125;
-        <div>text: {selected.text}</div>
+        <div onClick={this.showText}>text: {selected.text}</div>
       </div>
     )
   }
