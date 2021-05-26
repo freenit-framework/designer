@@ -68,7 +68,8 @@ const Renderer = observer(
       return (
         <DnD
           props={myProps}
-          data={this.props.data}
+          data={data}
+          parent={parent}
           style={style}
           mouseOver={this.mouseOver}
           mouseLeave={this.mouseLeave}

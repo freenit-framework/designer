@@ -7,7 +7,7 @@ import components from 'components'
 import store from 'store'
 import Renderer from './index'
 
-const DnD = ({ props, style, data }) => {
+const DnD = ({ props, style, data, parent }) => {
   const ref = React.useRef(null)
   const { type, name, children, text } = data
   const comps = components[type]
@@ -20,9 +20,15 @@ const DnD = ({ props, style, data }) => {
     accept,
     drop: action((item, monitor) => {
       if (monitor.isOver({ shallow: true }) && monitor.canDrop()) {
+        const { parent } = item
         const sdata = JSON.stringify(toJS(item))
         const jdata = JSON.parse(sdata)
         jdata.identity = makeid(8)
+        if (parent && Array.isArray(parent.children)) {
+          parent.children = parent.children.filter((child) => {
+            return child.identity !== item.identity
+          })
+        }
         data.children.push(jdata)
       }
     }),
@@ -32,7 +38,7 @@ const DnD = ({ props, style, data }) => {
     }),
   })
   const [{ isDragging }, drag] = useDrag({
-    item: data,
+    item: { ...data, parent },
     type: data.type,
     collect: (monitor) => ({ isDragging: monitor.isDragging() }),
   })

@@ -1,4 +1,5 @@
 import React from 'react'
+import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import { Button, IconButton } from '@material-ui/core'
 import {
@@ -31,7 +32,18 @@ class RightPane extends React.Component {
 
   redo = () => {}
 
-  find = () => {}
+  _find = action((item = store.design.tree) => {
+    if (item.identity === store.design.selected.identity) {
+      item.opened = true
+      return true
+    }
+    item.opened = item.children.reduce(
+      (result, child) => result || this._find(child),
+      false
+    )
+  })
+
+  find = () => this._find()
 
   render() {
     const tabsStyle = this.state.open

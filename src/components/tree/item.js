@@ -24,7 +24,7 @@ const TreeItem = observer(
     toggleOpen = action((event) => {
       event.stopPropagation()
       const { data } = this.props
-      data.open = !data.open
+      data.opened = !data.opened
     })
 
     render() {
@@ -33,7 +33,7 @@ const TreeItem = observer(
       const children = data.children.map((item) => (
         <TreeItem data={item} key={item.identity} />
       ))
-      const icon = data.open ? <KeyboardArrowUp /> : <KeyboardArrowDown />
+      const icon = data.opened ? <KeyboardArrowUp /> : <KeyboardArrowDown />
       const style = {
         ...styles.item,
         border: data.identity === selected.identity ? '1px dashed gray' : null,
@@ -44,7 +44,7 @@ const TreeItem = observer(
             <ListItemText primary={data.name} secondary={data.identity} />
             <IconButton onClick={this.toggleOpen}>{icon}</IconButton>
           </div>
-          <Collapse in={data.open} timeout="auto">
+          <Collapse in={data.opened} timeout="auto">
             <List component="div" disablePadding>
               {children}
             </List>
