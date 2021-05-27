@@ -20,16 +20,28 @@ const DnD = ({ props, style, data, parent }) => {
     accept,
     drop: action((item, monitor) => {
       if (monitor.isOver({ shallow: true }) && monitor.canDrop()) {
-        const { parent } = item
+        const p = item.parent
         const sdata = JSON.stringify(toJS(item))
         const jdata = JSON.parse(sdata)
+        delete jdata.parent
         jdata.identity = makeid(8)
-        if (parent && Array.isArray(parent.children)) {
-          parent.children = parent.children.filter((child) => {
+        if (p && Array.isArray(p.children)) {
+          p.children = p.children.filter((child) => {
             return child.identity !== item.identity
           })
         }
-        data.children.push(jdata)
+        if (store.design.rearrange) {
+          if (parent) {
+            const index = parent.children.findIndex(
+              (child) => child.identity === data.identity
+            )
+            if (index >= 0) {
+              parent.children.splice(index, 0, jdata)
+            }
+          }
+        } else {
+          data.children.push(jdata)
+        }
       }
     }),
     collect: (monitor) => ({

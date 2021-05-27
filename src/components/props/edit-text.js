@@ -1,14 +1,7 @@
 import React from 'react'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 
 import store from 'store'
 import { compile } from 'utils'
@@ -33,31 +26,28 @@ class EditText extends React.Component {
     this.props.handleClose()
   })
 
-  submit = () => {
+  submit = (event) => {
+    event.preventDefault()
     this.props.handleClose()
   }
 
   render() {
     return (
-      <Dialog open={this.props.open} onClose={this.cancel}>
-        <DialogTitle>Edit Text</DialogTitle>
-        <DialogContent>
-          <TextField
-            fullWidth
-            label="name"
-            value={store.design.selected.text}
-            onChange={this.changeText}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.cancel} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={this.submit} color="primary">
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <form onSubmit={this.submit}>
+        <TextField
+          fullWidth
+          autoFocus
+          label="text"
+          value={store.design.selected.text}
+          onChange={this.changeText}
+        />
+        <Button onClick={this.cancel} color="secondary">
+          Cancel
+        </Button>
+        <Button type="submit" color="primary">
+          OK
+        </Button>
+      </form>
     )
   }
 }

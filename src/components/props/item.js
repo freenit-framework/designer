@@ -5,7 +5,7 @@ import React from 'react'
 import { isSimple } from 'utils'
 
 import AddProp from './add'
-import EditProp from './add'
+import EditProp from './edit'
 import styles from './styles'
 
 const PropItem = observer(
@@ -87,8 +87,14 @@ const PropItem = observer(
       }
       if (isSimple(data.value)) {
         const view = name ? `${name}: ${data.value}` : null
-        return (
-          <div {...this.valueProps} style={{ ...styles.name, ...style }}>
+        return this.state.edit ? (
+          <EditProp data={data} handleClose={this.hideEdit} />
+        ) : (
+          <div
+            {...this.valueProps}
+            style={{ ...styles.name, ...style }}
+            onClick={this.showEdit}
+          >
             {view} {removeView}
           </div>
         )

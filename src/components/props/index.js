@@ -59,6 +59,11 @@ class Props extends React.Component {
     ) : (
       <Icon style={{ opacity: 0 }} />
     )
+    const textView = this.state.text ? (
+      <EditText handleClose={this.hideText} />
+    ) : (
+      <div onClick={this.showText}>text: {selected.text}</div>
+    )
     return (
       <div style={styles.root}>
         <AddProp
@@ -66,7 +71,6 @@ class Props extends React.Component {
           handleClose={this.hideAdd}
           data={selected.props}
         />
-        <EditText open={this.state.text} handleClose={this.hideText} />
         <div
           style={styles.name}
           onMouseEnter={this.showOver}
@@ -77,7 +81,7 @@ class Props extends React.Component {
         </div>
         {propsView}
         &#125;
-        <div onClick={this.showText}>text: {selected.text}</div>
+        {textView}
       </div>
     )
   }

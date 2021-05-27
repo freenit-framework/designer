@@ -1,53 +1,52 @@
-import React from 'react'
+import { Button, TextField } from '@material-ui/core'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@material-ui/core'
-
+import React from 'react'
 import { compile } from 'utils'
+
 import styles from './styles'
 
 class EditProp extends React.Component {
-  state = {}
-
-  changeValue = (event) => {
-    this.setState({ value: event.target.value })
+  state = {
+    value: '',
   }
 
-  submit = action(() => {
-    const { name, value } = this.state
-    this.props.data.value[name] = compile(value)
-    this.setState({ name: '', value: '' })
+  constructor(props) {
+    super(props)
+    this.state.value = props.data.value
+  }
+
+  changeValue = action((event) => {
+    this.props.data.value = event.target.value
+  })
+
+  cancel = action(() => {
+    this.props.data.value = this.state.value
     this.props.handleClose()
   })
 
+  submit = (event) => {
+    event.preventDefault()
+    this.props.handleClose()
+  }
+
   render() {
     return (
-      <Dialog open={this.props.open} onClose={this.props.handleClose}>
-        <DialogTitle>Edit Prop</DialogTitle>
-        <DialogContent>
-          <TextField
-            fullWidth
-            label="value"
-            value={this.state.value}
-            onChange={this.changeValue}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.props.handleClose} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={this.submit} color="primary">
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <form onSubmit={this.submit}>
+        <TextField
+          fullWidth
+          autoFocus
+          label="value"
+          value={this.props.data.value}
+          onChange={this.changeValue}
+        />
+        <Button onClick={this.cancel} color="secondary">
+          Cancel
+        </Button>
+        <Button type="submit" color="primary">
+          OK
+        </Button>
+      </form>
     )
   }
 }
