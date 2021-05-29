@@ -8,8 +8,8 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core'
-import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons'
 
+import DnD from './dnd'
 import store from 'store'
 import styles from './styles'
 
@@ -28,22 +28,18 @@ const TreeItem = observer(
     })
 
     render() {
-      const { data } = this.props
+      const { data, parent } = this.props
       const { selected } = store.design
       const children = data.children.map((item) => (
-        <TreeItem data={item} key={item.identity} />
+        <TreeItem data={item} key={item.identity} parent={data} />
       ))
-      const icon = data.opened ? <KeyboardArrowUp /> : <KeyboardArrowDown />
       const style = {
         ...styles.item,
         border: data.identity === selected.identity ? '1px dashed gray' : null,
       }
       return (
         <ListItem button style={style} onClick={this.select}>
-          <div style={styles.text}>
-            <ListItemText primary={data.name} secondary={data.identity} />
-            <IconButton onClick={this.toggleOpen}>{icon}</IconButton>
-          </div>
+          <DnD data={data} parent={parent} toggleOpen={this.toggleOpen} />
           <Collapse in={data.opened} timeout="auto">
             <List component="div" disablePadding>
               {children}
