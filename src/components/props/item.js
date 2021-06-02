@@ -88,7 +88,7 @@ const PropItem = observer(
       if (isSimple(data.value)) {
         const view = name ? `${name}: ${data.value}` : null
         return this.state.edit ? (
-          <EditProp data={data} handleClose={this.hideEdit} />
+          <EditProp name={name} data={data} handleClose={this.hideEdit} />
         ) : (
           <div
             {...this.valueProps}

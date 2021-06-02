@@ -1,7 +1,7 @@
 import { action, toJS } from 'mobx'
 
 import store from 'store'
-import { makeid } from 'utils'
+import { changeIds } from 'utils'
 
 const drop = (data, parent) => ({
   accept: ['html', 'mui', 'icon'],
@@ -11,7 +11,7 @@ const drop = (data, parent) => ({
       const sdata = JSON.stringify(toJS(item))
       const jdata = JSON.parse(sdata)
       delete jdata.parent
-      jdata.identity = makeid(8)
+      changeIds(jdata)
       if (p && Array.isArray(p.children)) {
         p.children = p.children.filter((child) => {
           return child.identity !== item.identity

@@ -4,7 +4,6 @@ import Icon from '@material-ui/icons/Add'
 
 import store from 'store'
 import AddProp from './add'
-import EditProp from './edit'
 import EditText from './edit-text'
 import styles from './styles'
 import PropItem from './item'

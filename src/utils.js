@@ -103,3 +103,9 @@ export const decompile = (data) => {
   })
   return props
 }
+
+export const changeIds = (component) => {
+  component.identity = makeid(8)
+  component.children.forEach((item) => changeIds(item))
+  return component
+}

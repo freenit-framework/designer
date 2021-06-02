@@ -36,7 +36,7 @@ class EditProp extends React.Component {
         <TextField
           fullWidth
           autoFocus
-          label="value"
+          label={this.props.name}
           value={this.props.data.value}
           onChange={this.changeValue}
         />

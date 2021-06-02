@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import { Renderer } from 'components'
+import { KeyBind, Renderer } from 'components'
 import store from 'store'
 import styles from './styles'
 
@@ -12,7 +12,9 @@ class Display extends React.Component {
     return (
       <div style={styles.root}>
         <div style={style}>
-          <Renderer data={store.design.tree} />
+          <KeyBind>
+            <Renderer data={store.design.tree} />
+          </KeyBind>
         </div>
       </div>
     )

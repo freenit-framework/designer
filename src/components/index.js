@@ -9,6 +9,7 @@ export { default as Props } from './props'
 export { default as Renderer } from './renderer'
 export { default as RightPane } from './right-pane'
 export { default as Tree } from './tree'
+export { default as KeyBind } from './keybind'
 
 const components = { html, mui, icons }
 

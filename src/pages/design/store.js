@@ -3,6 +3,11 @@ import { compile } from 'utils'
 
 class DesignStore {
   device = 'desktop'
+  keybind = {
+    ctrl: false,
+    shift: false,
+    alt: false,
+  }
   over = {}
   rearrange = false
   selected = {}
@@ -68,6 +73,30 @@ class DesignStore {
   setChildren = action((data) => {
     this.tree.children = data
   })
+
+  remove = action((data, tree = this.tree) => {
+    if (data.identity === 'root') {
+      return
+    }
+    tree.children = tree.children.filter(
+      (child) => child.identity !== data.identity
+    )
+    tree.children.forEach((child) => this.remove(data, child))
+  })
+
+  find = (data, tree = this.tree) => {
+    if (data.identity === tree.identity) {
+      return tree
+    }
+    let result = null
+    tree.children.forEach((child) => {
+      const r = this.find(data, child)
+      if (r) {
+        result = r
+      }
+    })
+    return result
+  }
 }
 
 const store = new DesignStore()
