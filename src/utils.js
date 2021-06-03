@@ -76,6 +76,7 @@ export const compile = (value) => {
   const result = { identity: makeid(8) }
   if (isSimple(value)) {
     result.value = value
+    result.type = typeof value
   } else if (Array.isArray(value)) {
     result.value = value.map((v) => compile(v))
   } else {
