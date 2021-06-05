@@ -94,7 +94,7 @@ export const decompile = (data) => {
     return `${data.pre}${data.file}${data.post}`
   }
   if (Array.isArray(data.value)) {
-    return data.value.map((item) => decompile(item.value))
+    return data.value.map((item) => decompile(item))
   }
   if (isSimple(data.value)) {
     return data.value

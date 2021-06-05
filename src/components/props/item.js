@@ -18,12 +18,10 @@ const PropItem = observer(
     }
 
     showAdd = () => {
-      console.log('add')
       this.setState({ open: true })
     }
 
     hideAdd = () => {
-      console.log('hide add')
       this.setState({ open: false })
     }
 
@@ -94,7 +92,9 @@ const PropItem = observer(
             &nbsp;
             <span onClick={this.showEdit}>{data.value}</span>
           </>
-        ) : null
+        ) : (
+          <span onClick={this.showEdit}>{data.value}</span>
+        )
         return this.state.edit ? (
           <EditProp name={name} data={data} handleClose={this.hideEdit} />
         ) : (
@@ -115,7 +115,6 @@ const PropItem = observer(
             <div {...this.nameProps} style={styles.name}>
               {this.props.name}: &#91; {addView} {removeView}
             </div>
-            &nbsp;
             {data.value.map((item) => (
               <PropItem
                 key={item}
