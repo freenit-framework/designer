@@ -18,10 +18,12 @@ const PropItem = observer(
     }
 
     showAdd = () => {
+      console.log('add')
       this.setState({ open: true })
     }
 
     hideAdd = () => {
+      console.log('hide add')
       this.setState({ open: false })
     }
 
@@ -86,15 +88,17 @@ const PropItem = observer(
         marginLeft: level * 5,
       }
       if (isSimple(data.value)) {
-        const view = name ? `${name}: ${data.value}` : null
+        const view = name ? (
+          <>
+            <span onClick={this.showEditName}>{name}:</span>
+            &nbsp;
+            <span onClick={this.showEdit}>{data.value}</span>
+          </>
+        ) : null
         return this.state.edit ? (
           <EditProp name={name} data={data} handleClose={this.hideEdit} />
         ) : (
-          <div
-            {...this.valueProps}
-            style={{ ...styles.name, ...style }}
-            onClick={this.showEdit}
-          >
+          <div {...this.baseProps} style={{ ...styles.name, ...style }}>
             {view} {removeView}
           </div>
         )
@@ -102,9 +106,16 @@ const PropItem = observer(
       if (Array.isArray(data.value)) {
         return (
           <div style={style}>
-            <div {...this.valueProps}>
+            <AddProp
+              noname
+              open={this.state.open}
+              handleClose={this.hideAdd}
+              data={data}
+            />
+            <div {...this.nameProps} style={styles.name}>
               {this.props.name}: &#91; {addView} {removeView}
-            </div>{' '}
+            </div>
+            &nbsp;
             {data.value.map((item) => (
               <PropItem
                 key={item}

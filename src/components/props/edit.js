@@ -49,7 +49,6 @@ class EditProp extends React.Component {
     } else {
       type = 'text'
     }
-    console.log(type, data.type)
     return (
       <form onSubmit={this.submit}>
         <TextField

@@ -77,6 +77,7 @@ export const compile = (value) => {
   if (isSimple(value)) {
     result.value = value
     result.type = typeof value
+    result.name = ''
   } else if (Array.isArray(value)) {
     result.value = value.map((v) => compile(v))
   } else {
