@@ -40,16 +40,17 @@ class Props extends React.Component {
   }
 
   render() {
-    const { selected } = store.design
-    if (!selected || !selected.identity) {
+    const { selected, theme } = store.design
+    if (this.props.source === 'props' && (!selected || !selected.identity)) {
       return null
     }
-    const propsView = Object.keys(selected.props.value).map((name) => (
+    const props = this.props.source === 'props' ? selected.props : theme
+    const propsView = Object.keys(props.value).map((name) => (
       <PropItem
         key={name}
         name={name}
-        data={selected.props.value[name]}
-        parent={selected.props}
+        data={props.value[name]}
+        parent={props}
         level={2}
       />
     ))
@@ -58,24 +59,25 @@ class Props extends React.Component {
     ) : (
       <Icon style={{ opacity: 0 }} />
     )
-    const textView = this.state.text ? (
-      <EditText handleClose={this.hideText} />
-    ) : (
-      <div onClick={this.showText}>text: {selected.text}</div>
-    )
+    let textView
+    if (this.state.text) {
+      textView = <EditText handleClose={this.hideText} />
+    } else if (this.props.source === 'props') {
+      textView = <div onClick={this.showText}>text: {selected.text}</div>
+    }
     return (
       <div style={styles.root}>
         <AddProp
           open={this.state.add}
           handleClose={this.hideAdd}
-          data={selected.props}
+          data={props}
         />
         <div
           style={styles.name}
           onMouseEnter={this.showOver}
           onMouseLeave={this.hideOver}
         >
-          props: &#123;
+          {this.props.source}: &#123;
           {addView}
         </div>
         {propsView}

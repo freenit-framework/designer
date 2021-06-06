@@ -18,21 +18,16 @@ import styles from './styles'
 class RightPane extends React.Component {
   state = {
     open: true,
-  }
-
-  toggleOpen = () => {
-    this.setState({ open: !this.state.open })
-  }
-
-  toggleRearrange = () => {
-    store.design.setRearrange(!store.design.rearrange)
+    tab: 'props',
   }
 
   undo = () => {}
-
   redo = () => {}
+  toggleOpen = () => this.setState({ open: !this.state.open })
+  toggleRearrange = () => store.design.setRearrange(!store.design.rearrange)
+  changeTab = (tab) => () => this.setState({ tab })
 
-  _find = action((item = store.design.tree) => {
+  find = action((item = store.design.tree) => {
     if (item.identity === store.design.selected.identity) {
       item.opened = true
       return true
@@ -42,8 +37,6 @@ class RightPane extends React.Component {
       false
     )
   })
-
-  find = () => this._find()
 
   render() {
     const tabsStyle = this.state.open
@@ -58,10 +51,21 @@ class RightPane extends React.Component {
         <IconButton onClick={this.toggleOpen}>
           <KeyboardArrowRight />
         </IconButton>
-        <Button variant="outlined" style={styles.props}>
+        <Button
+          variant="outlined"
+          style={styles.props}
+          onClick={this.changeTab('props')}
+          disabled={this.state.tab === 'props'}
+        >
           Props
         </Button>
-        <Button variant="outlined">Theme</Button>
+        <Button
+          variant="outlined"
+          onClick={this.changeTab('theme')}
+          disabled={this.state.tab === 'theme'}
+        >
+          Theme
+        </Button>
       </div>
     ) : (
       <div style={tabsStyle}>
@@ -100,8 +104,8 @@ class RightPane extends React.Component {
     ) : null
     const editor = this.state.open ? (
       <div style={styles.edit}>
-        <Tree />
-        <Props />
+        {this.state.tab === 'props' ? <Tree /> : null}
+        <Props source={this.state.tab} />
       </div>
     ) : null
     return (

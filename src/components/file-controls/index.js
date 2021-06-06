@@ -62,12 +62,13 @@ class FileControls extends React.Component {
   state = {
     func: false,
     tree: toJS(store.design.tree),
-    theme: toJS(store.design.theme),
+    theme: decompile(toJS(store.design.theme)),
   }
 
   mui = {}
   icons = {}
   fileInput = React.createRef()
+  toggleFunc = () => this.setState({ func: !this.state.func })
 
   constructor(props) {
     super(props)
@@ -75,12 +76,8 @@ class FileControls extends React.Component {
       this.setState({ tree: toJS(store.design.tree) })
     })
     deepObserve(store.design.theme, () => {
-      this.setState({ theme: toJS(store.design.theme) })
+      this.setState({ theme: decompile(toJS(store.design.theme)) })
     })
-  }
-
-  toggleFunc = () => {
-    this.setState({ func: !this.state.func })
   }
 
   usedComponents = (data) => {

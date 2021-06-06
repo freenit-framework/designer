@@ -11,7 +11,7 @@ class DesignStore {
   over = {}
   rearrange = false
   selected = {}
-  theme = {}
+  theme = compile({})
   tree = {
     identity: 'root',
     name: 'div',
