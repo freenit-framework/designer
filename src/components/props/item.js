@@ -1,11 +1,12 @@
+import React from 'react'
 import { Add, Remove } from '@material-ui/icons'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
-import React from 'react'
 import { isSimple } from 'utils'
 
 import AddProp from './add'
 import EditProp from './edit'
+import RenameProp from './rename'
 import styles from './styles'
 
 const PropItem = observer(
@@ -78,7 +79,8 @@ const PropItem = observer(
 
     // data is either simple value (string, number, ...), array or object
     render() {
-      const { name, level, data } = this.props
+      let view
+      const { name, level, data, parent } = this.props
       const addView = this.state.over ? (
         <Add onClick={this.showAdd} />
       ) : (
@@ -92,8 +94,17 @@ const PropItem = observer(
       const style = {
         marginLeft: level * 5,
       }
-      if (isSimple(data.value)) {
-        const view = name ? (
+      if (this.state.name) {
+        view = (
+          <RenameProp
+            name={name}
+            data={data}
+            parent={parent}
+            handleClose={this.hideEditName}
+          />
+        )
+      } else if (isSimple(data.value)) {
+        const nameView = name ? (
           <>
             <span onClick={this.showEditName}>{name}:</span>
             &nbsp;
@@ -102,17 +113,16 @@ const PropItem = observer(
         ) : (
           <span onClick={this.showEdit}>{data.value}</span>
         )
-        return this.state.edit ? (
+        view = this.state.edit ? (
           <EditProp name={name} data={data} handleClose={this.hideEdit} />
         ) : (
-          <div {...this.baseProps} style={{ ...styles.name, ...style }}>
-            {view} {removeView}
+          <div {...this.baseProps} style={styles.name}>
+            {nameView} {removeView}
           </div>
         )
-      }
-      if (Array.isArray(data.value)) {
-        return (
-          <div style={style}>
+      } else if (Array.isArray(data.value)) {
+        view = (
+          <>
             <AddProp
               noname
               open={this.state.open}
@@ -131,37 +141,39 @@ const PropItem = observer(
               />
             ))}
             &#93;
+          </>
+        )
+      } else {
+        // If it's not simple value nor array, we assume object
+        const nameView = name ? (
+          <div {...this.nameProps} style={styles.name}>
+            {name}: &#123; {addView} {removeView}
           </div>
+        ) : null
+        const endNameView = name ? '}' : null
+        const childrenView = Object.keys(data.value).map((n) => (
+          <PropItem
+            key={n}
+            name={n}
+            data={data.value[n]}
+            parent={data}
+            level={level + 1}
+          />
+        ))
+        view = (
+          <>
+            <AddProp
+              open={this.state.open}
+              handleClose={this.hideAdd}
+              data={data}
+            />
+            {nameView}
+            {childrenView}
+            {endNameView}
+          </>
         )
       }
-      // If it's not simple value nor array, we assume object
-      const nameView = name ? (
-        <div {...this.nameProps} style={styles.name}>
-          {name}: &#123; {addView} {removeView}
-        </div>
-      ) : null
-      const endNameView = name ? '}' : null
-      const childrenView = Object.keys(data.value).map((n) => (
-        <PropItem
-          key={n}
-          name={n}
-          data={data.value[n]}
-          parent={data}
-          level={level + 1}
-        />
-      ))
-      return (
-        <div style={style}>
-          <AddProp
-            open={this.state.open}
-            handleClose={this.hideAdd}
-            data={data}
-          />
-          {nameView}
-          {childrenView}
-          {endNameView}
-        </div>
-      )
+      return <div style={style}>{view}</div>
     }
   }
 )

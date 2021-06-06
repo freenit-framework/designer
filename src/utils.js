@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toJS } from 'mobx'
 
 export const API_ROOT = '/api/v0'
 
@@ -110,4 +111,8 @@ export const changeIds = (component) => {
   component.identity = makeid(8)
   component.children.forEach((item) => changeIds(item))
   return component
+}
+
+export const dump = (data) => {
+  console.log(toJS(data))
 }
