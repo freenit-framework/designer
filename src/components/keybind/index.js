@@ -43,14 +43,17 @@ class KeyBind extends React.Component {
   })
 
   handlePaste = action((event) => {
-    if (!store.design.selected.identity) {
+    const { selected, setSelected } = store.design
+    if (!selected.identity) {
       return
     }
     const { value } = event.target
-    if (store.design.selected.identity && value !== '') {
+    if (selected.identity && value !== '') {
       const pasted = JSON.parse(value)
       const changedData = changeIds(pasted)
-      store.design.selected.children.push(changedData)
+      const last = selected.children.length
+      selected.children.push(changedData)
+      setSelected(selected.children[last])
     }
   })
 

@@ -64,9 +64,16 @@ const PropItem = observer(
       onClick: this.showEdit,
     }
 
-    removeProp = (prop) =>
+    removeProp = (name, prop) =>
       action(() => {
-        delete this.props.parent.value[prop]
+        const { parent } = this.props
+        if (Array.isArray(parent.value)) {
+          parent.value = parent.value.filter(
+            (item) => item.identity !== prop.identity
+          )
+        } else {
+          delete parent.value[name]
+        }
       })
 
     // data is either simple value (string, number, ...), array or object
@@ -78,7 +85,7 @@ const PropItem = observer(
         <Add style={{ opacity: 0 }} />
       )
       const removeView = this.state.over ? (
-        <Remove onClick={this.removeProp(name)} />
+        <Remove onClick={this.removeProp(name, data)} />
       ) : (
         <Remove style={{ opacity: 0 }} />
       )
