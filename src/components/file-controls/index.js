@@ -165,9 +165,9 @@ class FileControls extends React.Component {
       const reader = new FileReader()
       reader.onload = (e) => {
         const data = JSON.parse(e.target.result)
-        const root = this.loadData(data.tree, true)
+        const root = this.loadData(data.tree)
         store.design.setChildren(root.children)
-        store.design.setTheme(data.theme)
+        store.design.setTheme(compile(data.theme))
       }
       reader.readAsText(file)
     }

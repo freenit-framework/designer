@@ -55,7 +55,7 @@ export const errors = (response) => {
   return data
 }
 
-export const makeid = (length) => {
+export const makeid = (length = 8) => {
   let result = ''
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
   for (let i = 0; i < length; ++i) {
@@ -74,7 +74,7 @@ export const isSimple = (data) => {
 }
 
 export const compile = (value) => {
-  const result = { identity: makeid(8) }
+  const result = { identity: makeid() }
   if (isSimple(value)) {
     result.value = value
     result.type = typeof value
@@ -108,7 +108,7 @@ export const decompile = (data) => {
 }
 
 export const changeIds = (component) => {
-  component.identity = makeid(8)
+  component.identity = makeid()
   component.children.forEach((item) => changeIds(item))
   return component
 }
