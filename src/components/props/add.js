@@ -1,6 +1,4 @@
 import React from 'react'
-import { action } from 'mobx'
-import { observer } from 'mobx-react'
 import {
   Button,
   Dialog,
@@ -10,31 +8,43 @@ import {
   MenuItem,
   TextField,
 } from '@material-ui/core'
-
+import { action } from 'mobx'
+import { observer } from 'mobx-react'
 import { compile } from 'utils'
+
 import styles from './styles'
 
 class AddProp extends React.Component {
   state = {
+    browser: false,
+    file: '',
     name: '',
+    post: ')',
+    pre: 'url(',
     value: '',
     type: 'string',
   }
 
-  changeName = (event) => {
-    this.setState({ name: event.target.value })
+  fileInput = React.createRef()
+  openFileBrowser = () => this.fileInput.current.click()
+
+  changeState = (name) => (event) => {
+    this.setState({ [name]: event.target.value })
   }
 
-  changeValue = (event) => {
-    this.setState({ value: event.target.value })
-  }
-
-  changeType = (event) => {
-    this.setState({ type: event.target.value })
+  handleFileChange = (event) => {
+    for (let i = 0; i < event.target.files.length; ++i) {
+      const reader = new FileReader()
+      reader.onload = (e) =>
+        this.setState({
+          file: e.target.result,
+        })
+      reader.readAsDataURL(event.target.files[i])
+    }
   }
 
   submit = action(() => {
-    const { name, value, type } = this.state
+    const { name, value, type, file, pre, post } = this.state
     const { data, noname } = this.props
     let realValue
     if (value === '[]') {
@@ -47,17 +57,74 @@ class AddProp extends React.Component {
     if (Array.isArray(data.value)) {
       const newval = compile(realValue)
       newval.type = type
-      newval.name = ''
       data.value.push(newval)
+    } else if (type === 'file') {
+      data.value[name] = compile(file)
+      data.value[name].type = type
+      data.value[name].pre = pre
+      data.value[name].post = post
     } else {
       data.value[name] = compile(realValue)
       data.value[name].type = type
     }
-    this.setState({ name: '', value: '' })
+    this.setState({
+      name: '',
+      value: '',
+      file: '',
+      pre: 'url(',
+      post: ')',
+      type: 'string',
+    })
     this.props.handleClose()
   })
 
   render() {
+    let type
+    if (this.state.type === 'number') {
+      type = 'number'
+    } else if (this.state.type === 'color') {
+      type = 'color'
+    } else if (this.state.type === 'file') {
+      type = 'file'
+    } else {
+      type = 'text'
+    }
+    const style = type === 'file' ? styles.input : {}
+    const fileView =
+      this.state.type === 'file' ? (
+        <>
+          <input
+            ref={this.fileInput}
+            type="file"
+            style={styles.input}
+            onChange={this.handleFileChange}
+          />
+          <div style={styles.center}>
+            <TextField
+              fullWidth
+              label="pre"
+              value={this.state.pre}
+              onChange={this.changeState('pre')}
+            />
+            &nbsp;
+            <TextField
+              fullWidth
+              label="post"
+              value={this.state.post}
+              onChange={this.changeState('post')}
+            />
+          </div>
+          <div>
+            <Button
+              variant="outlined"
+              style={styles.browse}
+              onClick={this.openFileBrowser}
+            >
+              Browse
+            </Button>
+          </div>
+        </>
+      ) : null
     return (
       <Dialog open={this.props.open} onClose={this.props.handleClose}>
         <DialogTitle>Add Prop</DialogTitle>
@@ -67,7 +134,7 @@ class AddProp extends React.Component {
             fullWidth
             label="type"
             value={this.state.type}
-            onChange={this.changeType}
+            onChange={this.changeState('type')}
           >
             <MenuItem key="string" value="string">
               string
@@ -88,14 +155,18 @@ class AddProp extends React.Component {
               autoFocus
               label="name"
               value={this.state.name}
-              onChange={this.changeName}
+              onChange={this.changeState('name')}
             />
           )}
+          {fileView}
           <TextField
             fullWidth
+            autoFocus={this.props.noname}
             label="value"
+            type={type}
+            style={style}
             value={this.state.value}
-            onChange={this.changeValue}
+            onChange={this.changeState('value')}
           />
         </DialogContent>
         <DialogActions>

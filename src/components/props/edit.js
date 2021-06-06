@@ -10,13 +10,28 @@ class EditProp extends React.Component {
   state = {
     value: '',
     type: '',
+    pre: '',
+    post: '',
   }
+
+  fileInput = React.createRef()
+  openFileBrowser = () => this.fileInput.current.click()
 
   constructor(props) {
     super(props)
     this.state.value = props.data.value
     this.state.type = props.data.type
+    this.state.pre = props.data.pre
+    this.state.post = props.data.post
   }
+
+  changePre = action((event) => {
+    this.props.data.pre = event.target.value
+  })
+
+  changePost = action((event) => {
+    this.props.data.post = event.target.value
+  })
 
   changeValue = action((event) => {
     this.props.data.value = event.target.value
@@ -26,11 +41,23 @@ class EditProp extends React.Component {
     this.props.data.type = event.target.value
   })
 
+  handleFileChange = action((event) => {
+    for (let i = 0; i < event.target.files.length; ++i) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        this.props.data.value = e.target.result
+      }
+      reader.readAsDataURL(event.target.files[i])
+    }
+  })
+
   cancel = action(() => {
-    const { value, type } = this.state
+    const { value, type, pre, post } = this.state
     const { data } = this.props
     data.value = value
     data.type = type
+    data.pre = pre
+    data.post = post
     this.props.handleClose()
   })
 
@@ -46,9 +73,48 @@ class EditProp extends React.Component {
       type = 'number'
     } else if (data.type === 'color') {
       type = 'color'
+    } else if (this.state.type === 'file') {
+      type = 'file'
     } else {
       type = 'text'
     }
+    const style = type === 'file' ? styles.input : {}
+    const fileView =
+      this.state.type === 'file' ? (
+        <>
+          <input
+            ref={this.fileInput}
+            type="file"
+            style={styles.input}
+            onChange={this.handleFileChange}
+          />
+          <div style={styles.center}>
+            <TextField
+              fullWidth
+              label="pre"
+              value={data.pre}
+              onChange={this.changePre}
+            />
+            &nbsp;
+            <TextField
+              fullWidth
+              label="post"
+              value={data.post}
+              onChange={this.changePost}
+            />
+          </div>
+          <div>
+            <Button
+              variant="outlined"
+              style={styles.browse}
+              onClick={this.openFileBrowser}
+            >
+              Browse
+            </Button>
+          </div>
+        </>
+      ) : null
+    const display = data.type === 'file' ? '' : data.value
     return (
       <form onSubmit={this.submit}>
         <TextField
@@ -71,12 +137,14 @@ class EditProp extends React.Component {
             file
           </MenuItem>
         </TextField>
+        {fileView}
         <TextField
           fullWidth
           autoFocus
+          style={style}
           type={type}
           label={this.props.name}
-          value={data.value}
+          value={display}
           onChange={this.changeValue}
         />
         <Button onClick={this.cancel} color="secondary">

@@ -18,37 +18,18 @@ const PropItem = observer(
       name: false,
     }
 
-    showAdd = () => {
+    showAdd = (event) => {
+      event.stopPropagation()
       this.setState({ open: true })
     }
 
-    hideAdd = () => {
-      this.setState({ open: false })
-    }
-
-    showEdit = () => {
-      this.setState({ edit: true })
-    }
-
-    hideEdit = () => {
-      this.setState({ edit: false })
-    }
-
-    showEditName = () => {
-      this.setState({ name: true })
-    }
-
-    hideEditName = () => {
-      this.setState({ name: false })
-    }
-
-    showOver = () => {
-      this.setState({ over: true })
-    }
-
-    hideOver = () => {
-      this.setState({ over: false })
-    }
+    hideAdd = (event) => this.setState({ open: false })
+    showEdit = () => this.setState({ edit: true })
+    hideEdit = () => this.setState({ edit: false })
+    showEditName = () => this.setState({ name: true })
+    hideEditName = () => this.setState({ name: false })
+    showOver = () => this.setState({ over: true })
+    hideOver = () => this.setState({ over: false })
 
     baseProps = {
       onMouseEnter: this.showOver,
@@ -66,7 +47,8 @@ const PropItem = observer(
     }
 
     removeProp = (name, prop) =>
-      action(() => {
+      action((event) => {
+        event.stopPropagation()
         const { parent } = this.props
         if (Array.isArray(parent.value)) {
           parent.value = parent.value.filter(
@@ -104,14 +86,16 @@ const PropItem = observer(
           />
         )
       } else if (isSimple(data.value)) {
+        const display =
+          data.type === 'file' ? `${data.pre}<file>${data.post}` : data.value
         const nameView = name ? (
           <>
             <span onClick={this.showEditName}>{name}:</span>
             &nbsp;
-            <span onClick={this.showEdit}>{data.value}</span>
+            <span onClick={this.showEdit}>{display}</span>
           </>
         ) : (
-          <span onClick={this.showEdit}>{data.value}</span>
+          <span onClick={this.showEdit}>{display}</span>
         )
         view = this.state.edit ? (
           <EditProp name={name} data={data} handleClose={this.hideEdit} />

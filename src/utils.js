@@ -92,7 +92,7 @@ export const compile = (value) => {
 
 export const decompile = (data) => {
   if (data.type === 'file') {
-    return `${data.pre}${data.file}${data.post}`
+    return `${data.pre}${data.value}${data.post}`
   }
   if (Array.isArray(data.value)) {
     return data.value.map((item) => decompile(item))
