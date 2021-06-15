@@ -166,7 +166,8 @@ class FileControls extends React.Component {
     const { begining, ending } = this.state.func
       ? exportTemplates['function']
       : exportTemplates['class']
-    const display = JSON.stringify(this.state, null, 2)
+    const { tree, theme } = this.state
+    const display = JSON.stringify({ tree, theme }, null, 2)
     const saveData = `data:application/json;base64,${Base64.encode(display)}`
     this.usedComponents(this.state.tree)
     const muiComponents = Object.keys(this.mui)
