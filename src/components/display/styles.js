@@ -31,6 +31,7 @@ const styles = {
     justifyContent: 'center',
     minHeight: 'calc(100vh - 2px)',
     width: '100%',
+    overflow: 'auto',
   },
 }
 styles.default = styles.desktop

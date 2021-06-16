@@ -24,22 +24,7 @@ class DesignStore {
         height: 'calc(100vh - 4px)',
       },
     }),
-    children: [
-      {
-        identity: 'something',
-        name: 'div',
-        type: 'html',
-        text: 'sub',
-        opened: false,
-        children: [],
-        component: 'div',
-        props: compile({
-          style: {
-            backgroundColor: 'gray',
-          },
-        }),
-      },
-    ],
+    children: [],
   }
 
   constructor() {
@@ -72,6 +57,15 @@ class DesignStore {
 
   setChildren = action((data) => {
     this.tree.children = data
+  })
+
+  setRoot = action((data) => {
+    this.tree = data
+  })
+
+  load = action((data) => {
+    this.setRoot(data.tree)
+    this.setTheme(compile(data.theme))
   })
 
   remove = action((data, tree = this.tree) => {

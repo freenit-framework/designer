@@ -1,13 +1,14 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { deepObserve } from 'mobx-utils'
+import { observer } from 'mobx-react'
 import { Button, Paper, Switch } from '@material-ui/core'
 import { Base64 } from 'js-base64'
 
 import components from 'components'
 import types from 'types'
 import store from 'store'
-import { decompile } from 'utils'
+import { compile, decompile, makeid } from 'utils'
 import styles from './styles'
 
 const exportTemplates = {
@@ -58,10 +59,19 @@ const stringify = (obj_from_json) => {
   return `{{ ${props} }}`
 }
 
+const stripComponent = (data) => {
+  const result = {
+    ...data,
+    children: data.children.map((child) => stripComponent(child)),
+  }
+  delete result.component
+  return result
+}
+
 class FileControls extends React.Component {
   state = {
     func: false,
-    tree: toJS(store.design.tree),
+    tree: stripComponent(toJS(store.design.tree)),
     theme: decompile(toJS(store.design.theme)),
   }
 
@@ -73,7 +83,7 @@ class FileControls extends React.Component {
   constructor(props) {
     super(props)
     deepObserve(store.design.tree, () => {
-      this.setState({ tree: toJS(store.design.tree) })
+      this.setState({ tree: stripComponent(toJS(store.design.tree)) })
     })
     deepObserve(store.design.theme, () => {
       this.setState({ theme: decompile(toJS(store.design.theme)) })
@@ -141,34 +151,11 @@ class FileControls extends React.Component {
     this.fileInput.current.click()
   }
 
-  loadData = (data) => {
-    const result = { ...data }
-    result.name = result.component
-    if (result.type === types.ICON) {
-      result.type = 'icons'
-    } else {
-      let component = components.mui[result.name]
-      if (!component) {
-        result.type = 'html'
-      } else {
-        result.type = 'mui'
-      }
-    }
-    result.children = result.children.map((item) => this.loadData(item))
-    result.props = decompile(result.props)
-    return result
-  }
-
   handleFileChange = (event) => {
     if (event.target.files.length > 0) {
       const [file] = event.target.files
       const reader = new FileReader()
-      reader.onload = (e) => {
-        const data = JSON.parse(e.target.result)
-        const root = this.loadData(data.tree)
-        store.design.setChildren(root.children)
-        store.design.setTheme(compile(data.theme))
-      }
+      reader.onload = (e) => store.design.load(JSON.parse(e.target.result))
       reader.readAsText(file)
     }
   }
@@ -211,6 +198,7 @@ class FileControls extends React.Component {
     const componentType = this.state.func
       ? 'Functional Component'
       : 'Class Component'
+    const loadLabel = store.design.rearrange ? 'Import' : 'Load'
     return (
       <Paper style={styles.file}>
         <input
@@ -237,7 +225,7 @@ class FileControls extends React.Component {
             color="secondary"
             onClick={this.handleLoad}
           >
-            Load
+            {loadLabel}
           </Button>
           <a
             href={`data:application/javascript;base64,${codeData}`}
@@ -251,4 +239,4 @@ class FileControls extends React.Component {
   }
 }
 
-export default FileControls
+export default observer(FileControls)
