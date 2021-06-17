@@ -27,7 +27,7 @@ class RightPane extends React.Component {
   toggleRearrange = () => store.design.setRearrange(!store.design.rearrange)
   changeTab = (tab) => () => this.setState({ tab })
 
-  find = action((item = store.design.tree) => {
+  _find = action((item = store.design.tree) => {
     if (item.identity === store.design.selected.identity) {
       item.opened = true
       return true
@@ -36,7 +36,10 @@ class RightPane extends React.Component {
       (result, child) => result || this._find(child),
       false
     )
+    return item.opened
   })
+
+  find = () => this._find()
 
   render() {
     const tabsStyle = this.state.open

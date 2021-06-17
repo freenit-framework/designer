@@ -1,7 +1,8 @@
 import { action, toJS } from 'mobx'
 
+import { defaultData } from 'components'
 import store from 'store'
-import { changeIds } from 'utils'
+import { changeIds, compile } from 'utils'
 
 const drop = (data, parent) => ({
   accept: ['html', 'mui', 'icon'],
@@ -10,7 +11,14 @@ const drop = (data, parent) => ({
       const p = item.parent
       const sdata = JSON.stringify(toJS(item))
       const jdata = JSON.parse(sdata)
+      const newone = jdata.parent === undefined
       delete jdata.parent
+      if (newone) {
+        const typeData = defaultData[jdata.type]
+        const componentData = typeData ? typeData[jdata.name] : {}
+        jdata.props = componentData && componentData.props ? componentData.props : compile({})
+        jdata.children = componentData && componentData.children ? componentData.children : []
+      }
       changeIds(jdata)
       if (p && Array.isArray(p.children)) {
         p.children = p.children.filter((child) => {

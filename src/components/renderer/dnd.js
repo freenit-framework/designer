@@ -3,7 +3,7 @@ import { action, toJS } from 'mobx'
 import { useDrag, useDrop } from 'react-dnd'
 
 import { makeid } from 'utils'
-import components from 'components'
+import components, { noChildrenComponents, textOnlyComponents } from 'components'
 import store from 'store'
 import dropData from 'drop'
 import Renderer from './index'
@@ -30,14 +30,28 @@ const DnD = ({ props, style, data, parent }) => {
     myStyle.borderWidth = 2
     myStyle.borderColor = 'green'
   }
-  return (
-    <Component {...props} style={myStyle} ref={ref}>
-      {text}
-      {children.map((child) => (
-        <Renderer data={child} key={child.identity} parent={data} />
-      ))}
-    </Component>
-  )
+  let view
+  if (noChildrenComponents.includes(name)) {
+    view = (
+      <Component {...props} style={myStyle} ref={ref} />
+    )
+  } else if (textOnlyComponents.includes(name)) {
+    view = (
+      <Component {...props} style={myStyle} ref={ref}>
+        {text}
+      </Component>
+    )
+  } else {
+    view = (
+      <Component {...props} style={myStyle} ref={ref}>
+        {text}
+        {children.map((child) => (
+          <Renderer data={child} key={child.identity} parent={data} />
+        ))}
+      </Component>
+    )
+  }
+  return view
 }
 
 export default DnD

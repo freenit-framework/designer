@@ -17,10 +17,8 @@ class Display extends React.Component {
     try {
       themeData = createMuiTheme(theme)
     } catch (error) {
-      console.log('error', error)
       themeData = {}
     }
-    console.log(themeData)
     return (
       <ThemeProvider theme={themeData}>
         <div style={styles.root}>
