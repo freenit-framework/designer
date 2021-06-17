@@ -1,6 +1,10 @@
 import { action, toJS } from 'mobx'
 
-import { defaultData } from 'components'
+import {
+  defaultData,
+  noChildrenComponents,
+  textOnlyComponents,
+} from 'components'
 import store from 'store'
 import { changeIds, compile } from 'utils'
 
@@ -9,6 +13,8 @@ const drop = (data, parent) => ({
   drop: action((item, monitor) => {
     if (monitor.isOver({ shallow: true }) && monitor.canDrop()) {
       const p = item.parent
+      if (noChildrenComponents.includes(data.name)) { return }
+      if (textOnlyComponents.includes(data.name)) { return }
       const sdata = JSON.stringify(toJS(item))
       const jdata = JSON.parse(sdata)
       const newone = jdata.parent === undefined
