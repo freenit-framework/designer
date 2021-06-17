@@ -199,7 +199,6 @@ class FileControls extends React.Component {
     const componentType = this.state.func
       ? 'Functional Component'
       : 'Class Component'
-    const loadLabel = store.design.rearrange ? 'Import' : 'Load'
     return (
       <Paper style={styles.file}>
         <input
@@ -226,7 +225,7 @@ class FileControls extends React.Component {
             color="secondary"
             onClick={this.handleLoad}
           >
-            {loadLabel}
+            Load
           </Button>
           <a
             href={`data:application/javascript;base64,${codeData}`}
