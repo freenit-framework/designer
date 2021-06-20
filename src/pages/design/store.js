@@ -47,25 +47,19 @@ class DesignStore {
     this.selected = data
   })
 
-  setTheme = action((data) => {
-    this.theme = data
-  })
-
   setTree = action((data) => {
-    this.tree = data
+    this.tree.children = data.children
+    this.tree.props = data.props
+    this.tree.text = data.text
   })
 
   setChildren = action((data) => {
     this.tree.children = data
   })
 
-  setRoot = action((data) => {
-    this.tree = data
-  })
-
   load = action((data) => {
-    this.setRoot(data.tree)
-    this.setTheme(compile(data.theme))
+    this.setTree(data.tree)
+    this.theme = compile(data.theme)
   })
 
   remove = action((data, tree = this.tree) => {
