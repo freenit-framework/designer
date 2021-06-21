@@ -14,7 +14,6 @@ const Renderer = observer(
     constructor(props) {
       super(props)
       const { data } = props
-      this.state = { props: decompile(toJS(data.props)) }
       this.disposer = deepObserve(data.props, () => {
         this.setState({ props: decompile(toJS(data.props)) })
       })
@@ -42,21 +41,20 @@ const Renderer = observer(
     render() {
       const { data, parent } = this.props
       const { children, name, text, type } = data
-      const { props } = this.state
       const { selected, over } = store.design
       const comps = components[type]
       if (!comps) {
         return null
       }
       const Component = comps[name].component
-      const myStyle = props.style ? props.style : {}
+      const props = decompile(toJS(data.props))
       let style
       if (selected.identity === data.identity) {
-        style = { ...myStyle, ...styles.selected }
+        style = { ...props.style, ...styles.selected }
       } else if (over.identity === data.identity) {
-        style = { ...myStyle, ...styles.over }
+        style = { ...props.style, ...styles.over }
       } else {
-        style = myStyle
+        style = props.style
       }
       const myProps = {
         ...props,
@@ -79,5 +77,9 @@ const Renderer = observer(
     }
   }
 )
+
+Renderer.defaultProps = {
+  style: {},
+}
 
 export default Renderer

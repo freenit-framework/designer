@@ -34,11 +34,17 @@ class EditProp extends React.Component {
   })
 
   changeValue = action((event) => {
-    this.props.data.value = event.target.value
+    const { data } = this.props
+    data.value =
+      data.type === 'number' ? Number(event.target.value) : event.target.value
   })
 
   changeType = action((event) => {
-    this.props.data.type = event.target.value
+    const { data } = this.props
+    data.type = event.target.value
+    if (data.type === 'number') {
+      data.value = Number(data.value)
+    }
   })
 
   handleFileChange = action((event) => {

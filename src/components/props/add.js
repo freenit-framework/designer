@@ -29,7 +29,20 @@ class AddProp extends React.Component {
   openFileBrowser = () => this.fileInput.current.click()
 
   changeState = (name) => (event) => {
-    this.setState({ [name]: event.target.value })
+    if (name === 'value') {
+      const value =
+        this.state.type === 'number'
+          ? Number(event.target.value)
+          : event.target.value
+      this.setState({ [name]: value })
+    } else if (name === 'type') {
+      const type = event.target.value
+      const value =
+        type === 'number' ? Number(this.state.value) : this.state.value
+      this.setState({ [name]: value })
+    } else {
+      this.setState({ [name]: event.target.value })
+    }
   }
 
   handleFileChange = (event) => {
