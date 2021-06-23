@@ -23,23 +23,27 @@ export const defaultData = {
   mui: {
     AppBar: {
       props: compile({ position: 'sticky' }),
-      children: [{
-        name: 'Toolbar',
-        type: 'mui',
-        component: muiComponents.Toolbar,
-        text: '',
-        opened: false,
-        props: compile({}),
-        children: [{
-          name: 'Typography',
+      children: [
+        {
+          name: 'Toolbar',
           type: 'mui',
-          component: muiComponents.Typography,
-          text: 'Freenit',
+          component: muiComponents.Toolbar,
+          text: '',
           opened: false,
-          props: compile({ variant: 'h6' }),
-          children: [],
-        }],
-      }]
+          props: compile({}),
+          children: [
+            {
+              name: 'Typography',
+              type: 'mui',
+              component: muiComponents.Typography,
+              text: 'Freenit',
+              opened: false,
+              props: compile({ variant: 'h6' }),
+              children: [],
+            },
+          ],
+        },
+      ],
     },
     Accordion: {
       children: [
@@ -49,15 +53,17 @@ export const defaultData = {
           component: muiComponents.AccordionSummary,
           opened: false,
           props: compile({}),
-          children: [{
-            name: 'Typography',
-            type: 'mui',
-            component: muiComponents.Typography,
-            text: 'Summary',
-            opened: false,
-            props: compile({}),
-            children: [],
-          }],
+          children: [
+            {
+              name: 'Typography',
+              type: 'mui',
+              component: muiComponents.Typography,
+              text: 'Summary',
+              opened: false,
+              props: compile({}),
+              children: [],
+            },
+          ],
         },
         {
           name: 'AccordionDetails',
@@ -65,15 +71,17 @@ export const defaultData = {
           component: muiComponents.AccordionDetails,
           opened: false,
           props: compile({}),
-          children: [{
-            name: 'Typography',
-            type: 'mui',
-            component: muiComponents.Typography,
-            text: 'Details',
-            opened: false,
-            props: compile({}),
-            children: [],
-          }],
+          children: [
+            {
+              name: 'Typography',
+              type: 'mui',
+              component: muiComponents.Typography,
+              text: 'Details',
+              opened: false,
+              props: compile({}),
+              children: [],
+            },
+          ],
         },
       ],
     },

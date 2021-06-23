@@ -20,7 +20,7 @@
     "@freenit-framework/cli": "^0.0.18"
   },
   "scripts": {
-    "build": "webpack build --mode=production",
+    "build": "webpack build --mode=development",
     "start": "webpack serve"
   },
   "dependencies": {

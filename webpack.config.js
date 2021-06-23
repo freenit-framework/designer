@@ -8,6 +8,14 @@ config.plugins.push(
   new HtmlPlugin({ favicon: 'favicon.ico', template: 'index.html' })
 )
 
+config.optimization = {
+  minimize: true,
+  removeAvailableModules: true,
+  flagIncludedChunks: true,
+  providedExports: true,
+  usedExports: true,
+}
+
 const target = process.env.BACKEND_URL
 if (target) {
   config.devServer.proxy = {
