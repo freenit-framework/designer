@@ -12,7 +12,6 @@ package-lock.json
 
 node_modules
 dist/*
-*.lock
 stats.html
 cbsd.conf
 project.mk
