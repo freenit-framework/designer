@@ -28,18 +28,16 @@ class AddProp extends React.Component {
   fileInput = React.createRef()
   openFileBrowser = () => this.fileInput.current.click()
 
-  changeState = (name) => (event) => {
+  change = (name) => (event) => {
     if (name === 'value') {
-      const value =
-        this.state.type === 'number'
-          ? Number(event.target.value)
-          : event.target.value
-      this.setState({ [name]: value })
+      const rawValue = event.target.value
+      const value = this.state.type === 'number' ? Number(rawValue) : rawValue
+      this.setState({ value })
     } else if (name === 'type') {
       const type = event.target.value
-      const value =
-        type === 'number' ? Number(this.state.value) : this.state.value
-      this.setState({ [name]: value })
+      const rawValue = this.state.value
+      const value = type === 'number' ? Number(rawValue) : rawValue
+      this.setState({ type, value })
     } else {
       this.setState({ [name]: event.target.value })
     }
@@ -117,14 +115,14 @@ class AddProp extends React.Component {
               fullWidth
               label="pre"
               value={this.state.pre}
-              onChange={this.changeState('pre')}
+              onChange={this.change('pre')}
             />
             &nbsp;
             <TextField
               fullWidth
               label="post"
               value={this.state.post}
-              onChange={this.changeState('post')}
+              onChange={this.change('post')}
             />
           </div>
           <div>
@@ -147,7 +145,7 @@ class AddProp extends React.Component {
             fullWidth
             label="type"
             value={this.state.type}
-            onChange={this.changeState('type')}
+            onChange={this.change('type')}
           >
             <MenuItem key="string" value="string">
               string
@@ -168,7 +166,7 @@ class AddProp extends React.Component {
               autoFocus
               label="name"
               value={this.state.name}
-              onChange={this.changeState('name')}
+              onChange={this.change('name')}
             />
           )}
           {fileView}
@@ -179,7 +177,7 @@ class AddProp extends React.Component {
             type={type}
             style={style}
             value={this.state.value}
-            onChange={this.changeState('value')}
+            onChange={this.change('value')}
           />
         </DialogContent>
         <DialogActions>

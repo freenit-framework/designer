@@ -27,7 +27,6 @@ const styles = {
 
   root: {
     display: 'flex',
-    backgroundColor: '#eee',
     justifyContent: 'center',
     minHeight: 'calc(100vh - 2px)',
     width: '100%',

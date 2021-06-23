@@ -16,6 +16,7 @@ class EditProp extends React.Component {
 
   fileInput = React.createRef()
   openFileBrowser = () => this.fileInput.current.click()
+  timeout = null
 
   constructor(props) {
     super(props)
@@ -33,11 +34,11 @@ class EditProp extends React.Component {
     this.props.data.post = event.target.value
   })
 
-  changeValue = action((event) => {
+  changeValue = (event) => {
     const { data } = this.props
-    data.value =
-      data.type === 'number' ? Number(event.target.value) : event.target.value
-  })
+    const rawValue = event.target.value
+    data.value = data.type === 'number' ? Number(rawValue) : rawValue
+  }
 
   changeType = action((event) => {
     const { data } = this.props
@@ -150,7 +151,7 @@ class EditProp extends React.Component {
           style={style}
           type={type}
           label={this.props.name}
-          value={display}
+          defaultValue={display}
           onChange={this.changeValue}
         />
         <Button onClick={this.cancel} color="secondary">

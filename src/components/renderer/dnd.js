@@ -3,7 +3,10 @@ import { action, toJS } from 'mobx'
 import { useDrag, useDrop } from 'react-dnd'
 
 import { makeid } from 'utils'
-import components, { noChildrenComponents, textOnlyComponents } from 'components'
+import components, {
+  noChildrenComponents,
+  textOnlyComponents,
+} from 'components'
 import store from 'store'
 import dropData from 'drop'
 import Renderer from './index'
@@ -32,9 +35,7 @@ const DnD = ({ props, style, data, parent }) => {
   }
   let view
   if (noChildrenComponents.includes(name)) {
-    view = (
-      <Component {...props} style={myStyle} ref={ref} />
-    )
+    view = <Component {...props} style={myStyle} ref={ref} />
   } else if (textOnlyComponents.includes(name)) {
     view = (
       <Component {...props} style={myStyle} ref={ref}>
