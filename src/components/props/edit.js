@@ -37,7 +37,17 @@ class EditProp extends React.Component {
   changeValue = (event) => {
     const { data } = this.props
     const rawValue = event.target.value
-    data.value = data.type === 'number' ? Number(rawValue) : rawValue
+    if (data.type === 'number') {
+      data.value = Number(rawValue)
+    } else if (data.type === 'bool') {
+      if (rawValue === 'true') {
+        data.value = true
+      } else if (rawValue === 'false') {
+        data.value = false
+      } else {
+        data.value = Boolean(rawValue)
+      }
+    }
   }
 
   changeType = action((event) => {
@@ -45,6 +55,14 @@ class EditProp extends React.Component {
     data.type = event.target.value
     if (data.type === 'number') {
       data.value = Number(data.value)
+    } else if (data.type === 'bool') {
+      if (rawValue === 'true') {
+        data.value = true
+      } else if (rawValue === 'false') {
+        data.value = false
+      } else {
+        data.value = Boolean(rawValue)
+      }
     }
   })
 
@@ -133,6 +151,9 @@ class EditProp extends React.Component {
         >
           <MenuItem key="string" value="string">
             string
+          </MenuItem>
+          <MenuItem key="bool" value="bool">
+            bool
           </MenuItem>
           <MenuItem key="number" value="number">
             number

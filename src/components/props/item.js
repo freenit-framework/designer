@@ -86,8 +86,14 @@ const PropItem = observer(
           />
         )
       } else if (isSimple(data.value)) {
-        const display =
-          data.type === 'file' ? `${data.pre}<file>${data.post}` : data.value
+        let display
+        if (data.type === 'file') {
+          display = `${data.pre}<file>${data.post}`
+        } else if (data.type === 'bool') {
+          display = data.value ? 'true' : 'false'
+        } else {
+          display = data.value
+        }
         const nameView = name ? (
           <>
             <span onClick={this.showEditName}>{name}:</span>
