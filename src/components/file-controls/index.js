@@ -69,9 +69,18 @@ const stripComponent = (data) => {
 }
 
 class FileControls extends React.Component {
+  decompile = (data = stripComponent(toJS(store.design.tree))) => {
+    const result = {
+      ...data,
+      props: decompile(data.props),
+      children: data.children.map((child) => this.decompile(child)),
+    }
+    return result
+  }
+
   state = {
     func: false,
-    tree: stripComponent(toJS(store.design.tree)),
+    tree: this.decompile(),
     theme: decompile(toJS(store.design.theme)),
   }
 
@@ -83,7 +92,7 @@ class FileControls extends React.Component {
   constructor(props) {
     super(props)
     deepObserve(store.design.tree, () => {
-      this.setState({ tree: stripComponent(toJS(store.design.tree)) })
+      this.setState({ tree: this.decompile() })
     })
     deepObserve(store.design.theme, () => {
       this.setState({ theme: decompile(toJS(store.design.theme)) })

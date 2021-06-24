@@ -38,7 +38,7 @@ class EditText extends React.Component {
           fullWidth
           autoFocus
           label="text"
-          value={store.design.selected.text}
+          defaultValue={store.design.selected.text}
           onChange={this.changeText}
         />
         <Button onClick={this.cancel} color="secondary">
