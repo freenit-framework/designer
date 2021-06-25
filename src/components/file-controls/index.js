@@ -69,18 +69,9 @@ const stripComponent = (data) => {
 }
 
 class FileControls extends React.Component {
-  decompile = (data = stripComponent(toJS(store.design.tree))) => {
-    const result = {
-      ...data,
-      props: decompile(data.props),
-      children: data.children.map((child) => this.decompile(child)),
-    }
-    return result
-  }
-
   state = {
     func: false,
-    tree: this.decompile(),
+    tree: stripComponent(toJS(store.design.tree)),
     theme: decompile(toJS(store.design.theme)),
   }
 
@@ -92,11 +83,20 @@ class FileControls extends React.Component {
   constructor(props) {
     super(props)
     deepObserve(store.design.tree, () => {
-      this.setState({ tree: this.decompile() })
+      this.setState({ tree: stripComponent(toJS(store.design.tree)) })
     })
     deepObserve(store.design.theme, () => {
       this.setState({ theme: decompile(toJS(store.design.theme)) })
     })
+  }
+
+  decompile = (data = this.state.tree) => {
+    const result = {
+      ...data,
+      props: decompile(data.props),
+      children: data.children.map((child) => this.decompile(child)),
+    }
+    return result
   }
 
   usedComponents = (data) => {
@@ -201,7 +201,7 @@ class FileControls extends React.Component {
       this.state.theme
     )}\n`
     const level = this.state.func ? 6 : 8
-    const output = this.exportCode(this.state.tree, level)
+    const output = this.exportCode(this.decompile(this.state.tree), level)
     const codeData = Base64.encode(
       `${reactImport}${muiImport}${iconImport}${themeImport}${themeOutput}${begining}${output}${ending}`
     )
