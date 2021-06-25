@@ -10,9 +10,23 @@ config.plugins.push(
 
 if (process.env.STAGE === 'build') {
   config.optimization = {
-    minimize: true,
-    sideEffects: true,
     usedExports: true,
+    removeAvailableModules: false,
+    removeEmptyChunks: true,
+    mergeDuplicateChunks: true,
+    flagIncludedChunks: true,
+    sideEffects: true,
+    providedExports: true,
+    usedExports: true,
+    innerGraph: true,
+    mangleExports: true,
+    concatenateModules: true,
+    runtimeChunk: false,
+    emitOnErrors: false,
+    checkWasmTypes: true,
+    mangleWasmImports: false,
+    realContentHash: true,
+    minimize: true,
   }
 }
 

@@ -17,7 +17,7 @@
     ]
   },
   "devDependencies": {
-    "@freenit-framework/cli": "^0.0.18"
+    "@freenit-framework/cli": "^0.0.21"
   },
   "scripts": {
     "build": "env STAGE=build webpack build --mode=development",
