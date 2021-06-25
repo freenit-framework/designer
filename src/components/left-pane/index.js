@@ -62,16 +62,16 @@ class LeftPane extends React.Component {
 
   filterIcons = () => {
     const result = {
-      icons: {},
+      icon: {},
     }
-    const rawIconNames = Object.keys(components.icons)
+    const rawIconNames = Object.keys(components.icon)
     const iconNames = this.state.caseSensitive
       ? rawIconNames.filter((name) => name.includes(this.state.search))
       : rawIconNames.filter((name) =>
           name.toLowerCase().includes(this.state.search)
         )
     iconNames.forEach((name) => {
-      result.icons[name] = components.icons[name]
+      result.icon[name] = components.icon[name]
     })
     return result
   }
@@ -101,12 +101,13 @@ class LeftPane extends React.Component {
   iconView = () => {
     const filteredIcons = this.filterIcons(components)
     const icons = this.state.open
-      ? Object.keys(filteredIcons.icons).map((name) => {
-          const Icon = filteredIcons.icons[name].component
+      ? Object.keys(filteredIcons.icon).map((name) => {
           return (
-            <div key={`icon-${name}`} title={name}>
-              <Icon />
-            </div>
+            <Drag
+              key={`icon-${name}`}
+              title={name}
+              data={filteredIcons.icon[name]}
+            />
           )
         })
       : null

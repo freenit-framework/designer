@@ -1,6 +1,6 @@
 import html from './html'
 import mui from './mui'
-import icons from './icons'
+import icon from './icons'
 import * as muiComponents from '@material-ui/core'
 import { compile } from 'utils'
 export { default as Device } from './device'
@@ -13,7 +13,7 @@ export { default as RightPane } from './right-pane'
 export { default as Tree } from './tree'
 export { default as KeyBind } from './keybind'
 
-const components = { html, mui, icons }
+const components = { html, mui, icon }
 
 export const noChildrenComponents = ['img', 'hr']
 

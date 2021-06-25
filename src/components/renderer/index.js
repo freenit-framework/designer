@@ -11,14 +11,6 @@ import styles from './styles'
 
 const Renderer = observer(
   class Ren extends React.Component {
-    constructor(props) {
-      super(props)
-      const { data } = props
-      this.disposer = deepObserve(data.props, () => {
-        this.setState({ props: decompile(toJS(data.props)) })
-      })
-    }
-
     mouseOver = (event) => {
       event.stopPropagation()
       store.design.setOver(this.props.data)
@@ -32,10 +24,6 @@ const Renderer = observer(
     select = (event) => {
       event.stopPropagation()
       store.design.setSelected(this.props.data)
-    }
-
-    componentWillUnmount() {
-      this.disposer()
     }
 
     render() {
