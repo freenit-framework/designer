@@ -8,18 +8,11 @@ config.plugins.push(
   new HtmlPlugin({ favicon: 'favicon.ico', template: 'index.html' })
 )
 
-config.optimization = {
-  minimize: true,
-  removeAvailableModules: true,
-  flagIncludedChunks: true,
-  providedExports: true,
-  usedExports: true,
-}
-
-const target = process.env.BACKEND_URL
-if (target) {
-  config.devServer.proxy = {
-    '/api': { target },
+if (process.env.STAGE === 'build') {
+  config.optimization = {
+    minimize: true,
+    sideEffects: true,
+    usedExports: true,
   }
 }
 
