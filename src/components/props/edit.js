@@ -34,7 +34,7 @@ class EditProp extends React.Component {
     this.props.data.post = event.target.value
   })
 
-  changeValue = (event) => {
+  changeValue = action((event) => {
     const { data } = this.props
     const { target } = event
     const value = data.type === 'bool' ? target.checked : target.value
@@ -48,8 +48,10 @@ class EditProp extends React.Component {
       } else {
         data.value = Boolean(value)
       }
+    } else {
+      data.value = value
     }
-  }
+  })
 
   changeType = action((event) => {
     const { data } = this.props
@@ -87,10 +89,16 @@ class EditProp extends React.Component {
     this.props.handleClose()
   })
 
-  submit = (event) => {
+  submit = action((event) => {
     event.preventDefault()
+    const { data } = this.props
+    if (data.value === '[]') {
+      data.value = []
+    } else if (data.value === '{}') {
+      data.value = {}
+    }
     this.props.handleClose()
-  }
+  })
 
   render() {
     let type

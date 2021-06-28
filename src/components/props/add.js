@@ -79,7 +79,8 @@ class AddProp extends React.Component {
     }
   }
 
-  submit = action(() => {
+  submit = action((event) => {
+    event.preventDefault()
     const { name, value, type, file, pre, post } = this.state
     const { data, noname } = this.props
     let realValue

@@ -46,15 +46,20 @@ const reactImport = "import React from 'react'\n"
 const themeImport =
   "import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'\n"
 
-const stringify = (obj_from_json) => {
-  if (typeof obj_from_json !== 'object' || Array.isArray(obj_from_json)) {
+const stringify = (obj, level = 0) => {
+  if (level === 0) {
+    if (typeof obj === 'number' || typeof obj === 'boolean') {
+      return `{${obj}}`
+    }
+  }
+  if (typeof obj !== 'object' || Array.isArray(obj)) {
     // not an object, stringify using native function
-    return JSON.stringify(obj_from_json)
+    return JSON.stringify(obj)
   }
   // Implements recursive object serialization according to JSON spec
   // but without quotes around the keys.
-  const props = Object.keys(obj_from_json)
-    .map((key) => `${key}: ${stringify(obj_from_json[key])}`)
+  const props = Object.keys(obj)
+    .map((key) => `${key}: ${stringify(obj[key], level + 1)}`)
     .join(', ')
   return `{{ ${props} }}`
 }
