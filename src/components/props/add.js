@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   MenuItem,
+  Switch,
   TextField,
 } from '@material-ui/core'
 import { action } from 'mobx'
@@ -29,18 +30,42 @@ class AddProp extends React.Component {
   openFileBrowser = () => this.fileInput.current.click()
 
   change = (name) => (event) => {
-    if (name === 'value') {
-      const rawValue = event.target.value
-      const value = this.state.type === 'number' ? Number(rawValue) : rawValue
-      this.setState({ value })
-    } else if (name === 'type') {
-      const type = event.target.value
-      const rawValue = this.state.value
-      const value = type === 'number' ? Number(rawValue) : rawValue
-      this.setState({ type, value })
-    } else {
-      this.setState({ [name]: event.target.value })
+    this.setState({ [name]: event.target.value })
+  }
+
+  changeValue = (event) => {
+    const { type } = this.state
+    const { target } = event
+    let value = type === 'bool' ? target.checked : target.value
+    if (type === 'number') {
+      value = Number(value)
+    } else if (type === 'bool') {
+      if (value === 'true') {
+        value = true
+      } else if (value === 'false') {
+        value = false
+      } else {
+        value = Boolean(value)
+      }
     }
+    this.setState({ value })
+  }
+
+  changeType = (event) => {
+    const type = event.target.value
+    let { value } = this.state
+    if (type === 'number') {
+      value = Number(value)
+    } else if (type === 'bool') {
+      if (value === 'true') {
+        value = true
+      } else if (value === 'false') {
+        value = false
+      } else {
+        value = Boolean(value)
+      }
+    }
+    this.setState({ type, value })
   }
 
   handleFileChange = (event) => {
@@ -97,6 +122,8 @@ class AddProp extends React.Component {
       type = 'color'
     } else if (this.state.type === 'file') {
       type = 'file'
+    } else if (this.state.type === 'bool') {
+      type = 'checkbox'
     } else {
       type = 'text'
     }
@@ -136,6 +163,27 @@ class AddProp extends React.Component {
           </div>
         </>
       ) : null
+    const valueView =
+      this.state.type === 'bool' ? (
+        <>
+          <Switch
+            checked={this.state.value}
+            onChange={this.changeValue}
+            color="primary"
+          />
+          {this.state.value ? 'true' : 'false'}
+        </>
+      ) : (
+        <TextField
+          fullWidth
+          autoFocus={this.props.noname}
+          label="value"
+          type={type}
+          style={style}
+          value={this.state.value}
+          onChange={this.changeValue}
+        />
+      )
     return (
       <Dialog open={this.props.open} onClose={this.props.handleClose}>
         <DialogTitle>Add Prop</DialogTitle>
@@ -145,10 +193,13 @@ class AddProp extends React.Component {
             fullWidth
             label="type"
             value={this.state.type}
-            onChange={this.change('type')}
+            onChange={this.changeType}
           >
             <MenuItem key="string" value="string">
               string
+            </MenuItem>
+            <MenuItem key="bool" value="bool">
+              bool
             </MenuItem>
             <MenuItem key="number" value="number">
               number
@@ -170,15 +221,7 @@ class AddProp extends React.Component {
             />
           )}
           {fileView}
-          <TextField
-            fullWidth
-            autoFocus={this.props.noname}
-            label="value"
-            type={type}
-            style={style}
-            value={this.state.value}
-            onChange={this.change('value')}
-          />
+          {valueView}
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.handleClose} color="secondary">

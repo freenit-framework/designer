@@ -36,16 +36,17 @@ class EditProp extends React.Component {
 
   changeValue = (event) => {
     const { data } = this.props
-    const rawValue = event.target.value
+    const { target } = event
+    const value = data.type === 'bool' ? target.checked : target.value
     if (data.type === 'number') {
-      data.value = Number(rawValue)
+      data.value = Number(value)
     } else if (data.type === 'bool') {
-      if (rawValue === 'true') {
+      if (value === 'true') {
         data.value = true
-      } else if (rawValue === 'false') {
+      } else if (value === 'false') {
         data.value = false
       } else {
-        data.value = Boolean(rawValue)
+        data.value = Boolean(value)
       }
     }
   }
@@ -140,6 +141,27 @@ class EditProp extends React.Component {
         </>
       ) : null
     const display = data.type === 'file' ? '' : data.value
+    const valueView =
+      data.type === 'bool' ? (
+        <>
+          <Switch
+            checked={data.value}
+            onChange={this.changeValue}
+            color="primary"
+          />
+          {this.state.value ? 'true' : 'false'}
+        </>
+      ) : (
+        <TextField
+          fullWidth
+          autoFocus
+          label={this.props.name}
+          type={type}
+          style={style}
+          defaultValue={display}
+          onChange={this.changeValue}
+        />
+      )
     return (
       <form onSubmit={this.submit}>
         <TextField
