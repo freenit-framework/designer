@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, TextField, MenuItem } from '@material-ui/core'
+import { Button, TextField, MenuItem, Switch } from '@material-ui/core'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import { compile } from 'utils'
@@ -151,14 +151,14 @@ class EditProp extends React.Component {
     const display = data.type === 'file' ? '' : data.value
     const valueView =
       data.type === 'bool' ? (
-        <>
+        <div>
           <Switch
             checked={data.value}
             onChange={this.changeValue}
             color="primary"
           />
-          {this.state.value ? 'true' : 'false'}
-        </>
+          {data.value ? 'true' : 'false'}
+        </div>
       ) : (
         <TextField
           fullWidth
@@ -196,15 +196,7 @@ class EditProp extends React.Component {
           </MenuItem>
         </TextField>
         {fileView}
-        <TextField
-          fullWidth
-          autoFocus
-          style={style}
-          type={type}
-          label={this.props.name}
-          defaultValue={display}
-          onChange={this.changeValue}
-        />
+        {valueView}
         <Button onClick={this.cancel} color="secondary">
           Cancel
         </Button>

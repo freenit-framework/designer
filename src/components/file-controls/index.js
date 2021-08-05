@@ -17,7 +17,7 @@ const exportTemplates = {
 class Page extends React.Component {
   render() {
     return (
-      <ThemeProvider theme={createMuiTheme(theme)}>`,
+      <ThemeProvider theme={theme}>`,
     ending: `
       </ThemeProvider>
     )
@@ -31,7 +31,7 @@ export default Page
     begining: `
 const Page = (props) => {
   return (
-    <ThemeProvider theme={createMuiTheme(theme)}>`,
+    <ThemeProvider theme={theme}>`,
     ending: `
     </ThemeProvider>
   )
@@ -44,7 +44,7 @@ export default Page
 
 const reactImport = "import React from 'react'\n"
 const themeImport =
-  "import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'\n"
+  "import { createTheme, ThemeProvider } from '@material-ui/core/styles'\n"
 
 const stringify = (obj, level = 0) => {
   if (level === 0) {
@@ -202,9 +202,9 @@ class FileControls extends React.Component {
       })
       iconImport += "} from '@material-ui/icons'\n"
     }
-    const themeOutput = `\nconst theme = ${this.exportTheme(
+    const themeOutput = `\nconst theme = createTheme(${this.exportTheme(
       this.state.theme
-    )}\n`
+    )})\n`
     const level = this.state.func ? 6 : 8
     const output = this.exportCode(this.decompile(this.state.tree), level)
     const codeData = Base64.encode(
