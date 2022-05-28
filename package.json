@@ -1,44 +1,40 @@
 {
   "name": "freenit-designer",
   "version": "0.0.1",
-  "main": "index.js",
-  "license": "BSD-2-Clause",
-  "private": false,
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "package": "svelte-kit package",
+    "preview": "svelte-kit preview",
+    "prepare": "svelte-kit sync",
+    "check": "svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./jsconfig.json --watch",
+    "test": "playwright test",
+    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@freenit-framework/cli": "^0.0.21"
+    "@playwright/test": "^1.21.0",
+    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/kit": "next",
+    "@types/cookie": "^0.4.1",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.5.0",
+    "svelte": "^3.46.0",
+    "svelte-check": "^2.2.6",
+    "typescript": "~4.6.2"
   },
-  "scripts": {
-    "build": "env STAGE=build webpack build --mode=development",
-    "start": "webpack serve"
-  },
+  "type": "module",
   "dependencies": {
-    "@freenit-framework/core": "^0.0.14",
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "axios": "^0.21.1",
-    "html-webpack-plugin": "^5.3.2",
-    "js-base64": "^3.6.1",
-    "mobx": "^6.3.2",
-    "mobx-react": "^7.2.0",
-    "mobx-utils": "^6.0.4",
-    "radium": "^0.26.1",
-    "react": "^17.0.2",
-    "react-dnd": "^14.0.2",
-    "react-dnd-html5-backend": "^14.0.0",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.0",
-    "regenerator-runtime": "^0.13.7"
+    "@fontsource/fira-mono": "^4.5.0",
+    "@lukeed/uuid": "^2.0.0",
+    "@mdi/js": "^6.7.96",
+    "@sveltejs/adapter-node": "^1.0.0-next.76",
+    "chota": "^0.8.0",
+    "cookie": "^0.4.1",
+    "js-base64": "^3.7.2"
   }
 }

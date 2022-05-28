@@ -6,4 +6,5 @@
   hosts: SERVICE
   roles:
     - onelove-roles.freebsd-common
-    - devel
+    - onelove-roles.freebsd_repo
+    - onelove-roles.freebsd_node

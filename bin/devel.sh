@@ -3,8 +3,8 @@
 
 BIN_DIR=`dirname $0`
 . "${BIN_DIR}/common.sh"
-setup no
+setup
 
 echo "Frontend"
 echo "========"
-env HOST=$(hostname) "${PACKAGE_MANAGER}" start
+env BACKEND_URL=${BACKEND_URL} ${PACKAGE_MANAGER} dev -- --host 0.0.0.0

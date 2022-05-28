@@ -1,14 +1,38 @@
-# Freenit Designer
+# create-svelte
 
-There are 3 tabs that show current design and two modes for editing. Available tabs:
-* Design (where you'll DnD, edits and rearanging)
-* Load/Save (where you can save your work and load it some other day to continue your work on design)
-* Export (converts design to React code)
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
 
-Modes are:
-* Add - If you drag component A to component B, A will become B's child
-* Rearange - If you drag component A to component B, B has parent C, A will become C's child and placed right before B
+## Creating a project
 
-To enter `rearange` mode, press `Shift` key. To exit that mode and switch back to `add`, release `Shift`.
+If you're seeing this, you've probably already done this step. Congrats!
 
-![demo](demo.gif)
+```bash
+# create a new project in the current directory
+npm init svelte@next
+
+# create a new project in my-app
+npm init svelte@next my-app
+```
+
+> Note: the `@next` is temporary
+
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+
+```bash
+npm run build
+```
+
+> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.

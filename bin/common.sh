@@ -9,9 +9,11 @@ YARN=`which yarn 2>/dev/null`
 
 
 if [ ! -z "${NPM}" ]; then
-  export PACKAGE_MANAGER="${NPM}"
+  export PACKAGE_MANAGER="${NPM} run"
+  export PACKAGE_MANAGER_INSTALL="${NPM}"
 else
   export PACKAGE_MANAGER="${YARN}"
+  export PACKAGE_MANAGER_INSTALL="${YARN}"
 fi
 
 
@@ -24,6 +26,6 @@ setup() {
   cd ${PROJECT_ROOT}
   update=${1}
   if [ "${OFFLINE}" != "yes" -a "${update}" != "no" ]; then
-    "${PACKAGE_MANAGER}" install
+    ${PACKAGE_MANAGER_INSTALL} install
   fi
 }
