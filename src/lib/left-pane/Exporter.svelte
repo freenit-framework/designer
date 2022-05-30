@@ -9,11 +9,15 @@
 
   function changeFramework(event: any) {
     $framework = event.target.value
-    exportData = exporter($framework)
   }
 
   function cancel() {
     open = false
+  }
+
+  function calculate() {
+    exportData = null
+    exportData = exporter($framework)
   }
 </script>
 
@@ -22,7 +26,7 @@
     <div>
       <input
         checked={$framework === 'svelte'}
-        name="framework"
+        name="svelte"
         type="radio"
         value="svelte"
         on:change={changeFramework}
@@ -32,7 +36,7 @@
     <div>
       <input
         checked={$framework === 'react'}
-        name="framework"
+        name="react"
         type="radio"
         value="react"
         on:change={changeFramework}
@@ -42,7 +46,7 @@
     <div>
       <input
         checked={$framework === 'react functional'}
-        name="framework"
+        name="react functional"
         type="radio"
         value="react functional"
         on:change={changeFramework}
@@ -50,14 +54,20 @@
       <label for="react functional">React (functional)</label>
     </div>
   </div>
-  <a
-    href={exportData}
-    class="button outline primary"
-    download={exportType}
-    on:click={cancel}
-  >
-    Export
-  </a>
+  {#if exportData === null}
+    <button disabled class="button outline primary">Export</button>
+  {:else}
+    <a
+      href={exportData}
+      download={exportType}
+      on:click={cancel}
+      on:mouseover={calculate}
+      on:focus={calculate}
+      class="button outline primary"
+    >
+      Export
+    </a>
+  {/if}
   <button class="button outline" on:click={cancel}>Cancel</button>
 </Modal>
 
