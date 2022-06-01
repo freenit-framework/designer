@@ -14,7 +14,7 @@
   } from '@mdi/js'
   import { undo, redo } from '$lib/undo'
   import { findSelected } from '$lib/utils'
-  import { design } from '$lib/store'
+  import { design, device } from '$lib/store'
 
   let tab = 'props'
   let hidden = false
@@ -23,16 +23,11 @@
   $: panelClass = hidden ? 'panel-hidden' : 'panel'
   $: hideIcon = hidden ? mdiArrowLeftBold : mdiArrowRightBold
 
-  function mobile() {
-    console.log('mobile')
-  }
-
-  function tablet() {
-    console.log('tablet')
-  }
-
-  function computer() {
-    console.log('computer')
+  function setDevice(d: string) {
+    function handler() {
+      $device = d
+    }
+    return handler
   }
 
   function props() {
@@ -104,13 +99,13 @@
       <Theme />
     {/if}
     <div class="buttons">
-      <svg class="icon" on:click={mobile}>
+      <svg class="icon" on:click={setDevice('mobile')}>
         <path d={mdiCellphone} />
       </svg>
-      <svg class="icon" on:click={tablet}>
+      <svg class="icon" on:click={setDevice('tablet')}>
         <path d={mdiTablet} />
       </svg>
-      <svg class="icon" on:click={computer}>
+      <svg class="icon" on:click={setDevice('desktop')}>
         <path d={mdiLaptop} />
       </svg>
     </div>

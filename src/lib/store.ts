@@ -50,3 +50,4 @@ const redoArray: UndoItem[] = []
 export const undo = writable(undoArray)
 export const redo = writable(redoArray)
 export const framework = writable('svelte')
+export const device = writable('desktop')
