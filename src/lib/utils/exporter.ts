@@ -52,6 +52,17 @@ function exportReact(): string {
   let code = 'import React from "react"\n\n'
   const text = designData.children.map((c) => exportText(c, 2)).join('')
   code += `const data = {${text}\n}\n\n`
+  const themeData = decompile(get(theme))
+  let jsTheme = ''
+  let cssTheme = '/* Put this into main CSS file instead of setProperty calls'
+  cssTheme += '\n:root {\n'
+  for (const prop of Object.keys(themeData)) {
+    const value = themeData[prop]
+    jsTheme += `document.documentElement.style.setProperty('--${prop}', '${value}')\n`
+    cssTheme += `  --${prop}: ${value}\n`
+  }
+  code += `${cssTheme}} */\n\n`
+  code += `${jsTheme}\n`
   code += 'class Page extends React.Component {\n'
   code += '  render() {\n'
   code += '    return (\n'
@@ -73,6 +84,17 @@ function exportReactFunctional(): string {
   let code = 'import React from "react"\n\n'
   const text = designData.children.map((c) => exportText(c, 2)).join('')
   code += `const data = {${text}\n}\n\n`
+  const themeData = decompile(get(theme))
+  let jsTheme = ''
+  let cssTheme = '/* Put this into main CSS file instead of setProperty calls'
+  cssTheme += '\n:root {\n'
+  for (const prop of Object.keys(themeData)) {
+    const value = themeData[prop]
+    jsTheme += `document.documentElement.style.setProperty('--${prop}', '${value}')\n`
+    cssTheme += `  --${prop}: ${value}\n`
+  }
+  code += `${cssTheme}} */\n\n`
+  code += `${jsTheme}\n`
   code += 'function Page(props) {\n'
   code += '  return (\n'
   code += '    <>\n'
