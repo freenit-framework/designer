@@ -55,7 +55,7 @@
     class:outline
     transition:slide
     draggable="true"
-    on:dragstart={dragStart(data)}
+    on:dragstart={dragStart(data, parent, index)}
     on:dragend={dragEnd}
     on:drop={drop(data)}
     ondragover="return false"

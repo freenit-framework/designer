@@ -32,17 +32,36 @@ export function prepareStyle(
   return css
 }
 
-export function dragStart(component: Component) {
-  function ds(event: Event) {
+export function dragStart(
+  component: Component,
+  parent: Component | null = null,
+  index = -1,
+) {
+  function handler(event: Event) {
     event.stopPropagation()
+    if (parent && index >= 0) {
+      component.parent = parent
+      component.index = index
+      component.parent.children.splice(index, 1)
+    }
     dnd.set(component)
+    design.set(get(design))
   }
-  return ds
+  return handler
 }
 
 export function dragEnd() {
+  const component = get(dnd)
+  const { parent } = component
+  const index = Number(component.index)
+  if (parent && index >= 0) {
+    delete component['parent']
+    delete component['index']
+    parent.children.splice(index, 0, component)
+  }
   dnd.set({ ...initialComponent })
   over.set({ ...initialComponent })
+  design.set(get(design))
 }
 
 export function changeIds(component: Component): Component {

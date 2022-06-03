@@ -1,15 +1,27 @@
 <script lang="ts">
   import { selected } from '$lib/store'
   import { compile, decompile } from '$lib/utils/props'
+  import type { Component } from '$lib/types'
 
-  export let data = {
+  export let data: Component = {
     id: '',
+    name: '',
     component: '',
     props: compile({}),
     style: compile({}),
     children: [],
     text: '',
   }
+  export let parent: Component = {
+    id: '',
+    component: '',
+    name: '',
+    text: '',
+    children: [],
+    props: {},
+    style: {},
+  }
+  export let index = -1
   $: style = {
     ...decompile(data.style),
     cursor: 'grab',

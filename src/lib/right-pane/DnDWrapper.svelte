@@ -34,15 +34,15 @@
       transition:slide
       class="drop"
     />
-  {/if}
-  <slot />
-  {#if $over.id === data.id}
+    <slot />
     <div
       on:drop={drop(parent, index + 1)}
       ondragover="return false"
       transition:slide
       class="drop"
     />
+  {:else}
+    <slot />
   {/if}
 </div>
 

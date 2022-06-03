@@ -5,8 +5,8 @@
 </script>
 
 <section class="root" on:drop={drop($design)} ondragover="return false">
-  {#each $design.children as item (item.id)}
-    <Component bind:data={item} />
+  {#each $design.children as item, index (item.id)}
+    <Component bind:data={item} bind:parent={$design} {index} />
   {/each}
 </section>
 

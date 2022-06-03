@@ -15,7 +15,8 @@ export interface Component {
   style: Record<any, boolean | string | number | null>
   text: string
   parent?: Component
-  open?: Boolean
+  open?: boolean
+  index?: number
 }
 
 export interface UndoItem {
