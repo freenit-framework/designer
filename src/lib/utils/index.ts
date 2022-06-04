@@ -77,6 +77,9 @@ export function drop(component: Component, index: number = -1) {
     const i = Number(existing.index)
     if (existing.parent && i >= 0) {
       existing.parent.children.splice(i, 1)
+      if (existing.parent.id === component.id) {
+        component.children = existing.parent.children
+      }
     }
     delete existing['parent']
     delete existing['index']
