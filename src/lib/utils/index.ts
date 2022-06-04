@@ -74,22 +74,22 @@ export function drop(component: Component, index: number = -1) {
     event.stopPropagation()
     event.preventDefault()
     const existing = get(dnd)
-    const i = Number(existing.index)
-    if (existing.parent && i >= 0) {
-      existing.parent.children.splice(i, 1)
-      if (existing.parent.id === component.id) {
-        component.children = existing.parent.children
-      }
-    }
-    delete existing['parent']
-    delete existing['index']
     const undoStore = get(undo)
     const newone = changeIds(existing)
     const undoItem: UndoItem = {
       parent: component,
       attribute: 'children',
-      value: component.children,
+      value: [...component.children],
     }
+    const i = Number(existing.index)
+    if (existing.parent && i >= 0) {
+      if (existing.parent.id === component.id) {
+        existing.parent.children = component.children
+      }
+      existing.parent.children.splice(i, 1)
+    }
+    delete existing['parent']
+    delete existing['index']
     undoStore.push(undoItem)
     if (index === -1) {
       component.children.push(newone)
