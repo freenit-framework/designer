@@ -2,9 +2,9 @@
   import { prepareStyle } from '$lib/utils'
 
   export let style = {}
-  export let props = {}
+  export let props = { alt: '' }
 
   $: s = prepareStyle(style)
 </script>
 
-<area {...props} alt={props.alt} style={s} />
+<area {...props} style={s} alt={props.alt} />

@@ -7,4 +7,4 @@
   $: s = prepareStyle(style)
 </script>
 
-<img {...props} alt={props.alt} style={s} />
+<img {...props} style={s} alt={props.alt} />
