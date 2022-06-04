@@ -74,6 +74,12 @@ export function drop(component: Component, index: number = -1) {
     event.stopPropagation()
     event.preventDefault()
     const existing = get(dnd)
+    const i = Number(existing.index)
+    if (existing.parent && i >= 0) {
+      existing.parent.children.splice(i, 1)
+    }
+    delete existing['parent']
+    delete existing['index']
     const undoStore = get(undo)
     const newone = changeIds(existing)
     const undoItem: UndoItem = {
@@ -83,13 +89,10 @@ export function drop(component: Component, index: number = -1) {
     }
     undoStore.push(undoItem)
     if (index === -1) {
-      component.children = [...component.children, newone]
+      component.children.push(newone)
     } else {
       component.children.splice(index, 0, newone)
     }
-    existing.parent?.children.splice(Number(existing.index), 1)
-    delete existing['parent']
-    delete existing['index']
     dnd.set({ ...initialComponent })
     over.set({ ...initialComponent })
     design.set(get(design))

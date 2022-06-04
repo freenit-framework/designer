@@ -54,11 +54,10 @@
     on:click|stopPropagation={select}
     class:outline
     transition:slide
-    draggable="true"
+    draggable={true}
     on:dragstart={dragStart(data, parent, index)}
     on:dragend={dragEnd}
     on:drop={drop(data)}
-    ondragover="return false"
   >
     <div class="bar">
       <div class="titles">
