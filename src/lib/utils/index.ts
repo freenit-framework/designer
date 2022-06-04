@@ -42,7 +42,6 @@ export function dragStart(
     if (parent && index >= 0) {
       component.parent = parent
       component.index = index
-      component.parent.children.splice(index, 1)
     }
     dnd.set(component)
     design.set(get(design))
@@ -52,13 +51,8 @@ export function dragStart(
 
 export function dragEnd() {
   const component = get(dnd)
-  const { parent } = component
-  const index = Number(component.index)
-  if (parent && index >= 0) {
-    delete component['parent']
-    delete component['index']
-    parent.children.splice(index, 0, component)
-  }
+  delete component['parent']
+  delete component['index']
   dnd.set({ ...initialComponent })
   over.set({ ...initialComponent })
   design.set(get(design))
@@ -93,6 +87,9 @@ export function drop(component: Component, index: number = -1) {
     } else {
       component.children.splice(index, 0, newone)
     }
+    existing.parent?.children.splice(Number(existing.index), 1)
+    delete existing['parent']
+    delete existing['index']
     dnd.set({ ...initialComponent })
     over.set({ ...initialComponent })
     design.set(get(design))

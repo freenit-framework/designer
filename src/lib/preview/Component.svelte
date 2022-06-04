@@ -32,9 +32,16 @@
   }
 </script>
 
-<svelte:component this={data.component} props={decompile(data.props)} {style}>
+<svelte:component
+  this={data.component}
+  props={decompile(data.props)}
+  bind:data
+  bind:parent
+  {index}
+  {style}
+>
   {data.text}
-  {#each data.children as item (item.id)}
-    <svelte:self bind:data={item} />
+  {#each data.children as item, i (item.id)}
+    <svelte:self bind:data={item} bind:parent={data} index={i} />
   {/each}
 </svelte:component>
