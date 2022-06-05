@@ -5,12 +5,8 @@
 <script lang="ts">
 </script>
 
-<svelte:head>
-  <title>Freenit Designer for Svelte</title>
-</svelte:head>
-
 <section>
-  <h1>Freenit Designer for Svelte</h1>
+  <h1>Freenit Designer</h1>
   <a href="/design">
     <button>Design!</button>
   </a>
