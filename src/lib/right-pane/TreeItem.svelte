@@ -5,6 +5,7 @@
   import type { Component, UndoItem } from '$lib/types'
   import DnDWrapper from './DnDWrapper.svelte'
   import { undo } from '$lib/store'
+  import { mdiMenuDown, mdiMenuUp, mdiClose } from '@mdi/js'
 
   export let index: number
   export let data: Component = {
@@ -26,7 +27,7 @@
     style: {},
   }
   $: outline = $selected && $selected.id === data.id
-  $: icon = data.open ? 'A' : 'v'
+  $: icon = data.open ? mdiMenuUp : mdiMenuDown
 
   function toggleOpen() {
     data.open = !data.open
@@ -64,8 +65,16 @@
         <div>{data.name.toLowerCase()}</div>
         <div class="subtitle">{data.id}</div>
       </div>
-      <div class="action" on:click|stopPropagation={remove}>x</div>
-      <div class="action" on:click|stopPropagation={toggleOpen}>{icon}</div>
+      <div class="action" on:click|stopPropagation={remove}>
+        <svg class="icon">
+          <path d={mdiClose} class="icon" />
+        </svg>
+      </div>
+      <div class="action" on:click|stopPropagation={toggleOpen}>
+        <svg class="icon">
+          <path d={icon} class="icon" />
+        </svg>
+      </div>
     </div>
     <div class="content" class:hidden={!data.open}>
       {#each data.children as item, index (item.id)}
@@ -120,5 +129,11 @@
     border-width: 1px;
     border-color: black;
     border-style: dotted;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    fill: #888;
   }
 </style>
