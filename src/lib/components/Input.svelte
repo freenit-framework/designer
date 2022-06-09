@@ -3,8 +3,6 @@
 
   export let style = {}
   export let props = {}
-
-  $: s = prepareStyle(style)
 </script>
 
-<input {...props} style={s} />
+<input {...props} style={prepareStyle(style)} />

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { design } from '$lib/store'
-  import { drop } from '$lib/utils'
+  import { drop } from '$lib/utils/dnd'
   import Component from './Component.svelte'
 </script>
 

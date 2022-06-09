@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { prepareStyle, dragStart, dragEnd, drop } from '$lib/utils'
+  import { prepareStyle } from '$lib/utils'
+  import { dragStart, dragEnd, drop } from '$lib/utils/dnd'
   import { compile } from '$lib/utils/props'
   import type { Component } from '$lib/types'
 

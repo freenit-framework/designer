@@ -2,8 +2,6 @@
   import { prepareStyle } from '$lib/utils'
 
   export let style = {}
-
-  $: s = prepareStyle(style)
 </script>
 
-<br style={s} />
+<br style={prepareStyle(style)} />

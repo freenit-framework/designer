@@ -1,6 +1,6 @@
 <script lang="ts">
   import htmlnames from '$lib/components'
-  import { dragStart, dragEnd } from '$lib/utils'
+  import { dragStart, dragEnd } from '$lib/utils/dnd'
 
   let search = ''
 

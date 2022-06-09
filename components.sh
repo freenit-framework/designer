@@ -34,11 +34,9 @@ generate() {
   import { prepareStyle } from '\$lib/utils'
 
   export let style = {}
-
-  $: s = prepareStyle(style)
 </script>
 
-<${element} style={s} />
+<${element} style={prepareStyle(style)} />
 EOF
   elif [ "${no_children}" = "yes" ]; then
     cat <<EOF
@@ -47,16 +45,15 @@ EOF
 
   export let style = {}
   export let props = {}
-
-  $: s = prepareStyle(style)
 </script>
 
-<${element} {...props} style={s} />
+<${element} {...props} style={prepareStyle(style)} />
 EOF
   elif [ "${no_props}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
-  import { prepareStyle, dragStart, dragEnd, drop } from '\$lib/utils'
+  import { prepareStyle } from '\$lib/utils'
+  import { dragStart, dragEnd, drop } from '\$lib/utils/dnd'
   import { compile } from '\$lib/utils/props'
   import type { Component } from '\$lib/types'
 
@@ -95,7 +92,8 @@ EOF
   else
     cat <<EOF
 <script lang="ts">
-  import { prepareStyle, dragStart, dragEnd, drop } from '\$lib/utils'
+  import { prepareStyle } from '\$lib/utils'
+  import { dragStart, dragEnd, drop } from '\$lib/utils/dnd'
   import { compile } from '\$lib/utils/props'
   import type { Component } from '\$lib/types'
 

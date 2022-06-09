@@ -1,7 +1,7 @@
 <script lang="ts">
   import { slide } from 'svelte/transition'
   import { over } from '$lib/store'
-  import { dragEnter, drop } from '$lib/utils'
+  import { dragEnter, drop } from '$lib/utils/dnd'
   import type { Component } from '$lib/types'
 
   export let index: number
@@ -26,21 +26,11 @@
   }
 </script>
 
-<div class="root" on:dragenter={dragEnter(data)} ondragover="return false">
+<div class="root" on:dragenter={dragEnter(data)}>
   {#if $over.id === data.id}
-    <div
-      on:drop={drop(parent, index)}
-      ondragover="return false"
-      transition:slide
-      class="drop"
-    />
+    <div on:drop={drop(parent, index)} transition:slide class="drop" />
     <slot />
-    <div
-      on:drop={drop(parent, index + 1)}
-      ondragover="return false"
-      transition:slide
-      class="drop"
-    />
+    <div on:drop={drop(parent, index + 1)} transition:slide class="drop" />
   {:else}
     <slot />
   {/if}

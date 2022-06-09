@@ -1,7 +1,7 @@
 <script lang="ts">
   import { slide } from 'svelte/transition'
   import { selected, parent as parentStore } from '$lib/store'
-  import { dragStart, dragEnd, drop } from '$lib/utils'
+  import { dragStart, dragEnd, drop } from '$lib/utils/dnd'
   import type { Component, UndoItem } from '$lib/types'
   import DnDWrapper from './DnDWrapper.svelte'
   import { undo } from '$lib/store'

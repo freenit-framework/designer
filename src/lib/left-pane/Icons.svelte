@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dragStart, dragEnd } from '$lib/utils'
+  import { dragStart, dragEnd } from '$lib/utils/dnd'
   import icons from '$lib/components/icons'
 
   let search = ''
