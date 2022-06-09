@@ -7,21 +7,17 @@
   $: items = htmlnames.filter((item) =>
     item.name.toLowerCase().includes(search),
   )
-
-  function changeSearch(event: any) {
-    search = event.target.value
-  }
 </script>
 
 <div class="search">
-  <input on:input={changeSearch} />
+  <input bind:value={search} />
 </div>
 
 <div class="root">
   {#each items as item (item.id)}
     <div
       class="element"
-      draggable="true"
+      draggable={true}
       on:dragstart={dragStart(item)}
       on:dragend={dragEnd}
     >
