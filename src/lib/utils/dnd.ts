@@ -13,7 +13,6 @@ export function dragStart(
     if (parent && index >= 0) {
       component.parent = parent
       component.index = index
-      component.parent.children.splice(index, 1)
     }
   }
   dnd.set(component)
@@ -23,11 +22,6 @@ export function dragStart(
 
 export function dragEnd() {
   const component = get(dnd)
-  const { parent } = component
-  const index = Number(component.index)
-  if (parent && index >= 0) {
-    parent.children.splice(index, 0, component)
-  }
   delete component['parent']
   delete component['index']
   dnd.set({ ...initialComponent })
@@ -40,8 +34,14 @@ export function drop(component: Component, index: number = -1) {
     event.stopPropagation()
     event.preventDefault()
     const existing = get(dnd)
-    delete existing['parent']
-    delete existing['index']
+    if (existing.parent) {
+      const index = Number(existing.index)
+      if (index >= 0) {
+        existing.parent.children.splice(index, 1)
+      }
+    }
+    delete component['parent']
+    delete component['index']
     const undoStore = get(undo)
     const newone = changeIds(existing)
     const undoItem: UndoItem = {

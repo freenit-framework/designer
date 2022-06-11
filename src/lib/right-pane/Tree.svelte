@@ -1,12 +1,13 @@
 <script lang="ts">
   import { design } from '$lib/store'
-  import { dragEnter, drop } from '$lib/utils/dnd'
+  import { dragEnter, dragEnd, drop } from '$lib/utils/dnd'
   import TreeItem from './TreeItem.svelte'
 </script>
 
 <div
   class="root"
   on:dragenter={dragEnter($design)}
+  on:dragend={dragEnd}
   on:drop={drop($design)}
   ondragover="return false"
 >

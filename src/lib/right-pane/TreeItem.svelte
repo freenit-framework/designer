@@ -1,9 +1,8 @@
 <script lang="ts">
   import { slide } from 'svelte/transition'
-  import { selected, parent as parentStore } from '$lib/store'
-  import { dragStart, dragEnd, drop } from '$lib/utils/dnd'
+  import { selected, over, parent as parentStore } from '$lib/store'
+  import { dragStart, dragEnd, dragEnter, drop } from '$lib/utils/dnd'
   import type { Component, UndoItem } from '$lib/types'
-  import DnDWrapper from './DnDWrapper.svelte'
   import { undo } from '$lib/store'
   import { mdiMenuDown, mdiMenuUp, mdiClose } from '@mdi/js'
 
@@ -49,7 +48,12 @@
   }
 </script>
 
-<DnDWrapper bind:data bind:parent {index}>
+<div on:dragenter={dragEnter(data)}>
+  <div
+    on:drop={drop(parent, index)}
+    class="drop"
+    class:over={$over.id === data.id}
+  />
   <div
     class="root"
     on:click|stopPropagation={select}
@@ -82,7 +86,7 @@
       {/each}
     </div>
   </div>
-</DnDWrapper>
+</div>
 
 <style>
   .root {
@@ -135,5 +139,13 @@
     width: 20px;
     height: 20px;
     fill: #888;
+  }
+
+  .drop {
+    height: 1px;
+  }
+
+  .over {
+    height: 30px;
   }
 </style>
