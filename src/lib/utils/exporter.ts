@@ -124,18 +124,18 @@ export function exportStyle(component: Component): string {
     ret += `\n    ${s}: ${styleData[s]};`
   }
   ret += '\n  }\n'
-  ret += component.children.map((c) => exportStyle(c)).join()
+  ret += component.children.map((c) => exportStyle(c)).join('')
   return ret
 }
 
 export function exportText(component: Component, indent = 4): string {
-  if (component.text === '') {
-    return ''
+  let ret = ''
+  if (component.text !== '') {
+    ret += '\n'
+    ret += ' '.repeat(indent)
+    ret += `${component.id}: "${component.text}",`
   }
-  let ret = '\n'
-  ret += ' '.repeat(indent)
-  ret += `${component.id}: "${component.text}",`
-  ret += component.children.map((c) => exportText(c, indent)).join()
+  ret += component.children.map((c) => exportText(c, indent)).join('')
   return ret
 }
 
@@ -147,7 +147,7 @@ export function exportSvelteCode(component: Component, prefix = ''): string {
   const children = component.children.map((c) =>
     exportSvelteCode(c, `${prefix}  `),
   )
-  ret += children.join()
+  ret += children.join('')
   if (component.text !== '') {
     ret += `${prefix}  {data.${component.id}}\n`
   }
