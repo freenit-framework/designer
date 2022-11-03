@@ -120,8 +120,8 @@
 
 <style>
   .root {
-    width: 300px;
-    max-width: 300px;
+    width: 100vw;
+    max-width: 310px;
     background-color: #eee;
     display: flex;
     align-items: center;
@@ -132,7 +132,7 @@
   }
 
   .root-hidden {
-    width: 300px;
+    width: 100vw;
     max-width: 50px;
     height: 100%;
     overflow: hidden;
