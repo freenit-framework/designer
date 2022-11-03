@@ -30,34 +30,47 @@ export function changeIds(component: Component): Component {
     id: makeid(),
     props: JSON.parse(JSON.stringify(component.props)),
     style: JSON.parse(JSON.stringify(component.style)),
-    children: component.children.map((item) => changeIds(item)),
+    children: component.children.map((item: Component) => changeIds(item)),
   }
   return newone
 }
 
 export function toJson(component: Component): Record<any, any> {
-  const { id, name, props, style, children, text } = component
-  return {
+  const { id, name, props, style, children, text, data, title } = component
+  const result: any = {
     id,
     name,
     text,
     props,
     style,
-    children: children.map((c) => toJson(c)),
+    children: children.map((c: Component) => toJson(c)),
   }
+  if (name === 'svg') {
+    result.data = data
+    result.title = title
+  }
+  return result
 }
 
 export function object2component(obj: Record<string, any>): Component {
-  const { id, name, style, props, text, children } = obj
-  return {
+  const { id, name, style, props, text, children, data, title } = obj
+  const component: Component = {
     id,
     name,
     style,
     props,
     text,
-    component: components[obj.name] || '',
+    component: '',
     children: children.map((c: Component) => object2component(c)),
   }
+  if (component.name === 'svg') {
+    component.data = data
+    component.title = title
+    component.component = components.Svg
+  } else {
+    component.component = components[obj.name] || ''
+  }
+  return component
 }
 
 export function toObject(json: string): Component {

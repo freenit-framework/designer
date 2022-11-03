@@ -44,4 +44,7 @@
   {#each data.children as item, i (item.id)}
     <svelte:self bind:data={item} bind:parent={data} index={i} />
   {/each}
+  {#if data.name === 'svg'}
+    <path d={data.data} />
+  {/if}
 </svelte:component>

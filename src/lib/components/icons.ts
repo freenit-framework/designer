@@ -15,17 +15,7 @@ const iconcomponents = Object.keys(icons).map((name) => ({
     width: '30px',
     height: '30px',
   }),
-  children: [
-    {
-      id: makeid(),
-      name: 'path',
-      component: Path,
-      text: '',
-      props: compile({ d: icons[name] }),
-      style: compile({}),
-      children: [],
-    },
-  ],
+  children: [],
 }))
 
 export default iconcomponents

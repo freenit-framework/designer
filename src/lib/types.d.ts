@@ -17,6 +17,8 @@ export interface Component {
   parent?: Component
   open?: boolean
   index?: number
+  data?: string
+  title?: string
 }
 
 export interface UndoItem {
