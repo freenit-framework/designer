@@ -2,6 +2,7 @@
   import { prepareStyle } from '$lib/utils'
   import { dragStart, dragEnd, drop } from '$lib/utils/dnd'
   import { compile } from '$lib/utils/props'
+  import { selected } from '$lib/store'
   import type { Component } from '$lib/types'
 
   export let props = {}
@@ -25,6 +26,10 @@
     style: {},
   }
   export let index = -1
+
+  function select() {
+    $selected = data
+  }
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
@@ -35,6 +40,7 @@
   on:dragstart={dragStart(data, parent, index)}
   on:dragend={dragEnd}
   on:drop={drop(data)}
+  on:click={select}
 >
   <slot />
 </video>
