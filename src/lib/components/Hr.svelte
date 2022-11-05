@@ -21,4 +21,4 @@
   }
 </script>
 
-<hr {...props} style={prepareStyle(style)} on:click={select} />
+<hr {...props} style={prepareStyle(style)} on:click|stopPropagation={select} />

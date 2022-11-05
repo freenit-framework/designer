@@ -20,4 +20,4 @@
   }
 </script>
 
-<br style={prepareStyle(style)} on:click={select} />
+<br style={prepareStyle(style)} on:click|stopPropagation={select} />

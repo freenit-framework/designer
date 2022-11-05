@@ -21,4 +21,8 @@
   }
 </script>
 
-<track {...props} style={prepareStyle(style)} on:click={select} />
+<track
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+/>

@@ -21,4 +21,8 @@
   }
 </script>
 
-<source {...props} style={prepareStyle(style)} on:click={select} />
+<source
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+/>

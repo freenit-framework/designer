@@ -39,7 +39,7 @@
   on:dragstart={dragStart(data, parent, index)}
   on:dragend={dragEnd}
   on:drop={drop(data)}
-  on:click={select}
+  on:click|stopPropagation={select}
 >
   <slot />
 </li>

@@ -21,4 +21,4 @@
   }
 </script>
 
-<col {...props} style={prepareStyle(style)} on:click={select} />
+<col {...props} style={prepareStyle(style)} on:click|stopPropagation={select} />

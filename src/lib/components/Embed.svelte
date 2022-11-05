@@ -21,4 +21,8 @@
   }
 </script>
 
-<embed {...props} style={prepareStyle(style)} on:click={select} />
+<embed
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+/>

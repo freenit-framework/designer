@@ -76,7 +76,7 @@ generate() {
   }
 </script>
 
-<${element} style={prepareStyle(style)} on:click={select} />
+<${element} style={prepareStyle(style)} on:click|stopPropagation={select} />
 EOF
   elif [ "${no_children}" = "yes" ]; then
     cat <<EOF
@@ -103,7 +103,7 @@ EOF
   }
 </script>
 
-<${element} {...props} $elprops style={prepareStyle(style)} on:click={select} />
+<${element} {...props} $elprops style={prepareStyle(style)} on:click|stopPropagation={select} />
 EOF
   elif [ "${no_props}" = "yes" ]; then
     cat <<EOF
@@ -146,7 +146,7 @@ EOF
   on:dragstart={dragStart(data, parent, index)}
   on:dragend={dragEnd}
   on:drop={drop(data)}
-  on:click={select}
+  on:click|stopPropagation={select}
 >
   <slot />
 </${element}>
@@ -196,7 +196,7 @@ $a11y
   on:dragstart={dragStart(data, parent, index)}
   on:dragend={dragEnd}
   on:drop={drop(data)}
-  on:click={select}
+  on:click|stopPropagation={select}
 >
   <slot />
 </${element}>

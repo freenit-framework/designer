@@ -25,5 +25,5 @@
   {...props}
   alt={props.alt}
   style={prepareStyle(style)}
-  on:click={select}
+  on:click|stopPropagation={select}
 />

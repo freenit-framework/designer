@@ -21,4 +21,8 @@
   }
 </script>
 
-<base {...props} style={prepareStyle(style)} on:click={select} />
+<base
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+/>

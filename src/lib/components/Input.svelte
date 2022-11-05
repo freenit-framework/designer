@@ -21,4 +21,8 @@
   }
 </script>
 
-<input {...props} style={prepareStyle(style)} on:click={select} />
+<input
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+/>

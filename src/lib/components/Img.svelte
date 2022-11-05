@@ -21,4 +21,9 @@
   }
 </script>
 
-<img {...props} alt={props.alt} style={prepareStyle(style)} on:click={select} />
+<img
+  {...props}
+  alt={props.alt}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+/>
