@@ -7,4 +7,4 @@ setup
 
 echo "Frontend"
 echo "========"
-env BACKEND_URL=${BACKEND_URL} ${PACKAGE_MANAGER} dev -- --host 0.0.0.0
+env BACKEND_URL=${BACKEND_URL} ${PACKAGE_MANAGER} dev --host 0.0.0.0

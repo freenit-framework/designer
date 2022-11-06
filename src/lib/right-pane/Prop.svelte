@@ -60,6 +60,16 @@
   <div class="root">
     {#if editing}
       <InlineEdit bind:data bind:name onClose={closeEdit} />
+    {:else if data[name].type === 'file'}
+      <span
+        on:mouseover={hoverRemove}
+        on:focus={hoverRemove}
+        on:mouseleave={leaveRemove}
+        on:blur={leaveRemove}
+        on:click={edit}
+      >
+        {name}: &lt;file&gt;
+      </span>
     {:else if isSimple(data[name])}
       <span
         on:mouseover={hoverRemove}
