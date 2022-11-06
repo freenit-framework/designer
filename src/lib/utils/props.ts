@@ -34,9 +34,6 @@ export const compile = (value: any) => {
 }
 
 export const decompile = (data: Record<any, any>) => {
-  if (data.type === 'file') {
-    return `${data.pre}${data.value}${data.post}`
-  }
   if (Array.isArray(data.value)) {
     return data.value.map((item) => decompile(item))
   }

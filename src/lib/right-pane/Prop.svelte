@@ -69,6 +69,7 @@
         on:click={edit}
       >
         {name}: &lt;file&gt;
+        <span class="tool" class:hover={removeHover} on:click={remove}>-</span>
       </span>
     {:else if isSimple(data[name])}
       <span

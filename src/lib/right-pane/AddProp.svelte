@@ -8,8 +8,8 @@ import { Base64 } from 'js-base64'
   let name: string = ''
   let value: any = ''
   let type: string = 'string'
-  let pre: string = 'url("'
-  let post: string = '")'
+  let pre: string = 'url('
+  let post: string = ')'
   let fileInput: any
   export let open = false
   export let data = compile({})
@@ -23,10 +23,8 @@ import { Base64 } from 'js-base64'
       const [file] = event.target.files
       const reader = new FileReader()
       reader.onload = (e) => {
-        const data = `${e.target?.result}`
-        const encoded = Base64.encode(data)
+        const encoded = Base64.encode(`${e.target?.result}`)
         value = `${pre}data:${file.type};base64,${encoded}${post}`
-        console.log(value)
       }
       reader.readAsText(file)
     }
@@ -67,9 +65,7 @@ import { Base64 } from 'js-base64'
       const compiled = compile(value)
       data.value[name] = compiled
       data.value[name].type = type
-      console.log(data.value[name])
       $undo = [...$undo, item]
-      console.log('undo done')
     }
     open = false
     $design = $design
