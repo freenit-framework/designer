@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Base64 } from 'js-base64'
   import { design, undo } from '$lib/store'
   import { compile } from '$lib/utils/props'
   import Modal from '$lib/Modal.svelte'
@@ -7,8 +8,29 @@
   let name: string = ''
   let value: any = ''
   let type: string = 'string'
+  let pre: string = 'url("'
+  let post: string = '")'
+  let fileInput: any
   export let open = false
   export let data = compile({})
+
+  function openFile() {
+    fileInput.click()
+  }
+
+  function load(event: any) {
+    if (event.target.files.length > 0) {
+      const [file] = event.target.files
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const data = `${e.target?.result}`
+        const encoded = Base64.encode(data)
+        value = `${pre}data:${file.type};base64,${encoded}${post}`
+        console.log(value)
+      }
+      reader.readAsText(file)
+    }
+  }
 
   function addProp() {
     if (name === 'style') {
@@ -42,9 +64,12 @@
         attribute: name,
         value: data.value[name],
       }
-      data.value[name] = compile(value)
+      const compiled = compile(value)
+      data.value[name] = compiled
       data.value[name].type = type
+      console.log(data.value[name])
       $undo = [...$undo, item]
+      console.log('undo done')
     }
     open = false
     $design = $design
@@ -64,6 +89,7 @@
       <option value="number">Number</option>
       <option value="boolean">Boolean</option>
       <option value="color">Color</option>
+      <option value="file">File</option>
     </select>
     <label for="name">Name</label>
     <input name="name" bind:value={name} autofocus required />
@@ -76,6 +102,17 @@
       <input name="value" type="checkbox" bind:value required />
     {:else if type === 'color'}
       <input name="value" type="color" bind:value required />
+    {:else if type === 'file'}
+      <div class="file">
+        <input name="value" type="file" class="hidden" bind:value required bind:this={fileInput} on:change={load} />
+        <div>
+          <label for="pre">Pre</label>
+          <input name="pre" bind:value={pre} />
+          <label for="post">Post</label>
+          <input name="post" bind:value={post} />
+        </div>
+        <button class="button primary" on:click={openFile}>Browse</button>
+      </div>
     {/if}
     <div class="buttons">
       <button type="submit" class="button outline primary">OK</button>
@@ -89,5 +126,9 @@
 <style>
   .buttons {
     margin-top: 10px;
+  }
+
+  .hidden {
+    display: none !important;
   }
 </style>
