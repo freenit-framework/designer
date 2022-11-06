@@ -6,7 +6,7 @@
   import LeftPane from '$lib/left-pane'
   import RightPane from '$lib/right-pane'
   import Preview from '$lib/preview'
-  import { undo, design, selected, initialComponent, parent } from '$lib/store'
+  import { undo, design, selected, initialComponent, parent, enableShortcuts } from '$lib/store'
   import type { UndoItem } from '$lib/types'
   import { changeIds } from '$lib/utils'
 
@@ -36,31 +36,33 @@
   }
 
   function handleKeyDown(event: any) {
-    const { key, ctrlKey } = event
-    if (key === 'Delete') {
-      if (Boolean($selected.id)) {
-        const element = $parent.children
-          .map((child) => child.id)
-          .indexOf($selected.id)
-        const item: UndoItem = {
-          parent: $parent.children,
-          attribute: element,
-          value: $selected,
+    if ($enableShortcuts) {
+      const { key, ctrlKey } = event
+      if (key === 'Delete') {
+        if (Boolean($selected.id)) {
+          const element = $parent.children
+            .map((child) => child.id)
+            .indexOf($selected.id)
+          const item: UndoItem = {
+            parent: $parent.children,
+            attribute: element,
+            value: $selected,
+          }
+          $parent.children.splice(element, 1)
+          $undo = [...$undo, item]
+          $selected = { ...initialComponent }
+          $design = $design
         }
-        $parent.children.splice(element, 1)
-        $undo = [...$undo, item]
-        $selected = { ...initialComponent }
-        $design = $design
+      } else if (ctrlKey && key === 'c') {
+        output.value = JSON.stringify($selected)
+        output.select()
+        document.execCommand('copy')
+        output.blur()
+      } else if (ctrlKey && key === 'v') {
+        input.focus()
+        input.select()
+        document.execCommand('paste')
       }
-    } else if (ctrlKey && key === 'c') {
-      output.value = JSON.stringify($selected)
-      output.select()
-      document.execCommand('copy')
-      output.blur()
-    } else if (ctrlKey && key === 'v') {
-      input.focus()
-      input.select()
-      document.execCommand('paste')
     }
   }
 </script>

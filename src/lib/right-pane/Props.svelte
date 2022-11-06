@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { selected } from '$lib/store'
+  import { selected, enableShortcuts } from '$lib/store'
   import AddProp from './AddProp.svelte'
   import TextEdit from './TextEdit.svelte'
   import Prop from './Prop.svelte'
@@ -34,10 +34,12 @@
 
   function openAdd() {
     add = true
+    $enableShortcuts = false
   }
 
   function openAddStyle() {
     addStyle = true
+    $enableShortcuts = false
   }
 
   function openText() {

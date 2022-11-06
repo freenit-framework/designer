@@ -1,6 +1,5 @@
 <script lang="ts">
-import { Base64 } from 'js-base64'
-  import { design, undo } from '$lib/store'
+  import { design, undo, enableShortcuts } from '$lib/store'
   import { compile } from '$lib/utils/props'
   import Modal from '$lib/Modal.svelte'
   import type { UndoItem } from '$lib/types'
@@ -67,6 +66,7 @@ import { Base64 } from 'js-base64'
       $undo = [...$undo, item]
     }
     open = false
+    $enableShortcuts = true
     $design = $design
   }
 

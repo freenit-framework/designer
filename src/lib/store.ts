@@ -12,6 +12,7 @@ export const initialComponent: Component = {
   style: compile({}),
 }
 
+export const enableShortcuts = writable(true)
 export const design = writable({ ...initialComponent, id: 'root' })
 export const selected = writable({ ...initialComponent })
 export const parent = writable({ ...initialComponent })
