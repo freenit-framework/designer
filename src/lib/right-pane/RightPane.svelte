@@ -123,6 +123,7 @@
     flex-direction: column;
     overflow: hidden;
     transition: all 1s;
+    border-left: 1px solid #ddd;
   }
 
   .root-hidden {
@@ -131,6 +132,7 @@
     height: 100%;
     overflow: hidden;
     transition: all 1s;
+    border-left: 1px solid #ddd;
   }
 
   .panel {
