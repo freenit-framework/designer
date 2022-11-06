@@ -23,10 +23,9 @@ import { Base64 } from 'js-base64'
       const [file] = event.target.files
       const reader = new FileReader()
       reader.onload = (e) => {
-        const encoded = Base64.encode(`${e.target?.result}`)
-        value = `${pre}data:${file.type};base64,${encoded}${post}`
+        value = `${pre}${e.target?.result}${post}`
       }
-      reader.readAsText(file)
+      reader.readAsDataURL(file)
     }
   }
 
