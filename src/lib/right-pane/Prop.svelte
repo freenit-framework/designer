@@ -2,7 +2,7 @@
   import AddProp from './AddProp.svelte'
   import InlineEdit from './InlineEdit.svelte'
   import { isSimple, isObject } from '$lib/utils/props'
-  import { undo } from '$lib/store'
+  import { undo, enableShortcuts } from '$lib/store'
   import type { UndoItem } from '$lib/types'
 
   export let data = { name: '' }
@@ -22,6 +22,7 @@
 
   function openAdd() {
     add = true
+    $enableShortcuts = false
   }
 
   function remove() {
@@ -49,10 +50,12 @@
 
   function edit() {
     editing = true
+    $enableShortcuts = false
   }
 
   function closeEdit() {
     editing = false
+    $enableShortcuts = true
   }
 </script>
 

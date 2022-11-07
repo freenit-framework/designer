@@ -72,6 +72,7 @@
 
   function close() {
     open = false
+    $enableShortcuts = true
   }
 </script>
 
