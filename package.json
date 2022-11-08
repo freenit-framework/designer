@@ -12,15 +12,21 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "@fontsource/fira-mono": "^4.5.0",
+    "@mdi/js": "^7.0.96",
     "@playwright/test": "^1.25.0",
     "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-node": "^1.0.0-next.88",
     "@sveltejs/kit": "next",
     "@types/cookie": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
+    "chota": "^0.8.0",
+    "cookie": "^0.4.1",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^4.0.0",
+    "js-base64": "^3.7.2",
     "prettier": "^2.6.2",
     "prettier-plugin-svelte": "^2.7.0",
     "svelte": "^3.46.0",
@@ -30,13 +36,5 @@
     "typescript": "^4.7.4",
     "vite": "^3.1.0-beta.1"
   },
-  "type": "module",
-  "dependencies": {
-    "@fontsource/fira-mono": "^4.5.0",
-    "@mdi/js": "^7.0.96",
-    "@sveltejs/adapter-node": "^1.0.0-next.88",
-    "chota": "^0.8.0",
-    "cookie": "^0.4.1",
-    "js-base64": "^3.7.2"
-  }
+  "type": "module"
 }
