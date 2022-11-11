@@ -96,7 +96,9 @@
           <path d={mdiRedo} />
         </svg>
       </div>
-      <Theme />
+      <div class="content">
+        <Theme />
+      </div>
     {/if}
     <div class="buttons">
       <svg class="icon" on:click={setDevice('mobile')}>
@@ -136,6 +138,7 @@
   }
 
   .panel {
+    height: 58px;
     width: 100%;
     padding: 10px;
     display: flex;
@@ -155,8 +158,8 @@
   }
 
   .tools {
+    height: 37px;
     width: 100%;
-    padding-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,15 +167,16 @@
   }
 
   .content {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
+    height: calc(100% - 58px - 37px - 64px);
   }
 
   .buttons {
+    height: 64px;
     width: 100%;
     padding: 10px;
     display: flex;

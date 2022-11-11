@@ -93,7 +93,7 @@
 
 <style>
   .root {
-    height: 100%;
+    height: 50%;
     width: 100%;
     overflow: auto;
   }

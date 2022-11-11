@@ -18,7 +18,7 @@
 
 <style>
   .root {
-    height: 100%;
+    height: 50%;
     width: 100%;
     margin: 10px;
     overflow: auto;
