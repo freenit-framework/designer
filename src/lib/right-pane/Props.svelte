@@ -44,10 +44,12 @@
 
   function openText() {
     text = true
+    $enableShortcuts = false
   }
 
   function closeText() {
     text = false
+    $enableShortcuts = true
   }
 </script>
 
