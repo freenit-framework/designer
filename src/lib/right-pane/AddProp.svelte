@@ -32,42 +32,34 @@
     if (name === 'style') {
       return
     }
+    const item: UndoItem = {
+      parent: '',
+      attribute: '',
+      value: '',
+      parent: data,
+      attribute: name,
+      value: data[name],
+    }
     if (value === '{}') {
-      const item: UndoItem = {
-        parent: data,
-        attribute: name,
-        value: data[name],
-      }
-      $undo = [...$undo, item]
       data.value = {
         ...data.value,
         [name]: compile({}),
       }
     } else if (value === '[]') {
-      const item: UndoItem = {
-        parent: data,
-        attribute: name,
-        value: data[name],
-      }
-      $undo = [...$undo, item]
       data.value = {
         ...data.value,
         [name]: compile([]),
       }
     } else {
-      const item: UndoItem = {
-        parent: data.value,
-        attribute: name,
-        value: data.value[name],
-      }
-      const compiled = compile(value)
-      data.value[name] = compiled
+      item.parent = data.value
+      item.value = data.value[name]
+      data.value[name] = compile(value)
       data.value[name].type = type
-      $undo = [...$undo, item]
     }
     open = false
     $enableShortcuts = true
     $design = $design
+    $undo = [...$undo, item]
   }
 
   function close() {

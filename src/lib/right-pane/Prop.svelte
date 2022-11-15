@@ -63,62 +63,64 @@
   <div class="root">
     {#if editing}
       <InlineEdit bind:data bind:name onClose={closeEdit} />
-    {:else if data[name].type === 'file'}
-      <span
-        on:mouseover={hoverRemove}
-        on:focus={hoverRemove}
-        on:mouseleave={leaveRemove}
-        on:blur={leaveRemove}
-        on:click={edit}
-      >
-        {name}: &lt;file&gt;
-        <span class="tool" class:hover={removeHover} on:click={remove}>-</span>
-      </span>
-    {:else if isSimple(data[name])}
-      <span
-        on:mouseover={hoverRemove}
-        on:focus={hoverRemove}
-        on:mouseleave={leaveRemove}
-        on:blur={leaveRemove}
-        on:click={edit}
-      >
-        {#if Array.isArray(data)}
-          {data[name].value}
-        {:else}
-          {name}: {data[name].value}
-        {/if}
-        <span class="tool" class:hover={removeHover} on:click={remove}>-</span>
-      </span>
-    {:else if isObject(data[name])}
-      <span
-        on:mouseover={setHover}
-        on:focus={setHover}
-        on:mouseleave={unsetHover}
-        on:blur={unsetHover}
-      >
-        {name}: &#123;
-        <span class="tool" class:hover on:click={openAdd}>+</span>
-        <span class="tool" class:hover on:click={remove}>-</span>
-      </span>
-      {#each Object.keys(data[name].value) as propname}
-        <svelte:self bind:data={data[name].value} name={propname} />
-      {/each}
-      <div>&#125;</div>
-    {:else if Array.isArray(data[name].value)}
-      <span
-        on:mouseover={setHover}
-        on:focus={setHover}
-        on:mouseleave={unsetHover}
-        on:blur={unsetHover}
-      >
-        {name}: [
-        <span class="tool" class:hover on:click={openAdd}>+</span>
-        <span class="tool" class:hover on:click={remove}>-</span>
-      </span>
-      {#each data[name].value as _value, index}
-        <svelte:self bind:data={data[name].value} name={index} />
-      {/each}
-      <div>]</div>
+    {:else if data[name] && data[name].type}
+      {#if data[name].type === 'file'}
+        <span
+          on:mouseover={hoverRemove}
+          on:focus={hoverRemove}
+          on:mouseleave={leaveRemove}
+          on:blur={leaveRemove}
+          on:click={edit}
+        >
+          {name}: &lt;file&gt;
+          <span class="tool" class:hover={removeHover} on:click={remove}>-</span>
+        </span>
+      {:else if isSimple(data[name])}
+        <span
+          on:mouseover={hoverRemove}
+          on:focus={hoverRemove}
+          on:mouseleave={leaveRemove}
+          on:blur={leaveRemove}
+          on:click={edit}
+        >
+          {#if Array.isArray(data)}
+            {data[name].value}
+          {:else}
+            {name}: {data[name].value}
+          {/if}
+          <span class="tool" class:hover={removeHover} on:click={remove}>-</span>
+        </span>
+      {:else if isObject(data[name])}
+        <span
+          on:mouseover={setHover}
+          on:focus={setHover}
+          on:mouseleave={unsetHover}
+          on:blur={unsetHover}
+        >
+          {name}: &#123;
+          <span class="tool" class:hover on:click={openAdd}>+</span>
+          <span class="tool" class:hover on:click={remove}>-</span>
+        </span>
+        {#each Object.keys(data[name].value) as propname}
+          <svelte:self bind:data={data[name].value} name={propname} />
+        {/each}
+        <div>&#125;</div>
+      {:else if Array.isArray(data[name].value)}
+        <span
+          on:mouseover={setHover}
+          on:focus={setHover}
+          on:mouseleave={unsetHover}
+          on:blur={unsetHover}
+        >
+          {name}: [
+          <span class="tool" class:hover on:click={openAdd}>+</span>
+          <span class="tool" class:hover on:click={remove}>-</span>
+        </span>
+        {#each data[name].value as _value, index}
+          <svelte:self bind:data={data[name].value} name={index} />
+        {/each}
+        <div>]</div>
+      {/if}
     {/if}
   </div>
 {/if}
