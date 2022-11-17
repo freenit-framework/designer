@@ -24,7 +24,10 @@
     const item: UndoItem = {
       parent: data,
       attribute: name,
-      value: oldValue,
+      value: {
+        value: oldValue,
+        type: oldType,
+      }
     }
     const { value } = data[name]
     if (value === '{}') {
