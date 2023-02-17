@@ -92,7 +92,15 @@
       <input name="value" type="color" bind:value required />
     {:else if type === 'file'}
       <div class="file">
-        <input name="value" type="file" class="hidden" bind:value required bind:this={fileInput} on:change={load} />
+        <input
+          name="value"
+          type="file"
+          class="hidden"
+          bind:value
+          required
+          bind:this={fileInput}
+          on:change={load}
+        />
         <div>
           <label for="pre">Pre</label>
           <input name="pre" bind:value={pre} />

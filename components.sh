@@ -56,7 +56,7 @@ generate() {
     cat <<EOF
 <script lang="ts">
   import { prepareStyle } from '\$lib/utils'
-  import { selected } from '\$lib/store'
+  import { selected, parent as storeParent } from '\$lib/store'
   import { compile } from '\$lib/utils/props'
   import type { Component } from '\$lib/types'
 
@@ -73,6 +73,7 @@ generate() {
 
   function select() {
     \$selected = data
+    \$storeParent = parent
   }
 </script>
 
@@ -82,7 +83,7 @@ EOF
     cat <<EOF
 <script lang="ts">
   import { prepareStyle } from '\$lib/utils'
-  import { selected } from '\$lib/store'
+  import { selected, parent as storeParent } from '\$lib/store'
   import { compile } from '\$lib/utils/props'
   import type { Component } from '\$lib/types'
 
@@ -100,6 +101,7 @@ EOF
 
   function select() {
     \$selected = data
+    \$storeParent = parent
   }
 </script>
 
@@ -111,7 +113,7 @@ EOF
   import { prepareStyle } from '\$lib/utils'
   import { dragStart, dragEnd, drop } from '\$lib/utils/dnd'
   import { compile } from '\$lib/utils/props'
-  import { selected } from '\$lib/store'
+  import { selected, parent as storeParent } from '\$lib/store'
   import type { Component } from '\$lib/types'
 
   export let style = {}
@@ -137,6 +139,7 @@ EOF
 
   function select() {
     \$selected = data
+    \$storeParent = parent
   }
 </script>
 
@@ -157,7 +160,7 @@ EOF
   import { prepareStyle } from '\$lib/utils'
   import { dragStart, dragEnd, drop } from '\$lib/utils/dnd'
   import { compile } from '\$lib/utils/props'
-  import { selected } from '\$lib/store'
+  import { selected, parent as storeParent } from '\$lib/store'
   import type { Component } from '\$lib/types'
 
   export let props = {$myprops}
@@ -184,6 +187,7 @@ EOF
 
   function select() {
     \$selected = data
+    \$storeParent = parent
   }
 </script>
 

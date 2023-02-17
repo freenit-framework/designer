@@ -27,7 +27,7 @@
       value: {
         value: oldValue,
         type: oldType,
-      }
+      },
     }
     const { value } = data[name]
     if (value === '{}') {

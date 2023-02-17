@@ -1,6 +1,6 @@
 <script lang="ts">
   import { prepareStyle } from '$lib/utils'
-  import { selected } from '$lib/store'
+  import { selected, parent as storeParent } from '$lib/store'
   import { compile } from '$lib/utils/props'
   import type { Component } from '$lib/types'
 
@@ -17,6 +17,7 @@
 
   function select() {
     $selected = data
+    $storeParent = parent
   }
 </script>
 

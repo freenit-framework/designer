@@ -2,7 +2,7 @@
   import { prepareStyle } from '$lib/utils'
   import { dragStart, dragEnd, drop } from '$lib/utils/dnd'
   import { compile } from '$lib/utils/props'
-  import { selected } from '$lib/store'
+  import { selected, parent as storeParent } from '$lib/store'
   import type { Component } from '$lib/types'
 
   export let props = { title: '' }
@@ -29,6 +29,7 @@
 
   function select() {
     $selected = data
+    $storeParent = parent
   }
 </script>
 

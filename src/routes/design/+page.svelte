@@ -6,7 +6,14 @@
   import LeftPane from '$lib/left-pane'
   import RightPane from '$lib/right-pane'
   import Preview from '$lib/preview'
-  import { undo, design, selected, initialComponent, parent, enableShortcuts } from '$lib/store'
+  import {
+    undo,
+    design,
+    selected,
+    initialComponent,
+    parent,
+    enableShortcuts,
+  } from '$lib/store'
   import type { UndoItem } from '$lib/types'
   import { changeIds } from '$lib/utils'
 
