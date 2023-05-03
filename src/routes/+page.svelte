@@ -1,10 +1,3 @@
-<script context="module" lang="ts">
-  export const prerender = true
-</script>
-
-<script lang="ts">
-</script>
-
 <section>
   <h1>Freenit Designer</h1>
   <a href="/design">
