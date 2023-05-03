@@ -1,8 +1,21 @@
 import { sveltekit } from '@sveltejs/kit/vite'
-import type { UserConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 
-const config: UserConfig = {
+const config = defineConfig({
   plugins: [sveltekit()],
+  test: {
+    include: ['src/**/*.{test,spec}.{js,ts}'],
+  },
+})
+if (process.env.BACKEND_URL) {
+  config.server = {
+    proxy: {
+      '/api': {
+        target: process.env.BACKEND_URL,
+        changeOrigin: true,
+      },
+    },
+  }
 }
 
 export default config

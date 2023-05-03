@@ -10,4 +10,4 @@ echo "Frontend"
 echo "========"
 cd "${PROJECT_ROOT}"
 rm -rf build
-npm run build
+yarn run build
