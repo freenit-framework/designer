@@ -71,9 +71,14 @@
           on:mouseleave={leaveRemove}
           on:blur={leaveRemove}
           on:click={edit}
+          on:keypress={edit}
         >
           {name}: &lt;file&gt;
-          <span class="tool" class:hover={removeHover} on:click={remove}>-</span
+          <span
+            class="tool"
+            class:hover={removeHover}
+            on:click={remove}
+            on:keypress={remove}>-</span
           >
         </span>
       {:else if isSimple(data[name])}
@@ -83,13 +88,18 @@
           on:mouseleave={leaveRemove}
           on:blur={leaveRemove}
           on:click={edit}
+          on:keypress={edit}
         >
           {#if Array.isArray(data)}
             {data[name].value}
           {:else}
             {name}: {data[name].value}
           {/if}
-          <span class="tool" class:hover={removeHover} on:click={remove}>-</span
+          <span
+            class="tool"
+            class:hover={removeHover}
+            on:click={remove}
+            on:keypress={remove}>-</span
           >
         </span>
       {:else if isObject(data[name])}
@@ -100,8 +110,15 @@
           on:blur={unsetHover}
         >
           {name}: &#123;
-          <span class="tool" class:hover on:click={openAdd}>+</span>
-          <span class="tool" class:hover on:click={remove}>-</span>
+          <span
+            class="tool"
+            class:hover
+            on:click={openAdd}
+            on:keypress={openAdd}>+</span
+          >
+          <span class="tool" class:hover on:click={remove} on:keypress={remove}
+            >-</span
+          >
         </span>
         {#each Object.keys(data[name].value) as propname}
           <svelte:self bind:data={data[name].value} name={propname} />
@@ -115,8 +132,15 @@
           on:blur={unsetHover}
         >
           {name}: [
-          <span class="tool" class:hover on:click={openAdd}>+</span>
-          <span class="tool" class:hover on:click={remove}>-</span>
+          <span
+            class="tool"
+            class:hover
+            on:click={openAdd}
+            on:keypress={openAdd}>+</span
+          >
+          <span class="tool" class:hover on:click={remove} on:keypress={remove}
+            >-</span
+          >
         </span>
         {#each data[name].value as _value, index}
           <svelte:self bind:data={data[name].value} name={index} />

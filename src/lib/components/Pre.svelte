@@ -40,6 +40,7 @@
   on:dragstart={dragStart(data, parent, index)}
   on:dragend={dragEnd}
   on:drop={drop(data)}
-  on:click|stopPropagation={select}>
+  on:click|stopPropagation={select}
+  on:keypress={select}>
   <slot />
 </pre>

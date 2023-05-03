@@ -22,4 +22,9 @@
   }
 </script>
 
-<wbr {...props} style={prepareStyle(style)} on:click|stopPropagation={select} />
+<wbr
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+  on:keypress={select}
+/>

@@ -26,7 +26,9 @@
     {#if editing === prop}
       <InlineEdit bind:data={$theme.value} name={prop} onClose={change} />
     {:else}
-      <div on:click={edit(prop)}>{prop}: {$theme.value[prop].value}</div>
+      <div on:click={edit(prop)} on:keypress={edit(prop)}>
+        {prop}: {$theme.value[prop].value}
+      </div>
     {/if}
   {/each}
 </div>

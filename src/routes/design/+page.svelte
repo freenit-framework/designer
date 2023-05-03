@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-  export const prerender = false
-</script>
-
 <script lang="ts">
   import LeftPane from '$lib/left-pane'
   import RightPane from '$lib/right-pane'

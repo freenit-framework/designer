@@ -21,4 +21,8 @@
   }
 </script>
 
-<br style={prepareStyle(style)} on:click|stopPropagation={select} />
+<br
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+  on:keypress={select}
+/>

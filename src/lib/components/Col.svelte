@@ -22,4 +22,9 @@
   }
 </script>
 
-<col {...props} style={prepareStyle(style)} on:click|stopPropagation={select} />
+<col
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+  on:keypress={select}
+/>

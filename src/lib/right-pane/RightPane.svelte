@@ -50,7 +50,7 @@
 
 <div class={rootClass}>
   <div class={panelClass}>
-    <svg class="icon" on:click={toggleHide}>
+    <svg class="icon" on:click={toggleHide} on:keypress={toggleHide}>
       <path d={hideIcon} />
     </svg>
     {#if !hidden}
@@ -73,13 +73,13 @@
   {#if !hidden}
     {#if tab === 'props'}
       <div class="tools">
-        <svg class="icon" on:click={undo}>
+        <svg class="icon" on:click={undo} on:keypress={undo}>
           <path d={mdiUndo} />
         </svg>
-        <svg class="icon" on:click={redo}>
+        <svg class="icon" on:click={redo} on:keypress={redo}>
           <path d={mdiRedo} />
         </svg>
-        <svg class="icon" on:click={search}>
+        <svg class="icon" on:click={search} on:keypress={search}>
           <path d={mdiSelectSearch} />
         </svg>
       </div>
@@ -89,10 +89,10 @@
       </div>
     {:else if tab === 'theme'}
       <div class="tools">
-        <svg class="icon" on:click={undo}>
+        <svg class="icon" on:click={undo} on:keypress={undo}>
           <path d={mdiUndo} />
         </svg>
-        <svg class="icon" on:click={redo}>
+        <svg class="icon" on:click={redo} on:keypress={redo}>
           <path d={mdiRedo} />
         </svg>
       </div>
@@ -101,13 +101,25 @@
       </div>
     {/if}
     <div class="buttons">
-      <svg class="icon" on:click={setDevice('mobile')}>
+      <svg
+        class="icon"
+        on:click={setDevice('mobile')}
+        on:keypress={setDevice('mobile')}
+      >
         <path d={mdiCellphone} />
       </svg>
-      <svg class="icon" on:click={setDevice('tablet')}>
+      <svg
+        class="icon"
+        on:click={setDevice('tablet')}
+        on:keypress={setDevice('tablet')}
+      >
         <path d={mdiTablet} />
       </svg>
-      <svg class="icon" on:click={setDevice('desktop')}>
+      <svg
+        class="icon"
+        on:click={setDevice('desktop')}
+        on:keypress={setDevice('desktop')}
+      >
         <path d={mdiLaptop} />
       </svg>
     </div>

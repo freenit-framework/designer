@@ -41,6 +41,7 @@
   on:dragend={dragEnd}
   on:drop={drop(data)}
   on:click|stopPropagation={select}
+  on:keypress={select}
 >
   <slot />
 </noscript>

@@ -27,4 +27,5 @@
   alt={props.alt}
   style={prepareStyle(style)}
   on:click|stopPropagation={select}
+  on:keypress={select}
 />

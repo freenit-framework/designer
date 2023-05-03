@@ -82,7 +82,7 @@
         Icons
       </button>
     {/if}
-    <svg class="icon" on:click={toggleHide}>
+    <svg class="icon" on:click={toggleHide} on:keypress={toggleHide}>
       <path d={hideIcon} />
     </svg>
   </div>

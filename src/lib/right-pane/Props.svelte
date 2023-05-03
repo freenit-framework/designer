@@ -62,7 +62,9 @@
       on:blur={unsetHover('props')}
     >
       props: &#123;
-      <span class="add" class:hover on:click={openAdd}>+</span>
+      <span class="add" class:hover on:click={openAdd} on:keypress={openAdd}>
+        +
+      </span>
     </span>
     {#each Object.keys($selected.props.value) as name}
       <Prop bind:data={$selected.props.value} {name} />
@@ -75,8 +77,14 @@
       on:blur={unsetHover('style')}
     >
       style: &#123;
-      <span class="add" class:hover={styleHover} on:click={openAddStyle}>+</span
+      <span
+        class="add"
+        class:hover={styleHover}
+        on:click={openAddStyle}
+        on:keypress={openAddStyle}
       >
+        +
+      </span>
     </div>
     {#each Object.keys($selected.style.value) as name}
       <Prop bind:data={$selected.style.value} {name} />
@@ -85,7 +93,9 @@
     {#if text}
       <TextEdit data={$selected} onClose={closeText} />
     {:else}
-      <div on:click={openText}>text: {$selected.text}</div>
+      <div on:click={openText} on:keypress={openText}>
+        text: {$selected.text}
+      </div>
     {/if}
   {/if}
 </div>

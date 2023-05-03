@@ -57,6 +57,7 @@
   <div
     class="root"
     on:click|stopPropagation={select}
+    on:keypress={select}
     class:outline
     transition:slide
     draggable={true}
@@ -69,12 +70,20 @@
         <div>{data.name.toLowerCase()}</div>
         <div class="subtitle">{data.id}</div>
       </div>
-      <div class="action" on:click|stopPropagation={remove}>
+      <div
+        class="action"
+        on:click|stopPropagation={remove}
+        on:keypress={remove}
+      >
         <svg class="icon">
           <path d={mdiClose} class="icon" />
         </svg>
       </div>
-      <div class="action" on:click|stopPropagation={toggleOpen}>
+      <div
+        class="action"
+        on:click|stopPropagation={toggleOpen}
+        on:keypress={toggleOpen}
+      >
         <svg class="icon">
           <path d={icon} class="icon" />
         </svg>

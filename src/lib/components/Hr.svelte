@@ -22,4 +22,9 @@
   }
 </script>
 
-<hr {...props} style={prepareStyle(style)} on:click|stopPropagation={select} />
+<hr
+  {...props}
+  style={prepareStyle(style)}
+  on:click|stopPropagation={select}
+  on:keypress={select}
+/>
