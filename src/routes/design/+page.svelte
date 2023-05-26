@@ -11,8 +11,7 @@
     enableShortcuts,
   } from '$lib/store'
   import type { Component, UndoItem } from '$lib/types'
-  import { changeIds } from '$lib/utils'
-  import * as components from '$lib/components/components'
+  import { changePaste } from '$lib/utils'
 
   let input: any
   let output: any
@@ -31,8 +30,7 @@
       }
       $undo = [...$undo, item]
       const pasted = JSON.parse(value)
-      const changedData: Component = changeIds(pasted)
-      changedData.component = components[changedData.name]
+      const changedData: Component = changePaste(pasted)
       $selected.children.push(changedData)
       $selected = $selected.children[last]
       $design = $design

@@ -1,7 +1,7 @@
 import { get } from 'svelte/store'
 import type { Component, UndoItem } from '$lib/types'
 import { design, dnd, over, initialComponent, undo } from '$lib/store'
-import { changeIds } from '.'
+import { changePaste } from '.'
 
 export function dragStart(
   component: Component,
@@ -43,7 +43,7 @@ export function drop(component: Component, index: number = -1) {
     delete component['parent']
     delete component['index']
     const undoStore = get(undo)
-    const newone = changeIds(existing)
+    const newone = changePaste(existing)
     const undoItem: UndoItem = {
       parent: component,
       attribute: 'children',

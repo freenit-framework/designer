@@ -24,13 +24,14 @@ export function prepareStyle(
   return css
 }
 
-export function changeIds(component: Component): Component {
+export function changePaste(component: Component): Component {
   const newone = {
     ...component,
     id: makeid(),
     props: JSON.parse(JSON.stringify(component.props)),
     style: JSON.parse(JSON.stringify(component.style)),
-    children: component.children.map((item: Component) => changeIds(item)),
+    children: component.children.map((item: Component) => changePaste(item)),
+    component: components[component.name],
   }
   return newone
 }
