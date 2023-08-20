@@ -92,19 +92,22 @@
     {:else}
       <Icons />
     {/if}
-    <div class="buttons">
-      <a
-        class="button outline"
-        on:mouseover={save}
-        on:focus={save}
-        href={saveDownload}
-        download="design.json"
-      >
-        Save
-      </a>
-      <button class="button outline primary" on:click={openFile}>Load</button>
-      <button class="button outline" on:click={exporter}> Export </button>
-    </div>
+    {#if !showExport}
+      <div class="buttons">
+        <a
+          class="button outline"
+          on:mouseover={save}
+          on:focus={save}
+          href={saveDownload}
+          download="design.json"
+        >
+          Save
+        </a>
+        <button class="button outline primary" on:click={openFile}>Load</button>
+        <button class="button outline" on:click={exporter}> Export </button>
+      </div>
+    {/if}
+    <Exporter bind:open={showExport} />
   {/if}
 </div>
 
@@ -116,7 +119,6 @@
   on:change={load}
 />
 
-<Exporter bind:open={showExport} />
 
 <style>
   .root {
