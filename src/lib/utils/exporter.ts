@@ -140,18 +140,25 @@ export function exportText(component: Component, indent = 4): string {
 }
 
 export function exportSvelteCode(component: Component, prefix = ''): string {
+  const oldprefix = prefix
   const element = component.name.toLowerCase()
   let ret = `${prefix}<${element} class="${component.id}"`
   ret += exportProps(decompile(component.props))
-  ret += `>\n`
+  ret += '>\n'
+  if (element === 'svg') {
+    prefix += '  '
+    ret += `${prefix}<path data="${component.data}"`
+    ret += exportProps(decompile(component.props))
+    ret += ' />\n'
+  }
   const children = component.children.map((c) =>
     exportSvelteCode(c, `${prefix}  `),
   )
   ret += children.join('')
   if (component.text !== '') {
-    ret += `${prefix}  {data.${component.id}}\n`
+    ret += `${oldprefix}  {data.${component.id}}\n`
   }
-  ret += `${prefix}</${element}>\n`
+  ret += `${oldprefix}</${element}>\n`
   return ret
 }
 

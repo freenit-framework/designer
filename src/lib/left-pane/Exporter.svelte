@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Modal from '$lib/Modal.svelte'
   import { framework } from '$lib/store'
   import { exporter } from '$lib/utils/exporter'
 
