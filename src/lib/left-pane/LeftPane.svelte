@@ -1,17 +1,17 @@
 <script lang="ts">
   import DnD from './DnD.svelte'
   import Icons from './Icons.svelte'
-  import Exporter from './Exporter.svelte'
   import { toJson, object2component, setThemeProp } from '$lib/utils'
   import { design, theme } from '$lib/store'
   import { Base64 } from 'js-base64'
   import { mdiArrowLeftBold, mdiArrowRightBold } from '@mdi/js'
+  import { exportSvelte } from '$lib/utils/exporter'
 
   let saveDownload: string | null = null
   let fileInput: any
   let tab = 'components'
-  let showExport = false
   let hidden = false
+  let exportData: string | null = exportSvelte()
 
   $: rootClass = hidden ? 'root-hidden' : 'root'
   $: panelClass = hidden ? 'panel-hidden' : 'panel'
@@ -25,10 +25,6 @@
     }
     const json = JSON.stringify(data, null, 2)
     saveDownload = `data:application/json;base64,${Base64.encode(json)}`
-  }
-
-  function exporter() {
-    showExport = true
   }
 
   function openFile() {
@@ -62,6 +58,11 @@
   function toggleHide() {
     hidden = !hidden
   }
+
+  function calculate() {
+    exportData = null
+    exportData = exportSvelte()
+  }
 </script>
 
 <div class={rootClass}>
@@ -92,22 +93,26 @@
     {:else}
       <Icons />
     {/if}
-    {#if !showExport}
-      <div class="buttons">
-        <a
-          class="button outline"
-          on:mouseover={save}
-          on:focus={save}
-          href={saveDownload}
-          download="design.json"
-        >
-          Save
-        </a>
-        <button class="button outline primary" on:click={openFile}>Load</button>
-        <button class="button outline" on:click={exporter}> Export </button>
-      </div>
-    {/if}
-    <Exporter bind:open={showExport} />
+    <div class="buttons">
+      <a
+        class="button outline"
+        on:mouseover={save}
+        on:focus={save}
+        href={saveDownload}
+        download="design.json"
+      >
+        Save
+      </a>
+      <button class="button outline primary" on:click={openFile}>Load</button>
+      <a href={exportData}
+        download="page.svelte"
+        class="button outline"
+        on:mouseover={calculate}
+        on:focus={calculate}
+      >
+        Export
+      </a>
+    </div>
   {/if}
 </div>
 
