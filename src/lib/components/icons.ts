@@ -1,7 +1,7 @@
 import * as icons from '@mdi/js'
 import { makeid } from '$lib/utils'
 import { compile } from '$lib/utils/props'
-import { Svg, Path } from './components'
+import { Svg } from './components'
 
 const iconcomponents = Object.keys(icons).map((name) => ({
   id: makeid(),
@@ -12,8 +12,8 @@ const iconcomponents = Object.keys(icons).map((name) => ({
   text: '',
   props: compile({}),
   style: compile({
-    width: '30px',
-    height: '30px',
+    width: '26px',
+    height: '26px',
   }),
   children: [],
 }))
