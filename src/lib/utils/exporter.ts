@@ -4,25 +4,27 @@ import type { Component } from '$lib/types'
 import { design, theme } from '$lib/store'
 import { decompile } from './props'
 
-
-export function exportSvelte(): string {
-  const designData = get(design)
-  const themeData = decompile(get(theme))
-  const text = designData.children.map((c) => exportText(c)).join('')
-  const children = designData.children
-    .map((c) => exportSvelteCode(c, ''))
-    .join('')
-  const style = designData.children.map((c) => exportStyle(c)).join('\n')
-  const scriptData = `\<script lang="ts"\>\n  const data = {${text}\n  }\n\<\/script\>`
-  const childrenData = `\n\n${children}\n`
-  let globalStyle = `  :global(:root) {\n`
-  for (const prop of Object.keys(themeData)) {
-    globalStyle += `    --${prop}: ${themeData[prop]};\n`
+function exportSvelteCode(component: Component, prefix = ''): string {
+  const oldprefix = prefix
+  const element = component.name.toLowerCase()
+  let ret = `${prefix}<${element} class="${component.id}"`
+  ret += exportProps(decompile(component.props))
+  ret += '>\n'
+  if (element === 'svg') {
+    prefix += '  '
+    ret += `${prefix}<path data="${component.data}"`
+    ret += exportProps(decompile(component.props))
+    ret += ' />\n'
   }
-  globalStyle += '  }\n'
-  const styleData = `\<style\>\n${globalStyle}${style}\<\/style\>\n`
-  const code = `${scriptData}${childrenData}${styleData}`
-  return `data:application/json;base64,${Base64.encode(code)}`
+  const children = component.children.map((c) =>
+    exportSvelteCode(c, `${prefix}  `),
+  )
+  ret += children.join('')
+  if (component.text !== '') {
+    ret += `${oldprefix}  {data.${component.id}}\n`
+  }
+  ret += `${oldprefix}</${element}>\n`
+  return ret
 }
 
 export function exportProps(props: Record<string, any>): string {
@@ -55,25 +57,22 @@ export function exportText(component: Component, indent = 4): string {
   return ret
 }
 
-function exportSvelteCode(component: Component, prefix = ''): string {
-  const oldprefix = prefix
-  const element = component.name.toLowerCase()
-  let ret = `${prefix}<${element} class="${component.id}"`
-  ret += exportProps(decompile(component.props))
-  ret += '>\n'
-  if (element === 'svg') {
-    prefix += '  '
-    ret += `${prefix}<path data="${component.data}"`
-    ret += exportProps(decompile(component.props))
-    ret += ' />\n'
+export function exportSvelte(): string {
+  const designData = get(design)
+  const themeData = decompile(get(theme))
+  const text = designData.children.map((c) => exportText(c)).join('')
+  const children = designData.children
+    .map((c) => exportSvelteCode(c, ''))
+    .join('')
+  const style = designData.children.map((c) => exportStyle(c)).join('\n')
+  const scriptData = `\<script lang="ts"\>\n  const data = {${text}\n  }\n\<\/script\>`
+  const childrenData = `\n\n${children}\n`
+  let globalStyle = `  :global(:root) {\n`
+  for (const prop of Object.keys(themeData)) {
+    globalStyle += `    --${prop}: ${themeData[prop]};\n`
   }
-  const children = component.children.map((c) =>
-    exportSvelteCode(c, `${prefix}  `),
-  )
-  ret += children.join('')
-  if (component.text !== '') {
-    ret += `${oldprefix}  {data.${component.id}}\n`
-  }
-  ret += `${oldprefix}</${element}>\n`
-  return ret
+  globalStyle += '  }\n'
+  const styleData = `\<style\>\n${globalStyle}${style}\<\/style\>\n`
+  const code = `${scriptData}${childrenData}${styleData}`
+  return `data:application/json;base64,${Base64.encode(code)}`
 }

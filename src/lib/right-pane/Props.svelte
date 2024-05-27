@@ -107,7 +107,9 @@
   .root {
     height: 50%;
     width: 100%;
+    padding: 10px;
     overflow: auto;
+    border-top: dotted 1px gray;
   }
 
   .add {
