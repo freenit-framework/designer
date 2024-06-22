@@ -76,7 +76,7 @@
       on:mouseleave={unsetHover('style')}
       on:blur={unsetHover('style')}
     >
-      style: &#123;
+      css: &#123;
       <span
         class="add"
         class:hover={styleHover}

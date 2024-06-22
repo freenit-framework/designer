@@ -1,6 +1,7 @@
 {
   "name": "designer",
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -36,6 +37,5 @@
     "typescript": "^5.0.0",
     "vite": "^4.3.0",
     "vitest": "^0.25.3"
-  },
-  "type": "module"
+  }
 }
