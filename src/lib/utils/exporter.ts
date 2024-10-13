@@ -12,7 +12,7 @@ function exportSvelteCode(component: Component, prefix = ''): string {
   ret += '>\n'
   if (element === 'svg') {
     prefix += '  '
-    ret += `${prefix}<path data="${component.data}"`
+    ret += `${prefix}<path d="${component.data}"`
     ret += exportProps(decompile(component.props))
     ret += ' />\n'
   }
