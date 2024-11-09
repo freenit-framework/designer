@@ -31,7 +31,9 @@ export function changePaste(component: Component): Component {
     props: JSON.parse(JSON.stringify(component.props)),
     style: JSON.parse(JSON.stringify(component.style)),
     children: component.children.map((item: Component) => changePaste(item)),
-    component: component.component ? component.component : components[component.name],
+    component: component.component
+      ? component.component
+      : components[component.name],
   }
   return newone
 }

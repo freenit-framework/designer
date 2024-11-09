@@ -104,7 +104,8 @@
         Save
       </a>
       <button class="button outline primary" on:click={openFile}>Load</button>
-      <a href={exportData}
+      <a
+        href={exportData}
         download="page.svelte"
         class="button outline"
         on:mouseover={calculate}
@@ -123,7 +124,6 @@
   bind:this={fileInput}
   on:change={load}
 />
-
 
 <style>
   .root {

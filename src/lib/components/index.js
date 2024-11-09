@@ -7,9 +7,9 @@ const htmlcomponents = Object.keys(components).map((name) => ({
   id: makeid(),
   component: components[name],
   children: [],
-  props: compile({}),
+  props: name === 'Option' ? compile({ value: 'dummy' }) : compile({}),
   style: compile({}),
-  text: '',
+  text: name === 'Option' ? 'dummy' : '',
 }))
 
 export default htmlcomponents
