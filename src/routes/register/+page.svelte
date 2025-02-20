@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Register } from '@freenit-framework/svelte-base'
+  import { Register } from '@freenit-framework/core'
+  import store from '$lib/store'
 </script>
 
-<Register />
+<Register store={store} />

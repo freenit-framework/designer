@@ -1,32 +1,28 @@
 <script lang="ts">
+  import './styles.css'
   import 'chota'
-  import '../app.css'
-  import { onMount } from 'svelte'
-  import { theme } from '$lib/store'
-  import { setThemeProp } from '$lib/utils'
+  import { SvelteToast } from '@zerodevx/svelte-toast'
 
-  onMount(() => {
-    for (const item of Object.keys($theme)) {
-      setThemeProp(item, $theme[item])
-    }
-  })
+  const options = {}
+  let { children } = $props()
 </script>
 
 <svelte:head>
   <title>Freenit Designer</title>
+  <meta name="Freenit Designer" content="Freenit Designer" />
 </svelte:head>
 
-<main>
-  <slot />
-</main>
+<SvelteToast {options} />
+<section class="root">
+  {@render children?.()}
+</section>
 
 <style>
-  main {
-    flex: 1;
+  .root {
+    height: 100dvh;
+    width: 100dvw;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
   }
