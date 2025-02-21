@@ -1,0 +1,1415 @@
+{
+  "design": {
+    "id": "root",
+    "name": "root",
+    "text": "",
+    "props": {
+      "value": {}
+    },
+    "style": {
+      "value": {}
+    },
+    "children": [
+      {
+        "id": "vmHJYRTJ",
+        "name": "Div",
+        "text": "",
+        "props": {
+          "value": {}
+        },
+        "style": {
+          "value": {
+            "height": {
+              "value": "100dvh",
+              "type": "string"
+            },
+            "width": {
+              "value": "100%",
+              "type": "string"
+            },
+            "display": {
+              "value": "flex",
+              "type": "string"
+            },
+            "align-items": {
+              "value": "center",
+              "type": "string"
+            },
+            "justify-content": {
+              "value": "center",
+              "type": "string"
+            }
+          }
+        },
+        "children": [
+          {
+            "id": "WyvqWcvw",
+            "name": "Div",
+            "text": "",
+            "props": {
+              "value": {}
+            },
+            "style": {
+              "value": {
+                "height": {
+                  "value": "100%",
+                  "type": "string"
+                },
+                "width": {
+                  "value": "600px",
+                  "type": "string"
+                },
+                "background-color": {
+                  "value": "#fafaff",
+                  "type": "string"
+                },
+                "display": {
+                  "value": "flex",
+                  "type": "string"
+                },
+                "align-items": {
+                  "value": "stretch",
+                  "type": "string"
+                },
+                "justify-content": {
+                  "value": "center",
+                  "type": "string"
+                },
+                "flex-direction": {
+                  "value": "column",
+                  "type": "string"
+                },
+                "border-right": {
+                  "value": "dotted 1px gray",
+                  "type": "string"
+                }
+              }
+            },
+            "children": [
+              {
+                "id": "qIPjcrNt",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "space-around",
+                      "type": "string"
+                    },
+                    "background-color": {
+                      "value": "white",
+                      "type": "string"
+                    },
+                    "padding": {
+                      "value": "5px",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "DcodsMCK",
+                    "name": "Button",
+                    "text": "Components",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "mEMCpmxN",
+                    "name": "Button",
+                    "text": "Icons",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        },
+                        "disabled": {
+                          "value": "true",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "pXMjwrll",
+                    "name": "Button",
+                    "text": "Props",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "NxCbUOBS",
+                    "name": "Button",
+                    "text": "Theme",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        },
+                        "disabled": {
+                          "value": "true",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "WLSdUpuk",
+                    "name": "svg",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "26px",
+                          "type": "string"
+                        },
+                        "height": {
+                          "value": "26px",
+                          "type": "string"
+                        },
+                        "fill": {
+                          "value": "#666",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [],
+                    "data": "M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z",
+                    "title": "mdiArrowLeftBold"
+                  }
+                ]
+              },
+              {
+                "id": "BcKPWMgC",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "padding": {
+                      "value": "5px",
+                      "type": "string"
+                    },
+                    "background-color": {
+                      "value": "white",
+                      "type": "string"
+                    },
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "flex-direction": {
+                      "value": "row",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "DEuCAyzJ",
+                    "name": "Input",
+                    "text": "",
+                    "props": {
+                      "value": {
+                        "value": {
+                          "value": "search",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "pRKEiDhA",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "display": {
+                          "value": "flex",
+                          "type": "string"
+                        },
+                        "align-items": {
+                          "value": "center",
+                          "type": "string"
+                        },
+                        "justify-content": {
+                          "value": "space-around",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "hSAcIvKS",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "fill": {
+                              "value": "#666",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z",
+                        "title": "mdiUndo"
+                      },
+                      {
+                        "id": "KZSropox",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "fill": {
+                              "value": "#666",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z",
+                        "title": "mdiRedo"
+                      },
+                      {
+                        "id": "OdZLNMLh",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "fill": {
+                              "value": "#666",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M19.31 18.9C19.75 18.21 20 17.38 20 16.5C20 14 18 12 15.5 12S11 14 11 16.5 13 21 15.5 21C16.37 21 17.19 20.75 17.88 20.32L21 23.39L22.39 22L19.31 18.9M15.5 19C14.12 19 13 17.88 13 16.5S14.12 14 15.5 14 18 15.12 18 16.5 16.88 19 15.5 19M21 9H19V7H21V9M21 5H19V3H20C20.55 3 21 3.45 21 4V5M19 11.03V11H21V13H20.97C20.46 12.21 19.79 11.54 19 11.03M17 5H15V3H17V5M13 5H11V3H13V5M3 7H5V9H3V7M7 19H9V21H7V19M3 11H5V13H3V11M4 3H5V5H3V4C3 3.45 3.45 3 4 3M9 5H7V3H9V5M3 19H5V21H4C3.45 21 3 20.55 3 20V19M3 15H5V17H3V15Z",
+                        "title": "mdiSelectSearch"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "GqdjBrtE",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "flex": {
+                      "value": "1",
+                      "type": "string"
+                    },
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "stretch",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "stretch",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "SKeDTsyA",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "overflow": {
+                          "value": "auto",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "WkBvOULu",
+                        "name": "Div",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": [
+                          {
+                            "id": "UIWAbXZl",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M4 2A2 2 0 0 0 2 4V12H4V8H6V12H8V4A2 2 0 0 0 6 2H4M4 4H6V6H4M22 15.5V14A2 2 0 0 0 20 12H16V22H20A2 2 0 0 0 22 20V18.5A1.54 1.54 0 0 0 20.5 17A1.54 1.54 0 0 0 22 15.5M20 20H18V18H20V20M20 16H18V14H20M5.79 21.61L4.21 20.39L18.21 2.39L19.79 3.61Z",
+                            "title": "mdiAbTesting"
+                          },
+                          {
+                            "id": "XSVnfZSv",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M5 5H7V11H5V5M10 5H8V11H10V5M5 19H7V13H5V19M10 13H8V19H10V17H15V15H10V13M2 21H4V3H2V21M20 3V7H13V5H11V11H13V9H20V15H18V13H16V19H18V17H20V21H22V3H20Z",
+                            "title": "mdiAbacus"
+                          },
+                          {
+                            "id": "lfeuqxRf",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M12 4C10.08 4 8.5 5.58 8.5 7.5C8.5 8.43 8.88 9.28 9.5 9.91C7.97 10.91 7 12.62 7 14.5C7 17.53 9.47 20 12.5 20C14.26 20 16 19.54 17.5 18.66L16.5 16.93C15.28 17.63 13.9 18 12.5 18C10.56 18 9 16.45 9 14.5C9 12.91 10.06 11.53 11.59 11.12L16.8 9.72L16.28 7.79L11.83 9C11.08 8.9 10.5 8.28 10.5 7.5C10.5 6.66 11.16 6 12 6C12.26 6 12.5 6.07 12.75 6.2L13.75 4.47C13.22 4.16 12.61 4 12 4Z",
+                            "title": "mdiAbjadArabic"
+                          },
+                          {
+                            "id": "lWgOTyRy",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M3.9 4L9 10.03C7.58 10.17 6.36 11.18 6 12.59L4 20H6.07L7.92 13.11C8.09 12.46 8.69 12 9.36 12H10.69L17.47 20H20.1L15 13.97C16.42 13.83 17.64 12.82 18 11.41L20 4H17.93L16.08 10.89C15.91 11.54 15.31 12 14.64 12H13.31L6.53 4Z",
+                            "title": "mdiAbjadHebrew"
+                          },
+                          {
+                            "id": "FZvRjSeT",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M8 3V5H11C12.32 5 13.41 5.83 13.82 7H6V9H14V10H12C9.25 10 7 12.25 7 15C7 17.75 9.25 20 12 20C12.77 20 13.45 19.73 14 19.3V21H16V17H14C13.55 17.62 12.83 18 12 18C10.33 18 9 16.67 9 15C9 13.33 10.33 12 12 12H16V9H18V7H15.9C15.43 4.72 13.41 3 11 3H8Z",
+                            "title": "mdiAbugidaDevanagari"
+                          },
+                          {
+                            "id": "QijBbUSR",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M9 20C9 17.44 10.87 12.42 13.86 7.25C14.29 6.5 15.08 6 16 6C17.12 6 18 6.88 18 8V20H20V8C20 5.8 18.2 4 16 4C14.34 4 12.9 4.92 12.13 6.25C10.56 8.96 9.61 11.15 9 13.03V6.5C9 5.13 7.87 4 6.5 4C5.13 4 4 5.13 4 6.5C4 7.87 5.13 9 6.5 9C6.67 9 6.84 9 7 8.95V20M6.5 6C6.79 6 7 6.21 7 6.5C7 6.79 6.79 7 6.5 7C6.21 7 6 6.79 6 6.5C6 6.21 6.21 6 6.5 6Z",
+                            "title": "mdiAbugidaThai"
+                          },
+                          {
+                            "id": "buxsvENt",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M4.93,4.93C3.12,6.74 2,9.24 2,12C2,14.76 3.12,17.26 4.93,19.07L6.34,17.66C4.89,16.22 4,14.22 4,12C4,9.79 4.89,7.78 6.34,6.34L4.93,4.93M19.07,4.93L17.66,6.34C19.11,7.78 20,9.79 20,12C20,14.22 19.11,16.22 17.66,17.66L19.07,19.07C20.88,17.26 22,14.76 22,12C22,9.24 20.88,6.74 19.07,4.93M7.76,7.76C6.67,8.85 6,10.35 6,12C6,13.65 6.67,15.15 7.76,16.24L9.17,14.83C8.45,14.11 8,13.11 8,12C8,10.89 8.45,9.89 9.17,9.17L7.76,7.76M16.24,7.76L14.83,9.17C15.55,9.89 16,10.89 16,12C16,13.11 15.55,14.11 14.83,14.83L16.24,16.24C17.33,15.15 18,13.65 18,12C18,10.35 17.33,8.85 16.24,7.76M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z",
+                            "title": "mdiAccessPoint"
+                          },
+                          {
+                            "id": "QJgyAOMj",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M20.59 14.84L21.75 16.25L17 21L14.25 18L15.41 16.84L17 18.43L20.59 14.84M19.07 4.93L17.66 6.34C19.11 7.78 20 9.79 20 12V12.34C20.68 12.59 21.33 12.96 21.88 13.43C21.95 12.96 22 12.5 22 12C22 9.24 20.88 6.74 19.07 4.93M15.96 12.36C16.6 12.13 17.28 12 18 12C18 10.35 17.33 8.85 16.24 7.76L14.83 9.17C15.55 9.89 16 10.89 16 12C16 12.12 15.97 12.24 15.96 12.36M12 10C10.9 10 10 10.9 10 12S10.9 14 12 14 14 13.1 14 12 13.1 10 12 10M6.34 6.34L4.93 4.93C3.12 6.74 2 9.24 2 12S3.12 17.26 4.93 19.07L6.34 17.66C4.89 16.22 4 14.22 4 12C4 9.79 4.89 7.78 6.34 6.34M7.76 7.76C6.67 8.85 6 10.35 6 12S6.67 15.15 7.76 16.24L9.17 14.83C8.45 14.11 8 13.11 8 12S8.45 9.89 9.17 9.17L7.76 7.76Z",
+                            "title": "mdiAccessPointCheck"
+                          },
+                          {
+                            "id": "pXUOMKoX",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M16 12C16 10.89 15.55 9.89 14.83 9.17L16.24 7.76C17.33 8.85 18 10.35 18 12C17.28 12 16.6 12.13 15.96 12.36C15.97 12.24 16 12.12 16 12M20 12.34C20.68 12.59 21.33 12.96 21.88 13.43C21.95 12.96 22 12.5 22 12C22 9.24 20.88 6.74 19.07 4.93L17.66 6.34C19.11 7.78 20 9.79 20 12C20 12.12 20 12.23 20 12.34M12 10C10.9 10 10 10.9 10 12S10.9 14 12 14 14 13.1 14 12 13.1 10 12 10M7.76 7.76C6.67 8.85 6 10.35 6 12S6.67 15.15 7.76 16.24L9.17 14.83C8.45 14.11 8 13.11 8 12S8.45 9.89 9.17 9.17L7.76 7.76M6.34 6.34L4.93 4.93C3.12 6.74 2 9.24 2 12S3.12 17.26 4.93 19.07L6.34 17.66C4.89 16.22 4 14.22 4 12C4 9.79 4.89 7.78 6.34 6.34M14 19H22V17H14V19Z",
+                            "title": "mdiAccessPointMinus"
+                          },
+                          {
+                            "id": "myAxfSFj",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M4.93,3.93C3.12,5.74 2,8.24 2,11C2,13.76 3.12,16.26 4.93,18.07L6.34,16.66C4.89,15.22 4,13.22 4,11C4,8.79 4.89,6.78 6.34,5.34L4.93,3.93M19.07,3.93L17.66,5.34C19.11,6.78 20,8.79 20,11C20,13.22 19.11,15.22 17.66,16.66L19.07,18.07C20.88,16.26 22,13.76 22,11C22,8.24 20.88,5.74 19.07,3.93M7.76,6.76C6.67,7.85 6,9.35 6,11C6,12.65 6.67,14.15 7.76,15.24L9.17,13.83C8.45,13.11 8,12.11 8,11C8,9.89 8.45,8.89 9.17,8.17L7.76,6.76M16.24,6.76L14.83,8.17C15.55,8.89 16,9.89 16,11C16,12.11 15.55,13.11 14.83,13.83L16.24,15.24C17.33,14.15 18,12.65 18,11C18,9.35 17.33,7.85 16.24,6.76M12,9A2,2 0 0,0 10,11A2,2 0 0,0 12,13A2,2 0 0,0 14,11A2,2 0 0,0 12,9M11,15V19H10A1,1 0 0,0 9,20H2V22H9A1,1 0 0,0 10,23H14A1,1 0 0,0 15,22H22V20H15A1,1 0 0,0 14,19H13V15H11Z",
+                            "title": "mdiAccessPointNetwork"
+                          },
+                          {
+                            "id": "fPqtzzXU",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M14.83,13.83C15.55,13.11 16,12.11 16,11C16,9.89 15.55,8.89 14.83,8.17L16.24,6.76C17.33,7.85 18,9.35 18,11C18,12.65 17.33,14.15 16.24,15.24L14.83,13.83M14,11A2,2 0 0,0 12,9C11.4,9 10.87,9.27 10.5,9.68L13.32,12.5C13.73,12.13 14,11.6 14,11M17.66,16.66L19.07,18.07C20.88,16.26 22,13.76 22,11C22,8.24 20.88,5.74 19.07,3.93L17.66,5.34C19.11,6.78 20,8.79 20,11C20,13.22 19.11,15.22 17.66,16.66M22,21.18V20H20.82L22,21.18M20.27,22L21,22.73L19.73,24L17.73,22H15A1,1 0 0,1 14,23H10A1,1 0 0,1 9,22H2V20H9A1,1 0 0,1 10,19H11V15.27L8.34,12.61C8.54,13.07 8.82,13.5 9.17,13.83L7.76,15.24C6.67,14.15 6,12.65 6,11C6,10.77 6,10.54 6.04,10.31L4.37,8.64C4.14,9.39 4,10.18 4,11C4,13.22 4.89,15.22 6.34,16.66L4.93,18.07C3.12,16.26 2,13.76 2,11C2,9.61 2.29,8.28 2.81,7.08L1,5.27L2.28,4L3.7,5.42L5.15,6.87L6.63,8.35V8.35L8.17,9.9L10.28,12L11,12.71L18.27,20H18.28L20.28,22H20.27M15.73,20L13,17.27V19H14A1,1 0 0,1 15,20H15.73Z",
+                            "title": "mdiAccessPointNetworkOff"
+                          },
+                          {
+                            "id": "JydbXvPd",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M20.84 22.73L12.1 14C12.06 14 12.03 14 12 14C10.9 14 10 13.11 10 12C10 11.97 10 11.94 10 11.9L8.4 10.29C8.15 10.81 8 11.38 8 12C8 13.11 8.45 14.11 9.17 14.83L7.76 16.24C6.67 15.15 6 13.65 6 12C6 10.83 6.34 9.74 6.93 8.82L5.5 7.37C4.55 8.67 4 10.27 4 12C4 14.22 4.89 16.22 6.34 17.66L4.93 19.07C3.12 17.26 2 14.76 2 12C2 9.72 2.77 7.63 4.06 5.95L1.11 3L2.39 1.73L22.11 21.46L20.84 22.73M15.93 12.73L17.53 14.33C17.83 13.61 18 12.83 18 12C18 10.35 17.33 8.85 16.24 7.76L14.83 9.17C15.55 9.89 16 10.89 16 12C16 12.25 15.97 12.5 15.93 12.73M19.03 15.83L20.5 17.28C21.44 15.75 22 13.94 22 12C22 9.24 20.88 6.74 19.07 4.93L17.66 6.34C19.11 7.78 20 9.79 20 12C20 13.39 19.65 14.7 19.03 15.83Z",
+                            "title": "mdiAccessPointOff"
+                          },
+                          {
+                            "id": "YgNcqeoP",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M16 12C16 10.89 15.55 9.89 14.83 9.17L16.24 7.76C17.33 8.85 18 10.35 18 12C17.28 12 16.6 12.13 15.96 12.36C15.97 12.24 16 12.12 16 12M20 12.34C20.68 12.59 21.33 12.96 21.88 13.43C21.95 12.96 22 12.5 22 12C22 9.24 20.88 6.74 19.07 4.93L17.66 6.34C19.11 7.78 20 9.79 20 12C20 12.12 20 12.23 20 12.34M12 10C10.9 10 10 10.9 10 12S10.9 14 12 14 14 13.1 14 12 13.1 10 12 10M6.34 6.34L4.93 4.93C3.12 6.74 2 9.24 2 12S3.12 17.26 4.93 19.07L6.34 17.66C4.89 16.22 4 14.22 4 12C4 9.79 4.89 7.78 6.34 6.34M7.76 7.76C6.67 8.85 6 10.35 6 12S6.67 15.15 7.76 16.24L9.17 14.83C8.45 14.11 8 13.11 8 12S8.45 9.89 9.17 9.17L7.76 7.76M19 14H17V17H14V19H17V22H19V19H22V17H19V14Z",
+                            "title": "mdiAccessPointPlus"
+                          },
+                          {
+                            "id": "jZKBbvPT",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M16 12C16 10.89 15.55 9.89 14.83 9.17L16.24 7.76C17.33 8.85 18 10.35 18 12C17.28 12 16.6 12.13 15.96 12.36C15.97 12.24 16 12.12 16 12M6.34 6.34L4.93 4.93C3.12 6.74 2 9.24 2 12S3.12 17.26 4.93 19.07L6.34 17.66C4.89 16.22 4 14.22 4 12C4 9.79 4.89 7.78 6.34 6.34M19.07 4.93L17.66 6.34C19.11 7.78 20 9.79 20 12C20 12.12 20 12.23 20 12.34C20.68 12.59 21.33 12.96 21.88 13.43C21.95 12.96 22 12.5 22 12C22 9.24 20.88 6.74 19.07 4.93M12 10C10.9 10 10 10.9 10 12S10.9 14 12 14 14 13.1 14 12 13.1 10 12 10M7.76 7.76C6.67 8.85 6 10.35 6 12S6.67 15.15 7.76 16.24L9.17 14.83C8.45 14.11 8 13.11 8 12S8.45 9.89 9.17 9.17L7.76 7.76M20.12 14.46L18 16.59L15.88 14.47L14.47 15.88L16.59 18L14.47 20.12L15.88 21.53L18 19.41L20.12 21.53L21.53 20.12L19.41 18L21.53 15.88L20.12 14.46Z",
+                            "title": "mdiAccessPointRemove"
+                          },
+                          {
+                            "id": "bePifJGO",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z",
+                            "title": "mdiAccount"
+                          },
+                          {
+                            "id": "bMyMygbJ",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M10 4A4 4 0 0 1 14 8A4 4 0 0 1 10 12A4 4 0 0 1 6 8A4 4 0 0 1 10 4M10 14C14.42 14 18 15.79 18 18V20H2V18C2 15.79 5.58 14 10 14M20 12V7H22V13H20M20 17V15H22V17H20Z",
+                            "title": "mdiAccountAlert"
+                          },
+                          {
+                            "id": "SgJqIGLI",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M20 12V7H22V13H20M20 17H22V15H20M10 13C12.67 13 18 14.34 18 17V20H2V17C2 14.34 7.33 13 10 13M10 4A4 4 0 0 1 14 8A4 4 0 0 1 10 12A4 4 0 0 1 6 8A4 4 0 0 1 10 4M10 14.9C7.03 14.9 3.9 16.36 3.9 17V18.1H16.1V17C16.1 16.36 12.97 14.9 10 14.9M10 5.9A2.1 2.1 0 0 0 7.9 8A2.1 2.1 0 0 0 10 10.1A2.1 2.1 0 0 0 12.1 8A2.1 2.1 0 0 0 10 5.9Z",
+                            "title": "mdiAccountAlertOutline"
+                          },
+                          {
+                            "id": "MpSmXARl",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M19 18V14H17V18H15L18 21L21 18H19M11 4C8.8 4 7 5.8 7 8S8.8 12 11 12 15 10.2 15 8 13.2 4 11 4M11 14C6.6 14 3 15.8 3 18V20H12.5C12.2 19.2 12 18.4 12 17.5C12 16.3 12.3 15.2 12.9 14.1C12.3 14.1 11.7 14 11 14",
+                            "title": "mdiAccountArrowDown"
+                          },
+                          {
+                            "id": "KhNZRWOI",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M19 18V14H17V18H15L18 21L21 18H19M11 4C8.8 4 7 5.8 7 8S8.8 12 11 12 15 10.2 15 8 13.2 4 11 4M11 6C12.1 6 13 6.9 13 8S12.1 10 11 10 9 9.1 9 8 9.9 6 11 6M11 13C8.3 13 3 14.3 3 17V20H12.5C12.2 19.4 12.1 18.8 12 18.1H4.9V17C4.9 16.4 8 14.9 11 14.9C11.5 14.9 12 15 12.5 15C12.8 14.4 13.1 13.8 13.6 13.3C12.6 13.1 11.7 13 11 13",
+                            "title": "mdiAccountArrowDownOutline"
+                          },
+                          {
+                            "id": "LxfmxNfE",
+                            "name": "svg",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "width": {
+                                  "value": "26px",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "value": "26px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [],
+                            "data": "M14 19.5C14 17.5 15.1 15.7 16.7 14.8C15.4 14.3 13.8 14 12 14C7.6 14 4 15.8 4 18V20H14V19.5M19.5 16C17.6 16 16 17.6 16 19.5S17.6 23 19.5 23 23 21.4 23 19.5 21.4 16 19.5 16M16 8C16 10.2 14.2 12 12 12S8 10.2 8 8 9.8 4 12 4 16 5.8 16 8Z",
+                            "title": "mdiAccountBadge"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "FccIyTun",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "overflow": {
+                          "value": "auto",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "QaPkFkAi",
+                        "name": "Div",
+                        "text": "bg-color: white",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "JFTyWqXH",
+                        "name": "Div",
+                        "text": "bg-secondary-color: #f3f3f6",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "jsYFzaqU",
+                        "name": "Div",
+                        "text": "color-primary: #14854F",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "XdeVcbCf",
+                        "name": "Div",
+                        "text": "color-lightGrey: #d2d6dd",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "rQiuRmUZ",
+                        "name": "Div",
+                        "text": "color-grey: #747681",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "bODVqBMF",
+                        "name": "Div",
+                        "text": "color-darkGrey: #3f4144",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "lguuiwRi",
+                        "name": "Div",
+                        "text": "color-error: #d43939",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "YAyuVNVG",
+                        "name": "Div",
+                        "text": "color-success: #28bd14",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "tEwlWmDN",
+                        "name": "Div",
+                        "text": "grid-maxWidth: 120rem",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "SoNnYuDQ",
+                        "name": "Div",
+                        "text": "grid-gutter: 2rem",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "xSfgifnf",
+                        "name": "Div",
+                        "text": "font-size: 1.6rem",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "oTXhrqXe",
+                        "name": "Div",
+                        "text": "font-color: #333333",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "NrSOCoBM",
+                        "name": "Div",
+                        "text": "font-family-sans: sans-serif",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "bziGXXyu",
+                        "name": "Div",
+                        "text": "font-family-mono: monaco, Consolas, Lucida Console, monospace",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "WfzysOUx",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "background-color": {
+                      "value": "white",
+                      "type": "string"
+                    },
+                    "padding": {
+                      "value": "5px",
+                      "type": "string"
+                    },
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "center",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "CztkGxAa",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "justify-content": {
+                          "value": "space-around",
+                          "type": "string"
+                        },
+                        "align-items": {
+                          "value": "center",
+                          "type": "string"
+                        },
+                        "display": {
+                          "value": "flex",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "yqlmVfcU",
+                        "name": "Button",
+                        "text": "Save",
+                        "props": {
+                          "value": {
+                            "class": {
+                              "value": "button outline",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "JKUPZXSw",
+                        "name": "Button",
+                        "text": "Load",
+                        "props": {
+                          "value": {
+                            "class": {
+                              "value": "button outline primary",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "LBCekUGr",
+                        "name": "Button",
+                        "text": "Export",
+                        "props": {
+                          "value": {
+                            "class": {
+                              "value": "button outline",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "nQCFizSh",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "display": {
+                          "value": "flex",
+                          "type": "string"
+                        },
+                        "align-items": {
+                          "value": "center",
+                          "type": "string"
+                        },
+                        "justify-content": {
+                          "value": "space-around",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "PlfaAmFZ",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z",
+                        "title": "mdiCellphone"
+                      },
+                      {
+                        "id": "OZQBPTfe",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M19,18H5V6H19M21,4H3C1.89,4 1,4.89 1,6V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V6C23,4.89 22.1,4 21,4Z",
+                        "title": "mdiTablet"
+                      },
+                      {
+                        "id": "BGcOJqLi",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z",
+                        "title": "mdiLaptop"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "MHiEBfye",
+            "name": "Div",
+            "text": "",
+            "props": {
+              "value": {}
+            },
+            "style": {
+              "value": {
+                "height": {
+                  "value": "100%",
+                  "type": "string"
+                },
+                "flex": {
+                  "value": "1",
+                  "type": "string"
+                }
+              }
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "theme": {
+    "value": {
+      "bg-color": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "bg-secondary-color": {
+        "value": "#f3f3f6",
+        "type": "color"
+      },
+      "color-primary": {
+        "value": "#14854F",
+        "type": "color"
+      },
+      "color-lightGrey": {
+        "value": "#d2d6dd",
+        "type": "color"
+      },
+      "color-grey": {
+        "value": "#747681",
+        "type": "color"
+      },
+      "color-darkGrey": {
+        "value": "#3f4144",
+        "type": "color"
+      },
+      "color-error": {
+        "value": "#d43939",
+        "type": "color"
+      },
+      "color-success": {
+        "value": "#28bd14",
+        "type": "color"
+      },
+      "grid-maxWidth": {
+        "value": "120rem",
+        "type": "string"
+      },
+      "grid-gutter": {
+        "value": "2rem",
+        "type": "string"
+      },
+      "font-size": {
+        "value": "1.6rem",
+        "type": "string"
+      },
+      "font-color": {
+        "value": "#333333",
+        "type": "color"
+      },
+      "font-family-sans": {
+        "value": "sans-serif",
+        "type": "string"
+      },
+      "font-family-mono": {
+        "value": "monaco, Consolas, Lucida Console, monospace",
+        "type": "string"
+      }
+    },
+    "bg-secondary-color": "#f3f3f6",
+    "font-family-sans": "sans-serif"
+  }
+}
