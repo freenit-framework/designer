@@ -3,11 +3,7 @@ import type { Component, UndoItem } from '$lib/types'
 import { design, dnd, over, initialComponent, undo } from '$lib/store'
 import { changePaste } from '.'
 
-export function dragStart(
-  component: Component,
-  parent: Component | null = null,
-  index = -1,
-) {
+export function dragStart(component: Component, parent: Component | null = null, index = -1) {
   function handler(event: Event) {
     event.stopPropagation()
     if (parent && index >= 0) {

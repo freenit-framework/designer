@@ -12,9 +12,7 @@ export function makeid(length = 8): string {
   return result
 }
 
-export function prepareStyle(
-  style: Record<string, boolean | string | number | null>,
-) {
+export function prepareStyle(style: Record<string, boolean | string | number | null>) {
   if (!style) {
     return ''
   }
@@ -31,9 +29,7 @@ export function changePaste(component: Component): Component {
     props: JSON.parse(JSON.stringify(component.props)),
     style: JSON.parse(JSON.stringify(component.style)),
     children: component.children.map((item: Component) => changePaste(item)),
-    component: component.component
-      ? component.component
-      : components[component.name],
+    component: component.component ? component.component : components[component.name],
   }
   return newone
 }

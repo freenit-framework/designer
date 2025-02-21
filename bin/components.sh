@@ -1,5 +1,8 @@
 elements='a abbr acronym address applet area article aside audio b base basefont bdi bdo big blockquote br button canvas caption center cite code col colgroup data datalist dd del details dfn dialog dir div dl dt em embed fieldset figcaption figure font footer form frame frameset h1 h2 h3 h4 h5 h6 head header hr i iframe img input ins kbd label legend li link main map mark meter nav noframes noscript object ol option optgroup output p param path picture pre progress q rp rt ruby s samp section select small source span strike strong sub summary sup svg table tbody td textarea tfoot th thead time title tr track tt u ul var video wbr'
-components_dir='src/lib/components'
+
+BIN_DIR=`dirname $0`
+PROJECT_ROOT="${BIN_DIR}/.."
+components_dir="${PROJECT_ROOT}/src/lib/components"
 
 nochildren() {
   case $1 in
@@ -211,10 +214,55 @@ EOF
 
 }
 
-rm ${components_dir}/*.svelte
+rm -rf "${components_dir}"
+mkdir "${components_dir}"
 for element in ${elements}; do
   component=`echo ${element} | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}'`
   component_file="${components_dir}/${component}.svelte"
   generate ${element} >"${component_file}"
+  echo "export { default as ${component} } from './${component}.svelte'" >>"${components_dir}/components.ts"
 done
-yarn run format
+
+cat << EOF >"${components_dir}/index.ts"
+import { makeid } from '\$lib/utils'
+import { compile } from '\$lib/utils/props'
+import * as components from './components'
+
+const htmlcomponents = Object.keys(components).map((name) => ({
+  name,
+  id: makeid(),
+  component: components[name],
+  children: [],
+  props: name === 'Option' ? compile({ value: 'dummy' }) : compile({}),
+  style: compile({}),
+  text: name === 'Option' ? 'dummy' : '',
+}))
+
+export default htmlcomponents
+EOF
+
+cat << EOF >"${components_dir}/icons.ts"
+import * as icons from '@mdi/js'
+import { makeid } from '\$lib/utils'
+import { compile } from '\$lib/utils/props'
+import { Svg } from './components'
+
+const iconcomponents = Object.keys(icons).map((name) => ({
+  id: makeid(),
+  name: 'svg',
+  component: Svg,
+  title: name,
+  data: icons[name],
+  text: '',
+  props: compile({}),
+  style: compile({
+    width: '26px',
+    height: '26px',
+  }),
+  children: [],
+}))
+
+export default iconcomponents
+EOF
+
+npm run format

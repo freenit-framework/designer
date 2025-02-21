@@ -16,9 +16,7 @@ function exportSvelteCode(component: Component, prefix = ''): string {
     ret += exportProps(decompile(component.props))
     ret += ' />\n'
   }
-  const children = component.children.map((c) =>
-    exportSvelteCode(c, `${prefix}  `),
-  )
+  const children = component.children.map((c) => exportSvelteCode(c, `${prefix}  `))
   ret += children.join('')
   if (component.text !== '') {
     ret += `${oldprefix}  {data.${component.id}}\n`
@@ -61,9 +59,7 @@ export function exportSvelte(): string {
   const designData = get(design)
   const themeData = decompile(get(theme))
   const text = designData.children.map((c) => exportText(c)).join('')
-  const children = designData.children
-    .map((c) => exportSvelteCode(c, ''))
-    .join('')
+  const children = designData.children.map((c) => exportSvelteCode(c, '')).join('')
   const style = designData.children.map((c) => exportStyle(c)).join('\n')
   const scriptData = `\<script lang="ts"\>\n  const data = {${text}\n  }\n\<\/script\>`
   const childrenData = `\n\n${children}\n`
