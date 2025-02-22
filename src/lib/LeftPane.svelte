@@ -1,132 +1,138 @@
 <script lang="ts">
-const toggleHide = () => {
-  console.log('cvrc')
-}
+  import {
+    mdiArrowLeftBold,
+    mdiArrowRightBold,
+    mdiUndo,
+    mdiRedo,
+    mdiSelectSearch,
+    mdiClose,
+    mdiMenuUp,
+    mdiCellphone,
+    mdiTablet,
+    mdiLaptop,
+  } from '@mdi/js'
+
+  let hidden = $state(false)
+
+  const toggleHide = () => {
+    hidden = !hidden
+  }
 </script>
 
-<div class="root">
-  <div class="qIPjcrNt">
-    <button class="button outline" disabled> Components </button>
-    <button class="button outline"> Icons </button>
-    <button disabled class="button outline"> Props </button>
-    <button class="button outline"> Theme </button>
-    <svg class="WLSdUpuk" onclick={toggleHide}>
-      <path d="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z" />
-    </svg>
-  </div>
-  <div class="BcKPWMgC">
-    <input class="DEuCAyzJ" value="div" />
-    <div class="pRKEiDhA">
-      <svg class="hSAcIvKS" fill="#666">
-        <path
-          d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z"
-        />
-      </svg>
-      <svg class="KZSropox" fill="#666">
-        <path
-          d="M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z"
-        />
-      </svg>
-      <svg class="OdZLNMLh" fill="#666">
-        <path
-          d="M19.31 18.9C19.75 18.21 20 17.38 20 16.5C20 14 18 12 15.5 12S11 14 11 16.5 13 21 15.5 21C16.37 21 17.19 20.75 17.88 20.32L21 23.39L22.39 22L19.31 18.9M15.5 19C14.12 19 13 17.88 13 16.5S14.12 14 15.5 14 18 15.12 18 16.5 16.88 19 15.5 19M21 9H19V7H21V9M21 5H19V3H20C20.55 3 21 3.45 21 4V5M19 11.03V11H21V13H20.97C20.46 12.21 19.79 11.54 19 11.03M17 5H15V3H17V5M13 5H11V3H13V5M3 7H5V9H3V7M7 19H9V21H7V19M3 11H5V13H3V11M4 3H5V5H3V4C3 3.45 3.45 3 4 3M9 5H7V3H9V5M3 19H5V21H4C3.45 21 3 20.55 3 20V19M3 15H5V17H3V15Z"
-        />
+<div class="root" class:hidden>
+  {#if !hidden}
+    <div class="views">
+      <button class="button outline" disabled>Components</button>
+      <button class="button outline">Icons</button>
+      <button disabled class="button outline">Props</button>
+      <button class="button outline">Theme</button>
+      <svg class="hide" role="button" tabindex={0} onclick={toggleHide} onkeyup={toggleHide}>
+        <path d={mdiArrowLeftBold} />
       </svg>
     </div>
-  </div>
-  <div class="GqdjBrtE">
-    <div class="WQWcYDkX">
-      <div class="NySYmwaO">div</div>
-    </div>
-    <div class="RBPAQFwm">
-      <div class="AFetiBdc">
-        <div class="NStkhGwA">
-          <div class="uHCxfJqK">
-            <div class="aKbCqmqL">
-              div
-            </div>
-            <div class="IUxlpXlW">
-              IUxlpXlW
-            </div>
-          </div>
-          <div class="uHiQAzOI">
-            <svg class="fXdsEZkN" fill="#666">
-              <path
-                d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-              />
-            </svg>
-          </div>
-          <div class="ufBQjmyA">
-            <svg class="RRiJlHbv" fill="#666">
-              <path d="M8 15H16L12 8" />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="mXObqkgw">
-        <div class="JNwQTEEd">
-          <span class="UOGIzAtn">
-            props: &#123; +
-          </span>
-        </div>
-        <div class="xYIaEXzN">
-          <span class="XukmDQIf">
-            class: root -
-          </span>
-        </div>
-        <div class="dJEPTZXw">
-          &#125;
-        </div>
-        <div class="fPmBcrDx">
-          <span class="fYEQOCGM">css: &#123; +</span>
-        </div>
-        <div class="ewXLBPxm">
-          <span class="LBNeQsoT">height: 100dvh -</span>
-        </div>
-        <div class="ZQOMzkHs">&#125;</div>
-        <div class="PDIBWGoa">text:</div>
+    <div class="tools">
+      <input class="search" />
+      <div class="actions">
+        <svg class="icon">
+          <path d={mdiUndo} />
+        </svg>
+        <svg class="icon">
+          <path d={mdiRedo} />
+        </svg>
+        <svg class="icon">
+          <path d={mdiSelectSearch} />
+        </svg>
       </div>
     </div>
-  </div>
-  <div class="WfzysOUx">
-    <div class="CztkGxAa">
-      <button class="button outline">Save</button>
-      <button class="button outline primary">Load</button>
-      <button class="button outline">Export</button>
+    <div class="components">
+      <div class="component-list">
+        <div class="component">div</div>
+      </div>
+      <div class="render">
+        <div class="tree">
+          <div class="element">
+            <div class="data">
+              <div>div</div>
+              <div class="id">IUxlpXlW</div>
+            </div>
+            <div>
+              <svg class="icon">
+                <path d={mdiClose} />
+              </svg>
+            </div>
+            <div class="ufBQjmyA">
+              <svg class="icon">
+                <path d={mdiMenuUp} />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="attributes">
+          <div class="props">
+            <span>props: &#123; +</span>
+          </div>
+          <div class="prop">
+            <span>class: root -</span>
+          </div>
+          <div>&#125;</div>
+          <div>
+            <span>css: &#123; +</span>
+          </div>
+          <div class="ewXLBPxm">
+            <span>height: 100dvh -</span>
+          </div>
+          <div>&#125;</div>
+          <div>text:</div>
+        </div>
+      </div>
     </div>
-    <div class="nQCFizSh">
-      <svg class="PlfaAmFZ" fill="#666">
-        <path
-          d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z"
-        />
-      </svg>
-      <svg class="OZQBPTfe" fill="#666">
-        <path
-          d="M19,18H5V6H19M21,4H3C1.89,4 1,4.89 1,6V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V6C23,4.89 22.1,4 21,4Z"
-        />
-      </svg>
-      <svg class="BGcOJqLi" fill="#666">
-        <path
-          d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z"
-        />
+    <div class="bottom">
+      <div class="bottom-actions">
+        <button class="button outline">Save</button>
+        <button class="button outline primary">Load</button>
+        <button class="button outline">Export</button>
+      </div>
+      <div class="bottom-actions">
+        <svg class="icon">
+          <path d={mdiCellphone} />
+        </svg>
+        <svg class="icon">
+          <path d={mdiTablet} />
+        </svg>
+        <svg class="icon">
+          <path d={mdiLaptop} />
+        </svg>
+      </div>
+    </div>
+  {:else}
+    <div class="tools">
+      <svg class="hide" role="button" tabindex={0} onclick={toggleHide} onkeyup={toggleHide}>
+        <path d={mdiArrowRightBold} />
       </svg>
     </div>
-  </div>
+    <div class="components"></div>
+  {/if}
 </div>
 
 <style>
   .root {
     height: 100%;
-    width: 600px;
+    max-width: 600px;
+    width: 100%;
     background-color: #fafaff;
     display: flex;
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
     border-right: dotted 1px gray;
+    transition: max-width 1s;
   }
 
-  .qIPjcrNt {
+  .hidden {
+    max-width: 50px;
+  }
+
+  .views {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -134,13 +140,13 @@ const toggleHide = () => {
     padding: 5px;
   }
 
-  .WLSdUpuk {
+  .hide {
     width: 26px;
     height: 26px;
     fill: #666;
   }
 
-  .BcKPWMgC {
+  .tools {
     padding: 5px;
     background-color: white;
     display: flex;
@@ -149,61 +155,53 @@ const toggleHide = () => {
     flex-direction: row;
   }
 
-  .DEuCAyzJ {
+  .search {
     width: 50%;
   }
 
-  .pRKEiDhA {
+  .actions {
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
 
-  .hSAcIvKS {
+  .icon {
     width: 26px;
     height: 26px;
+    fill: #666;
   }
 
-  .KZSropox {
-    width: 26px;
-    height: 26px;
-  }
-
-  .OdZLNMLh {
-    width: 26px;
-    height: 26px;
-  }
-
-  .GqdjBrtE {
+  .components {
     flex: 1;
     display: flex;
     align-items: stretch;
     justify-content: center;
   }
 
-  .WQWcYDkX {
+  .component-list {
     width: 50%;
     padding: 5px;
+    border-right: 1px solid #eee;
   }
 
-  .NySYmwaO {
+  .component {
     padding: 5px;
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.1);
     margin-bottom: 5px;
   }
 
-  .RBPAQFwm {
+  .render {
     width: 50%;
     padding: 5px;
   }
 
-  .AFetiBdc {
+  .tree {
     height: 50%;
   }
 
-  .NStkhGwA {
+  .element {
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.1);
     display: flex;
@@ -212,35 +210,23 @@ const toggleHide = () => {
     padding-left: 5px;
   }
 
-  .uHCxfJqK {
+  .data {
     flex: 1;
     padding: 5px;
   }
 
-  .IUxlpXlW {
+  .id {
     color: #888;
   }
 
-  .fXdsEZkN {
-    width: 26px;
-    height: 26px;
-    fill: #666;
-  }
-
-  .RRiJlHbv {
-    width: 26px;
-    height: 26px;
-    fill: #666;
-  }
-
-  .mXObqkgw {
+  .props {
     margin-top: 5px;
-    border-top: dotted 1px gray;
+    border-top: solid 1px #eee;
     padding: 5px;
     height: 50%;
   }
 
-  .xYIaEXzN {
+  .prop {
     margin-left: 10px;
   }
 
@@ -248,7 +234,7 @@ const toggleHide = () => {
     margin-left: 10px;
   }
 
-  .WfzysOUx {
+  .bottom {
     background-color: white;
     padding: 5px;
     display: flex;
@@ -256,32 +242,10 @@ const toggleHide = () => {
     justify-content: center;
   }
 
-  .CztkGxAa {
+  .bottom-actions {
     width: 50%;
     justify-content: space-around;
     align-items: center;
     display: flex;
-  }
-
-  .nQCFizSh {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  .PlfaAmFZ {
-    width: 26px;
-    height: 26px;
-  }
-
-  .OZQBPTfe {
-    width: 26px;
-    height: 26px;
-  }
-
-  .BGcOJqLi {
-    width: 26px;
-    height: 26px;
   }
 </style>
