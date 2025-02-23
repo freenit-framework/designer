@@ -13,7 +13,13 @@
 
 <div class="root">
   {#each components as component}
-    <div class="component" draggable="true" ondragstart={dragStart(component)} ondragend={dragEnd}>
+    <div
+      class="component"
+      draggable="true"
+      ondragstart={dragStart(component)}
+      ondragend={dragEnd}
+      role="none"
+    >
       {component.name.toLowerCase()}
     </div>
   {/each}
@@ -30,6 +36,7 @@
   .component {
     padding: 5px;
     border-radius: 5px;
+    border: 1px solid #ddd;
     background-color: rgba(128, 128, 128, 0.1);
     margin-bottom: 5px;
   }

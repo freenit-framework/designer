@@ -2,7 +2,7 @@ import store from '.'
 import type { Component } from '$lib/types'
 
 export default class DesignStore {
-  design = $state([])
-  selected = $state(null)
-  device = $state('desktop')
+  design: Component[] = $state([])
+  selected: Component | null = $state(null)
+  device: string = $state('desktop')
 }

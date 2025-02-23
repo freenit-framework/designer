@@ -45,7 +45,7 @@
     justify-content: center;
     flex-direction: column;
     border-right: dotted 1px gray;
-    transition: max-width 1s;
+    transition: max-width 0.5s;
   }
 
   .hidden {

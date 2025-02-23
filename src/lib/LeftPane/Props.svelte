@@ -22,6 +22,7 @@
     border-top: solid 1px #eee;
     padding: 5px;
     height: 50%;
+    overflow: auto;
   }
 
   .prop {
