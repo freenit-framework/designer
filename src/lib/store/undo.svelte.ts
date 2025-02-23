@@ -1,5 +1,4 @@
 import store from '.'
-import { compile } from '../utils/props'
 import type { UndoItem } from '$lib/types'
 
 const undoArray: UndoItem[] = []
