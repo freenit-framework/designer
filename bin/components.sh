@@ -58,155 +58,33 @@ generate() {
   if [ "${no_children}" = "yes" -a "${no_props}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
-  import { prepareStyle } from '\$lib/utils'
-  import { selected, parent as storeParent } from '\$lib/store'
-  import { compile } from '\$lib/utils/props'
-  import type { Component } from '\$lib/types'
-
-  export let style = {}
-  export let data: Component = {
-    id: '',
-    name: '',
-    component: '',
-    props: compile({}),
-    style: compile({}),
-    children: [],
-    text: '',
-  }
-
-  function select() {
-    \$selected = data
-    \$storeParent = parent
-  }
 </script>
 
-<${element} style={prepareStyle(style)} on:click|stopPropagation={select} on:keypress={select} />
+<${element} />
 EOF
   elif [ "${no_children}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
-  import { prepareStyle } from '\$lib/utils'
-  import { selected, parent as storeParent } from '\$lib/store'
-  import { compile } from '\$lib/utils/props'
-  import type { Component } from '\$lib/types'
-
-  export let style = {}
-  export let props = {$myprops}
-  export let data: Component = {
-    id: '',
-    name: '',
-    component: '',
-    props: compile({}),
-    style: compile({}),
-    children: [],
-    text: '',
-  }
-
-  function select() {
-    \$selected = data
-    \$storeParent = parent
-  }
 </script>
 
-<${element} {...props} $elprops style={prepareStyle(style)} on:click|stopPropagation={select} on:keypress={select} />
+<${element} />
 EOF
   elif [ "${no_props}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
-  import { prepareStyle } from '\$lib/utils'
-  import { dragStart, dragEnd, drop } from '\$lib/utils/dnd'
-  import { compile } from '\$lib/utils/props'
-  import { selected, parent as storeParent } from '\$lib/store'
-  import type { Component } from '\$lib/types'
-
-  export let style = {}
-  export let data: Component = {
-    id: '',
-    name: '',
-    component: '',
-    props: compile({}),
-    style: compile({}),
-    children: [],
-    text: '',
-  }
-  export let parent: Component = {
-    id: '',
-    component: '',
-    name: '',
-    text: '',
-    children: [],
-    props: {},
-    style: {},
-  }
-  export let index = -1
-
-  function select() {
-    \$selected = data
-    \$storeParent = parent
-  }
 </script>
 
-<${element}
-  style={prepareStyle(style)}
-  draggable={true}
-  on:dragstart={dragStart(data, parent, index)}
-  on:dragend={dragEnd}
-  on:drop={drop(data)}
-  on:click|stopPropagation={select}
-  on:keypress={select}
->
+<${element}>
   <slot />
 </${element}>
 EOF
   else
     cat <<EOF
 <script lang="ts">
-  import { prepareStyle } from '\$lib/utils'
-  import { dragStart, dragEnd, drop } from '\$lib/utils/dnd'
-  import { compile } from '\$lib/utils/props'
-  import { selected, parent as storeParent } from '\$lib/store'
-  import type { Component } from '\$lib/types'
-
-  export let props = {$myprops}
-  export let style = {}
-  export let data: Component = {
-    id: '',
-    name: '',
-    component: '',
-    props: compile({}),
-    style: compile({}),
-    children: [],
-    text: '',
-  }
-  export let parent: Component = {
-    id: '',
-    component: '',
-    name: '',
-    text: '',
-    children: [],
-    props: {},
-    style: {},
-  }
-  export let index = -1
-
-  function select() {
-    \$selected = data
-    \$storeParent = parent
-  }
 </script>
 
 $a11y
-<${element}
-  {...props}
-  $elprops
-  style={prepareStyle(style)}
-  draggable={true}
-  on:dragstart={dragStart(data, parent, index)}
-  on:dragend={dragEnd}
-  on:drop={drop(data)}
-  on:click|stopPropagation={select}
-  on:keypress={select}
->
+<${element} $elprops>
   <slot />
 </${element}>
 EOF
@@ -224,17 +102,15 @@ for element in ${elements}; do
 done
 
 cat << EOF >"${components_dir}/index.ts"
-import { makeid } from '\$lib/utils'
-import { compile } from '\$lib/utils/props'
 import * as components from './components'
 
 const htmlcomponents = Object.keys(components).map((name) => ({
   name,
-  id: makeid(),
+  id: 'cvrc',
   component: components[name],
   children: [],
-  props: name === 'Option' ? compile({ value: 'dummy' }) : compile({}),
-  style: compile({}),
+  props: name === 'Option' ? { value: 'dummy' } : {},
+  style: {},
   text: name === 'Option' ? 'dummy' : '',
 }))
 
@@ -243,22 +119,20 @@ EOF
 
 cat << EOF >"${components_dir}/icons.ts"
 import * as icons from '@mdi/js'
-import { makeid } from '\$lib/utils'
-import { compile } from '\$lib/utils/props'
 import { Svg } from './components'
 
 const iconcomponents = Object.keys(icons).map((name) => ({
-  id: makeid(),
+  id: 'cvrc',
   name: 'svg',
   component: Svg,
   title: name,
   data: icons[name],
   text: '',
-  props: compile({}),
-  style: compile({
+  props: {},
+  style: {
     width: '26px',
     height: '26px',
-  }),
+  },
   children: [],
 }))
 

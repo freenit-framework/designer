@@ -11,6 +11,7 @@
     mdiTablet,
     mdiLaptop,
   } from '@mdi/js'
+  import Components from './Components.svelte'
 
   let hidden = $state(false)
 
@@ -45,9 +46,7 @@
       </div>
     </div>
     <div class="components">
-      <div class="component-list">
-        <div class="component">div</div>
-      </div>
+      <Components />
       <div class="render">
         <div class="tree">
           <div class="element">
@@ -78,7 +77,7 @@
           <div>
             <span>css: &#123; +</span>
           </div>
-          <div class="ewXLBPxm">
+          <div class="css-attribute">
             <span>height: 100dvh -</span>
           </div>
           <div>&#125;</div>
@@ -177,19 +176,7 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-  }
-
-  .component-list {
-    width: 50%;
-    padding: 5px;
-    border-right: 1px solid #eee;
-  }
-
-  .component {
-    padding: 5px;
-    border-radius: 5px;
-    background-color: rgba(128, 128, 128, 0.1);
-    margin-bottom: 5px;
+    overflow: auto;
   }
 
   .render {
@@ -230,7 +217,7 @@
     margin-left: 10px;
   }
 
-  .ewXLBPxm {
+  .css-attribute {
     margin-left: 10px;
   }
 

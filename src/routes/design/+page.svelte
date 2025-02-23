@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LeftPane from '$lib/LeftPane.svelte'
+  import LeftPane from '$lib/LeftPane'
 </script>
 
 <div class="root">
