@@ -5,4 +5,5 @@ export default class DesignStore {
   design: Component[] = $state([])
   selected: Component | null = $state(null)
   device: string = $state('desktop')
+  filter: string = $state('')
 }

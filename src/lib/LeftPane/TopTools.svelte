@@ -5,6 +5,7 @@
     mdiRedo,
     mdiSelectSearch,
   } from '@mdi/js'
+  import store from '$lib/store'
 
   let { toggle } = $props()
 </script>
@@ -19,7 +20,7 @@
   </svg>
 </div>
 <div class="tools">
-  <input class="search" />
+  <input class="search" bind:value={store.design.filter} />
   <div class="actions">
     <svg class="icon">
       <path d={mdiUndo} />

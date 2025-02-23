@@ -1,4 +1,5 @@
 <script lang="ts">
+  import store from '$lib/store'
   import components from '$lib/components'
   import type { Component } from '$lib/types.d'
 
@@ -9,10 +10,15 @@
   }
 
   const dragEnd = () => {}
+
+  let c: Component[] = $state(components.filter(e => e.name.toLowerCase().includes(store.design.filter)))
+  $effect(() => {
+    c = components.filter(e => e.name.toLowerCase().includes(store.design.filter))
+  })
 </script>
 
 <div class="root">
-  {#each components as component}
+  {#each c as component}
     <div
       class="component"
       draggable="true"
