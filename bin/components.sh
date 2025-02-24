@@ -6,7 +6,7 @@ components_dir="${PROJECT_ROOT}/src/lib/components"
 
 nochildren() {
   case $1 in
-    img|hr|br|wbr|area|base|col|embed|input|link|param|source|track)
+    img|hr|br|wbr|area|base|col|embed|input|link|param|source|track|textarea)
       echo "yes"
       ;;
     *)
@@ -26,10 +26,21 @@ noprops() {
   esac
 }
 
+void() {
+  case $1 in
+    br)
+      echo "yes"
+      ;;
+    *)
+      echo "no"
+  esac
+}
+
 generate() {
   element=$1
   no_children=`nochildren ${element}`
   no_props=`noprops ${element}`
+  is_void=`void ${element}`
   myprops=""
   elprops=""
   a11y=""
@@ -50,42 +61,52 @@ generate() {
     myprops=" alt: '' "
     elprops="alt={props.alt} "
   elif [ "${element}" = "video" ]; then
-    a11y="<!-- svelte-ignore a11y-media-has-caption -->"
+    a11y="<!-- svelte-ignore a11y_media_has_caption -->"
   elif [ "${element}" = "figcaption" ]; then
-    a11y="<!-- svelte-ignore a11y-structure -->"
+    a11y="<!-- svelte-ignore a11y_figcaption_parent -->"
   fi
 
-  if [ "${no_children}" = "yes" -a "${no_props}" = "yes" ]; then
+  if [ "${is_void}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
 </script>
 
 <${element} />
+EOF
+  elif [ "${no_children}" = "yes" -a "${no_props}" = "yes" ]; then
+    cat <<EOF
+<script lang="ts">
+</script>
+
+<${element}></${element}>
 EOF
   elif [ "${no_children}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
+  let props = \$props()
 </script>
 
-<${element} />
+<${element} {...props} />
 EOF
   elif [ "${no_props}" = "yes" ]; then
     cat <<EOF
 <script lang="ts">
+  let { children } = \$props()
 </script>
 
 <${element}>
-  <slot />
+  {@render children?.()}
 </${element}>
 EOF
   else
     cat <<EOF
 <script lang="ts">
+  let { children, ...props } = \$props()
 </script>
 
 $a11y
-<${element} $elprops>
-  <slot />
+<${element} ${elprops} {...props}>
+  {@render children?.()}
 </${element}>
 EOF
   fi
