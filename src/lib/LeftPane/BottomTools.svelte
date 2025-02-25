@@ -1,5 +1,16 @@
 <script lang="ts">
   import { mdiCellphone, mdiTablet, mdiLaptop } from '@mdi/js'
+  import Color from '$lib/color'
+  import '$lib/type.extensions'
+
+  const s = 'cvrc'
+  const n = 3
+  const b = false
+  const c = new Color(1, 21, 45, 1)
+  console.log(s, s.vtype())
+  console.log(n, n.vtype())
+  console.log(b, b.vtype())
+  console.log(c, c.vtype())
 </script>
 
 <div class="bottom">
