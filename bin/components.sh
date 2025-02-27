@@ -131,7 +131,7 @@ const htmlcomponents = Object.keys(components).map((name) => ({
   component: components[name],
   children: [],
   props: name === 'Option' ? { value: 'dummy' } : {},
-  style: {},
+  css: {},
   text: name === 'Option' ? 'dummy' : '',
 }))
 

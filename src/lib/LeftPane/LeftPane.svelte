@@ -20,6 +20,7 @@
       <Components />
       <div class="render">
         <Tree />
+        <hr />
         <Props />
       </div>
     </div>

@@ -4,7 +4,7 @@ export interface Component {
   component: any
   children: Component[]
   props: Record<any, any>
-  style: Record<any, boolean | string | number | null>
+  css: Record<any, boolean | string | number | null>
   text: string
   parent?: Component
   open?: boolean

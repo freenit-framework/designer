@@ -5,6 +5,7 @@
   import type { Component } from '$lib/types'
 
   let { element, parent } = $props()
+  let selected = $derived(store.design.selected == element)
 
   const allowDrop = (event: Event) => {
     event.preventDefault()
@@ -16,30 +17,40 @@
     const json = event.dataTransfer ? event.dataTransfer.getData('component') : '{}'
     const data: Component = JSON.parse(json)
     component.children.push(data)
-    console.log(component)
   }
 
   const toggleOpen = (component: Component) => () => {
     component.open = !component.open
   }
 
-  const close = (parent: Component | null, component: Component) => () => {
+  const remove = (parent: Component | null, component: Component) => () => {
     if (parent) {
       parent.children = parent.children.filter((element) => element != component)
     } else {
       store.design.design = store.design.design.filter((element: Component) => element != component)
     }
   }
+
+  const select = () => {
+    store.design.selected = element
+  }
 </script>
 
-<div class="root" ondragover={allowDrop} ondrop={drop(element)} role="none">
+<div
+  class="root"
+  ondragover={allowDrop}
+  ondrop={drop(element)}
+  onclick={select}
+  role="none"
+  class:selected
+>
   <div class="element">
     <div class="data">
       <div>{element.name}</div>
       <div class="id">{element.id}</div>
     </div>
     <div>
-      <svg class="icon" onclick={close(parent, element)} role="none">
+      <svg class="icon" onclick={remove(parent, element)} role="none">
         <path d={mdiClose} />
       </svg>
     </div>
@@ -63,6 +74,10 @@
     background-color: rgba(128, 128, 128, 0.1);
     padding-left: 5px;
     margin-top: 2px;
+  }
+
+  .selected {
+    border: 1px dotted #000;
   }
 
   .element {
