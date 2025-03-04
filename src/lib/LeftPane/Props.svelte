@@ -2,7 +2,7 @@
   import { Input } from '@freenit-framework/core'
   import store from '$lib/store'
 
-  let selected = $derived(store.design.selected)
+  const { design } = store
   let props: Record<any, any> | null = $state(null)
   let name: string = $state('')
   let value: string = $state('')
@@ -26,15 +26,15 @@
   }
 
   const showEditText = () => {
-    if (selected) {
-      oldText = selected.text
+    if (design.selected) {
+      oldText = design.selected.text
     }
     showEdit = true
   }
 
   const cancelEditText = () => {
-    if (selected) {
-      selected.text = oldText
+    if (design.selected) {
+      design.selected.text = oldText
     }
     showEdit = false
   }
@@ -45,19 +45,19 @@
   }
 </script>
 
-{#if selected}
+{#if design.selected}
   <div>
     props: &#123;
     <span
       role="button"
       tabindex="0"
-      onclick={showAdd(selected.props)}
-      onkeyup={showAdd(selected.props)}
+      onclick={showAdd(design.selected.props)}
+      onkeyup={showAdd(design.selected.props)}
     >
       +
     </span>
   </div>
-  {#if props === selected.props}
+  {#if props === design.selected.props}
     <form onsubmit={createProp}>
       <Input label="name" type="text" name="name" bind:value={name} autofocus />
       <Input label="value" type="text" name="value" bind:value />
@@ -67,28 +67,31 @@
       </div>
     </form>
   {:else}
-    {#each Object.keys(selected.props) as key}
+    {#each Object.keys(design.selected.props) as key}
       <div class="prop">
-        {`${key}: ${selected.props[key]}`}
+        {`${key}: ${design.selected.props[key]}`}
         <span
           role="button"
           tabindex="0"
-          onclick={removeProp(selected.props, key)}
-          onkeyup={removeProp(selected.props, key)}>-</span
+          onclick={removeProp(design.selected.props, key)}
+          onkeyup={removeProp(design.selected.props, key)}>-</span
         >
       </div>
     {/each}
   {/if}
   <div>&#125;</div>
   <div>
-    css: &#123; <span
+    css: &#123;
+    <span
       role="button"
       tabindex="0"
-      onclick={showAdd(selected.css)}
-      onkeyup={showAdd(selected.css)}>+</span
+      onclick={showAdd(design.selected.css)}
+      onkeyup={showAdd(design.selected.css)}
     >
+      +
+    </span>
   </div>
-  {#if props === selected.css}
+  {#if props === design.selected.css}
     <form onsubmit={createProp}>
       <Input label="name" type="text" name="name" bind:value={name} autofocus />
       <Input label="value" type="text" name="value" bind:value />
@@ -98,14 +101,14 @@
       </div>
     </form>
   {:else}
-    {#each Object.keys(selected.css) as key}
+    {#each Object.keys(design.selected.css) as key}
       <div class="prop">
-        {`${key}: ${selected.css[key]}`}
+        {`${key}: ${design.selected.css[key]}`}
         <span
           role="button"
           tabindex="0"
-          onclick={removeProp(selected.css, key)}
-          onkeyup={removeProp(selected.css, key)}>-</span
+          onclick={removeProp(design.selected.css, key)}
+          onkeyup={removeProp(design.selected.css, key)}>-</span
         >
       </div>
     {/each}
@@ -113,14 +116,16 @@
   <div>&#125;</div>
   {#if showEdit}
     <form onsubmit={editText}>
-      <Input label="text" type="text" name="text" bind:value={selected.text} autofocus />
+      <Input label="text" type="text" name="text" bind:value={design.selected.text} autofocus />
       <div class="actions">
         <button type="submit" class="button primary outline">Submit</button>
         <button class="button error" onclick={cancelEditText}>Cancel</button>
       </div>
     </form>
   {:else}
-    <div onclick={showEditText} onkeyup={showEditText} role="none">text: {`${selected.text}`}</div>
+    <div onclick={showEditText} onkeyup={showEditText} role="none">
+      text: {`${design.selected.text}`}
+    </div>
   {/if}
 {/if}
 

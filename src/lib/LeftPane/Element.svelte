@@ -2,22 +2,11 @@
   import { mdiClose, mdiMenuUp } from '@mdi/js'
   import Element from './Element.svelte'
   import store from '$lib/store'
+  import { allowDrop, drop } from '$lib/dnd';
   import type { Component } from '$lib/types'
 
   let { element, parent } = $props()
   let selected = $derived(store.design.selected == element)
-
-  const allowDrop = (event: Event) => {
-    event.preventDefault()
-  }
-
-  const drop = (component: Component) => (event: DragEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
-    const json = event.dataTransfer ? event.dataTransfer.getData('component') : '{}'
-    const data: Component = JSON.parse(json)
-    component.children.push(data)
-  }
 
   const toggleOpen = (component: Component) => () => {
     component.open = !component.open
@@ -29,9 +18,11 @@
     } else {
       store.design.design = store.design.design.filter((element: Component) => element != component)
     }
+    store.design.selected = null
   }
 
-  const select = () => {
+  const select = (event: Event) => {
+    event.stopPropagation()
     store.design.selected = element
   }
 </script>

@@ -4,7 +4,7 @@
   import { allowDrop, drop } from '$lib/dnd'
 </script>
 
-<div class="root" ondragover={allowDrop} ondrop={drop} role="none">
+<div class="root" ondragover={allowDrop} ondrop={drop(null)} role="none">
   {#each store.design.design as component}
     <Element {component} />
   {/each}
