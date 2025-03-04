@@ -6,8 +6,10 @@
   let props: Record<any, any> | null = $state(null)
   let name: string = $state('')
   let value: string = $state('')
+  let showEdit = $state(false)
+  let oldText: string
 
-  let showAdd = (p: Record<any, any>) => () => {
+  const showAdd = (p: Record<any, any>) => () => {
     props = p
   }
 
@@ -22,16 +24,38 @@
     }
     props = null
   }
+
+  const showEditText = () => {
+    if (selected) {
+      oldText = selected.text
+    }
+    showEdit = true
+  }
+
+  const cancelEditText = () => {
+    if (selected) {
+      selected.text = oldText
+    }
+    showEdit = false
+  }
+
+  const editText = (event: Event) => {
+    event.preventDefault()
+    showEdit = false
+  }
 </script>
 
 {#if selected}
   <div>
-    props: &#123; <span
+    props: &#123;
+    <span
       role="button"
       tabindex="0"
       onclick={showAdd(selected.props)}
-      onkeyup={showAdd(selected.props)}>+</span
+      onkeyup={showAdd(selected.props)}
     >
+      +
+    </span>
   </div>
   {#if props === selected.props}
     <form onsubmit={createProp}>
@@ -66,7 +90,7 @@
   </div>
   {#if props === selected.css}
     <form onsubmit={createProp}>
-      <Input label="name" type="text" name="name" bind:value={name} autofocus={true} />
+      <Input label="name" type="text" name="name" bind:value={name} autofocus />
       <Input label="value" type="text" name="value" bind:value />
       <div class="actions">
         <button type="submit" class="button primary outline">Create</button>
@@ -87,7 +111,17 @@
     {/each}
   {/if}
   <div>&#125;</div>
-  <div>text: {`${selected.text}`}</div>
+  {#if showEdit}
+    <form onsubmit={editText}>
+      <Input label="text" type="text" name="text" bind:value={selected.text} autofocus />
+      <div class="actions">
+        <button type="submit" class="button primary outline">Submit</button>
+        <button class="button error" onclick={cancelEditText}>Cancel</button>
+      </div>
+    </form>
+  {:else}
+    <div onclick={showEditText} onkeyup={showEditText} role="none">text: {`${selected.text}`}</div>
+  {/if}
 {/if}
 
 <style>

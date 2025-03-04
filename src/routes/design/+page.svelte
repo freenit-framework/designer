@@ -1,6 +1,6 @@
 <script lang="ts">
   import LeftPane from '$lib/LeftPane'
-  import Render from '$lib/Render.svelte'
+  import Render from '$lib/Render'
 </script>
 
 <div class="root">
