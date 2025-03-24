@@ -10,6 +10,6 @@ setup() {
   cd ${PROJECT_ROOT}
   update=${1}
   if [ "${OFFLINE}" != "yes" -a "${update}" != "no" ]; then
-    yarn install
+    npm install
   fi
 }

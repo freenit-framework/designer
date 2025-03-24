@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Login } from '@freenit-framework/svelte-base'
+  import { Login } from '@freenit-framework/core'
+  import store from '$lib/store'
 </script>
 
-<Login />
+<Login store={store} />

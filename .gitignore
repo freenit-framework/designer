@@ -18,6 +18,7 @@ ansible/site.yml
 !ansible/roles/.keep
 !ansible/roles/freenit
 build/
+src/lib/components/
 cbsd.conf
 site.retry
 project.mk

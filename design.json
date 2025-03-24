@@ -1,0 +1,1152 @@
+{
+  "design": {
+    "id": "root",
+    "name": "root",
+    "text": "",
+    "props": {
+      "value": {}
+    },
+    "style": {
+      "value": {}
+    },
+    "children": [
+      {
+        "id": "vmHJYRTJ",
+        "name": "Div",
+        "text": "",
+        "props": {
+          "value": {}
+        },
+        "style": {
+          "value": {
+            "height": {
+              "value": "100dvh",
+              "type": "string"
+            },
+            "width": {
+              "value": "100%",
+              "type": "string"
+            },
+            "display": {
+              "value": "flex",
+              "type": "string"
+            },
+            "align-items": {
+              "value": "center",
+              "type": "string"
+            },
+            "justify-content": {
+              "value": "center",
+              "type": "string"
+            }
+          }
+        },
+        "children": [
+          {
+            "id": "WyvqWcvw",
+            "name": "Div",
+            "text": "",
+            "props": {
+              "value": {}
+            },
+            "style": {
+              "value": {
+                "height": {
+                  "value": "100%",
+                  "type": "string"
+                },
+                "width": {
+                  "value": "600px",
+                  "type": "string"
+                },
+                "background-color": {
+                  "value": "#fafaff",
+                  "type": "string"
+                },
+                "display": {
+                  "value": "flex",
+                  "type": "string"
+                },
+                "align-items": {
+                  "value": "stretch",
+                  "type": "string"
+                },
+                "justify-content": {
+                  "value": "center",
+                  "type": "string"
+                },
+                "flex-direction": {
+                  "value": "column",
+                  "type": "string"
+                },
+                "border-right": {
+                  "value": "dotted 1px gray",
+                  "type": "string"
+                }
+              }
+            },
+            "children": [
+              {
+                "id": "qIPjcrNt",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "space-around",
+                      "type": "string"
+                    },
+                    "background-color": {
+                      "value": "white",
+                      "type": "string"
+                    },
+                    "padding": {
+                      "value": "5px",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "DcodsMCK",
+                    "name": "Button",
+                    "text": "Components",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        },
+                        "disabled": {
+                          "value": "yes",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "mEMCpmxN",
+                    "name": "Button",
+                    "text": "Icons",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "pXMjwrll",
+                    "name": "Button",
+                    "text": "Props",
+                    "props": {
+                      "value": {
+                        "disabled": {
+                          "value": "yes",
+                          "type": "string"
+                        },
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "NxCbUOBS",
+                    "name": "Button",
+                    "text": "Theme",
+                    "props": {
+                      "value": {
+                        "class": {
+                          "value": "button outline",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {}
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "WLSdUpuk",
+                    "name": "svg",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "26px",
+                          "type": "string"
+                        },
+                        "height": {
+                          "value": "26px",
+                          "type": "string"
+                        },
+                        "fill": {
+                          "value": "#666",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [],
+                    "data": "M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z",
+                    "title": "mdiArrowLeftBold"
+                  }
+                ]
+              },
+              {
+                "id": "BcKPWMgC",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "padding": {
+                      "value": "5px",
+                      "type": "string"
+                    },
+                    "background-color": {
+                      "value": "white",
+                      "type": "string"
+                    },
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "flex-direction": {
+                      "value": "row",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "DEuCAyzJ",
+                    "name": "Input",
+                    "text": "",
+                    "props": {
+                      "value": {
+                        "value": {
+                          "value": "div",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": []
+                  },
+                  {
+                    "id": "pRKEiDhA",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "display": {
+                          "value": "flex",
+                          "type": "string"
+                        },
+                        "align-items": {
+                          "value": "center",
+                          "type": "string"
+                        },
+                        "justify-content": {
+                          "value": "space-around",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "hSAcIvKS",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z",
+                        "title": "mdiUndo"
+                      },
+                      {
+                        "id": "KZSropox",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z",
+                        "title": "mdiRedo"
+                      },
+                      {
+                        "id": "OdZLNMLh",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M19.31 18.9C19.75 18.21 20 17.38 20 16.5C20 14 18 12 15.5 12S11 14 11 16.5 13 21 15.5 21C16.37 21 17.19 20.75 17.88 20.32L21 23.39L22.39 22L19.31 18.9M15.5 19C14.12 19 13 17.88 13 16.5S14.12 14 15.5 14 18 15.12 18 16.5 16.88 19 15.5 19M21 9H19V7H21V9M21 5H19V3H20C20.55 3 21 3.45 21 4V5M19 11.03V11H21V13H20.97C20.46 12.21 19.79 11.54 19 11.03M17 5H15V3H17V5M13 5H11V3H13V5M3 7H5V9H3V7M7 19H9V21H7V19M3 11H5V13H3V11M4 3H5V5H3V4C3 3.45 3.45 3 4 3M9 5H7V3H9V5M3 19H5V21H4C3.45 21 3 20.55 3 20V19M3 15H5V17H3V15Z",
+                        "title": "mdiSelectSearch"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "GqdjBrtE",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "flex": {
+                      "value": "1",
+                      "type": "string"
+                    },
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "stretch",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "center",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "WQWcYDkX",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "padding": {
+                          "value": "5px",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "NySYmwaO",
+                        "name": "Div",
+                        "text": "div",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "padding": {
+                              "value": "5px",
+                              "type": "string"
+                            },
+                            "border-radius": {
+                              "value": "5px",
+                              "type": "string"
+                            },
+                            "background-color": {
+                              "value": "rgba(128, 128, 128, 0.1)",
+                              "type": "string"
+                            },
+                            "margin-bottom": {
+                              "value": "5px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "RBPAQFwm",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "padding": {
+                          "value": "5px",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "AFetiBdc",
+                        "name": "Div",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "height": {
+                              "value": "50%",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "id": "NStkhGwA",
+                            "name": "Div",
+                            "text": "",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "border-radius": {
+                                  "value": "5px",
+                                  "type": "string"
+                                },
+                                "background-color": {
+                                  "value": "rgba(128, 128, 128, 0.1)",
+                                  "type": "string"
+                                },
+                                "display": {
+                                  "value": "flex",
+                                  "type": "string"
+                                },
+                                "justify-content": {
+                                  "value": "center",
+                                  "type": "string"
+                                },
+                                "align-items": {
+                                  "value": "center",
+                                  "type": "string"
+                                },
+                                "padding-left": {
+                                  "value": "5px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "id": "uHCxfJqK",
+                                "name": "Div",
+                                "text": "",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {
+                                    "flex": {
+                                      "value": "1",
+                                      "type": "string"
+                                    },
+                                    "padding": {
+                                      "value": "5px",
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "id": "aKbCqmqL",
+                                    "name": "Div",
+                                    "text": "div",
+                                    "props": {
+                                      "value": {}
+                                    },
+                                    "style": {
+                                      "value": {}
+                                    },
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "IUxlpXlW",
+                                    "name": "Div",
+                                    "text": "SDdfvSD",
+                                    "props": {
+                                      "value": {}
+                                    },
+                                    "style": {
+                                      "value": {
+                                        "color": {
+                                          "value": "#888",
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "uHiQAzOI",
+                                "name": "Div",
+                                "text": "",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {}
+                                },
+                                "children": [
+                                  {
+                                    "id": "fXdsEZkN",
+                                    "name": "svg",
+                                    "text": "",
+                                    "props": {
+                                      "value": {}
+                                    },
+                                    "style": {
+                                      "value": {
+                                        "width": {
+                                          "value": "26px",
+                                          "type": "string"
+                                        },
+                                        "height": {
+                                          "value": "26px",
+                                          "type": "string"
+                                        },
+                                        "fill": {
+                                          "value": "#666",
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "children": [],
+                                    "data": "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z",
+                                    "title": "mdiClose"
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "ufBQjmyA",
+                                "name": "Div",
+                                "text": "",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {}
+                                },
+                                "children": [
+                                  {
+                                    "id": "RRiJlHbv",
+                                    "name": "svg",
+                                    "text": "",
+                                    "props": {
+                                      "value": {}
+                                    },
+                                    "style": {
+                                      "value": {
+                                        "width": {
+                                          "value": "26px",
+                                          "type": "string"
+                                        },
+                                        "height": {
+                                          "value": "26px",
+                                          "type": "string"
+                                        },
+                                        "fill": {
+                                          "value": "#666",
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "children": [],
+                                    "data": "M8 15H16L12 8",
+                                    "title": "mdiTriangleSmallUp"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "mXObqkgw",
+                        "name": "Div",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "margin-top": {
+                              "value": "5px",
+                              "type": "string"
+                            },
+                            "border-top": {
+                              "value": "dotted 1px gray",
+                              "type": "string"
+                            },
+                            "padding": {
+                              "value": "5px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "50%",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "id": "JNwQTEEd",
+                            "name": "Div",
+                            "text": "props: {",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {}
+                            },
+                            "children": [
+                              {
+                                "id": "UOGIzAtn",
+                                "name": "Span",
+                                "text": "+",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {}
+                                },
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "xYIaEXzN",
+                            "name": "Div",
+                            "text": "class: root",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "margin-left": {
+                                  "value": "10px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "id": "XukmDQIf",
+                                "name": "Span",
+                                "text": "-",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {}
+                                },
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "dJEPTZXw",
+                            "name": "Div",
+                            "text": "}",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {}
+                            },
+                            "children": []
+                          },
+                          {
+                            "id": "fPmBcrDx",
+                            "name": "Div",
+                            "text": "css: {",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {}
+                            },
+                            "children": [
+                              {
+                                "id": "fYEQOCGM",
+                                "name": "Span",
+                                "text": "+",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {}
+                                },
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "ewXLBPxm",
+                            "name": "Div",
+                            "text": "height: 100dvh",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {
+                                "margin-left": {
+                                  "value": "10px",
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "id": "LBNeQsoT",
+                                "name": "Span",
+                                "text": "-",
+                                "props": {
+                                  "value": {}
+                                },
+                                "style": {
+                                  "value": {}
+                                },
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "ZQOMzkHs",
+                            "name": "Div",
+                            "text": "}",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {}
+                            },
+                            "children": []
+                          },
+                          {
+                            "id": "PDIBWGoa",
+                            "name": "Div",
+                            "text": "text:",
+                            "props": {
+                              "value": {}
+                            },
+                            "style": {
+                              "value": {}
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "WfzysOUx",
+                "name": "Div",
+                "text": "",
+                "props": {
+                  "value": {}
+                },
+                "style": {
+                  "value": {
+                    "background-color": {
+                      "value": "white",
+                      "type": "string"
+                    },
+                    "padding": {
+                      "value": "5px",
+                      "type": "string"
+                    },
+                    "display": {
+                      "value": "flex",
+                      "type": "string"
+                    },
+                    "align-items": {
+                      "value": "center",
+                      "type": "string"
+                    },
+                    "justify-content": {
+                      "value": "center",
+                      "type": "string"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "id": "CztkGxAa",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "justify-content": {
+                          "value": "space-around",
+                          "type": "string"
+                        },
+                        "align-items": {
+                          "value": "center",
+                          "type": "string"
+                        },
+                        "display": {
+                          "value": "flex",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "yqlmVfcU",
+                        "name": "Button",
+                        "text": "Save",
+                        "props": {
+                          "value": {
+                            "class": {
+                              "value": "button outline",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "JKUPZXSw",
+                        "name": "Button",
+                        "text": "Load",
+                        "props": {
+                          "value": {
+                            "class": {
+                              "value": "button outline primary",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      },
+                      {
+                        "id": "LBCekUGr",
+                        "name": "Button",
+                        "text": "Export",
+                        "props": {
+                          "value": {
+                            "class": {
+                              "value": "button outline",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "style": {
+                          "value": {}
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "nQCFizSh",
+                    "name": "Div",
+                    "text": "",
+                    "props": {
+                      "value": {}
+                    },
+                    "style": {
+                      "value": {
+                        "width": {
+                          "value": "50%",
+                          "type": "string"
+                        },
+                        "display": {
+                          "value": "flex",
+                          "type": "string"
+                        },
+                        "align-items": {
+                          "value": "center",
+                          "type": "string"
+                        },
+                        "justify-content": {
+                          "value": "space-around",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "PlfaAmFZ",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z",
+                        "title": "mdiCellphone"
+                      },
+                      {
+                        "id": "OZQBPTfe",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M19,18H5V6H19M21,4H3C1.89,4 1,4.89 1,6V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V6C23,4.89 22.1,4 21,4Z",
+                        "title": "mdiTablet"
+                      },
+                      {
+                        "id": "BGcOJqLi",
+                        "name": "svg",
+                        "text": "",
+                        "props": {
+                          "value": {}
+                        },
+                        "style": {
+                          "value": {
+                            "width": {
+                              "value": "26px",
+                              "type": "string"
+                            },
+                            "height": {
+                              "value": "26px",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "children": [],
+                        "data": "M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z",
+                        "title": "mdiLaptop"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "MHiEBfye",
+            "name": "Div",
+            "text": "",
+            "props": {
+              "value": {}
+            },
+            "style": {
+              "value": {
+                "height": {
+                  "value": "100%",
+                  "type": "string"
+                },
+                "flex": {
+                  "value": "1",
+                  "type": "string"
+                }
+              }
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "theme": {
+    "value": {
+      "bg-color": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "bg-secondary-color": {
+        "value": "#f3f3f6",
+        "type": "color"
+      },
+      "color-primary": {
+        "value": "#14854F",
+        "type": "color"
+      },
+      "color-lightGrey": {
+        "value": "#d2d6dd",
+        "type": "color"
+      },
+      "color-grey": {
+        "value": "#747681",
+        "type": "color"
+      },
+      "color-darkGrey": {
+        "value": "#3f4144",
+        "type": "color"
+      },
+      "color-error": {
+        "value": "#d43939",
+        "type": "color"
+      },
+      "color-success": {
+        "value": "#28bd14",
+        "type": "color"
+      },
+      "grid-maxWidth": {
+        "value": "120rem",
+        "type": "string"
+      },
+      "grid-gutter": {
+        "value": "2rem",
+        "type": "string"
+      },
+      "font-size": {
+        "value": "1.6rem",
+        "type": "string"
+      },
+      "font-color": {
+        "value": "#333333",
+        "type": "color"
+      },
+      "font-family-sans": {
+        "value": "",
+        "type": "string"
+      },
+      "font-family-mono": {
+        "value": "monaco, Consolas, Lucida Console, monospace",
+        "type": "string"
+      }
+    }
+  }
+}
