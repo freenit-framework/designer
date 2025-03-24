@@ -1,18 +1,13 @@
-/**
- * Can be made globally available by placing this
- * inside `global.d.ts` and removing `export` keyword
- */
-export interface Locals {
-  userid: string
-}
+import type Colord from 'colord'
 
 export interface Component {
-  name: string
   id: string
+  name: string
+  title: string
   component: any
   children: Component[]
   props: Record<any, any>
-  style: Record<any, boolean | string | number | null>
+  css: Record<any, boolean | string | number | Colord | null>
   text: string
   parent?: Component
   open?: boolean
@@ -22,8 +17,8 @@ export interface Component {
 }
 
 export interface UndoItem {
-  parent: any
-  attribute: string | number
+  parent: Component | Component[]
+  attribute: string
   value: any
 }
 
