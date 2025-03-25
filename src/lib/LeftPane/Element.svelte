@@ -14,14 +14,9 @@
     component.open = !component.open
   }
 
-  const remove = (parent: Component | null, component: Component) => () => {
-    if (parent) {
-      store.undo.action(parent, 'children', [...parent.children])
-      parent.children = parent.children.filter((element) => element != component)
-    } else {
-      store.undo.action(store.design, 'design', [...store.design.children])
-      store.design.children = store.design.children .filter((element: Component) => element != component)
-    }
+  const remove = (parent: Component, component: Component) => () => {
+    store.undo.action(parent, 'children', [...parent.children])
+    parent.children = parent.children.filter((element) => element != component)
     store.design.selected = null
   }
 
@@ -83,7 +78,7 @@
     ondragover={allowDrop}
     ondrop={drop(element)}
     draggable="true"
-    ondragstart={dragStart(element, parent ? parent.id : 'root')}
+    ondragstart={dragStart(element, parent.id)}
     ondragend={dragEnd}
     onclick={select}
     role="none"

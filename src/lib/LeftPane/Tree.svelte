@@ -5,7 +5,7 @@
 
 <div class="tree">
   {#each store.design.children as element, index}
-    <Element {element} parent={null} {index} />
+    <Element {element} parent={store.design} {index} />
   {/each}
 </div>
 

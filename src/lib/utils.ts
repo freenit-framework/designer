@@ -64,6 +64,9 @@ const _findParent = (parentid: str, component: Component): Component | null => {
 }
 
 export const findParent = (parentid: str): Component | null => {
+  if (parentid === 'root') {
+    return store.design
+  }
   let ret = null
   for (child of store.design.children) {
     ret = _findParent(parentid, child)

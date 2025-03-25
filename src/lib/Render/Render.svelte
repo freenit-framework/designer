@@ -10,7 +10,7 @@
     class:mobile={store.design.device === 'mobile'}
     class:tablet={store.design.device === 'tablet'}
     ondragover={allowDrop}
-    ondrop={drop(null)}
+    ondrop={drop(store.design)}
     role="none"
   >
     {#each store.design.children as component}

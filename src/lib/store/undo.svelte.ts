@@ -74,6 +74,12 @@ export default class UndoStore {
     if (this.undolist.length < 1) {
       return
     }
-    this.undolist.push([this.undolist.pop(), { parent, attribute, value }])
+    const item = this.undolist.pop()
+    if (item.parent) {
+      item.push({ parent, attribute, value })
+      this.undolist.push(item)
+    } else {
+      this.undolist.push(...item, { parent, attribute, value })
+    }
   }
 }

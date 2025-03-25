@@ -8,51 +8,33 @@ export const allowDrop = (event: Event) => {
 }
 
 export const drop =
-  (parent: Component | null, index: number | null = null) =>
+  (parent: Component, index: number | null = null) =>
   (event: DragEvent) => {
     event.preventDefault()
     event.stopPropagation()
     const json = event.dataTransfer ? event.dataTransfer.getData('component') : ''
     const data: Component = JSON.parse(json)
     const { component, parentid } = data
+    if (parent.id === component.id) {
+      return
+    }
     if (parentid) {
-      if (parent && parent.id === component.id) {
-        return
-      }
-      if (parentid === 'root') {
-        store.undo.action(store.design, 'design', [...store.design.children])
-        store.design.children = store.design.children.filter((child) => child.id !== component.id)
-      } else {
-        const myparent = findParent(parentid)
-        store.undo.action(myparent, 'children', [...myparent.children])
-        if (myparent) {
-          myparent.children = myparent.children.filter((child) => child.id !== component.id)
-        }
+      const myparent = findParent(parentid)
+      store.undo.action(myparent, 'children', [...myparent.children])
+      if (myparent) {
+        myparent.children = myparent.children.filter((child) => child.id !== component.id)
       }
     }
     attachComponents(component)
-    if (parent) {
-      if (parentid) {
-        store.undo.append(parent, 'children', [...parent.children])
-      } else {
-        store.undo.action(parent, 'children', [...parent.children])
-      }
-      if (index) {
-        parent.children.splice(index, 0, component)
-      } else {
-        parent.children.push(component)
-      }
+    if (parentid) {
+      store.undo.append(parent, 'children', [...parent.children])
     } else {
-      if (parentid) {
-        store.undo.append(store.design, 'design', [...store.design.children])
-      } else {
-        store.undo.action(store.design, 'design', [...store.design.children])
-      }
-      if (index) {
-        store.design.children.splice(index, 0, component)
-      } else {
-        store.design.children.push(component)
-      }
+      store.undo.action(parent, 'children', [...parent.children])
+    }
+    if (index) {
+      parent.children.splice(index, 0, component)
+    } else {
+      parent.children.push(component)
     }
     store.design.over = null
   }
