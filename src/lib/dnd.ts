@@ -16,6 +16,9 @@ export const drop =
     const data: Component = JSON.parse(json)
     const { component, parentid } = data
     if (parentid) {
+      if (parent && parent.id === component.id) {
+        return
+      }
       if (parentid === 'root') {
         store.undo.action(store.design, 'design', [...store.design.children])
         store.design.children = store.design.children.filter((child) => child.id !== component.id)
