@@ -66,6 +66,18 @@
     store.undo.redolist = []
     store.undo.undolist = []
   }
+
+  const cellphone = () => {
+    store.design.device = 'mobile'
+  }
+
+  const tablet = () => {
+    store.design.device = 'tablet'
+  }
+
+  const desktop = () => {
+    store.design.device = 'desktop'
+  }
 </script>
 
 <div class="bottom">
@@ -91,13 +103,13 @@
     </a>
   </div>
   <div class="bottom-actions">
-    <svg class="icon">
+    <svg class="icon" onclick={cellphone} role="none">
       <path d={mdiCellphone} />
     </svg>
-    <svg class="icon">
+    <svg class="icon" onclick={tablet} role="none">
       <path d={mdiTablet} />
     </svg>
-    <svg class="icon">
+    <svg class="icon" onclick={desktop} role="none">
       <path d={mdiLaptop} />
     </svg>
   </div>
