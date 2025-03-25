@@ -26,7 +26,7 @@
 
 {#if prop}
   <form onsubmit={editProp}>
-    <PropEdit bind:value={store.theme.detail[prop]} />
+    <PropEdit bind:value={store.theme.detail[prop]} notype noname />
     <div class="actions">
       <button type="submit" class="button primary outline">OK</button>
       <button class="button error" onclick={cancel}>Cancel</button>

@@ -6,7 +6,7 @@
   import type { Colord } from 'colord'
 
   const hex = '#000000'
-  let { value = $bindable(), name = $bindable(''), valueOnly = $bindable(false) } = $props()
+  let { notype = $bindable(false), value = $bindable(), name = $bindable(''), noname = $bindable(false) } = $props()
 
   const changeType = (event: Event) => {
     const mytype = (event.target as HTMLInputElement).value
@@ -22,13 +22,16 @@
   }
 </script>
 
+{#if !notype}
 <select value={mytype(value)} onchange={changeType}>
   <option value="string">string</option>
   <option value="number">number</option>
   <option value="bool">bool</option>
   <option value="color">color</option>
 </select>
-{#if !valueOnly}
+{/if}
+
+{#if !noname}
   <Input label="name" type="text" name="name" bind:value={name} autofocus />
 {/if}
 {#if mytype(value) === 'string'}
