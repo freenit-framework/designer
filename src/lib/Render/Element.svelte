@@ -15,7 +15,7 @@
   })
 </script>
 
-<component.component {...component.props} style={css}>
+<component.component {...component.props} style={css} data-testid={component.id}>
   {#each component.children as child}
     <Element component={child} />
   {/each}

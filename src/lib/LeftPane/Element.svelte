@@ -62,7 +62,7 @@
   }
 </script>
 
-<div ondragover={hover} ondragleave={blur} role="none">
+<div ondragover={hover} ondragleave={blur} role="none" data-testid={`tree-${element.id}`}>
   <div
     class="padding"
     class:active={store.design.over === element}

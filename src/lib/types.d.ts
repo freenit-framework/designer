@@ -13,7 +13,6 @@ export interface Component {
   open?: boolean
   index?: number
   data?: string
-  title?: string
 }
 
 export interface UndoItem {
