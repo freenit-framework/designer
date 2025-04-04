@@ -13,6 +13,7 @@
 
   const editProp = (event: Event) => {
     event.preventDefault()
+    store.undo.action(store.theme.detail, prop, old)
     prop = null
   }
 
