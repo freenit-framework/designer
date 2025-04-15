@@ -21,7 +21,7 @@
     "@freenit-framework/core": "^0.0.52",
     "@mdi/js": "^7.4.47",
     "@sveltejs/adapter-node": "^5.2.12",
-    "@sveltejs/kit": "^2.16.0",
+    "@sveltejs/kit": "^2.20.6",
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.4",
