@@ -163,7 +163,7 @@
   </div>
   {#if props === design.selected.css}
     <form onsubmit={createProp}>
-      <PropEdit bind:value bind:name />
+      <PropEdit bind:value bind:name css />
       <div class="actions">
         <button type="submit" class="button primary outline">Create</button>
         <button class="button error" onclick={() => (props = null)}>Cancel</button>
@@ -171,7 +171,7 @@
     </form>
   {:else if cssToEdit}
     <form onsubmit={editCss}>
-      <PropEdit bind:value={design.selected.css[cssToEdit]} noname />
+      <PropEdit bind:value={design.selected.css[cssToEdit]} noname css />
       <div class="actions">
         <button type="submit" class="button primary outline">OK</button>
         <button class="button error" onclick={cancelEditCss}>Cancel</button>
