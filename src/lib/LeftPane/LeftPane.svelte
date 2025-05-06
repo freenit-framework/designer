@@ -4,6 +4,7 @@
   import BottomTools from './BottomTools.svelte'
   import Components from './Components.svelte'
   import Icons from './Icons.svelte'
+  import HoC from './HoC.svelte'
   import Props from './Props.svelte'
   import Theme from './Theme.svelte'
   import TopTools from './TopTools.svelte'
@@ -22,8 +23,10 @@
     <div class="components">
       {#if store.selected.left === 'components'}
         <Components />
-      {:else}
+      {:else if store.selected.left === 'icons'}
         <Icons />
+      {:else}
+        <HoC />
       {/if}
       <div class="render">
         {#if store.selected.right === 'props'}
@@ -49,7 +52,7 @@
 <style>
   .root {
     height: 100%;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
     background-color: #fafaff;
     display: flex;

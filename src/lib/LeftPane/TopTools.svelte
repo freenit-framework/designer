@@ -74,6 +74,9 @@
   <button class="button outline" disabled={store.selected.left === 'icons'} onclick={left('icons')}>
     Icons
   </button>
+  <button class="button outline" disabled={store.selected.left === 'hoc'} onclick={left('hoc')}>
+    HoC
+  </button>
   <button
     class="button outline"
     disabled={store.selected.right === 'props'}
