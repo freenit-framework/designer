@@ -22,8 +22,12 @@ The file must be a JSON object with exactly two top-level keys:
 
 ```json
 {
-  "design": [/* root components */],
-  "theme": {/* theme variables */}
+  "design": [
+    /* root components */
+  ],
+  "theme": {
+    /* theme variables */
+  }
 }
 ```
 

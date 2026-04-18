@@ -20,7 +20,7 @@
     "@eslint/js": "^10.0.1",
     "@freenit-framework/core": "^0.0.62",
     "@mdi/js": "^7.4.47",
-    "@sveltejs/adapter-node": "^5.5.4",
+    "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.57.1",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "@testing-library/jest-dom": "^6.9.1",

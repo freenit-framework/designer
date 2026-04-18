@@ -1,26 +1,17 @@
-<section>
-  <h1>Freenit Designer</h1>
-  <a href="/design">
-    <button>Design!</button>
-  </a>
-</section>
+<script lang="ts">
+  import LeftPane from '$lib/LeftPane'
+  import Render from '$lib/Render'
+</script>
+
+<div class="root">
+  <LeftPane />
+  <Render />
+</div>
 
 <style>
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-
-  h1 {
+  .root {
+    height: 100dvh;
     width: 100%;
-    text-align: center;
-  }
-
-  button {
-    height: 80px;
-    width: 150px;
+    display: flex;
   }
 </style>
