@@ -15,12 +15,14 @@
   const editProp = (event: Event) => {
     event.preventDefault()
     store.undo.action(store.theme.detail, prop, old)
+    store.theme.apply()
     prop = null
   }
 
   const cancel = () => {
     if (prop) {
       store.theme.detail[prop] = old
+      store.theme.apply()
     }
     prop = null
   }

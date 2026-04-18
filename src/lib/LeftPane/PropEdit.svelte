@@ -7,7 +7,6 @@
   import type { Colord } from 'colord'
   import cssProps from '$lib/all-css-props'
 
-  const hex = '#000000'
   let {
     notype = $bindable(false),
     value = $bindable(),
@@ -65,7 +64,7 @@
   <Input label="value" type="number" name="value" bind:value />
 {:else if mytype(value) === 'color'}
   <div class="margin"></div>
-  <ColorPicker {hex} bind:color={value as Colord} isDialog={false} />
+  <ColorPicker hex={value?.toHex?.() || '#000000'} bind:color={value as Colord} isDialog={false} />
 {/if}
 
 <style>
