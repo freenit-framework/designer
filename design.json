@@ -1,1152 +1,1247 @@
 {
-  "design": {
-    "id": "root",
-    "name": "root",
-    "text": "",
-    "props": {
-      "value": {}
-    },
-    "style": {
-      "value": {}
-    },
-    "children": [
-      {
-        "id": "vmHJYRTJ",
-        "name": "Div",
-        "text": "",
-        "props": {
-          "value": {}
-        },
-        "style": {
-          "value": {
-            "height": {
-              "value": "100dvh",
-              "type": "string"
+  "design": [
+    {
+      "name": "Div",
+      "id": "RootPage",
+      "children": [
+        {
+          "name": "Div",
+          "id": "TopBar",
+          "children": [
+            {
+              "name": "Div",
+              "id": "BrandWrap",
+              "children": [
+                {
+                  "name": "Svg",
+                  "id": "BrandIcon",
+                  "title": "mdiWaveform",
+                  "text": "",
+                  "props": {
+                    "viewBox": "0 0 24 24"
+                  },
+                  "css": {
+                    "width": "28px",
+                    "height": "28px",
+                    "fill": "#14854F"
+                  },
+                  "children": [
+                    {
+                      "name": "Path",
+                      "id": "BrandIconPath",
+                      "title": "mdiWaveform",
+                      "text": "",
+                      "props": {
+                        "d": "M3 17H5.5L8.5 7L12 19L15.5 11L18 17H21V15H19.5L15.5 5L12 15L8.5 3L4.5 15H3V17Z"
+                      },
+                      "children": [],
+                      "css": {
+                        "width": "28px",
+                        "height": "28px",
+                        "fill": "#14854F"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Span",
+                  "id": "BrandText",
+                  "children": [],
+                  "props": {},
+                  "css": {
+                    "font-size": "1.9rem",
+                    "font-weight": "700",
+                    "letter-spacing": "-0.02em",
+                    "color": "#111827"
+                  },
+                  "text": "Maolan"
+                }
+              ],
+              "props": {},
+              "css": {
+                "display": "flex",
+                "align-items": "center",
+                "gap": "10px"
+              },
+              "text": ""
             },
-            "width": {
-              "value": "100%",
-              "type": "string"
+            {
+              "name": "Div",
+              "id": "NavLinks",
+              "children": [
+                {
+                  "name": "A",
+                  "id": "NavFeatures",
+                  "children": [],
+                  "props": {
+                    "href": "#features"
+                  },
+                  "css": {
+                    "color": "#4b5563",
+                    "text-decoration": "none",
+                    "font-weight": "500"
+                  },
+                  "text": "Features"
+                },
+                {
+                  "name": "A",
+                  "id": "NavWorkflow",
+                  "children": [],
+                  "props": {
+                    "href": "#workflow"
+                  },
+                  "css": {
+                    "color": "#4b5563",
+                    "text-decoration": "none",
+                    "font-weight": "500"
+                  },
+                  "text": "Workflow"
+                },
+                {
+                  "name": "A",
+                  "id": "NavShortcuts",
+                  "children": [],
+                  "props": {
+                    "href": "#shortcuts"
+                  },
+                  "css": {
+                    "color": "#4b5563",
+                    "text-decoration": "none",
+                    "font-weight": "500"
+                  },
+                  "text": "Shortcuts"
+                },
+                {
+                  "name": "A",
+                  "id": "NavOsc",
+                  "children": [],
+                  "props": {
+                    "href": "#osc"
+                  },
+                  "css": {
+                    "color": "#4b5563",
+                    "text-decoration": "none",
+                    "font-weight": "500"
+                  },
+                  "text": "OSC"
+                },
+                {
+                  "name": "A",
+                  "id": "NavFaq",
+                  "children": [],
+                  "props": {
+                    "href": "#faq"
+                  },
+                  "css": {
+                    "color": "#4b5563",
+                    "text-decoration": "none",
+                    "font-weight": "500"
+                  },
+                  "text": "FAQ"
+                }
+              ],
+              "props": {},
+              "css": {
+                "display": "flex",
+                "align-items": "center",
+                "gap": "24px"
+              },
+              "text": ""
             },
-            "display": {
-              "value": "flex",
-              "type": "string"
-            },
-            "align-items": {
-              "value": "center",
-              "type": "string"
-            },
-            "justify-content": {
-              "value": "center",
-              "type": "string"
+            {
+              "name": "A",
+              "id": "GithubButton",
+              "children": [],
+              "props": {
+                "href": "https://github.com/maolan/maolan"
+              },
+              "css": {
+                "padding": "10px 16px",
+                "border": "1px solid #d1d5db",
+                "border-radius": "999px",
+                "text-decoration": "none",
+                "color": "#111827",
+                "font-weight": "600",
+                "background-color": "white"
+              },
+              "text": "GitHub"
             }
-          }
-        },
-        "children": [
-          {
-            "id": "WyvqWcvw",
-            "name": "Div",
-            "text": "",
-            "props": {
-              "value": {}
-            },
-            "style": {
-              "value": {
-                "height": {
-                  "value": "100%",
-                  "type": "string"
-                },
-                "width": {
-                  "value": "600px",
-                  "type": "string"
-                },
-                "background-color": {
-                  "value": "#fafaff",
-                  "type": "string"
-                },
-                "display": {
-                  "value": "flex",
-                  "type": "string"
-                },
-                "align-items": {
-                  "value": "stretch",
-                  "type": "string"
-                },
-                "justify-content": {
-                  "value": "center",
-                  "type": "string"
-                },
-                "flex-direction": {
-                  "value": "column",
-                  "type": "string"
-                },
-                "border-right": {
-                  "value": "dotted 1px gray",
-                  "type": "string"
-                }
-              }
-            },
-            "children": [
-              {
-                "id": "qIPjcrNt",
-                "name": "Div",
-                "text": "",
-                "props": {
-                  "value": {}
-                },
-                "style": {
-                  "value": {
-                    "display": {
-                      "value": "flex",
-                      "type": "string"
-                    },
-                    "align-items": {
-                      "value": "center",
-                      "type": "string"
-                    },
-                    "justify-content": {
-                      "value": "space-around",
-                      "type": "string"
-                    },
-                    "background-color": {
-                      "value": "white",
-                      "type": "string"
-                    },
-                    "padding": {
-                      "value": "5px",
-                      "type": "string"
-                    }
-                  }
-                },
-                "children": [
-                  {
-                    "id": "DcodsMCK",
-                    "name": "Button",
-                    "text": "Components",
-                    "props": {
-                      "value": {
-                        "class": {
-                          "value": "button outline",
-                          "type": "string"
-                        },
-                        "disabled": {
-                          "value": "yes",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "style": {
-                      "value": {}
-                    },
-                    "children": []
-                  },
-                  {
-                    "id": "mEMCpmxN",
-                    "name": "Button",
-                    "text": "Icons",
-                    "props": {
-                      "value": {
-                        "class": {
-                          "value": "button outline",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "style": {
-                      "value": {}
-                    },
-                    "children": []
-                  },
-                  {
-                    "id": "pXMjwrll",
-                    "name": "Button",
-                    "text": "Props",
-                    "props": {
-                      "value": {
-                        "disabled": {
-                          "value": "yes",
-                          "type": "string"
-                        },
-                        "class": {
-                          "value": "button outline",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "style": {
-                      "value": {}
-                    },
-                    "children": []
-                  },
-                  {
-                    "id": "NxCbUOBS",
-                    "name": "Button",
-                    "text": "Theme",
-                    "props": {
-                      "value": {
-                        "class": {
-                          "value": "button outline",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "style": {
-                      "value": {}
-                    },
-                    "children": []
-                  },
-                  {
-                    "id": "WLSdUpuk",
-                    "name": "svg",
-                    "text": "",
-                    "props": {
-                      "value": {}
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "26px",
-                          "type": "string"
-                        },
-                        "height": {
-                          "value": "26px",
-                          "type": "string"
-                        },
-                        "fill": {
-                          "value": "#666",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": [],
-                    "data": "M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z",
-                    "title": "mdiArrowLeftBold"
-                  }
-                ]
-              },
-              {
-                "id": "BcKPWMgC",
-                "name": "Div",
-                "text": "",
-                "props": {
-                  "value": {}
-                },
-                "style": {
-                  "value": {
-                    "padding": {
-                      "value": "5px",
-                      "type": "string"
-                    },
-                    "background-color": {
-                      "value": "white",
-                      "type": "string"
-                    },
-                    "display": {
-                      "value": "flex",
-                      "type": "string"
-                    },
-                    "align-items": {
-                      "value": "center",
-                      "type": "string"
-                    },
-                    "justify-content": {
-                      "value": "center",
-                      "type": "string"
-                    },
-                    "flex-direction": {
-                      "value": "row",
-                      "type": "string"
-                    }
-                  }
-                },
-                "children": [
-                  {
-                    "id": "DEuCAyzJ",
-                    "name": "Input",
-                    "text": "",
-                    "props": {
-                      "value": {
-                        "value": {
-                          "value": "div",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "50%",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": []
-                  },
-                  {
-                    "id": "pRKEiDhA",
-                    "name": "Div",
-                    "text": "",
-                    "props": {
-                      "value": {}
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "50%",
-                          "type": "string"
-                        },
-                        "display": {
-                          "value": "flex",
-                          "type": "string"
-                        },
-                        "align-items": {
-                          "value": "center",
-                          "type": "string"
-                        },
-                        "justify-content": {
-                          "value": "space-around",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": [
-                      {
-                        "id": "hSAcIvKS",
-                        "name": "svg",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "width": {
-                              "value": "26px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "26px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [],
-                        "data": "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z",
-                        "title": "mdiUndo"
-                      },
-                      {
-                        "id": "KZSropox",
-                        "name": "svg",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "width": {
-                              "value": "26px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "26px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [],
-                        "data": "M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z",
-                        "title": "mdiRedo"
-                      },
-                      {
-                        "id": "OdZLNMLh",
-                        "name": "svg",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "width": {
-                              "value": "26px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "26px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [],
-                        "data": "M19.31 18.9C19.75 18.21 20 17.38 20 16.5C20 14 18 12 15.5 12S11 14 11 16.5 13 21 15.5 21C16.37 21 17.19 20.75 17.88 20.32L21 23.39L22.39 22L19.31 18.9M15.5 19C14.12 19 13 17.88 13 16.5S14.12 14 15.5 14 18 15.12 18 16.5 16.88 19 15.5 19M21 9H19V7H21V9M21 5H19V3H20C20.55 3 21 3.45 21 4V5M19 11.03V11H21V13H20.97C20.46 12.21 19.79 11.54 19 11.03M17 5H15V3H17V5M13 5H11V3H13V5M3 7H5V9H3V7M7 19H9V21H7V19M3 11H5V13H3V11M4 3H5V5H3V4C3 3.45 3.45 3 4 3M9 5H7V3H9V5M3 19H5V21H4C3.45 21 3 20.55 3 20V19M3 15H5V17H3V15Z",
-                        "title": "mdiSelectSearch"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "GqdjBrtE",
-                "name": "Div",
-                "text": "",
-                "props": {
-                  "value": {}
-                },
-                "style": {
-                  "value": {
-                    "flex": {
-                      "value": "1",
-                      "type": "string"
-                    },
-                    "display": {
-                      "value": "flex",
-                      "type": "string"
-                    },
-                    "align-items": {
-                      "value": "stretch",
-                      "type": "string"
-                    },
-                    "justify-content": {
-                      "value": "center",
-                      "type": "string"
-                    }
-                  }
-                },
-                "children": [
-                  {
-                    "id": "WQWcYDkX",
-                    "name": "Div",
-                    "text": "",
-                    "props": {
-                      "value": {}
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "50%",
-                          "type": "string"
-                        },
-                        "padding": {
-                          "value": "5px",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": [
-                      {
-                        "id": "NySYmwaO",
-                        "name": "Div",
-                        "text": "div",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "padding": {
-                              "value": "5px",
-                              "type": "string"
-                            },
-                            "border-radius": {
-                              "value": "5px",
-                              "type": "string"
-                            },
-                            "background-color": {
-                              "value": "rgba(128, 128, 128, 0.1)",
-                              "type": "string"
-                            },
-                            "margin-bottom": {
-                              "value": "5px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": "RBPAQFwm",
-                    "name": "Div",
-                    "text": "",
-                    "props": {
-                      "value": {}
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "50%",
-                          "type": "string"
-                        },
-                        "padding": {
-                          "value": "5px",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": [
-                      {
-                        "id": "AFetiBdc",
-                        "name": "Div",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "height": {
-                              "value": "50%",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [
-                          {
-                            "id": "NStkhGwA",
-                            "name": "Div",
-                            "text": "",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {
-                                "border-radius": {
-                                  "value": "5px",
-                                  "type": "string"
-                                },
-                                "background-color": {
-                                  "value": "rgba(128, 128, 128, 0.1)",
-                                  "type": "string"
-                                },
-                                "display": {
-                                  "value": "flex",
-                                  "type": "string"
-                                },
-                                "justify-content": {
-                                  "value": "center",
-                                  "type": "string"
-                                },
-                                "align-items": {
-                                  "value": "center",
-                                  "type": "string"
-                                },
-                                "padding-left": {
-                                  "value": "5px",
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "children": [
-                              {
-                                "id": "uHCxfJqK",
-                                "name": "Div",
-                                "text": "",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {
-                                    "flex": {
-                                      "value": "1",
-                                      "type": "string"
-                                    },
-                                    "padding": {
-                                      "value": "5px",
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "children": [
-                                  {
-                                    "id": "aKbCqmqL",
-                                    "name": "Div",
-                                    "text": "div",
-                                    "props": {
-                                      "value": {}
-                                    },
-                                    "style": {
-                                      "value": {}
-                                    },
-                                    "children": []
-                                  },
-                                  {
-                                    "id": "IUxlpXlW",
-                                    "name": "Div",
-                                    "text": "SDdfvSD",
-                                    "props": {
-                                      "value": {}
-                                    },
-                                    "style": {
-                                      "value": {
-                                        "color": {
-                                          "value": "#888",
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "children": []
-                                  }
-                                ]
-                              },
-                              {
-                                "id": "uHiQAzOI",
-                                "name": "Div",
-                                "text": "",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {}
-                                },
-                                "children": [
-                                  {
-                                    "id": "fXdsEZkN",
-                                    "name": "svg",
-                                    "text": "",
-                                    "props": {
-                                      "value": {}
-                                    },
-                                    "style": {
-                                      "value": {
-                                        "width": {
-                                          "value": "26px",
-                                          "type": "string"
-                                        },
-                                        "height": {
-                                          "value": "26px",
-                                          "type": "string"
-                                        },
-                                        "fill": {
-                                          "value": "#666",
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "children": [],
-                                    "data": "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z",
-                                    "title": "mdiClose"
-                                  }
-                                ]
-                              },
-                              {
-                                "id": "ufBQjmyA",
-                                "name": "Div",
-                                "text": "",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {}
-                                },
-                                "children": [
-                                  {
-                                    "id": "RRiJlHbv",
-                                    "name": "svg",
-                                    "text": "",
-                                    "props": {
-                                      "value": {}
-                                    },
-                                    "style": {
-                                      "value": {
-                                        "width": {
-                                          "value": "26px",
-                                          "type": "string"
-                                        },
-                                        "height": {
-                                          "value": "26px",
-                                          "type": "string"
-                                        },
-                                        "fill": {
-                                          "value": "#666",
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "children": [],
-                                    "data": "M8 15H16L12 8",
-                                    "title": "mdiTriangleSmallUp"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "id": "mXObqkgw",
-                        "name": "Div",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "margin-top": {
-                              "value": "5px",
-                              "type": "string"
-                            },
-                            "border-top": {
-                              "value": "dotted 1px gray",
-                              "type": "string"
-                            },
-                            "padding": {
-                              "value": "5px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "50%",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [
-                          {
-                            "id": "JNwQTEEd",
-                            "name": "Div",
-                            "text": "props: {",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {}
-                            },
-                            "children": [
-                              {
-                                "id": "UOGIzAtn",
-                                "name": "Span",
-                                "text": "+",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {}
-                                },
-                                "children": []
-                              }
-                            ]
-                          },
-                          {
-                            "id": "xYIaEXzN",
-                            "name": "Div",
-                            "text": "class: root",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {
-                                "margin-left": {
-                                  "value": "10px",
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "children": [
-                              {
-                                "id": "XukmDQIf",
-                                "name": "Span",
-                                "text": "-",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {}
-                                },
-                                "children": []
-                              }
-                            ]
-                          },
-                          {
-                            "id": "dJEPTZXw",
-                            "name": "Div",
-                            "text": "}",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {}
-                            },
-                            "children": []
-                          },
-                          {
-                            "id": "fPmBcrDx",
-                            "name": "Div",
-                            "text": "css: {",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {}
-                            },
-                            "children": [
-                              {
-                                "id": "fYEQOCGM",
-                                "name": "Span",
-                                "text": "+",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {}
-                                },
-                                "children": []
-                              }
-                            ]
-                          },
-                          {
-                            "id": "ewXLBPxm",
-                            "name": "Div",
-                            "text": "height: 100dvh",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {
-                                "margin-left": {
-                                  "value": "10px",
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "children": [
-                              {
-                                "id": "LBNeQsoT",
-                                "name": "Span",
-                                "text": "-",
-                                "props": {
-                                  "value": {}
-                                },
-                                "style": {
-                                  "value": {}
-                                },
-                                "children": []
-                              }
-                            ]
-                          },
-                          {
-                            "id": "ZQOMzkHs",
-                            "name": "Div",
-                            "text": "}",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {}
-                            },
-                            "children": []
-                          },
-                          {
-                            "id": "PDIBWGoa",
-                            "name": "Div",
-                            "text": "text:",
-                            "props": {
-                              "value": {}
-                            },
-                            "style": {
-                              "value": {}
-                            },
-                            "children": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "WfzysOUx",
-                "name": "Div",
-                "text": "",
-                "props": {
-                  "value": {}
-                },
-                "style": {
-                  "value": {
-                    "background-color": {
-                      "value": "white",
-                      "type": "string"
-                    },
-                    "padding": {
-                      "value": "5px",
-                      "type": "string"
-                    },
-                    "display": {
-                      "value": "flex",
-                      "type": "string"
-                    },
-                    "align-items": {
-                      "value": "center",
-                      "type": "string"
-                    },
-                    "justify-content": {
-                      "value": "center",
-                      "type": "string"
-                    }
-                  }
-                },
-                "children": [
-                  {
-                    "id": "CztkGxAa",
-                    "name": "Div",
-                    "text": "",
-                    "props": {
-                      "value": {}
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "50%",
-                          "type": "string"
-                        },
-                        "justify-content": {
-                          "value": "space-around",
-                          "type": "string"
-                        },
-                        "align-items": {
-                          "value": "center",
-                          "type": "string"
-                        },
-                        "display": {
-                          "value": "flex",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": [
-                      {
-                        "id": "yqlmVfcU",
-                        "name": "Button",
-                        "text": "Save",
-                        "props": {
-                          "value": {
-                            "class": {
-                              "value": "button outline",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "style": {
-                          "value": {}
-                        },
-                        "children": []
-                      },
-                      {
-                        "id": "JKUPZXSw",
-                        "name": "Button",
-                        "text": "Load",
-                        "props": {
-                          "value": {
-                            "class": {
-                              "value": "button outline primary",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "style": {
-                          "value": {}
-                        },
-                        "children": []
-                      },
-                      {
-                        "id": "LBCekUGr",
-                        "name": "Button",
-                        "text": "Export",
-                        "props": {
-                          "value": {
-                            "class": {
-                              "value": "button outline",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "style": {
-                          "value": {}
-                        },
-                        "children": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": "nQCFizSh",
-                    "name": "Div",
-                    "text": "",
-                    "props": {
-                      "value": {}
-                    },
-                    "style": {
-                      "value": {
-                        "width": {
-                          "value": "50%",
-                          "type": "string"
-                        },
-                        "display": {
-                          "value": "flex",
-                          "type": "string"
-                        },
-                        "align-items": {
-                          "value": "center",
-                          "type": "string"
-                        },
-                        "justify-content": {
-                          "value": "space-around",
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "children": [
-                      {
-                        "id": "PlfaAmFZ",
-                        "name": "svg",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "width": {
-                              "value": "26px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "26px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [],
-                        "data": "M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z",
-                        "title": "mdiCellphone"
-                      },
-                      {
-                        "id": "OZQBPTfe",
-                        "name": "svg",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "width": {
-                              "value": "26px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "26px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [],
-                        "data": "M19,18H5V6H19M21,4H3C1.89,4 1,4.89 1,6V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V6C23,4.89 22.1,4 21,4Z",
-                        "title": "mdiTablet"
-                      },
-                      {
-                        "id": "BGcOJqLi",
-                        "name": "svg",
-                        "text": "",
-                        "props": {
-                          "value": {}
-                        },
-                        "style": {
-                          "value": {
-                            "width": {
-                              "value": "26px",
-                              "type": "string"
-                            },
-                            "height": {
-                              "value": "26px",
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "children": [],
-                        "data": "M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z",
-                        "title": "mdiLaptop"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+          ],
+          "props": {},
+          "css": {
+            "max-width": "1200px",
+            "margin": "0 auto",
+            "padding": "24px 32px",
+            "display": "flex",
+            "align-items": "center",
+            "justify-content": "space-between",
+            "gap": "24px",
+            "position": "sticky",
+            "top": "0",
+            "background-color": "rgba(255,255,255,0.92)",
+            "backdrop-filter": "blur(14px)",
+            "z-index": "20",
+            "border-bottom": "1px solid #e5e7eb"
           },
-          {
-            "id": "MHiEBfye",
-            "name": "Div",
-            "text": "",
-            "props": {
-              "value": {}
+          "text": ""
+        },
+        {
+          "name": "Div",
+          "id": "HeroSection",
+          "children": [
+            {
+              "name": "Span",
+              "id": "HeroEyebrow",
+              "children": [],
+              "props": {},
+              "css": {
+                "display": "inline-block",
+                "padding": "8px 12px",
+                "border-radius": "999px",
+                "background-color": "#e8fff2",
+                "color": "#14854F",
+                "font-size": "0.9rem",
+                "font-weight": "700",
+                "text-transform": "uppercase",
+                "letter-spacing": "0.08em"
+              },
+              "text": "Open Source Audio Production"
             },
-            "style": {
-              "value": {
-                "height": {
-                  "value": "100%",
-                  "type": "string"
+            {
+              "name": "H1",
+              "id": "HeroTitle",
+              "children": [],
+              "props": {},
+              "css": {
+                "font-size": "4.4rem",
+                "line-height": "1.02",
+                "letter-spacing": "-0.05em",
+                "margin": "0",
+                "color": "#0f172a",
+                "max-width": "820px"
+              },
+              "text": "A modern digital audio workstation built in Rust"
+            },
+            {
+              "name": "P",
+              "id": "HeroBody",
+              "children": [],
+              "props": {},
+              "css": {
+                "font-size": "1.25rem",
+                "line-height": "1.75",
+                "color": "#4b5563",
+                "max-width": "760px",
+                "margin": "0"
+              },
+              "text": "Record, edit MIDI, automate mixes, route plugins, and build transparent music-production workflows with a community-driven DAW you can actually inspect and extend."
+            },
+            {
+              "name": "Div",
+              "id": "HeroActions",
+              "children": [
+                {
+                  "name": "A",
+                  "id": "PrimaryCta",
+                  "children": [],
+                  "props": {
+                    "href": "https://github.com/maolan/maolan"
+                  },
+                  "css": {
+                    "padding": "14px 22px",
+                    "border-radius": "999px",
+                    "background-color": "#14854F",
+                    "color": "white",
+                    "text-decoration": "none",
+                    "font-weight": "700",
+                    "box-shadow": "0 12px 30px rgba(20,133,79,0.22)"
+                  },
+                  "text": "View on GitHub"
                 },
-                "flex": {
-                  "value": "1",
-                  "type": "string"
+                {
+                  "name": "A",
+                  "id": "SecondaryCta",
+                  "children": [],
+                  "props": {
+                    "href": "#features"
+                  },
+                  "css": {
+                    "padding": "14px 22px",
+                    "border-radius": "999px",
+                    "background-color": "white",
+                    "color": "#111827",
+                    "text-decoration": "none",
+                    "font-weight": "700",
+                    "border": "1px solid #d1d5db"
+                  },
+                  "text": "See features"
                 }
-              }
+              ],
+              "props": {},
+              "css": {
+                "display": "flex",
+                "gap": "14px",
+                "flex-wrap": "wrap"
+              },
+              "text": ""
             },
-            "children": []
-          }
-        ]
-      }
-    ]
-  },
-  "theme": {
-    "value": {
-      "bg-color": {
-        "value": "#ffffff",
-        "type": "color"
+            {
+              "name": "Div",
+              "id": "HeroPanel",
+              "children": [
+                {
+                  "name": "Div",
+                  "id": "HeroPanelTop",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "HeroPanelLabel",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "0.85rem",
+                        "font-weight": "700",
+                        "text-transform": "uppercase",
+                        "letter-spacing": "0.08em",
+                        "color": "#6b7280"
+                      },
+                      "text": "Workspace Preview"
+                    },
+                    {
+                      "name": "Span",
+                      "id": "HeroPanelMeta",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "color": "#6b7280",
+                        "font-size": "0.95rem"
+                      },
+                      "text": "Timeline • MIDI • Routing"
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "display": "flex",
+                    "justify-content": "space-between",
+                    "align-items": "center",
+                    "margin-bottom": "18px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "HeroPanelScreen",
+                  "children": [
+                    {
+                      "name": "Div",
+                      "id": "HeroTrackOne",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "height": "52px",
+                        "border-radius": "14px",
+                        "background": "linear-gradient(90deg,#14854F,#1fbf70)"
+                      },
+                      "text": ""
+                    },
+                    {
+                      "name": "Div",
+                      "id": "HeroTrackTwo",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "height": "52px",
+                        "border-radius": "14px",
+                        "background": "linear-gradient(90deg,#111827,#374151)"
+                      },
+                      "text": ""
+                    },
+                    {
+                      "name": "Div",
+                      "id": "HeroTrackThree",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "height": "52px",
+                        "border-radius": "14px",
+                        "background": "linear-gradient(90deg,#c7d2fe,#8b5cf6)"
+                      },
+                      "text": ""
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "display": "grid",
+                    "gap": "14px"
+                  },
+                  "text": ""
+                }
+              ],
+              "props": {},
+              "css": {
+                "margin-top": "18px",
+                "padding": "24px",
+                "border-radius": "28px",
+                "background": "linear-gradient(180deg,#ffffff,#f7faf8)",
+                "border": "1px solid #dbe3dc",
+                "box-shadow": "0 20px 60px rgba(15,23,42,0.08)",
+                "max-width": "760px"
+              },
+              "text": ""
+            }
+          ],
+          "props": {
+            "id": "features"
+          },
+          "css": {
+            "max-width": "1200px",
+            "margin": "0 auto",
+            "padding": "72px 32px 48px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "24px"
+          },
+          "text": ""
+        },
+        {
+          "name": "Div",
+          "id": "CapabilitiesSection",
+          "children": [
+            {
+              "name": "H2",
+              "id": "CapabilitiesTitle",
+              "children": [],
+              "props": {},
+              "css": {
+                "font-size": "2.4rem",
+                "margin": "0",
+                "color": "#111827",
+                "letter-spacing": "-0.03em"
+              },
+              "text": "Key capabilities"
+            },
+            {
+              "name": "Div",
+              "id": "CapabilitiesGrid",
+              "children": [
+                {
+                  "name": "Div",
+                  "id": "CapOne",
+                  "children": [
+                    {
+                      "name": "H3",
+                      "id": "CapOneTitle",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.2rem",
+                        "color": "#111827"
+                      },
+                      "text": "Multi-track timeline"
+                    },
+                    {
+                      "name": "P",
+                      "id": "CapOneBody",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Arrange unlimited audio and MIDI tracks with precise timing, editing, and visual structure."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "24px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "12px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "CapTwo",
+                  "children": [
+                    {
+                      "name": "H3",
+                      "id": "CapTwoTitle",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.2rem",
+                        "color": "#111827"
+                      },
+                      "text": "Piano roll MIDI editing"
+                    },
+                    {
+                      "name": "P",
+                      "id": "CapTwoBody",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Shape notes, velocity, and automation with a focused editor designed for composition and refinement."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "24px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "12px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "CapThree",
+                  "children": [
+                    {
+                      "name": "H3",
+                      "id": "CapThreeTitle",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.2rem",
+                        "color": "#111827"
+                      },
+                      "text": "Plugin hosting and routing"
+                    },
+                    {
+                      "name": "P",
+                      "id": "CapThreeBody",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Load CLAP, VST3, and LV2 plugins and build explicit routing chains for serious mixing workflows."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "24px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "12px"
+                  },
+                  "text": ""
+                }
+              ],
+              "props": {},
+              "css": {
+                "display": "grid",
+                "grid-template-columns": "repeat(3,minmax(0,1fr))",
+                "gap": "18px"
+              },
+              "text": ""
+            }
+          ],
+          "props": {},
+          "css": {
+            "max-width": "1200px",
+            "margin": "0 auto",
+            "padding": "12px 32px 56px",
+            "display": "grid",
+            "gap": "22px"
+          },
+          "text": ""
+        },
+        {
+          "name": "Div",
+          "id": "ProblemSolutionSection",
+          "children": [
+            {
+              "name": "Div",
+              "id": "ProblemCard",
+              "children": [
+                {
+                  "name": "H2",
+                  "id": "ProblemTitle",
+                  "children": [],
+                  "props": {},
+                  "css": {
+                    "margin": "0",
+                    "font-size": "2rem",
+                    "color": "#ffffff"
+                  },
+                  "text": "The challenge"
+                },
+                {
+                  "name": "P",
+                  "id": "ProblemBody",
+                  "children": [],
+                  "props": {},
+                  "css": {
+                    "margin": "0",
+                    "line-height": "1.8",
+                    "color": "#cbd5e1"
+                  },
+                  "text": "Most modern DAWs are proprietary, expensive, and hard to adapt. Maolan argues for transparent tooling that musicians and developers can inspect, extend, and actually own."
+                }
+              ],
+              "props": {},
+              "css": {
+                "padding": "28px",
+                "border-radius": "28px",
+                "background": "#111827",
+                "display": "grid",
+                "gap": "16px"
+              },
+              "text": ""
+            },
+            {
+              "name": "Div",
+              "id": "SolutionCard",
+              "children": [
+                {
+                  "name": "H2",
+                  "id": "SolutionTitle",
+                  "children": [],
+                  "props": {},
+                  "css": {
+                    "margin": "0",
+                    "font-size": "2rem",
+                    "color": "#111827"
+                  },
+                  "text": "The solution"
+                },
+                {
+                  "name": "P",
+                  "id": "SolutionBody",
+                  "children": [],
+                  "props": {},
+                  "css": {
+                    "margin": "0",
+                    "line-height": "1.8",
+                    "color": "#4b5563"
+                  },
+                  "text": "A free Rust-based DAW built by the community, with modern audio features, explicit routing, automation, and source code you can read from top to bottom."
+                },
+                {
+                  "name": "Div",
+                  "id": "SolutionList",
+                  "children": [
+                    {
+                      "name": "P",
+                      "id": "SolutionOne",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-weight": "600",
+                        "color": "#14854F"
+                      },
+                      "text": "✓ 100% open source"
+                    },
+                    {
+                      "name": "P",
+                      "id": "SolutionTwo",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-weight": "600",
+                        "color": "#14854F"
+                      },
+                      "text": "✓ Built with Rust"
+                    },
+                    {
+                      "name": "P",
+                      "id": "SolutionThree",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-weight": "600",
+                        "color": "#14854F"
+                      },
+                      "text": "✓ Community-driven"
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "display": "grid",
+                    "gap": "12px"
+                  },
+                  "text": ""
+                }
+              ],
+              "props": {},
+              "css": {
+                "padding": "28px",
+                "border-radius": "28px",
+                "background": "white",
+                "border": "1px solid #e5e7eb",
+                "display": "grid",
+                "gap": "16px"
+              },
+              "text": ""
+            }
+          ],
+          "props": {},
+          "css": {
+            "max-width": "1200px",
+            "margin": "0 auto",
+            "padding": "12px 32px 56px",
+            "display": "grid",
+            "grid-template-columns": "1fr 1.25fr",
+            "gap": "20px"
+          },
+          "text": ""
+        },
+        {
+          "name": "Div",
+          "id": "WorkflowSection",
+          "children": [
+            {
+              "name": "H2",
+              "id": "WorkflowTitle",
+              "children": [],
+              "props": {
+                "id": "workflow"
+              },
+              "css": {
+                "font-size": "2.4rem",
+                "margin": "0",
+                "color": "#111827"
+              },
+              "text": "Complete production workflow"
+            },
+            {
+              "name": "Div",
+              "id": "WorkflowGrid",
+              "children": [
+                {
+                  "name": "Div",
+                  "id": "Step1",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "Step1Num",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "2rem",
+                        "font-weight": "800",
+                        "color": "#14854F"
+                      },
+                      "text": "1"
+                    },
+                    {
+                      "name": "H3",
+                      "id": "Step1Title",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.15rem"
+                      },
+                      "text": "Recording"
+                    },
+                    {
+                      "name": "P",
+                      "id": "Step1Body",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Capture audio from microphones and instruments with multiple inputs and practical monitoring."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "22px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "10px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "Step2",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "Step2Num",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "2rem",
+                        "font-weight": "800",
+                        "color": "#14854F"
+                      },
+                      "text": "2"
+                    },
+                    {
+                      "name": "H3",
+                      "id": "Step2Title",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.15rem"
+                      },
+                      "text": "Editing and composition"
+                    },
+                    {
+                      "name": "P",
+                      "id": "Step2Body",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Refine clips, write melodies in the piano roll, and shape arrangements with precision."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "22px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "10px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "Step3",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "Step3Num",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "2rem",
+                        "font-weight": "800",
+                        "color": "#14854F"
+                      },
+                      "text": "3"
+                    },
+                    {
+                      "name": "H3",
+                      "id": "Step3Title",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.15rem"
+                      },
+                      "text": "Plugins and routing"
+                    },
+                    {
+                      "name": "P",
+                      "id": "Step3Body",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Host plugins, design routing chains, and build flexible signal flow for complex sessions."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "22px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "10px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "Step4",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "Step4Num",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "2rem",
+                        "font-weight": "800",
+                        "color": "#14854F"
+                      },
+                      "text": "4"
+                    },
+                    {
+                      "name": "H3",
+                      "id": "Step4Title",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.15rem"
+                      },
+                      "text": "Automation"
+                    },
+                    {
+                      "name": "P",
+                      "id": "Step4Body",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Control levels, panning, and plugin parameters across time to shape dynamic mixes."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "22px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "10px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "Step5",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "Step5Num",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "2rem",
+                        "font-weight": "800",
+                        "color": "#14854F"
+                      },
+                      "text": "5"
+                    },
+                    {
+                      "name": "H3",
+                      "id": "Step5Title",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.15rem"
+                      },
+                      "text": "Mixing and mastering"
+                    },
+                    {
+                      "name": "P",
+                      "id": "Step5Body",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Balance, EQ, compress, and prepare the final project for release with transparent control."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "22px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "10px"
+                  },
+                  "text": ""
+                },
+                {
+                  "name": "Div",
+                  "id": "Step6",
+                  "children": [
+                    {
+                      "name": "Span",
+                      "id": "Step6Num",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "font-size": "2rem",
+                        "font-weight": "800",
+                        "color": "#14854F"
+                      },
+                      "text": "6"
+                    },
+                    {
+                      "name": "H3",
+                      "id": "Step6Title",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "font-size": "1.15rem"
+                      },
+                      "text": "Export"
+                    },
+                    {
+                      "name": "P",
+                      "id": "Step6Body",
+                      "children": [],
+                      "props": {},
+                      "css": {
+                        "margin": "0",
+                        "line-height": "1.7",
+                        "color": "#4b5563"
+                      },
+                      "text": "Render mixes and stems for streaming, distribution, collaboration, or further processing."
+                    }
+                  ],
+                  "props": {},
+                  "css": {
+                    "padding": "22px",
+                    "border-radius": "24px",
+                    "background-color": "white",
+                    "border": "1px solid #e5e7eb",
+                    "display": "grid",
+                    "gap": "10px"
+                  },
+                  "text": ""
+                }
+              ],
+              "props": {},
+              "css": {
+                "display": "grid",
+                "grid-template-columns": "repeat(3,minmax(0,1fr))",
+                "gap": "18px"
+              },
+              "text": ""
+            }
+          ],
+          "props": {},
+          "css": {
+            "max-width": "1200px",
+            "margin": "0 auto",
+            "padding": "8px 32px 72px",
+            "display": "grid",
+            "gap": "24px"
+          },
+          "text": ""
+        },
+        {
+          "name": "Div",
+          "id": "FooterSection",
+          "children": [
+            {
+              "name": "P",
+              "id": "FooterBody",
+              "children": [],
+              "props": {},
+              "css": {
+                "margin": "0",
+                "color": "#6b7280"
+              },
+              "text": "Maolan is a modern open-source digital audio workstation built in Rust for transparent music production."
+            },
+            {
+              "name": "A",
+              "id": "FooterLink",
+              "children": [],
+              "props": {
+                "href": "https://github.com/maolan/maolan"
+              },
+              "css": {
+                "text-decoration": "none",
+                "color": "#14854F",
+                "font-weight": "700"
+              },
+              "text": "Visit GitHub"
+            }
+          ],
+          "props": {
+            "id": "faq"
+          },
+          "css": {
+            "max-width": "1200px",
+            "margin": "0 auto",
+            "padding": "28px 32px 64px",
+            "display": "flex",
+            "align-items": "center",
+            "justify-content": "space-between",
+            "gap": "24px",
+            "border-top": "1px solid #e5e7eb"
+          },
+          "text": ""
+        }
+      ],
+      "props": {},
+      "css": {
+        "min-height": "100dvh",
+        "background": "linear-gradient(180deg,#f8faf9 0%,#ffffff 30%,#f7faf8 100%)",
+        "font-family": "Inter, sans-serif"
       },
-      "bg-secondary-color": {
-        "value": "#f3f3f6",
-        "type": "color"
-      },
-      "color-primary": {
-        "value": "#14854F",
-        "type": "color"
-      },
-      "color-lightGrey": {
-        "value": "#d2d6dd",
-        "type": "color"
-      },
-      "color-grey": {
-        "value": "#747681",
-        "type": "color"
-      },
-      "color-darkGrey": {
-        "value": "#3f4144",
-        "type": "color"
-      },
-      "color-error": {
-        "value": "#d43939",
-        "type": "color"
-      },
-      "color-success": {
-        "value": "#28bd14",
-        "type": "color"
-      },
-      "grid-maxWidth": {
-        "value": "120rem",
-        "type": "string"
-      },
-      "grid-gutter": {
-        "value": "2rem",
-        "type": "string"
-      },
-      "font-size": {
-        "value": "1.6rem",
-        "type": "string"
-      },
-      "font-color": {
-        "value": "#333333",
-        "type": "color"
-      },
-      "font-family-sans": {
-        "value": "",
-        "type": "string"
-      },
-      "font-family-mono": {
-        "value": "monaco, Consolas, Lucida Console, monospace",
-        "type": "string"
-      }
+      "text": "",
+      "open": true
     }
+  ],
+  "theme": {
+    "bg-color": {
+      "parsed": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1
+      },
+      "rgba": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1
+      }
+    },
+    "bg-secondary-color": {
+      "parsed": {
+        "r": 243,
+        "g": 243,
+        "b": 246,
+        "a": 1
+      },
+      "rgba": {
+        "r": 243,
+        "g": 243,
+        "b": 246,
+        "a": 1
+      }
+    },
+    "color-primary": {
+      "parsed": {
+        "r": 20,
+        "g": 133,
+        "b": 79,
+        "a": 1
+      },
+      "rgba": {
+        "r": 20,
+        "g": 133,
+        "b": 79,
+        "a": 1
+      }
+    },
+    "color-lightGrey": {
+      "parsed": {
+        "r": 210,
+        "g": 214,
+        "b": 221,
+        "a": 1
+      },
+      "rgba": {
+        "r": 210,
+        "g": 214,
+        "b": 221,
+        "a": 1
+      }
+    },
+    "color-grey": {
+      "parsed": {
+        "r": 116,
+        "g": 118,
+        "b": 129,
+        "a": 1
+      },
+      "rgba": {
+        "r": 116,
+        "g": 118,
+        "b": 129,
+        "a": 1
+      }
+    },
+    "color-darkGrey": {
+      "parsed": {
+        "r": 63,
+        "g": 65,
+        "b": 68,
+        "a": 1
+      },
+      "rgba": {
+        "r": 63,
+        "g": 65,
+        "b": 68,
+        "a": 1
+      }
+    },
+    "color-error": {
+      "parsed": {
+        "r": 212,
+        "g": 57,
+        "b": 57,
+        "a": 1
+      },
+      "rgba": {
+        "r": 212,
+        "g": 57,
+        "b": 57,
+        "a": 1
+      }
+    },
+    "color-success": {
+      "parsed": {
+        "r": 40,
+        "g": 189,
+        "b": 20,
+        "a": 1
+      },
+      "rgba": {
+        "r": 40,
+        "g": 189,
+        "b": 20,
+        "a": 1
+      }
+    },
+    "grid-maxWidth": "120rem",
+    "grid-gutter": "2rem",
+    "font-size": "1.6rem",
+    "font-color": {
+      "parsed": {
+        "r": 51,
+        "g": 51,
+        "b": 51,
+        "a": 1
+      },
+      "rgba": {
+        "r": 51,
+        "g": 51,
+        "b": 51,
+        "a": 1
+      }
+    },
+    "font-family-sans": "sans-serif",
+    "font-family-mono": "monaco, Consolas, Lucida Console, monospace"
   }
 }
