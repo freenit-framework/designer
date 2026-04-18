@@ -4,14 +4,11 @@
   import Element from './Element.svelte'
 
   const { component } = $props()
-  let css = $state(style(component.css))
-
-  $effect(() => {
+  let css = $derived.by(() => {
     if (store.design.selected?.id === component.id) {
-      css = style({ ...component.css, border: '1px dotted gray' })
-    } else {
-      css = style(component.css)
+      return style({ ...component.css, border: '1px dotted gray' })
     }
+    return style(component.css)
   })
 </script>
 

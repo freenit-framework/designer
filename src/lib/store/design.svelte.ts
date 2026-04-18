@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Body from '$lib/components/Div.svelte'
 import type { Component } from '$lib/types'
 

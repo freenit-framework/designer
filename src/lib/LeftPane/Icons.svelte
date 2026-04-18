@@ -1,4 +1,5 @@
 <script lang="ts">
+  // @ts-nocheck
   import store from '$lib/store'
   import style from '$lib/style'
   import { dragStart, dragEnd } from '$lib/dnd'

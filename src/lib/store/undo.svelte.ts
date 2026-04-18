@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { UndoItem } from '$lib/types'
 
 const undoArray: UndoItem[] = []

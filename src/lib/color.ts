@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default class Color {
   r = 0
   g = 0

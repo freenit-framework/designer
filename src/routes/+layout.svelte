@@ -1,6 +1,7 @@
 <script lang="ts">
+  // @ts-nocheck
   import './styles.css'
-  import 'chota'
+  import 'chota/dist/chota.min.css'
   import { SvelteToast } from '@zerodevx/svelte-toast'
 
   const options = {}

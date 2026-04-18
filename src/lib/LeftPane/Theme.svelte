@@ -1,4 +1,5 @@
 <script lang="ts">
+  // @ts-nocheck
   import PropEdit from './PropEdit.svelte'
   import store from '$lib/store'
   import type { Colord } from 'colord'

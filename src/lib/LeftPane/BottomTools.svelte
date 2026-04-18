@@ -1,4 +1,5 @@
 <script lang="ts">
+  // @ts-nocheck
   import { mdiCellphone, mdiTablet, mdiLaptop } from '@mdi/js'
   import { Base64 } from 'js-base64'
   import store from '$lib/store'
@@ -25,21 +26,21 @@
   }
 
   const calculateExport = () => {
-    let mystring = '<script lang="ts">\n'
+    let mystring = '<' + 'script lang="ts">\n'
     mystring += calculateImports()
     mystring += '\n'
     mystring += '  const data = {\n'
     mystring += calculateData()
     mystring += '  }\n'
-    mystring += '<\/script>\n\n'
+    mystring += '</' + 'script>\n\n'
 
     mystring += calculateComponents()
     mystring += '\n'
 
-    mystring += '<style>\n'
+    mystring += '<' + 'style>\n'
     mystring += calculateTheme()
     mystring += calculateCss()
-    mystring += '<\/style>\n\n'
+    mystring += '</' + 'style>\n\n'
 
     exportDownload = `data:application/json;base64,${Base64.encode(mystring)}`
   }

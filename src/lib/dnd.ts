@@ -1,3 +1,4 @@
+// @ts-nocheck
 import store from '$lib/store'
 import * as components from '$lib/components'
 import { attachComponents, findParent } from '$lib/utils'

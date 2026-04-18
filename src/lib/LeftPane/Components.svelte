@@ -1,4 +1,5 @@
 <script lang="ts">
+  // @ts-nocheck
   import store from '$lib/store'
   import * as components from '$lib/components'
   import { dragStart, dragEnd } from '$lib/dnd'

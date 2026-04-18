@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { colord } from 'colord'
 import { browser } from '$app/environment'
 

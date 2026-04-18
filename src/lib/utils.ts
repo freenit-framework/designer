@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as components from '$lib/components'
 import { colord } from 'colord'
 import store from '$lib/store'

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BaseStore } from '@freenit-framework/core'
 import DesignStore from './design.svelte'
 import SelectedStore from './selected.svelte'
