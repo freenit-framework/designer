@@ -3,10 +3,16 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "bin": {
+    "designer-render-html": "./bin/render-html.js",
+    "designer-render-svelte": "./bin/render-svelte.js"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
+    "render:html": "node ./bin/render-html.js",
+    "render:svelte": "node ./bin/render-svelte.js",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

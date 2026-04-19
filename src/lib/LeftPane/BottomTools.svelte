@@ -2,17 +2,9 @@
   // @ts-nocheck
   import { mdiCellphone, mdiTablet, mdiLaptop } from '@mdi/js'
   import { Base64 } from 'js-base64'
+  import { renderSvelte } from '$lib/export'
   import store from '$lib/store'
-  import {
-    attachComponents,
-    calculateComponents,
-    calculateCss,
-    calculateData,
-    calculateImports,
-    calculateTheme,
-    setColors,
-    setThemeColors,
-  } from '$lib/utils'
+  import { attachComponents, setColors, setThemeColors } from '$lib/utils'
   import type { Component } from '$lib/types'
 
   let fileInput: any
@@ -26,22 +18,7 @@
   }
 
   const calculateExport = () => {
-    let mystring = '<' + 'script lang="ts">\n'
-    mystring += calculateImports()
-    mystring += '\n'
-    mystring += '  const data = {\n'
-    mystring += calculateData()
-    mystring += '  }\n'
-    mystring += '</' + 'script>\n\n'
-
-    mystring += calculateComponents()
-    mystring += '\n'
-
-    mystring += '<' + 'style>\n'
-    mystring += calculateTheme()
-    mystring += calculateCss()
-    mystring += '</' + 'style>\n\n'
-
+    const mystring = renderSvelte(store.design.children, store.theme.detail)
     exportDownload = `data:application/json;base64,${Base64.encode(mystring)}`
   }
 
