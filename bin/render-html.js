@@ -23,14 +23,17 @@ try {
 
 const design = Array.isArray(payload?.design) ? payload.design : null
 const theme = payload?.theme && typeof payload.theme === 'object' ? payload.theme : {}
+const documentMeta =
+  payload?.document && typeof payload.document === 'object' ? payload.document : {}
 
 if (!design) {
   console.error('Invalid design JSON: top-level "design" must be an array.')
   process.exit(1)
 }
 
+const includeChota = documentMeta.includeChota !== false
 const chotaPath = path.resolve(process.cwd(), 'node_modules/chota/dist/chota.min.css')
-const chotaCss = fs.existsSync(chotaPath) ? fs.readFileSync(chotaPath, 'utf8') : ''
+const chotaCss = includeChota && fs.existsSync(chotaPath) ? fs.readFileSync(chotaPath, 'utf8') : ''
 
 const voidTags = new Set([
   'area',
@@ -54,14 +57,31 @@ function toTagName(name) {
 }
 
 function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
+  return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 }
 
 function escapeAttribute(value) {
   return escapeHtml(value).replaceAll('"', '&quot;')
+}
+
+function renderAttributesFromObject(attrsObject) {
+  if (!attrsObject || typeof attrsObject !== 'object') {
+    return ''
+  }
+
+  const attrs = []
+  for (const [key, rawValue] of Object.entries(attrsObject)) {
+    if (rawValue === false || rawValue == null) {
+      continue
+    }
+    if (rawValue === true) {
+      attrs.push(key)
+      continue
+    }
+    attrs.push(`${key}="${escapeAttribute(rawValue)}"`)
+  }
+
+  return attrs.length > 0 ? ` ${attrs.join(' ')}` : ''
 }
 
 function normalizeCssValue(value) {
@@ -156,21 +176,46 @@ function renderComponent(component, level = 2) {
 const themeCss = renderTheme(theme)
 const componentCss = design.flatMap((component) => renderComponentCss(component))
 const styleSections = [chotaCss, themeCss, ...componentCss].filter(Boolean)
-const bodyMarkup = design.map((component) => renderComponent(component)).filter(Boolean).join('\n')
+const renderedDesignMarkup = design
+  .map((component) => renderComponent(component))
+  .filter(Boolean)
+  .join('\n')
+const usesRawBody = typeof documentMeta.rawBody === 'string' && documentMeta.rawBody.trim()
+const bodyMarkup = usesRawBody ? documentMeta.rawBody.trim() : renderedDesignMarkup
+const htmlAttrs = renderAttributesFromObject(documentMeta.htmlProps)
+const bodyAttrs = renderAttributesFromObject(documentMeta.bodyProps)
+const headEntries = Array.isArray(documentMeta.head) ? documentMeta.head : []
+const headStyleEntries = headEntries.filter(
+  (entry) => typeof entry === 'string' && entry.trim().toLowerCase().startsWith('<style'),
+)
+const headNonStyleEntries = headEntries.filter(
+  (entry) => !(typeof entry === 'string' && entry.trim().toLowerCase().startsWith('<style')),
+)
+const headMarkup = headNonStyleEntries.join('\n  ')
+const headStyleMarkup = headStyleEntries.join('\n  ')
+const bodyAppendMarkup =
+  !usesRawBody && Array.isArray(documentMeta.bodyAppend) ? documentMeta.bodyAppend.join('\n  ') : ''
+const defaultTitle = escapeHtml(path.basename(resolvedInputPath, path.extname(resolvedInputPath)))
+const hasTitle = headEntries.some(
+  (entry) => typeof entry === 'string' && entry.trim().toLowerCase().startsWith('<title'),
+)
 
 const html = [
   '<!doctype html>',
-  '<html lang="en">',
+  `<html${htmlAttrs || ' lang="en"'}>`,
   '<head>',
   '  <meta charset="utf-8">',
   '  <meta name="viewport" content="width=device-width, initial-scale=1">',
-  `  <title>${escapeHtml(path.basename(resolvedInputPath, path.extname(resolvedInputPath)))}</title>`,
+  ...(hasTitle ? [] : [`  <title>${defaultTitle}</title>`]),
+  ...(headMarkup ? [`  ${headMarkup}`] : []),
   '  <style>',
   styleSections.join('\n\n'),
   '  </style>',
+  ...(headStyleMarkup ? [`  ${headStyleMarkup}`] : []),
   '</head>',
-  '<body>',
+  `<body${bodyAttrs}>`,
   bodyMarkup,
+  ...(bodyAppendMarkup ? [`  ${bodyAppendMarkup}`] : []),
   '</body>',
   '</html>',
 ].join('\n')

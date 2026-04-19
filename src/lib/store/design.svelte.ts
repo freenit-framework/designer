@@ -8,6 +8,14 @@ export default class DesignStore {
   device: string = $state('desktop')
   filter: string = $state('')
   over: Component | null = $state(null)
+  document = $state({
+    includeChota: true,
+    htmlProps: { lang: 'en' },
+    bodyProps: {},
+    head: [],
+    bodyAppend: [],
+    rawBody: '',
+  })
   id: 'root'
   name: 'root'
   title: 'root'
