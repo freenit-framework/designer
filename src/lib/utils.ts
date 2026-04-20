@@ -78,6 +78,35 @@ export const findParent = (parentid: str): Component | null => {
   return null
 }
 
+const _findOwner = (targetid: string, parent: Component): Component | null => {
+  for (const child of parent.children) {
+    if (child.id === targetid) {
+      return parent
+    }
+    const nested = _findOwner(targetid, child)
+    if (nested) {
+      return nested
+    }
+  }
+  return null
+}
+
+export const removeSelected = () => {
+  const selected = store.design.selected
+  if (!selected) {
+    return
+  }
+
+  const parent = _findOwner(selected.id, store.design)
+  if (!parent) {
+    return
+  }
+
+  store.undo.action(parent, 'children', [...parent.children])
+  parent.children = parent.children.filter((child) => child.id !== selected.id)
+  store.design.selected = null
+}
+
 const _calculateData = (component: Component) => {
   let ret = ''
   if (component.text) {
