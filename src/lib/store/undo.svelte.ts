@@ -61,7 +61,7 @@ export default class UndoStore {
             parent[attribute] = value
           }
         }
-        this.redolist.push(myundo)
+        this.undolist.push(myundo)
       }
     }
   }
@@ -77,10 +77,9 @@ export default class UndoStore {
     }
     const item = this.undolist.pop()
     if (item.parent) {
-      item.push({ parent, attribute, value })
-      this.undolist.push(item)
+      this.undolist.push([item, { parent, attribute, value }])
     } else {
-      this.undolist.push(...item, { parent, attribute, value })
+      this.undolist.push([...item, { parent, attribute, value }])
     }
   }
 }
