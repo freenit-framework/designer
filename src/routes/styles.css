@@ -21,11 +21,11 @@ body {
 
 :root {
   --bg-color: #ffffff;
-  --bg-secondary-color: #f3f3f6;
-  --color-primary: #14854f;
-  --color-lightGrey: #d2d6dd;
-  --color-grey: #747681;
-  --color-darkGrey: #3f4144;
+  --bg-secondary-color: #f5f7fb;
+  --color-primary: #2f63f0;
+  --color-lightGrey: #d9e0eb;
+  --color-grey: #60708a;
+  --color-darkGrey: #1b2433;
   --color-error: #d43939;
   --color-success: #28bd14;
   --grid-maxWidth: 120rem;

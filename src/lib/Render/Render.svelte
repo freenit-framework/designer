@@ -66,7 +66,7 @@
   })
 </script>
 
-<div class="padding">
+<div class="padding" ondragover={allowDrop} ondrop={drop(store.design)} role="none">
   <div
     bind:this={root}
     class="root"

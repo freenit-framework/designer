@@ -5,11 +5,11 @@ import { browser } from '$app/environment'
 export default class ThemeStore {
   detail = $state({
     'bg-color': colord('#ffffff'),
-    'bg-secondary-color': colord('#f3f3f6'),
-    'color-primary': colord('#14854F'),
-    'color-lightGrey': colord('#d2d6dd'),
-    'color-grey': colord('#747681'),
-    'color-darkGrey': colord('#3f4144'),
+    'bg-secondary-color': colord('#f5f7fb'),
+    'color-primary': colord('#2f63f0'),
+    'color-lightGrey': colord('#d9e0eb'),
+    'color-grey': colord('#60708a'),
+    'color-darkGrey': colord('#1b2433'),
     'color-error': colord('#d43939'),
     'color-success': colord('#28bd14'),
     'grid-maxWidth': '120rem',

@@ -25,7 +25,8 @@
     store.design.selected = element
   }
 
-  const hover = () => {
+  const hover = (event: DragEvent) => {
+    allowDrop(event)
     store.design.over = element
   }
 
@@ -33,7 +34,7 @@
     store.design.over = null
   }
 
-  const setover = (event: Event) => {
+  const setover = (event: DragEvent) => {
     over = true
     return allowDrop(event)
   }
@@ -47,7 +48,7 @@
     dragEnd()
   }
 
-  const setpost = (event: Event) => {
+  const setpost = (event: DragEvent) => {
     post = true
     return allowDrop(event)
   }

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Body from '$lib/components/Div.svelte'
+import Div from '$lib/components/Div.svelte'
 import type { Component } from '$lib/types'
 
 export default class DesignStore {
@@ -16,11 +16,11 @@ export default class DesignStore {
     bodyAppend: [],
     rawBody: '',
   })
-  id: 'root'
-  name: 'root'
-  title: 'root'
-  props: {}
-  css: {}
-  text: ''
-  component: Div
+  id: string = 'root'
+  name: string = 'root'
+  title: string = 'root'
+  props: Record<string, any> = {}
+  css: Record<string, any> = {}
+  text: string = ''
+  component: any = Div
 }
