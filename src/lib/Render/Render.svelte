@@ -5,8 +5,6 @@
   import store from '$lib/store'
   import { allowDrop, drop } from '$lib/dnd'
 
-  let root: HTMLDivElement
-
   const cleanupInjectedNodes = () => {
     document.querySelectorAll('[data-designer-imported]').forEach((node) => node.remove())
   }
@@ -43,8 +41,6 @@
     cleanupInjectedNodes()
 
     const imported = store.design.document
-    const bodyClass = imported?.bodyProps?.class || ''
-    root.className = `root ${store.design.device === 'mobile' ? 'mobile' : ''} ${store.design.device === 'tablet' ? 'tablet' : ''} ${bodyClass}`.trim()
 
     if (Array.isArray(imported?.head)) {
       injectMarkup(imported.head, document.head)
@@ -68,8 +64,7 @@
 
 <div class="padding" ondragover={allowDrop} ondrop={drop(store.design)} role="none">
   <div
-    bind:this={root}
-    class="root"
+    class={`root ${store.design.document?.bodyProps?.class || ''}`}
     class:mobile={store.design.device === 'mobile'}
     class:tablet={store.design.device === 'tablet'}
     ondragover={allowDrop}
