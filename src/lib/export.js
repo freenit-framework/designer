@@ -7,6 +7,22 @@ function renderValue(value) {
   return value
 }
 
+const IDENTIFIER_RE = /^[A-Za-z_$][A-Za-z0-9_$]*$/
+
+function getIconName(component) {
+  const title = component?.title
+  if (typeof title !== 'string') {
+    return null
+  }
+
+  const trimmed = title.trim()
+  if (!trimmed || !IDENTIFIER_RE.test(trimmed)) {
+    return null
+  }
+
+  return trimmed
+}
+
 function calculateDataNode(component) {
   let ret = ''
   if (component.text) {
@@ -58,7 +74,12 @@ function calculateComponentNode(component, level = 0) {
   }
   for (const prop in component.props) {
     if (component.name === 'Path' && prop === 'd') {
-      ret += ` ${prop}={${component.title}}`
+      const iconName = getIconName(component)
+      if (iconName) {
+        ret += ` ${prop}={${iconName}}`
+      } else {
+        ret += ` ${prop}="${component.props[prop]}"`
+      }
     } else {
       ret += ` ${prop}="${component.props[prop]}"`
     }
@@ -93,24 +114,29 @@ export function calculateTheme(theme) {
   return ret
 }
 
-function calculateImportsNode(component) {
-  let ret = ''
+function collectImportsNode(component, icons) {
   if (component.name === 'Svg') {
-    ret += `\n    ${component.title},`
+    const iconName = getIconName(component)
+    if (iconName) {
+      icons.add(iconName)
+    }
   }
   for (const child of component.children) {
-    ret += calculateImportsNode(child)
+    collectImportsNode(child, icons)
   }
-  return ret
 }
 
 export function calculateImports(design) {
-  let ret = '  import {'
+  const icons = new Set()
   for (const component of design) {
-    ret += calculateImportsNode(component)
+    collectImportsNode(component, icons)
   }
-  ret += "\n  } from '@mdi/js'\n"
-  return ret
+  if (icons.size === 0) {
+    return ''
+  }
+
+  const imports = Array.from(icons).sort().join(', ')
+  return `  import { ${imports} } from '@mdi/js'\n`
 }
 
 export function renderSvelte(design, theme) {

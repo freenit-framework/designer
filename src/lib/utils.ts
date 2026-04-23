@@ -5,6 +5,20 @@ import store from '$lib/store'
 import type { Component } from '$lib/types.d'
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+const IDENTIFIER_RE = /^[A-Za-z_$][A-Za-z0-9_$]*$/
+
+const getIconName = (component: Component): string | null => {
+  if (typeof component.title !== 'string') {
+    return null
+  }
+
+  const trimmed = component.title.trim()
+  if (!trimmed || !IDENTIFIER_RE.test(trimmed)) {
+    return null
+  }
+
+  return trimmed
+}
 
 export function makeid(length = 8): string {
   let result = ''
@@ -161,7 +175,12 @@ const _calculateComponent = (component: Component, level: number = 0) => {
   }
   for (var prop in component.props) {
     if (component.name === 'Path' && prop === 'd') {
-      ret += ` ${prop}={${component.title}}`
+      const iconName = getIconName(component)
+      if (iconName) {
+        ret += ` ${prop}={${iconName}}`
+      } else {
+        ret += ` ${prop}="${component.props[prop]}"`
+      }
     } else {
       ret += ` ${prop}="${component.props[prop]}"`
     }
@@ -201,22 +220,27 @@ export const calculateTheme = () => {
   return ret
 }
 
-const _calculateImports = (component: Component) => {
-  let ret = ''
+const _collectImports = (component: Component, icons: Set<string>) => {
   if (component.name === 'Svg') {
-    ret += `\n    ${component.title},`
+    const iconName = getIconName(component)
+    if (iconName) {
+      icons.add(iconName)
+    }
   }
   for (var child of component.children) {
-    ret += _calculateImports(child)
+    _collectImports(child, icons)
   }
-  return ret
 }
 
 export const calculateImports = () => {
-  let ret = '  import {'
+  const icons = new Set<string>()
   for (var component of store.design.children) {
-    ret += _calculateImports(component)
+    _collectImports(component, icons)
   }
-  ret += "\n  } from '@mdi/js'\n"
-  return ret
+  if (icons.size === 0) {
+    return ''
+  }
+
+  const imports = Array.from(icons).sort().join(', ')
+  return `  import { ${imports} } from '@mdi/js'\n`
 }
