@@ -195,7 +195,32 @@ export function calculateImports(design) {
   return `  import { ${imports} } from '@mdi/js'\n`
 }
 
-export function renderSvelte(design, theme) {
+function calculateGlobalCss(documentData) {
+  if (!Array.isArray(documentData?.head)) {
+    return ''
+  }
+
+  let ret = ''
+  for (const entry of documentData.head) {
+    if (typeof entry !== 'string') {
+      continue
+    }
+
+    const matches = entry.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)
+    for (const match of matches) {
+      const css = match[1]?.trim()
+      if (!css) {
+        continue
+      }
+
+      ret += `${css}\n`
+    }
+  }
+
+  return ret.trim()
+}
+
+export function renderSvelte(design, theme, documentData = null) {
   let output = '<script lang="ts">\n'
   output += calculateImports(design)
   output += '\n'
@@ -206,6 +231,12 @@ export function renderSvelte(design, theme) {
   output += calculateComponents(design)
   output += '\n'
   output += '<style>\n'
+  const globalCss = calculateGlobalCss(documentData)
+  if (globalCss) {
+    output += '  :global {\n'
+    output += `${globalCss}\n`
+    output += '  }\n'
+  }
   output += calculateTheme(theme)
   output += calculateCss(design)
   output += '</style>\n'

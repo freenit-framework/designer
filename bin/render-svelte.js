@@ -27,4 +27,4 @@ if (!Array.isArray(payload?.design)) {
   process.exit(1)
 }
 
-process.stdout.write(renderSvelte(payload.design, payload.theme || {}))
+process.stdout.write(renderSvelte(payload.design, payload.theme || {}, payload.document || null))

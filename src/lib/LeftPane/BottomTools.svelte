@@ -25,7 +25,7 @@
   }
 
   const calculateExport = () => {
-    const mystring = renderSvelte(store.design.children, store.theme.detail)
+    const mystring = renderSvelte(store.design.children, store.theme.detail, store.design.document)
     exportDownload = `data:application/json;base64,${Base64.encode(mystring)}`
   }
 

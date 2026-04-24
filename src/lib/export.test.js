@@ -133,4 +133,20 @@ describe('export helpers', () => {
     expect(output).not.toContain("'in1':")
     expect(output).not.toContain("'ta1':")
   })
+
+  test('exports head style content as global css inside style tag', () => {
+    const output = renderSvelte(
+      [],
+      {},
+      {
+        head: [
+          '<title>Test</title>',
+          '<style>body { background: red; } .hero { color: blue; }</style>',
+        ],
+      },
+    )
+
+    expect(output).toContain('  :global {')
+    expect(output).toContain('body { background: red; } .hero { color: blue; }')
+  })
 })
