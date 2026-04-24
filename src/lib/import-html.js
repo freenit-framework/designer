@@ -34,9 +34,41 @@ export function createHtmlImporter(document) {
     return `${lower[0].toUpperCase()}${lower.slice(1)}`
   }
 
+  function parseInlineStyle(styleValue) {
+    const css = {}
+    if (!styleValue || typeof styleValue !== 'string') {
+      return css
+    }
+
+    for (const declaration of styleValue.split(';')) {
+      const trimmed = declaration.trim()
+      if (!trimmed) {
+        continue
+      }
+
+      const separator = trimmed.indexOf(':')
+      if (separator === -1) {
+        continue
+      }
+
+      const prop = trimmed.slice(0, separator).trim()
+      const value = trimmed.slice(separator + 1).trim()
+      if (!prop || !value) {
+        continue
+      }
+
+      css[prop] = value
+    }
+
+    return css
+  }
+
   function attributeMap(element) {
     const props = {}
     for (const attr of element.attributes) {
+      if (attr.name === 'style') {
+        continue
+      }
       props[attr.name] = attr.value
     }
     return props
@@ -83,7 +115,7 @@ export function createHtmlImporter(document) {
       title: '',
       children: [],
       props: attributeMap(element),
-      css: {},
+      css: parseInlineStyle(element.getAttribute('style')),
       text: '',
       open: true,
     }
