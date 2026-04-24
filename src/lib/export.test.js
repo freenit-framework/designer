@@ -149,4 +149,22 @@ describe('export helpers', () => {
     expect(output).toContain('  :global {')
     expect(output).toContain('body { background: red; } .hero { color: blue; }')
   })
+
+  test('merges generated css class with props.class into one class attribute', () => {
+    const design = [
+      {
+        id: 'hdr1',
+        name: 'Header',
+        title: '',
+        props: { class: 'site-header', 'aria-label': 'Main' },
+        css: { position: 'sticky' },
+        text: '',
+        children: [],
+      },
+    ]
+
+    const output = renderSvelte(design, {})
+    expect(output).toContain('<header class="hdr1 site-header" aria-label="Main">')
+    expect(output).not.toContain('class="hdr1" class="site-header"')
+  })
 })

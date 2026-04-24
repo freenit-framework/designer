@@ -167,13 +167,25 @@ export const calculateCss = () => {
 }
 
 const _calculateComponent = (component: Component, level: number = 0) => {
+  const propClass = typeof component?.props?.class === 'string' ? component.props.class.trim() : ''
+  const classes: string[] = []
+  if (Object.keys(component.css).length > 0) {
+    classes.push(component.id)
+  }
+  if (propClass) {
+    classes.push(propClass)
+  }
+
   let ret = ' '.repeat(level)
   ret += '<'
   ret += `${component.name.toLowerCase()}`
-  if (Object.keys(component.css).length > 0) {
-    ret += ` class="${component.id}"`
+  if (classes.length > 0) {
+    ret += ` class="${classes.join(' ')}"`
   }
   for (var prop in component.props) {
+    if (prop === 'class') {
+      continue
+    }
     if (component.name === 'Path' && prop === 'd') {
       const iconName = getIconName(component)
       if (iconName) {

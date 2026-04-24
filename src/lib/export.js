@@ -115,13 +115,26 @@ function calculateComponentNode(component, level = 0) {
   const allowProps = canHaveProps(tagName)
   const elementIsVoid = isVoid(tagName)
   const selfClosing = elementIsVoid || (!allowChildren && allowProps)
+  const propClass = typeof component?.props?.class === 'string' ? component.props.class.trim() : ''
+  const classes = []
+
+  if (allowProps && Object.keys(component.css).length > 0) {
+    classes.push(component.id)
+  }
+  if (allowProps && propClass) {
+    classes.push(propClass)
+  }
+
   let ret = ' '.repeat(level)
   ret += `<${tagName}`
-  if (allowProps && Object.keys(component.css).length > 0) {
-    ret += ` class="${component.id}"`
+  if (allowProps && classes.length > 0) {
+    ret += ` class="${classes.join(' ')}"`
   }
   if (allowProps) {
     for (const prop in component.props) {
+      if (prop === 'class') {
+        continue
+      }
       if (component.name === 'Path' && prop === 'd') {
         const iconName = getIconName(component)
         if (iconName) {
