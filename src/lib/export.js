@@ -8,6 +8,46 @@ function renderValue(value) {
 }
 
 const IDENTIFIER_RE = /^[A-Za-z_$][A-Za-z0-9_$]*$/
+const NO_CHILDREN_ELEMENTS = new Set([
+  'img',
+  'hr',
+  'br',
+  'wbr',
+  'area',
+  'base',
+  'col',
+  'embed',
+  'input',
+  'link',
+  'param',
+  'source',
+  'track',
+  'textarea',
+])
+const NO_PROPS_ELEMENTS = new Set(['textarea', 'br'])
+const VOID_ELEMENTS = new Set(['br'])
+
+function escapeSingleQuoted(value) {
+  return String(value)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/\r/g, '\\r')
+    .replace(/\n/g, '\\n')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029')
+}
+
+function canHaveChildren(tagName) {
+  return !NO_CHILDREN_ELEMENTS.has(tagName)
+}
+
+function canHaveProps(tagName) {
+  return !NO_PROPS_ELEMENTS.has(tagName)
+}
+
+function isVoid(tagName) {
+  return VOID_ELEMENTS.has(tagName)
+}
 
 function getIconName(component) {
   const title = component?.title
@@ -25,11 +65,14 @@ function getIconName(component) {
 
 function calculateDataNode(component) {
   let ret = ''
-  if (component.text) {
-    ret += `    '${component.id}': '${component.text}',\n`
+  const tagName = component.name.toLowerCase()
+  if (canHaveChildren(tagName) && component.text) {
+    ret += `    '${escapeSingleQuoted(component.id)}': '${escapeSingleQuoted(component.text)}',\n`
   }
-  for (const child of component.children) {
-    ret += calculateDataNode(child)
+  if (canHaveChildren(tagName)) {
+    for (const child of component.children) {
+      ret += calculateDataNode(child)
+    }
   }
   return ret
 }
@@ -67,33 +110,46 @@ export function calculateCss(design) {
 }
 
 function calculateComponentNode(component, level = 0) {
+  const tagName = component.name.toLowerCase()
+  const allowChildren = canHaveChildren(tagName)
+  const allowProps = canHaveProps(tagName)
+  const elementIsVoid = isVoid(tagName)
+  const selfClosing = elementIsVoid || (!allowChildren && allowProps)
   let ret = ' '.repeat(level)
-  ret += `<${component.name.toLowerCase()}`
-  if (Object.keys(component.css).length > 0) {
+  ret += `<${tagName}`
+  if (allowProps && Object.keys(component.css).length > 0) {
     ret += ` class="${component.id}"`
   }
-  for (const prop in component.props) {
-    if (component.name === 'Path' && prop === 'd') {
-      const iconName = getIconName(component)
-      if (iconName) {
-        ret += ` ${prop}={${iconName}}`
+  if (allowProps) {
+    for (const prop in component.props) {
+      if (component.name === 'Path' && prop === 'd') {
+        const iconName = getIconName(component)
+        if (iconName) {
+          ret += ` ${prop}={${iconName}}`
+        } else {
+          ret += ` ${prop}="${component.props[prop]}"`
+        }
       } else {
         ret += ` ${prop}="${component.props[prop]}"`
       }
-    } else {
-      ret += ` ${prop}="${component.props[prop]}"`
     }
   }
-  ret += '>\n'
-  for (const child of component.children) {
-    ret += calculateComponentNode(child, level + 2)
+  if (selfClosing) {
+    ret += ' />\n'
+    return ret
   }
-  if (component.text) {
-    ret += ' '.repeat(level + 2)
-    ret += `{data['${component.id}']}\n`
+  ret += '>\n'
+  if (allowChildren) {
+    for (const child of component.children) {
+      ret += calculateComponentNode(child, level + 2)
+    }
+    if (component.text) {
+      ret += ' '.repeat(level + 2)
+      ret += `{data['${escapeSingleQuoted(component.id)}']}\n`
+    }
   }
   ret += ' '.repeat(level)
-  ret += `</${component.name.toLowerCase()}>\n`
+  ret += `</${tagName}>\n`
   return ret
 }
 
