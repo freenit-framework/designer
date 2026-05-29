@@ -95,6 +95,20 @@ function calculateCssNode(component) {
     }
     ret += '  }\n'
   }
+  if (component.media) {
+    for (const [query, css] of Object.entries(component.media)) {
+      const mediaKeys = Object.keys(css)
+      if (mediaKeys.length > 0) {
+        ret += `\n  ${query} {\n`
+        ret += `    .${component.id} {\n`
+        for (const key of mediaKeys) {
+          ret += `      ${key}: ${renderValue(css[key])};\n`
+        }
+        ret += '    }\n'
+        ret += '  }\n'
+      }
+    }
+  }
   for (const child of component.children) {
     ret += calculateCssNode(child)
   }
@@ -118,7 +132,9 @@ function calculateComponentNode(component, level = 0) {
   const propClass = typeof component?.props?.class === 'string' ? component.props.class.trim() : ''
   const classes = []
 
-  if (allowProps && Object.keys(component.css).length > 0) {
+  const hasMediaCss =
+    component.media && Object.values(component.media).some((css) => Object.keys(css).length > 0)
+  if (allowProps && (Object.keys(component.css).length > 0 || hasMediaCss)) {
     classes.push(component.id)
   }
   if (allowProps && propClass) {
@@ -174,12 +190,24 @@ export function calculateComponents(design) {
   return ret
 }
 
-export function calculateTheme(theme) {
+export function calculateTheme(theme, darkTheme = null) {
   let ret = '  :root {\n'
   for (const prop in theme) {
     ret += `    --${prop}: ${renderValue(theme[prop])};\n`
   }
   ret += '  }\n'
+
+  if (darkTheme && Object.keys(darkTheme).length > 0) {
+    ret += '\n'
+    ret += '  @media (prefers-color-scheme: dark) {\n'
+    ret += '    :root {\n'
+    for (const prop in darkTheme) {
+      ret += `      --${prop}: ${renderValue(darkTheme[prop])};\n`
+    }
+    ret += '    }\n'
+    ret += '  }\n'
+  }
+
   return ret
 }
 
@@ -233,7 +261,7 @@ function calculateGlobalCss(documentData) {
   return ret.trim()
 }
 
-export function renderSvelte(design, theme, documentData = null) {
+export function renderSvelte(design, theme, documentData = null, darkTheme = null) {
   let output = '<script lang="ts">\n'
   output += calculateImports(design)
   output += '\n'
@@ -250,7 +278,7 @@ export function renderSvelte(design, theme, documentData = null) {
     output += `${globalCss}\n`
     output += '  }\n'
   }
-  output += calculateTheme(theme)
+  output += calculateTheme(theme, darkTheme)
   output += calculateCss(design)
   output += '</style>\n'
   return output

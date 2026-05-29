@@ -1,27 +1,23 @@
 // @ts-nocheck
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, beforeEach, afterEach } from 'vitest'
 import '@testing-library/jest-dom/vitest'
 import { render, screen } from '@testing-library/svelte'
 import Page from './+page.svelte'
-import * as components from '$lib/components'
 import store from '$lib/store'
 
-describe('/+page.svelte', () => {
-  test('should render link', () => {
-    store.design.children.push({
-      id: 'freenit',
-      name: 'A',
-      title: 'A',
-      component: components.A,
-      children: [],
-      props: { href: 'https://freenit.org/' },
-      css: {},
-      text: 'freenit.org',
-    })
+describe('/design/+page.svelte', () => {
+  beforeEach(() => {
+    store.design.children = []
+  })
+
+  afterEach(() => {
+    store.design.children = []
+  })
+
+  test('should render preview iframe', () => {
     render(Page)
-    const link = screen.getByTestId('freenit')
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveTextContent('freenit.org')
-    expect(link.href).toEqual('https://freenit.org/')
+    const iframe = screen.getByTitle('preview')
+    expect(iframe).toBeInTheDocument()
+    expect(iframe).toHaveAttribute('src', '/design/preview/')
   })
 })

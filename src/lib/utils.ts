@@ -51,6 +51,17 @@ export const setColors = (component: Component) => {
       component.css[prop] = colord(`rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`)
     }
   })
+  if (component.media) {
+    Object.values(component.media).forEach((css) => {
+      Object.keys(css).forEach((prop) => {
+        const value = css[prop]
+        if (value && value.rgba) {
+          const { rgba } = value
+          css[prop] = colord(`rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`)
+        }
+      })
+    })
+  }
   component.children.forEach((child) => setColors(child))
 }
 
@@ -169,7 +180,9 @@ export const calculateCss = () => {
 const _calculateComponent = (component: Component, level: number = 0) => {
   const propClass = typeof component?.props?.class === 'string' ? component.props.class.trim() : ''
   const classes: string[] = []
-  if (Object.keys(component.css).length > 0) {
+  const hasMediaCss =
+    component.media && Object.values(component.media).some((css) => Object.keys(css).length > 0)
+  if (Object.keys(component.css).length > 0 || hasMediaCss) {
     classes.push(component.id)
   }
   if (propClass) {
@@ -223,12 +236,27 @@ export const calculateComponents = () => {
 
 export const calculateTheme = () => {
   let ret = '  :root {\n'
-  for (var prop in store.theme.detail) {
-    const value = store.theme.detail[prop]
+  for (var prop in store.theme.light) {
+    const value = store.theme.light[prop]
     const render = value.toHex ? value.toHex() : value
     ret += `    --${prop}: ${render};\n`
   }
   ret += '  }\n'
+
+  const darkKeys = Object.keys(store.theme.dark)
+  if (darkKeys.length > 0) {
+    ret += '\n'
+    ret += '  @media (prefers-color-scheme: dark) {\n'
+    ret += '    :root {\n'
+    for (var prop of darkKeys) {
+      const value = store.theme.dark[prop]
+      const render = value.toHex ? value.toHex() : value
+      ret += `      --${prop}: ${render};\n`
+    }
+    ret += '    }\n'
+    ret += '  }\n'
+  }
+
   return ret
 }
 

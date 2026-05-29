@@ -15,6 +15,9 @@ const serializeComponent = (component: Component): Component => ({
   children: component.children.map((child) => serializeComponent(child)),
   props: { ...component.props },
   css: { ...component.css },
+  media: component.media
+    ? Object.fromEntries(Object.entries(component.media).map(([k, v]) => [k, { ...v }]))
+    : {},
   text: component.text || '',
   open: component.open,
 })

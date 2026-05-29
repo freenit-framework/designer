@@ -8,6 +8,7 @@ export interface Component {
   children: Component[]
   props: Record<any, any>
   css: Record<any, boolean | string | number | Colord | null>
+  media?: Record<string, Record<any, boolean | string | number | Colord | null>>
   text: string
   parent?: Component
   open?: boolean

@@ -17,7 +17,10 @@
   const calculateSave = () => {
     const myjson = {
       design: store.design.children,
-      theme: store.theme.detail,
+      theme: {
+        light: store.theme.light,
+        dark: store.theme.dark,
+      },
       document: store.design.document,
     }
     const mystring = JSON.stringify(myjson, null, 2)
@@ -25,16 +28,20 @@
   }
 
   const calculateExport = () => {
-    const mystring = renderSvelte(store.design.children, store.theme.detail, store.design.document)
+    const mystring = renderSvelte(store.design.children, store.theme.light, store.design.document, store.theme.dark)
     exportDownload = `data:application/json;base64,${Base64.encode(mystring)}`
   }
 
   const applyImportedData = (data: any) => {
     data.design.forEach((component: Component) => attachComponents(component))
     data.design.forEach((component: Component) => setColors(component))
-    setThemeColors(data.theme)
+    setThemeColors(data.theme.light)
     store.design.children = data.design
-    store.theme.detail = data.theme
+    store.theme.light = data.theme.light
+    if (data.theme.dark) {
+      setThemeColors(data.theme.dark)
+      store.theme.dark = data.theme.dark
+    }
     store.design.document = data.document || {
       includeChota: true,
       htmlProps: { lang: 'en' },

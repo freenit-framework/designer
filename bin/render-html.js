@@ -23,6 +23,8 @@ try {
 
 const design = Array.isArray(payload?.design) ? payload.design : null
 const theme = payload?.theme && typeof payload.theme === 'object' ? payload.theme : {}
+const darkTheme =
+  payload?.themeDark && typeof payload.themeDark === 'object' ? payload.themeDark : null
 const documentMeta =
   payload?.document && typeof payload.document === 'object' ? payload.document : {}
 
@@ -92,12 +94,21 @@ function normalizeCssValue(value) {
   return value
 }
 
-function renderTheme(themeObject) {
+function renderTheme(themeObject, darkThemeObject = null) {
   const lines = Object.entries(themeObject).map(([key, value]) => {
     return `  --${key}: ${normalizeCssValue(value)};`
   })
 
-  return lines.length > 0 ? `:root {\n${lines.join('\n')}\n}` : ''
+  let result = lines.length > 0 ? `:root {\n${lines.join('\n')}\n}` : ''
+
+  if (darkThemeObject && Object.keys(darkThemeObject).length > 0) {
+    const darkLines = Object.entries(darkThemeObject).map(([key, value]) => {
+      return `    --${key}: ${normalizeCssValue(value)};`
+    })
+    result += `\n\n@media (prefers-color-scheme: dark) {\n  :root {\n${darkLines.join('\n')}\n  }\n}`
+  }
+
+  return result
 }
 
 function renderComponentCss(component, chunks = []) {
@@ -107,6 +118,15 @@ function renderComponentCss(component, chunks = []) {
   if (component?.id && cssEntries.length > 0) {
     const lines = cssEntries.map(([key, value]) => `  ${key}: ${normalizeCssValue(value)};`)
     chunks.push(`.${component.id} {\n${lines.join('\n')}\n}`)
+  }
+
+  const media = component?.media && typeof component.media === 'object' ? component.media : {}
+  for (const [query, mediaCss] of Object.entries(media)) {
+    const mediaEntries = Object.entries(mediaCss)
+    if (component?.id && mediaEntries.length > 0) {
+      const lines = mediaEntries.map(([key, value]) => `    ${key}: ${normalizeCssValue(value)};`)
+      chunks.push(`${query} {\n  .${component.id} {\n${lines.join('\n')}\n  }\n}`)
+    }
   }
 
   const children = Array.isArray(component?.children) ? component.children : []
@@ -121,7 +141,13 @@ function renderAttributes(component) {
   const props = component?.props && typeof component.props === 'object' ? component.props : {}
   const attrs = []
   const propClass = typeof props.class === 'string' ? props.class.trim() : ''
-  const cssClass = component?.id && Object.keys(component?.css || {}).length > 0 ? component.id : ''
+  const hasMediaCss =
+    component?.media &&
+    Object.values(component?.media || {}).some((css) => Object.keys(css).length > 0)
+  const cssClass =
+    component?.id && (Object.keys(component?.css || {}).length > 0 || hasMediaCss)
+      ? component.id
+      : ''
   const className = [propClass, cssClass].filter(Boolean).join(' ')
 
   if (className) {
@@ -173,7 +199,7 @@ function renderComponent(component, level = 2) {
   return `${indent}<${tagName}${attrs}>\n${inner.join('\n')}\n${indent}</${tagName}>`
 }
 
-const themeCss = renderTheme(theme)
+const themeCss = renderTheme(theme, darkTheme)
 const componentCss = design.flatMap((component) => renderComponentCss(component))
 const styleSections = [chotaCss, themeCss, ...componentCss].filter(Boolean)
 const renderedDesignMarkup = design

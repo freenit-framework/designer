@@ -1,6 +1,5 @@
 <script lang="ts">
   import store from '$lib/store'
-  import style from '$lib/style'
   import Element from './Element.svelte'
 
   const { component } = $props()
@@ -11,15 +10,19 @@
     store.design.selected = component
   }
 
-  let css = $derived.by(() => {
-    if (store.design.selected?.id === component.id) {
-      return style({ ...component.css, border: '1px dotted gray' })
+  let className = $derived.by(() => {
+    const classes = [component.id]
+    if (typeof component.props.class === 'string' && component.props.class.trim()) {
+      classes.push(component.props.class.trim())
     }
-    return style(component.css)
+    if (store.design.selected?.id === component.id) {
+      classes.push('selected')
+    }
+    return classes.join(' ')
   })
 </script>
 
-<component.component {...component.props} style={css} data-testid={component.id} onclick={select}>
+<component.component {...component.props} class={className} data-testid={component.id} onclick={select}>
   {#each component.children as child}
     <Element component={child} />
   {/each}
