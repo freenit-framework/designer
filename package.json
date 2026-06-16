@@ -36,6 +36,7 @@
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.17.0",
+    "events": "^3.3.0",
     "globals": "^17.5.0",
     "js-base64": "^3.7.8",
     "jsdom": "^29.0.2",

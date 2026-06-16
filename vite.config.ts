@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => {
   const config = {
     plugins: [sveltekit()],
 
+    optimizeDeps: {
+      include: ['events'],
+    },
+
     test: {
       projects: [
         {
