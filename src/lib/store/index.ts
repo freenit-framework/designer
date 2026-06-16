@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { BaseStore } from '@freenit-framework/core'
+import { BaseStore } from 'freenit'
 import DesignStore from './design.svelte'
 import SelectedStore from './selected.svelte'
 import ThemeStore from './theme.svelte'

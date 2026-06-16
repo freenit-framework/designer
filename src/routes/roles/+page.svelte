@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Roles } from '@freenit-framework/core'
+  import { Roles } from 'freenit'
   import store from '$lib/store'
 </script>
 

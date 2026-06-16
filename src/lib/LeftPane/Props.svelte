@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Input } from '@freenit-framework/core'
+  import { Input } from 'freenit'
   import PropEdit from './PropEdit.svelte'
   import type { Colord } from 'colord'
   import store from '$lib/store'

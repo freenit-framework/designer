@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { User } from '@freenit-framework/core'
+  import { User } from 'freenit'
   import store from '$lib/store'
 
   const { data: props } = $props()

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Users } from '@freenit-framework/core'
+  import { Users } from 'freenit'
   import store from '$lib/store'
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Role } from '@freenit-framework/core'
+  import { Role } from 'freenit'
   import store from '$lib/store'
 
   const { data: props } = $props()

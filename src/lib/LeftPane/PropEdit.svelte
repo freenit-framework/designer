@@ -1,6 +1,6 @@
 <script lang="ts">
   // @ts-nocheck
-  import { Input } from '@freenit-framework/core'
+  import { Input } from 'freenit'
   import ColorPicker from 'svelte-awesome-color-picker'
   import { colord } from 'colord'
   import mytype from '$lib/mytype'

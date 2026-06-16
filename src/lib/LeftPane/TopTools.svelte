@@ -7,7 +7,7 @@
     mdiContentCopy,
     mdiContentPaste,
   } from '@mdi/js'
-  import { notification } from '@freenit-framework/core'
+  import { notification } from 'freenit'
   import { attachComponents, setColors } from '$lib/utils'
   import store from '$lib/store'
   import { browser } from '$app/environment'
