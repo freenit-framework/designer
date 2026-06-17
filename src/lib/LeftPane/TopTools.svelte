@@ -15,19 +15,59 @@
 
   let { toggle } = $props()
   const DESIGNER_CLIPBOARD_KEY = 'designer:clipboard'
+  const LOG_PREFIX = '[designer clipboard]'
+
+  const describeComponent = (component: Component | null) => {
+    if (!component) {
+      return null
+    }
+    return {
+      id: component.id,
+      name: component.name,
+      title: component.title,
+      childCount: component.children?.length ?? 0,
+      text: component.text,
+    }
+  }
+
+  const describePasteTarget = (component: Component | null) => {
+    if (component) {
+      return describeComponent(component)
+    }
+    return {
+      id: store.design.id,
+      name: store.design.name,
+      title: store.design.title,
+      childCount: store.design.children.length,
+      root: true,
+    }
+  }
 
   const setDesignerClipboard = (value: string) => {
     try {
       localStorage.setItem(DESIGNER_CLIPBOARD_KEY, value)
+      console.log(LOG_PREFIX, 'localStorage write ok', {
+        key: DESIGNER_CLIPBOARD_KEY,
+        length: value.length,
+        value,
+      })
     } catch (e) {
+      console.log(LOG_PREFIX, 'localStorage write failed', e)
       // Storage can be unavailable; the system clipboard may still work.
     }
   }
 
   const getDesignerClipboard = () => {
     try {
-      return localStorage.getItem(DESIGNER_CLIPBOARD_KEY)
+      const value = localStorage.getItem(DESIGNER_CLIPBOARD_KEY)
+      console.log(LOG_PREFIX, 'localStorage read', {
+        key: DESIGNER_CLIPBOARD_KEY,
+        length: value?.length ?? 0,
+        value,
+      })
+      return value
     } catch (e) {
+      console.log(LOG_PREFIX, 'localStorage read failed', e)
       return null
     }
   }
@@ -55,48 +95,94 @@
   }
 
   const copy = async () => {
+    console.log(LOG_PREFIX, 'copy clicked', {
+      selected: describeComponent(store.design.selected),
+    })
     if (browser && store.design.selected) {
       const value = JSON.stringify(store.design.selected)
+      console.log(LOG_PREFIX, 'copy payload', {
+        length: value.length,
+        value,
+      })
       setDesignerClipboard(value)
       try {
         await navigator.clipboard?.writeText(value)
+        console.log(LOG_PREFIX, 'system clipboard write ok')
       } catch (e) {
+        console.log(LOG_PREFIX, 'system clipboard write failed', e)
         // Browser clipboard writes can be denied; localStorage still supports same-origin tabs.
       }
+    } else {
+      console.log(LOG_PREFIX, 'copy skipped', {
+        browser,
+        selected: describeComponent(store.design.selected),
+      })
     }
   }
 
   const paste = async () => {
+    console.log(LOG_PREFIX, 'paste clicked', {
+      selected: describeComponent(store.design.selected),
+    })
     if (browser) {
-      const values = []
+      const values: { source: string; value: string | null | undefined }[] = []
       try {
-        values.push(await navigator.clipboard?.readText())
+        const value = await navigator.clipboard?.readText()
+        console.log(LOG_PREFIX, 'system clipboard read ok', {
+          length: value?.length ?? 0,
+          value,
+        })
+        values.push({ source: 'system clipboard', value })
       } catch (e) {
+        console.log(LOG_PREFIX, 'system clipboard read failed', e)
         // Fall back to the designer clipboard shared through localStorage.
       }
-      values.push(getDesignerClipboard())
+      values.push({ source: 'localStorage', value: getDesignerClipboard() })
 
       let data = null
-      for (const value of values) {
+      let source = null
+      for (const { source: valueSource, value } of values) {
         if (!value) {
+          console.log(LOG_PREFIX, 'paste source empty', { source: valueSource })
           continue
         }
         try {
           data = JSON.parse(value)
+          source = valueSource
+          console.log(LOG_PREFIX, 'paste source parsed', {
+            source,
+            parsed: describeComponent(data),
+            raw: value,
+          })
           break
         } catch (e) {
+          console.log(LOG_PREFIX, 'paste source parse failed', {
+            source: valueSource,
+            value,
+            error: e,
+          })
           // Try the next clipboard source.
         }
       }
       if (!data) {
+        console.log(LOG_PREFIX, 'paste failed: no valid payload')
         notification.error('error parsing paste')
         return
       }
       attachComponents(data)
       setColors(data)
-      if (store.design.selected) {
-        store.design.selected.children.push(data)
-      }
+      const target = store.design.selected ?? store.design
+      console.log(LOG_PREFIX, 'paste payload after attach', {
+        source,
+        pasted: describeComponent(data),
+        target: describePasteTarget(store.design.selected),
+      })
+      target.children.push(data)
+      console.log(LOG_PREFIX, 'paste pushed to target', {
+        target: describePasteTarget(store.design.selected),
+      })
+    } else {
+      console.log(LOG_PREFIX, 'paste skipped', { browser })
     }
   }
 </script>

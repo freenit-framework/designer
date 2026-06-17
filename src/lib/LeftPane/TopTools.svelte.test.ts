@@ -62,4 +62,25 @@ describe('TopTools copy/paste', () => {
     })
     expect(store.design.selected.children[0].id).not.toBe(source.id)
   })
+
+  test('pastes copied component into root when nothing is selected', async () => {
+    const source = makeComponent()
+    store.design.selected = source
+
+    const firstTab = render(TopTools, { props: { toggle: vi.fn() } })
+    await fireEvent.click(screen.getByLabelText('Copy'))
+
+    firstTab.unmount()
+    store.design.selected = null
+    render(TopTools, { props: { toggle: vi.fn() } })
+    await fireEvent.click(screen.getByLabelText('Paste'))
+
+    await waitFor(() => expect(store.design.children).toHaveLength(1))
+    expect(store.design.children[0]).toMatchObject({
+      name: 'Div',
+      title: 'Div',
+      text: 'Copied content',
+    })
+    expect(store.design.children[0].id).not.toBe(source.id)
+  })
 })
