@@ -14,6 +14,23 @@
   import type { Component } from '$lib/types'
 
   let { toggle } = $props()
+  const DESIGNER_CLIPBOARD_KEY = 'designer:clipboard'
+
+  const setDesignerClipboard = (value: string) => {
+    try {
+      localStorage.setItem(DESIGNER_CLIPBOARD_KEY, value)
+    } catch (e) {
+      // Storage can be unavailable; the system clipboard may still work.
+    }
+  }
+
+  const getDesignerClipboard = () => {
+    try {
+      return localStorage.getItem(DESIGNER_CLIPBOARD_KEY)
+    } catch (e) {
+      return null
+    }
+  }
 
   const left = (pane: string) => () => {
     store.selected.left = pane
@@ -37,20 +54,41 @@
     _search(store.design.children)
   }
 
-  const copy = () => {
-    if (browser) {
+  const copy = async () => {
+    if (browser && store.design.selected) {
       const value = JSON.stringify(store.design.selected)
-      navigator.clipboard.writeText(value)
+      setDesignerClipboard(value)
+      try {
+        await navigator.clipboard?.writeText(value)
+      } catch (e) {
+        // Browser clipboard writes can be denied; localStorage still supports same-origin tabs.
+      }
     }
   }
 
   const paste = async () => {
     if (browser) {
-      const value = await navigator.clipboard.readText()
-      let data
+      const values = []
       try {
-        data = JSON.parse(value)
+        values.push(await navigator.clipboard?.readText())
       } catch (e) {
+        // Fall back to the designer clipboard shared through localStorage.
+      }
+      values.push(getDesignerClipboard())
+
+      let data = null
+      for (const value of values) {
+        if (!value) {
+          continue
+        }
+        try {
+          data = JSON.parse(value)
+          break
+        } catch (e) {
+          // Try the next clipboard source.
+        }
+      }
+      if (!data) {
         notification.error('error parsing paste')
         return
       }
@@ -117,12 +155,16 @@
     <svg class="icon" onclick={search} role="none">
       <path d={mdiSelectSearch} />
     </svg>
-    <svg class="icon" onclick={copy} role="none">
-      <path d={mdiContentCopy} />
-    </svg>
-    <svg class="icon" onclick={paste} role="none">
-      <path d={mdiContentPaste} />
-    </svg>
+    <button class="icon-button" onclick={copy} aria-label="Copy">
+      <svg class="icon" role="none">
+        <path d={mdiContentCopy} />
+      </svg>
+    </button>
+    <button class="icon-button" onclick={paste} aria-label="Paste">
+      <svg class="icon" role="none">
+        <path d={mdiContentPaste} />
+      </svg>
+    </button>
   </div>
 </div>
 
@@ -155,6 +197,13 @@
 
   .disabled {
     fill: #bbb;
+  }
+
+  .icon-button {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    line-height: 0;
   }
 
   .tools {
